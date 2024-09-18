@@ -235,20 +235,9 @@
                             <fieldset>
                                 <div class="form-card">
                                     <div class="row">
-                                        <div class="col-5 mb-3">
-                                            <label class="required">Tempat / Tanggal Lahir</label>
-                                            <div class="col-md-12">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2">
-                                                        <input class="form-control" type="text" name="tempat_lahir"
-                                                            placeholder="Tempat lahir" />
-                                                    </div>
-                                                    <div class="px-2">/</div>
-                                                    <div class="ms-2">
-                                                        <input class="form-control" type="date" name="tanggal_lahir" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="required">No. Telepon</label>
+                                            <input class="form-control" type="text" name="pwd" />
                                         </div>
                                         <div class="col-md-4 mb-3">
                                             <label class="required">Alamat KTP</label>
