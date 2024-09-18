@@ -791,7 +791,7 @@ select.form-control:not([size]):not([multiple]) {
 .card .card-header h4 {
   font-size: 16px;
   line-height: 28px;
-  color: #387F39;
+  color: #1A5319;
   padding-right: 10px;
   margin-bottom: 0;
 }
@@ -883,13 +883,13 @@ select.form-control:not([size]):not([multiple]) {
   background-position: center;
 }
 .card.card-primary {
-  border-top: 2px solid #387F39;
+  border-top: 2px solid #1A5319;
 }
 .card.card-secondary {
   border-top: 2px solid #cdd3d8;
 }
 .card.card-success {
-  border-top: 2px solid #47c363;
+  border-top: 2px solid #1A5319;
 }
 .card.card-danger {
   border-top: 2px solid #fc544b;
@@ -1529,12 +1529,12 @@ h6 .badge {
 
 .btn-success, .btn-success.disabled {
   // box-shadow: 0 2px 6px #81d694;
-  background-color: #387F39;
-  border-color: #387F39;
+  background-color: #1A5319;
+  border-color: #1A5319;
   color: #fff;
 }
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.disabled:hover, .btn-success.disabled:focus, .btn-success.disabled:active {
-  background-color: #387F39 !important;
+  background-color: #1A5319 !important;
   color: #fff !important;
 }
 

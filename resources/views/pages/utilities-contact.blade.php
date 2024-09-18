@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
+                            Copyright &copy; Bali SolutionBiz 2024
                         </div>
                     </div>
                 </div>
