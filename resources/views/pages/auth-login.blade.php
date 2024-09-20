@@ -5,6 +5,7 @@
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/bootstrap-social/bootstrap-social.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/input.css') }}">
 @endpush
 
 @section('main')
@@ -18,13 +19,11 @@
             <form method="POST" action="#" class="needs-validation" novalidate="">
                 <div class="form-group">
                     <label for="phone">No. Telepon</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-phone"></i>
-                            </div>
+                    <div class="input-group input-group-icon">
+                        <input type="text" />
+                        <div class="input-icon">
+                            <i class="fas fa-phone"></i>
                         </div>
-                        <input type="text" class="form-control phone-number">
                     </div>
                 </div>
 
@@ -32,13 +31,11 @@
                     <div class="d-block">
                         <label for="password" class="control-label">Password</label>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-key"></i>
-                            </div>
+                    <div class="input-group input-group-icon">
+                        <input type="password" />
+                        <div class="input-icon">
+                            <i class="fas fa-key"></i>
                         </div>
-                        <input type="password" class="form-control pwstrength" data-indicator="pwindicator">
                     </div>
                     <div id="pwindicator" class="pwindicator">
                         <div class="bar"></div>
@@ -50,13 +47,11 @@
                     <div class="d-block">
                         <label for="password" class="control-label">Konfirmasi Password</label>
                     </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-lock"></i>
-                            </div>
+                    <div class="input-group input-group-icon">
+                        <input type="password" />
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
                         </div>
-                        <input type="password" class="form-control pwstrength" data-indicator="pwindicator">
                     </div>
                     <div id="pwindicator" class="pwindicator">
                         <div class="bar"></div>
@@ -68,7 +63,7 @@
                     {{-- <button type="submit" class="btn btn-primary btn-block" tabindex="4">
                         Masuk
                     </button> --}}
-                    <a href="{{ route('dashboard') }}" class="btn btn-primary btn-block">Masuk</a>
+                    <a href="{{ route('dashboard') }}" class="btn btn-success btn-block">Masuk</a>
                 </div>
             </form>
             <div class="text-muted mt-3 text-center">

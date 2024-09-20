@@ -34,15 +34,15 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row align-items-center mb-4">
-                            <div class="col-md-5 col-lg-6 mb-3 mb-md-0">
-                                <a class="btn btn-primary" href="" data-toggle="tooltip" title="Tambah Data"><i
+                        <div class="row mb-4">
+                            <div class="col-md-5 col-lg-6 mb-md-0 text-center text-md-left">
+                                <a class="btn btn-success" href="" data-toggle="tooltip" title="Tambah Data"><i
                                         class="fas fa-edit pr-2"></i>Tambah</a>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table-striped table" id="myTable">
+                            <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
@@ -179,7 +179,7 @@
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable({
-
+                scrollX: true
             });
         });
     </script>
