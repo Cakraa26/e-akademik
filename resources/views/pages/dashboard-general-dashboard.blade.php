@@ -22,7 +22,7 @@
             color: #fff;
         }
 
-        .card .card-statistic-3 .card-icon-large .fas{
+        .card .card-statistic-3 .card-icon-large .fas {
             font-size: 110px;
         }
 
@@ -35,6 +35,9 @@
             right: 10px;
             top: 20px;
             opacity: 0.1;
+        }
+        .text-dashboard h3, .text-dashboard h5{
+            font-weight: 400;
         }
     </style>
 @endpush
@@ -49,19 +52,19 @@
                 <div class="col-xl-4 col-lg-6">
                     <div class="card l-bg-blue-dark">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-mail-bulk"></i></div>
+                            <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0">Notifikasi</h5>
+                                <h5 class="card-title mb-0">Visitor</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
-                                <div class="col-8">
+                                <div class="col-12">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        1.5k
+                                        30
                                     </h2>
                                 </div>
-                                <div class="col-4 text-right">
+                                {{-- <div class="col-4 text-right">
                                     <span>9.23% <i class="fa fa-arrow-up"></i></span>
-                                </div>
+                                </div> --}}
                             </div>
                             {{-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
                                 <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25"
@@ -75,17 +78,17 @@
                         <div class="card-statistic-3 p-4">
                             <div class="card-icon card-icon-large"><i class="fas fa-user-md"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0">Mahasiswa</h5>
+                                <h5 class="card-title mb-0">Register Residen</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
-                                <div class="col-8">
+                                <div class="col-12">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        578
+                                        33
                                     </h2>
                                 </div>
-                                <div class="col-4 text-right">
+                                {{-- <div class="col-4 text-right">
                                     <span>10% <i class="fa fa-arrow-up"></i></span>
-                                </div>
+                                </div> --}}
                             </div>
                             {{-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
                                 <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25"
@@ -102,14 +105,14 @@
                                 <h5 class="card-title mb-0">Residen Aktif</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
-                                <div class="col-8">
+                                <div class="col-12">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        33
+                                        570
                                     </h2>
                                 </div>
-                                <div class="col-4 text-right">
+                                {{-- <div class="col-4 text-right">
                                     <span>2.5% <i class="fa fa-arrow-up"></i></span>
-                                </div>
+                                </div> --}}
                             </div>
                             {{-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
                                 <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25"
@@ -119,7 +122,17 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="mt-3">
+                <div class="text-center text-dashboard">
+                    <div class="mb-3">
+                        <img src="{{ asset('img/logo.png') }}" alt="" width="100">
+                    </div>
+                    <h2>E - AKADEMIK</h2>
+                    <h3>Fakultas Kedokteran Universitas Udayana</h3>
+                    <h5>Program Studi Spesialis Orthopaedi dan Traumatologi</h5>
+                </div>
+            </div>
+            {{-- <div class="row">
                 <div class="col-lg-8 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
@@ -712,7 +725,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>
     </div>
 @endsection
