@@ -6,173 +6,8 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-    <style>
-        #heading {
-            text-transform: uppercase;
-            color: #1A5319;
-            font-weight: normal;
-        }
-
-        #msform {
-            position: relative;
-            margin-top: 20px;
-        }
-
-        #msform fieldset {
-            background: white;
-            border: 0 none;
-            border-radius: 0.5rem;
-            box-sizing: border-box;
-            width: 100%;
-            margin: 0;
-            position: relative;
-        }
-
-        #msform fieldset:not(:first-of-type) {
-            display: none;
-        }
-
-        #msform .action-button {
-            width: 120px;
-            background: #1A5319;
-            color: white;
-            border: 0 none;
-            cursor: pointer;
-            padding: 10px 5px;
-            margin: 10px 0px 10px 5px;
-            float: right;
-            border-radius: 5px;
-        }
-
-        #msform .action-button:hover,
-        #msform .action-button:focus {
-            background-color: #2f6b30;
-        }
-
-        #msform .action-button-previous {
-            width: 120px;
-            background: #616161;
-            color: white;
-            border: 0 none;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 10px 5px;
-            margin: 10px 5px 10px 0px;
-            float: right
-        }
-
-        #msform .action-button-previous:hover,
-        #msform .action-button-previous:focus {
-            background-color: #000000
-        }
-
-        .card {
-            z-index: 0;
-            border: none;
-            position: relative
-        }
-
-        .fs-title {
-            font-size: 25px;
-            color: #1A5319;
-            margin-bottom: 15px;
-            font-weight: normal;
-            text-align: left
-        }
-
-        .purple-text {
-            color: #1A5319;
-            font-weight: normal
-        }
-
-        #progressbar {
-            margin-bottom: 30px;
-            overflow: hidden;
-            color: lightgrey;
-            padding-left: 0px;
-        }
-
-        #progressbar .active {
-            color: #1A5319;
-        }
-
-        #progressbar li {
-            list-style-type: none;
-            font-size: 15px;
-            width: 20%;
-            float: left;
-            position: relative;
-            font-weight: 400;
-        }
-
-        #progressbar #account:before {
-            font-family: FontAwesome;
-            content: "\f13e";
-        }
-
-        #progressbar #personal:before {
-            font-family: FontAwesome;
-            content: "\f007";
-        }
-
-        #progressbar #study:before {
-            font-family: FontAwesome;
-            content: "\f19d"
-        }
-
-        #progressbar #family:before {
-            font-family: FontAwesome;
-            content: "\f0c0"
-        }
-
-        #progressbar #finish:before {
-            font-family: FontAwesome;
-            content: "\f00c"
-        }
-
-        #progressbar li:before {
-            width: 50px;
-            height: 50px;
-            line-height: 45px;
-            display: block;
-            font-size: 20px;
-            color: #ffffff;
-            background: lightgray;
-            border-radius: 50%;
-            margin: 0 auto 10px auto;
-            padding: 2px;
-        }
-
-        #progressbar li:after {
-            content: '';
-            width: 100%;
-            height: 2px;
-            background: lightgray;
-            position: absolute;
-            left: 0;
-            top: 25px;
-            z-index: -1
-        }
-
-        #progressbar li.active:before,
-        #progressbar li.active:after {
-            background: #1A5319;
-            color: #FFD35A;
-        }
-
-        .progress {
-            height: 20px
-        }
-
-        .progress-bar {
-            background-color: #1A5319;
-        }
-
-        .fit-image {
-            width: 100%;
-            object-fit: cover
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/input.css') }}">
 @endpush
 
 @section('main')
@@ -205,96 +40,16 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Lengkap</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-user"></i>
                                                 </div>
                                             </div>
-
-                                            <style>
-                                                input{
-                                                    width: 100%;
-                                                    padding: 10px 15px;
-                                                    line-height: 1.4;
-                                                    background-color: #f9f9f9;
-                                                    border: 1px solid #e4e6fc;
-                                                    border-radius: 4px;
-                                                    -webkit-transition: 0.35s ease-in-out;
-                                                    -moz-transition: 0.35s ease-in-out;
-                                                    -o-transition: 0.35s ease-in-out;
-                                                    transition: 0.35s ease-in-out;
-                                                    transition: all 0.35s ease-in-out;
-                                                }
-                                                input:focus {
-                                                    outline: 0;
-                                                    border-color: #1A5319;
-                                                }
-
-                                                input:focus+.input-icon i {
-                                                    color: #1A5319;
-                                                }
-
-                                                input:focus+.input-icon:after {
-                                                    border-right-color: #1A5319;
-                                                }
-
-                                                .input-group:before,
-                                                .input-group:after {
-                                                    content: "";
-                                                    display: table;
-                                                }
-
-                                                .input-group:after {
-                                                    clear: both;
-                                                }
-
-                                                .input-group-icon {
-                                                    position: relative;
-                                                }
-
-                                                .input-group-icon input {
-                                                    padding-left: 4.4em;
-                                                }
-
-                                                .input-group-icon .input-icon {
-                                                    position: absolute;
-                                                    top: 0;
-                                                    left: 0;
-                                                    width: 3.4em;
-                                                    height: 3em;
-                                                    line-height: 3.1em;
-                                                    text-align: center;
-                                                    pointer-events: none;
-                                                }
-
-                                                .input-group-icon .input-icon:after {
-                                                    position: absolute;
-                                                    top: 0.6em;
-                                                    bottom: 0.6em;
-                                                    left: 3.4em;
-                                                    display: block;
-                                                    border-right: 1px solid #e5e5e5;
-                                                    content: "";
-                                                    -webkit-transition: 0.35s ease-in-out;
-                                                    -moz-transition: 0.35s ease-in-out;
-                                                    -o-transition: 0.35s ease-in-out;
-                                                    transition: 0.35s ease-in-out;
-                                                    transition: all 0.35s ease-in-out;
-                                                }
-
-                                                .input-group-icon .input-icon i {
-                                                    -webkit-transition: 0.35s ease-in-out;
-                                                    -moz-transition: 0.35s ease-in-out;
-                                                    -o-transition: 0.35s ease-in-out;
-                                                    transition: 0.35s ease-in-out;
-                                                    transition: all 0.35s ease-in-out;
-                                                }
-                                            </style>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Panggilan</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-user-circle"></i>
                                                 </div>
@@ -305,7 +60,7 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Inisial Residen</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-badge"></i>
                                                 </div>
@@ -314,7 +69,7 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">No. KTP</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-card"></i>
                                                 </div>
@@ -325,7 +80,7 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Email</label>
                                             <div class="input-group input-group-icon" id="input-group">
-                                                <input type="text" onkeyup="validate()" id="email"/>
+                                                <input type="text" onkeyup="validate()" id="email" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-envelope"></i>
                                                 </div>
@@ -337,7 +92,7 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">No. Telepon</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-phone-alt"></i>
                                                 </div>
@@ -348,7 +103,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label class="required">Password</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-key"></i>
                                                 </div>
@@ -357,7 +112,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label class="required">Konfirmasi Password</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text"/>
+                                                <input type="text" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-lock"></i>
                                                 </div>
@@ -373,51 +128,99 @@
                                 <div class="form-card">
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Tempat Lahir</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-map-marker-alt"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Tanggal Lahir</label>
-                                            <input class="form-control" type="date" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="date" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-calendar-alt"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-8 col-md-4 mb-3">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Agama</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-praying-hands"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-4 col-md-2 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Gol. Darah</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-tint"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Alamat KTP</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-map-marked-alt"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Alamat Tempat Tinggal</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-home"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-6 col-md-3 mb-3">
+                                        <div class="col-6 col-md-3 mb-4">
                                             <label class="required">Jumlah Saudara</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-users"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-6 col-md-3 mb-3">
+                                        <div class="col-6 col-md-3 mb-4">
                                             <label class="required">Anak ke</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-child"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Status Kawin</label>
-                                            <select class="form-select select2" id="status_kawin" name="status_kawin">
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-hand-holding-heart"></i>
+                                                </div>
+                                            </div>
+                                            {{-- <select class="select2" id="status_kawin" name="status_kawin">
                                                 <option value="" disabled selected></option>
                                                 <option value="belum_kawin">Belum Kawin</option>
                                                 <option value="kawin">Kawin</option>
                                                 <option value="cerai_hidup">Cerai Hidup</option>
                                                 <option value="cerai_mati">Cerai Mati</option>
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -432,23 +235,43 @@
                                 <div class="form-card">
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Tahun Masuk Orthopaedi</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-calendar-check"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Tahun Lulusan FK</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-graduation-cap"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Asal FK</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-university"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Status Residen (Mandiri / PNS / Patubel)</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-briefcase"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -463,53 +286,103 @@
                                 <div class="form-card">
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Nama Suami / Istri</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-user-friends"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Alamat Suami / Istri</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-map-pin"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">No. Telepon Suami / Istri</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-phone-alt"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Jumlah Anak</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-baby"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Nama Ayah</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-male"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Nama Ibu</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-female"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Alamat Ayah / Ibu</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-home"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Nama Kontak Darurat</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-user-shield"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Nomor Kontak Darurat</label>
-                                            <input class="form-control" type="text" name="pwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fas fa-phone-volume"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-4">
                                             <label class="required">Hubungan Kontak Darurat</label>
-                                            <input class="form-control" type="text" name="cpwd" />
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" />
+                                                <div class="input-icon">
+                                                    <i class="fa fa-link"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
