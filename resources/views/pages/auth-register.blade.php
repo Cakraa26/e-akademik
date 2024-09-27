@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/input.css') }}">
+    <style>
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 53%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: none;
+        }
+
+        ::-ms-reveal {
+            display: none;
+        }
+    </style>
 @endpush
 
 @section('main')
@@ -32,7 +46,8 @@
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                                     aria-valuemin="0" aria-valuemax="100"></div>
-                            </div> <br> <!-- fieldsets -->
+                            </div>
+                            <br>
                             <fieldset>
                                 <div class="form-card">
                                     <br>
@@ -40,7 +55,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Lengkap</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Nama Lengkap wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-user"></i>
                                                 </div>
@@ -49,7 +65,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Panggilan</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Nama Panggilan wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-user-circle"></i>
                                                 </div>
@@ -60,7 +77,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Inisial Residen</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Inisial Residen wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-badge"></i>
                                                 </div>
@@ -69,7 +87,10 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">No. KTP</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="No. KTP wajib diisi."
+                                                    data-parsley-type="number"
+                                                    data-parsley-type-message="No. KTP harus berupa angka valid." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-card"></i>
                                                 </div>
@@ -80,19 +101,22 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Email</label>
                                             <div class="input-group input-group-icon" id="input-group">
-                                                <input type="text" onkeyup="validate()" id="email" />
+                                                <input type="email" name="email" required
+                                                    data-parsley-required-message="Email wajib diisi."
+                                                    data-parsley-type="email"
+                                                    data-parsley-type-message="Format email tidak valid.">
                                                 <div class="input-icon">
                                                     <i class="fa fa-envelope"></i>
                                                 </div>
-                                                <span id="email-emoji"
-                                                    style="position: absolute; right: 30px; top: 70%; transform: translateY(-50%);"></span>
-                                                <span id="text"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <label class="required">No. Telepon</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="No. Telepon wajib diisi."
+                                                    data-parsley-type="number"
+                                                    data-parsley-type-message="No. Telepon harus berupa angka valid." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-phone-alt"></i>
                                                 </div>
@@ -101,28 +125,40 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label class="required">Password</label>
+                                            <label class="required">Kata Sandi</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="password" id="password" required
+                                                    data-parsley-required-message="Kata Sandi wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-key"></i>
+                                                </div>
+                                                <div class="toggle-password" id="togglePassword">
+                                                    <i class="fa fa-eye-slash"></i>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="required">Konfirmasi Password</label>
+                                            <label class="required">Konfirmasi Kata Sandi</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="password" id="konfirpass" required
+                                                    data-parsley-required-message="Konfirmasi Kata Sandi wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-lock"></i>
+                                                </div>
+                                                <div class="toggle-password" id="toggleKonfirpass">
+                                                    <i class="fa fa-eye-slash"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" name="next" class="next action-button">
-                                    Selanjutnya <i class="fas fa-angle-double-right"></i>
-                                </button>
+                                <div class="row mt-2">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="button" name="next" class="next btn btn-success">
+                                            Lanjut <i class="fas fa-arrow-right pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
@@ -131,7 +167,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Tempat Lahir</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Tempat Lahir wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-map-marker-alt"></i>
                                                 </div>
@@ -140,7 +177,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Tanggal Lahir</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="date" />
+                                                <input type="date" required
+                                                    data-parsley-required-message="Tanggal Lahir belum dipilih." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-calendar-alt"></i>
                                                 </div>
@@ -151,7 +189,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Agama</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Agama wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-praying-hands"></i>
                                                 </div>
@@ -160,7 +199,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Gol. Darah</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Gol. Darah wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-tint"></i>
                                                 </div>
@@ -171,7 +211,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Alamat KTP</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Alamat KTP wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fas fa-map-marked-alt"></i>
                                                 </div>
@@ -180,7 +221,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Alamat Tempat Tinggal</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Alamat Tempat Tinggal wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-home"></i>
                                                 </div>
@@ -191,7 +233,8 @@
                                         <div class="col-6 col-md-3 mb-4">
                                             <label class="required">Jumlah Saudara</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="number" required
+                                                    data-parsley-required-message="Jumlah Saudara wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-users"></i>
                                                 </div>
@@ -200,7 +243,8 @@
                                         <div class="col-6 col-md-3 mb-4">
                                             <label class="required">Anak ke</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Bagian ini wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-child"></i>
                                                 </div>
@@ -209,27 +253,25 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Status Kawin</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Status Kawin wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-hand-holding-heart"></i>
                                                 </div>
                                             </div>
-                                            {{-- <select class="select2" id="status_kawin" name="status_kawin">
-                                                <option value="" disabled selected></option>
-                                                <option value="belum_kawin">Belum Kawin</option>
-                                                <option value="kawin">Kawin</option>
-                                                <option value="cerai_hidup">Cerai Hidup</option>
-                                                <option value="cerai_mati">Cerai Mati</option>
-                                            </select> --}}
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" name="next" class="next action-button">
-                                    Selanjutnya <i class="fas fa-angle-double-right"></i>
-                                </button>
-                                <button type="button" name="previous" class="previous action-button-previous">
-                                    <i class="fas fa-angle-double-left"></i> Sebelumnya
-                                </button>
+                                <div class="row mt-2">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="button" name="previous" class="previous btn btn-secondary mr-2">
+                                            <i class="fas fa-arrow-left mr-1"></i> Kembali
+                                        </button>
+                                        <button type="button" name="next" class="next btn btn-success">
+                                            Lanjut <i class="fas fa-arrow-right pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
@@ -238,7 +280,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Tahun Masuk Orthopaedi</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Tahun Masuk Orthopaedi wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-calendar-check"></i>
                                                 </div>
@@ -247,7 +290,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Tahun Lulusan FK</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Tahun Lulusan FK wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-graduation-cap"></i>
                                                 </div>
@@ -258,7 +302,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Asal FK</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Asal FK wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-university"></i>
                                                 </div>
@@ -267,7 +312,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Status Residen (Mandiri / PNS / Patubel)</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Status Residen wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-briefcase"></i>
                                                 </div>
@@ -275,12 +321,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" name="next" class="next action-button">
-                                    Selanjutnya <i class="fas fa-angle-double-right"></i>
-                                </button>
-                                <button type="button" name="previous" class="previous action-button-previous">
-                                    <i class="fas fa-angle-double-left"></i> Sebelumnya
-                                </button>
+                                <div class="row mt-2">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="button" name="previous" class="previous btn btn-secondary mr-2">
+                                            <i class="fas fa-arrow-left mr-1"></i> Kembali
+                                        </button>
+                                        <button type="button" name="next" class="next btn btn-success">
+                                            Lanjut <i class="fas fa-arrow-right pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
@@ -289,7 +339,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Suami / Istri</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Nama Suami / Istri wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-user-friends"></i>
                                                 </div>
@@ -298,7 +349,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Alamat Suami / Istri</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="Alamat Suami / Istri wajib diisi." />
                                                 <div class="input-icon">
                                                     <i class="fas fa-map-pin"></i>
                                                 </div>
@@ -309,7 +361,10 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">No. Telepon Suami / Istri</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                    data-parsley-required-message="No. Telepon Suami / Istri wajib diisi."
+                                                    data-parsley-type="number"
+                                                    data-parsley-type-message="No. Telepon harus berupa angka valid." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-phone-alt"></i>
                                                 </div>
@@ -318,7 +373,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Jumlah Anak</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="number"  required
+                                                data-parsley-required-message="Jumlah Anak wajib diisi."/>
                                                 <div class="input-icon">
                                                     <i class="fas fa-baby"></i>
                                                 </div>
@@ -329,7 +385,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Ayah</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                data-parsley-required-message="Nama Ayah wajib diisi."/>
                                                 <div class="input-icon">
                                                     <i class="fas fa-male"></i>
                                                 </div>
@@ -338,7 +395,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Ibu</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                data-parsley-required-message="Nama Ibu wajib diisi."/>
                                                 <div class="input-icon">
                                                     <i class="fas fa-female"></i>
                                                 </div>
@@ -349,7 +407,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Alamat Ayah / Ibu</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                data-parsley-required-message="Alamat Ayah / Ibu wajib diisi."/>
                                                 <div class="input-icon">
                                                     <i class="fas fa-home"></i>
                                                 </div>
@@ -358,7 +417,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nama Kontak Darurat</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                data-parsley-required-message="Nama Kontak Darurat wajib diisi."/>
                                                 <div class="input-icon">
                                                     <i class="fa fa-user-shield"></i>
                                                 </div>
@@ -369,7 +429,10 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Nomor Kontak Darurat</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                data-parsley-required-message="No. Kontak Darurat wajib diisi."
+                                                data-parsley-type="number"
+                                                data-parsley-type-message="No. Kontak Darurat harus berupa angka valid."/>
                                                 <div class="input-icon">
                                                     <i class="fas fa-phone-volume"></i>
                                                 </div>
@@ -378,7 +441,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Hubungan Kontak Darurat</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="text" />
+                                                <input type="text" required
+                                                data-parsley-required-message="Hubungan Kontak Darurat wajib diisi."/>
                                                 <div class="input-icon">
                                                     <i class="fa fa-link"></i>
                                                 </div>
@@ -386,12 +450,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" name="next" class="next action-button">
-                                    Selanjutnya <i class="fas fa-angle-double-right"></i>
-                                </button>
-                                <button type="button" name="previous" class="previous action-button-previous">
-                                    <i class="fas fa-angle-double-left"></i> Sebelumnya
-                                </button>
+                                <div class="row mt-2">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="button" name="previous" class="previous btn btn-secondary mr-2">
+                                            <i class="fas fa-arrow-left mr-1"></i> Kembali
+                                        </button>
+                                        <button type="button" name="next" class="next btn btn-success">
+                                            Lanjut <i class="fas fa-arrow-right pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
@@ -423,119 +491,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"
         integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/page/password.js') }}"></script>
 
-    <!-- Page Specific JS File -->
+    <!-- Multi Step Registration -->
     <script>
         $(document).ready(function() {
-
-            var current_fs, next_fs, previous_fs;
-            var opacity;
-            var current = 1;
-            var steps = $("fieldset").length;
+            var $form = $("#msform");
+            var $sections = $form.find("fieldset");
+            var current = 0;
 
             setProgressBar(current);
 
-            $(".next").click(function() {
+            function navigateTo(index) {
+                var currentSection = $sections.eq(current);
+                var nextSection = $sections.eq(index);
 
-                current_fs = $(this).parent();
-                next_fs = $(this).parent().next();
+                currentSection.hide();
+                nextSection.show();
 
-                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                $("#progressbar li").eq(index).addClass("active");
 
-                next_fs.show();
-                current_fs.animate({
-                    opacity: 0
-                }, {
-                    step: function(now) {
-                        opacity = 1 - now;
+                current = index;
+                setProgressBar(current);
 
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        next_fs.css({
-                            'opacity': opacity
-                        });
-                    },
-                    duration: 500
-                });
-                setProgressBar(++current);
+                $(".previous").toggle(index > 0);
+                var atTheEnd = index >= $sections.length - 1;
+                $(".next").toggle(!atTheEnd);
+            }
+
+            $form.on("click", ".previous", function() {
+                navigateTo(current - 1);
             });
 
-            $(".previous").click(function() {
-
-                current_fs = $(this).parent();
-                previous_fs = $(this).parent().prev();
-
-                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-                previous_fs.show();
-
-                current_fs.animate({
-                    opacity: 0
-                }, {
-                    step: function(now) {
-                        opacity = 1 - now;
-
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        previous_fs.css({
-                            'opacity': opacity
-                        });
-                    },
-                    duration: 500
+            $form.on("click", ".next", function() {
+                $form.parsley().whenValidate({
+                    group: 'block-' + current
+                }).done(function() {
+                    navigateTo(current + 1);
                 });
-                setProgressBar(--current);
+            });
+
+            $sections.each(function(index, section) {
+                $(section).find(':input').attr('data-parsley-group', 'block-' + index);
             });
 
             function setProgressBar(curStep) {
-                var percent = parseFloat(100 / steps) * curStep;
+                var percent = parseFloat(100 / $sections.length) * (curStep + 1);
                 percent = percent.toFixed();
-                $(".progress-bar")
-                    .css("width", percent + "%")
+                $(".progress-bar").css("width", percent + "%");
             }
 
-            $(".submit").click(function() {
-                return false;
-            })
+            $form.parsley({
+                errorClass: 'is-invalid parsley-error',
+                successClass: 'is-valid',
+                errorsWrapper: '<span class="invalid-feedback"></span>',
+                errorTemplate: '<div></div>'
+            });
 
+            $sections.first().show();
         });
-    </script>
-    <script>
-        function validate() {
-            let msForm = document.getElementById('msform');
-            let emailInput = document.getElementById('email');
-            let inputGroup = document.getElementById('input-group');
-            let email = emailInput.value;
-            let emailEmoji = document.getElementById('email-emoji');
-            let text = document.getElementById('text');
-            let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
-            if (email.match(pattern)) {
-                emailEmoji.innerHTML = '<img src="{{ asset('img/check.png') }}" width="18" height="18"">';
-                msForm.classList.add('valid');
-                msForm.classList.remove('invalid');
-                text.innerHTML = "";
-                text.style.color = "#A2CA71";
-                emailInput.style.border = "1px solid #A2CA71";
-            } else {
-                inputGroup.style.color = "#fc544b";
-                emailEmoji.innerHTML = '';
-                msForm.classList.remove('valid');
-                msForm.classList.add('invalid');
-                text.innerHTML = "Alamat email tidak valid.";
-                text.style.color = "#fc544b";
-                emailInput.style.border = "1px solid #fc544b";
-            }
-            if (email == "") {
-                emailEmoji.innerHTML = '';
-                msForm.classList.remove('valid');
-                msForm.classList.remove('invalid');
-                text.innerHTML = "";
-                emailInput.style.border = "";
-            }
-        }
     </script>
 @endpush

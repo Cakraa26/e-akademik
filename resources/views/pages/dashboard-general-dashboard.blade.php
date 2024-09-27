@@ -36,7 +36,9 @@
             top: 20px;
             opacity: 0.1;
         }
-        .text-dashboard h3, .text-dashboard h5{
+
+        .text-dashboard h4,
+        .text-dashboard h5 {
             font-weight: 400;
         }
     </style>
@@ -128,7 +130,7 @@
                         <img src="{{ asset('img/logo.png') }}" alt="" width="100">
                     </div>
                     <h2>E - AKADEMIK</h2>
-                    <h3>Fakultas Kedokteran Universitas Udayana</h3>
+                    <h4>Fakultas Kedokteran Universitas Udayana</h4>
                     <h5>Program Studi Spesialis Orthopaedi dan Traumatologi</h5>
                 </div>
             </div>

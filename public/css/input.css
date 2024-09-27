@@ -60,7 +60,7 @@ input:focus+.input-icon:after {
     bottom: 0.6em;
     left: 3.4em;
     display: block;
-    border-right: 1px solid #e5e5e5;
+    border-right: 1px solid #e3dede;
     content: "";
     -webkit-transition: 0.35s ease-in-out;
     -moz-transition: 0.35s ease-in-out;

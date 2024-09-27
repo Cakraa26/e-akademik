@@ -17,57 +17,17 @@
     display: none;
 }
 
-#msform .action-button {
-    width: 120px;
-    background: #1a5319;
-    color: white;
-    border: 0 none;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 0px 10px 5px;
-    float: right;
-    border-radius: 5px;
-}
-
-#msform .action-button:hover,
-#msform .action-button:focus {
-    background-color: #2f6b30;
-}
-
-#msform .action-button-previous {
-    width: 120px;
-    background: #616161;
-    color: white;
-    border: 0 none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px 10px 0px;
-    float: right;
-}
-
-#msform .action-button-previous:hover,
-#msform .action-button-previous:focus {
-    background-color: #000000;
-}
-
 .card {
     z-index: 0;
     border: none;
     position: relative;
 }
-
 .fs-title {
     font-size: 25px;
     color: #1a5319;
     margin-bottom: 15px;
     font-weight: normal;
     text-align: left;
-}
-
-.purple-text {
-    color: #1a5319;
-    font-weight: normal;
 }
 
 #progressbar {
@@ -158,3 +118,6 @@
     object-fit: cover;
 }
 
+.parsley-error {
+    border-color: #dc3545 !important;
+}
