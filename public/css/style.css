@@ -713,7 +713,8 @@ select.form-control:not([size]):not([multiple]) {
   background-color: #cdd3d8;
 }
 .alert.alert-success {
-  background-color: #47c363;
+  background-color: #d1e7dd;
+  color: #0a3622;
 }
 .alert.alert-info {
   background-color: #3abaf4;
@@ -722,7 +723,8 @@ select.form-control:not([size]):not([multiple]) {
   background-color: #ffa426;
 }
 .alert.alert-danger {
-  background-color: #fc544b;
+  background-color: #f8d7da;
+  color: #58151c;
 }
 .alert.alert-light {
   background-color: #e3eaef;

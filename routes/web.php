@@ -4,6 +4,7 @@ use App\Http\Controllers\Dosen;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Mahasiswa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,13 @@ Route::get('/auth-forgot-password', function () {
 Route::get('/auth-login', function () {
     return view('pages.auth-login', ['type_menu' => 'auth']);
 });
+
+//Register
 Route::get('/auth-register', function () {
     return view('pages.auth-register', ['type_menu' => 'auth']);
-});
+})->name('auth.register');
+Route::post('register/action', [AuthController::class, 'actionRegister'])->name('actionRegister');
+
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);
 });
