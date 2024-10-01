@@ -29,6 +29,10 @@ class RegisterServiceImplement extends Service implements RegisterService
     $inputData['lastuserfk'] = '0';
     $inputData['angkatanfk'] = '0';
     $inputData['kelasfk'] = '0';
+    $inputData['nmpasangan'] = $inputData['nmpasangan'] ?? '';
+    $inputData['alamatpasangan'] = $inputData['alamatpasangan'] ?? '';
+    $inputData['hppasangan'] = $inputData['hppasangan'] ?? '';
+    $inputData['anak'] = $inputData['anak'] ?? '0';
     $inputData['password'] = Hash::make($inputData['password']);
 
     $residen = Residen::create($inputData);

@@ -21,14 +21,14 @@ class AuthController extends Controller
     public function actionRegister(RegisterRequest $request){
         try {
             DB::beginTransaction();
-
+            
             $this->registerService->register($request);
 
             DB::commit();
             return redirect()
                 ->route('auth.register')
                 ->with('success', 'Anda berhasil mendaftar.');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
             return back()
                 ->withInput()

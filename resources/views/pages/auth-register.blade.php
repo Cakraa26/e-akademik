@@ -40,6 +40,14 @@
         </div>
     @endif
 
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible show fade" role="alert">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </div>
+    @endif
+
     <div class="card card-success">
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -164,7 +172,9 @@
                                             <div class="input-group input-group-icon">
                                                 <input type="password" id="password" name="password"
                                                     value="{{ old('password') }}" required
-                                                    data-parsley-required-message="Kata Sandi wajib diisi." />
+                                                    data-parsley-required-message="Kata Sandi wajib diisi." 
+                                                    minlength="8"
+                                                    data-parsley-minlength-message="Kata Sandi minimal 8 karakter."/>
                                                 <div class="input-icon">
                                                     <i class="fa fa-key"></i>
                                                 </div>
@@ -176,8 +186,8 @@
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Konfirmasi Kata Sandi</label>
                                             <div class="input-group input-group-icon">
-                                                <input type="password" id="konfirpass" name="konfirpass"
-                                                    value="{{ old('konfirpass') }}" required
+                                                <input type="password" id="konfirpass" name="konfirpass" value=""
+                                                    required
                                                     data-parsley-required-message="Konfirmasi Kata Sandi wajib diisi."
                                                     data-parsley-equalto="#password"
                                                     data-parsley-equalto-message="Konfirmasi Kata Sandi tidak cocok." />
@@ -397,7 +407,7 @@
                             <fieldset>
                                 <div class="form-card">
                                     <br>
-                                    <div id="pasangan" style="display: none;">
+                                    <div id="pasangan">
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <label class="required">Nama Suami / Istri</label>
@@ -629,15 +639,21 @@
         });
     </script>
 
+    {{-- Show / Hide Pasangan --}}
     <script>
         $(document).ready(function() {
+            var $pasangan = $('#pasangan input');
+
             $('#statuskawin').change(function() {
                 var status = $(this).val();
 
-                if (status == "1") {
-                    $('#pasangan').show();
-                } else {
+                if (status == "0") {
                     $('#pasangan').hide();
+                    $pasangan.prop('required', false);
+                    $pasangan.attr('data-parsley-required', 'false');
+                    $pasangan.parsley().reset();
+                } else {
+                    $('#pasangan').show();
                 }
             });
         });
