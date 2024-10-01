@@ -30,7 +30,7 @@ class RegisterRequest extends FormRequest
             'inisalresiden' => 'required',
             'ktp' => 'required',
             'email' => 'required',
-            'hp' => 'required',
+            'hp' => 'required|unique:m_residen,hp',
             'password' => 'min:8',
             'tempatlahir' => 'required',
             'tgllahir' => 'required',
