@@ -24,15 +24,76 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
+            'nim' => 'required|unique:m_residen,nim',
             'nm' => 'required',
-            'password' => 'min:8'
+            'nickname' => 'required',
+            'inisalresiden' => 'required',
+            'ktp' => 'required',
+            'email' => 'required',
+            'hp' => 'required',
+            'password' => 'min:8',
+            'tempatlahir' => 'required',
+            'tgllahir' => 'required',
+            'alamatktp' => 'required',
+            'alamattinggal' => 'required',
+            'agama' => 'required',
+            'goldarah' => 'required',
+            'thnmasuk' => 'required',
+            'thnlulus' => 'required',
+            'asalfk' => 'required',
+            'statusresiden' => 'required',
+            'statuskawin' => 'required',
+            'nmpasangan' => 'required',
+            'alamatpasangan' => 'required',
+            'hppasangan' => 'required',
+            'anak' => 'required',
+            'nmayah' => 'required',
+            'nmibu' => 'required',
+            'alamatortu' => 'required',
+            'anakke' => 'required',
+            'jmlsaudara' => 'required',
+            'nmkontak' => 'required',
+            'hpkontak' => 'required',
+            'hubkontak' => 'required',
+            'datemodified' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            ''
+            'nim.required' => 'NIM wajib diisi.',
+            'nim.unique' => 'NIM sudah terdaftar.',
+            'nm.required' => 'Nama Lengkap wajib diisi.',
+            'nickname.required' => 'Nama Panggilan wajib diisi.',
+            'inisialresiden.required' => 'Inisial Residen wajib diisi.',
+            'ktp.required' => 'No. KTP wajib diisi.',
+            'email.required' => 'Alamat Email wajib diisi.',
+            'hp.required' => 'No. Telepon wajib diisi.',
+            'password.min:8' => 'Kata Sandi setidaknya terdiri dari 8 karakter.',
+            'tempatlahir.required' => 'Tempat Lahir wajib diisi.',
+            'tgllahir.required' => 'Tanggal Lahir wajib diisi.',
+            'alamatktp.required' => 'Alamat KTP wajib diisi.',
+            'alamattinggal.required' => 'Alamat Tinggal wajib diisi.',
+            'agama.required' => 'Agama wajib diisi.',
+            'goldarah.required' => 'Gol Darah wajib diisi.',
+            'thnmasuk.required' => 'Tahun Masuk wajib diisi.',
+            'thnlulus.required' => 'Tahun Lulus wajib diisi.',
+            'asalfk.required' => 'Asal FK wajib diisi.',
+            'statusresiden.required' => 'Status Residen wajib diisi.',
+            'statuskawin.required' => 'Status Kawin wajib diisi.',
+            'nmpasangan.required' => 'Nama Suami / Istri wajib diisi.',
+            'alamatpasangan.required' => 'Alamat Suami / Istri wajib diisi.',
+            'hppasangan.required' => 'No. Telepon Suami / Istri wajib diisi.',
+            'anak.required' => 'Jumlah Anak wajib diisi.',
+            'nmayah.required' => 'Nama Ayah wajib diisi.',
+            'nmibu.required' => 'Nama Ibu wajib diisi.',
+            'alamatortu.required' => 'Alamat Orang Tua wajib diisi.',
+            'anakke.required' => 'Anak ke- wajib diisi.',
+            'jmlsaudara.required' => 'Anak wajib diisi.',
+            'nmkontak.required' => 'Nama Kontak Darurat wajib diisi.',
+            'hpkontak.required' => 'No. Telepon Kontak Darurat wajib diisi.',
+            'hubkontak.required' => 'Hubungan Kontak Darurat wajib diisi.'
         ];
     }
 }
