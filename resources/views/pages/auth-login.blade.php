@@ -9,6 +9,13 @@
 @endpush
 
 @section('main')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible show fade" role="alert">
+            <strong>Sukses!</strong> {{ session('success') }}
+            <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+    @endif
+    
     <div class="card card-primary">
         <div class="text-center pt-4 mb-n3">
             <h2 id="heading">Masuk</h2>

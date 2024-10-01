@@ -8,5 +8,6 @@ use LaravelEasyRepository\BaseService;
 interface RegisterService extends BaseService{
 
     public function register(RegisterRequest $request);
+    // public function otp(RegisterRequest $request);
     
 }

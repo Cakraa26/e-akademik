@@ -45,6 +45,9 @@ class Residen extends Model
         'datemodified',
         'angkatanfk',
         'kelasfk',
+        'otp',
+        'waktu',
+        'is_verified',
     ];
     protected $table = 'm_residen';
     protected $primaryKey = 'pk';

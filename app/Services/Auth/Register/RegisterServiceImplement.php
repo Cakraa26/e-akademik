@@ -2,11 +2,12 @@
 
 namespace App\Services\Auth\Register;
 
-use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Residen;
 use LaravelEasyRepository\Service;
-use App\Repositories\Register\RegisterRepository;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Repositories\Register\RegisterRepository;
 
 class RegisterServiceImplement extends Service implements RegisterService
 {
@@ -24,7 +25,11 @@ class RegisterServiceImplement extends Service implements RegisterService
 
   public function register(RegisterRequest $registerRequest)
   {
+    $otp = mt_rand(100000, 999999);
+
     $inputData = $registerRequest->all();
+    $inputData['otp'] = $otp;
+    $inputData['waktu'] = time();
     $inputData['addedbyfk'] = '0';
     $inputData['lastuserfk'] = '0';
     $inputData['angkatanfk'] = '0';
@@ -36,6 +41,34 @@ class RegisterServiceImplement extends Service implements RegisterService
     $inputData['password'] = Hash::make($inputData['password']);
 
     $residen = Residen::create($inputData);
+
+    // Kirim OTP melalui API
+    // $response = Http::withHeaders([
+    //   'Authorization' => '4Mnc6uqUiHGY3EAywsNG',
+    // ])->post('https://api.fonnte.com/send', [
+    //       'target' => $residen->hp,
+    //       'message' => "Kode OTP Anda adalah : " . $otp,
+    //     ]);
+
+    $curl = curl_init();
+    curl_setopt(
+      $curl,
+      CURLOPT_HTTPHEADER,
+      array(
+        "Authorization: 4Mnc6uqUiHGY3EAywsNG",
+      )
+    );
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query([
+      'target' => $residen->hp,
+      'message' => "Kode OTP Anda adalah = " . $otp,
+    ]));
+    curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    $result = curl_exec($curl);
+    curl_close($curl);
 
     return $residen;
   }

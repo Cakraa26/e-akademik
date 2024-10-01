@@ -48,13 +48,17 @@ Route::get('/auth-forgot-password', function () {
 });
 Route::get('/auth-login', function () {
     return view('pages.auth-login', ['type_menu' => 'auth']);
-});
+})->name('auth.login');
 
 //Register
 Route::get('/auth-register', function () {
     return view('pages.auth-register', ['type_menu' => 'auth']);
 })->name('auth.register');
 Route::post('register/action', [AuthController::class, 'actionRegister'])->name('actionRegister');
+Route::get('/otp/verify/{residen}', [AuthController::class, 'otp'])->name('otp.verify');
+Route::post('/otp-register', [AuthController::class, 'otp']);
+Route::post('/otp/verify/{residen}', [AuthController::class, 'verifyOtp'])->name('otp.verify.post');
+
 
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);
