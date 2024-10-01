@@ -40,14 +40,6 @@
         </div>
     @endif
 
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible show fade" role="alert">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </div>
-    @endif
-
     <div class="card card-success">
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -74,7 +66,13 @@
                             <br>
                             <fieldset>
                                 <div class="form-card">
-                                    <br>
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                     <div class="row">
                                         <div class="col-md-12 mb-4">
                                             <label class="required">Nama Lengkap</label>
@@ -172,9 +170,8 @@
                                             <div class="input-group input-group-icon">
                                                 <input type="password" id="password" name="password"
                                                     value="{{ old('password') }}" required
-                                                    data-parsley-required-message="Kata Sandi wajib diisi." 
-                                                    minlength="8"
-                                                    data-parsley-minlength-message="Kata Sandi minimal 8 karakter."/>
+                                                    data-parsley-required-message="Kata Sandi wajib diisi." minlength="8"
+                                                    data-parsley-minlength-message="Kata Sandi minimal 8 karakter." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-key"></i>
                                                 </div>
@@ -211,7 +208,6 @@
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-                                    <br>
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Tempat Lahir</label>
@@ -337,7 +333,6 @@
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-                                    <br>
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <label class="required">Tahun Masuk Orthopaedi</label>
@@ -406,7 +401,6 @@
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-                                    <br>
                                     <div id="pasangan">
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
@@ -643,9 +637,10 @@
     <script>
         $(document).ready(function() {
             var $pasangan = $('#pasangan input');
+            var $statuskawin = $('#statuskawin');
 
-            $('#statuskawin').change(function() {
-                var status = $(this).val();
+            function updatePasangan() {
+                var status = $statuskawin.val();
 
                 if (status == "0") {
                     $('#pasangan').hide();
@@ -655,7 +650,10 @@
                 } else {
                     $('#pasangan').show();
                 }
-            });
+            }
+
+            $statuskawin.change(updatePasangan);
+            updatePasangan();
         });
     </script>
 @endpush

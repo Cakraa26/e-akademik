@@ -62,8 +62,11 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'nim.required' => 'NIM wajib diisi.',
             'nim.unique' => 'NIM sudah terdaftar.',
+            'ktp.unique' => 'No. KTP sudah terdaftar.',
+            'email.unique' => 'Alamat Email sudah terdaftar.',
+            'hp.unique' => 'No. Telepon sudah terdaftar.',
+            'nim.required' => 'NIM wajib diisi.',
             'nm.required' => 'Nama Lengkap wajib diisi.',
             'nickname.required' => 'Nama Panggilan wajib diisi.',
             'inisialresiden.required' => 'Inisial Residen wajib diisi.',
