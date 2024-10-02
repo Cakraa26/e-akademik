@@ -58,7 +58,7 @@ Route::post('register/action', [AuthController::class, 'actionRegister'])->name(
 Route::get('/otp/verify/{residen}', [AuthController::class, 'otp'])->name('otp.verify');
 Route::post('/otp-register', [AuthController::class, 'otp']);
 Route::post('/otp/verify/{residen}', [AuthController::class, 'verifyOtp'])->name('otp.verify.post');
-
+Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp.resend');
 
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);

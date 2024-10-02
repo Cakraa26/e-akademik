@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\VerifyRequest;
 use App\Services\Auth\Register\RegisterService;
 
 class AuthController extends Controller
@@ -42,24 +43,42 @@ class AuthController extends Controller
     {
         return view('pages.otp', ['pk' => $pk]);
     }
-    public function verifyOtp(Request $request, $pk)
+    public function verifyOtp(VerifyRequest $request, $pk)
     {
-        $request->validate([
-            'otp' => 'required|array|size:6',
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $residen = Residen::findOrFail($pk);
+            $isVerified = $this->registerService->verifyOTP($request, $pk);
 
-        $inputOtp = implode('', $request->otp);
+            DB::commit();
+            if($isVerified) {
+                return redirect()->route('auth.login')->with('success', 'Nomor Telepon berhasil diverifikasi.');
+            } else {
+                return back()->withErrors(['otp' => 'OTP tidak valid atau kadaluwarsa.']);
+            }
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function resendOTP($pk)
+    {
+        try {
+            DB::beginTransaction();
 
-        if ($residen->otp == $inputOtp && (time() - $residen->waktu <= 300)) {
-            $residen->update([
-                'is_verified' => 1,
-            ]);
+            $resendOTP = $this->registerService->resendOTP($pk);
 
-            return redirect()->route('auth.login')->with('success', 'Nomor Telepon berhasil diverifikasi!');
-        } else {
-            return back()->withErrors(['otp' => 'OTP tidak valid atau kadaluwarsa.']);
+            DB::commit();
+            return redirect()
+                ->route('otp.verify', ['residen' => $resendOTP->pk])
+                ->with('success', 'Kode OTP baru telah dikirim.');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Residen;
 use LaravelEasyRepository\Service;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use App\Http\Requests\Auth\VerifyRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repositories\Register\RegisterRepository;
 
@@ -42,14 +43,6 @@ class RegisterServiceImplement extends Service implements RegisterService
 
     $residen = Residen::create($inputData);
 
-    // Kirim OTP melalui API
-    // $response = Http::withHeaders([
-    //   'Authorization' => '4Mnc6uqUiHGY3EAywsNG',
-    // ])->post('https://api.fonnte.com/send', [
-    //       'target' => $residen->hp,
-    //       'message' => "Kode OTP Anda adalah : " . $otp,
-    //     ]);
-
     $curl = curl_init();
     curl_setopt(
       $curl,
@@ -71,5 +64,58 @@ class RegisterServiceImplement extends Service implements RegisterService
     curl_close($curl);
 
     return $residen;
+  }
+  public function verifyOTP(VerifyRequest $verifyRequest, $pk)
+  {
+    $verifyRequest->validate([
+      'otp' => 'required|array|size:6',
+    ]);
+
+    $residen = Residen::findOrFail($pk);
+
+    $inputOtp = implode('', $verifyRequest->otp);
+
+    if ($residen->otp == $inputOtp && (time() - $residen->waktu <= 60)) {
+      $residen->update([
+        'is_verified' => 1,
+      ]);
+
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public function resendOTP($pk)
+  {
+    $resendOTP = Residen::findOrFail($pk);
+
+    $newOTP = mt_rand(100000, 999999);
+
+    $resendOTP->update([
+      'otp' => $newOTP,
+      'waktu' => time()
+    ]);
+
+    $curl = curl_init();
+    curl_setopt(
+      $curl,
+      CURLOPT_HTTPHEADER,
+      array(
+        "Authorization: 4Mnc6uqUiHGY3EAywsNG",
+      )
+    );
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query([
+      'target' => $resendOTP->hp,
+      'message' => "Kode OTP Anda adalah = " . $newOTP,
+    ]));
+    curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    $result = curl_exec($curl);
+    curl_close($curl);
+
+    return $resendOTP;
   }
 }

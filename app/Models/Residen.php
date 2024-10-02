@@ -55,17 +55,14 @@ class Residen extends Model
     protected static function booted()
     {
         static::creating(function ($model) {
-            $model->pk = $model->generatePk(); 
+            $model->pk = $model->generatePk();
         });
     }
     protected function generatePk()
     {
         $last = self::orderBy('pk', 'desc')->first();
-        $nextPk = $last ? $last->pk + 1 : 1; 
-  
-        return $nextPk;  
+        $nextPk = $last ? $last->pk + 1 : 1;
+
+        return $nextPk;
     }
-    // protected $attributes = [
-    //     'datemodified' => null,
-    // ];
 }
