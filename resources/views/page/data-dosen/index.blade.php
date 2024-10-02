@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-5 col-lg-6 mb-md-0 text-center text-md-left">
-                                <a class="btn btn-success" href="" data-toggle="tooltip" title="Tambah Data"><i
+                                <a class="btn btn-success {{ Request::is('data-dosen/create') ? 'active' : '' }}" href="{{ route('data.dosen.create')}}" data-toggle="tooltip" title="Tambah Data"><i
                                         class="fas fa-edit pr-2"></i>Tambah</a>
                             </div>
                         </div>

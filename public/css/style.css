@@ -1570,7 +1570,7 @@ h6 .badge {
 }
 
 .btn-dark, .btn-dark.disabled {
-  box-shadow: 0 2px 6px #728394;
+  // box-shadow: 0 2px 6px #728394;
   background-color: #191d21;
   border-color: #191d21;
   color: #fff;

@@ -94,7 +94,7 @@
                         <form id="otpForm" class="mobile-otp" method="POST" action="{{ route('otp.verify.post', $pk) }}">
                             @csrf
                             <div class="otp-container">
-                                @for ($i = 0; $i < 6; $i++)
+                                @for ($i = 0; $i < 4; $i++)
                                     <input type="text" name="otp[]" class="otp-input" pattern="\d" maxlength="1"
                                         {{ $i > 0 ? 'disabled' : '' }}>
                                 @endfor

@@ -8,6 +8,6 @@ class Mahasiswa extends Controller
 {
     public function index()
     {
-        return view("components.page.data-mahasiswa.index");
+        return view("page.data-mahasiswa.index");
     }
 }

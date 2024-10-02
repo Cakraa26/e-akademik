@@ -24,7 +24,7 @@ class VerifyRequest extends FormRequest
     public function rules()
     {
         return [
-            'otp' => 'required|array|size:6',
+            'otp' => 'required|array|size:4',
         ];
     }
     public function messages()

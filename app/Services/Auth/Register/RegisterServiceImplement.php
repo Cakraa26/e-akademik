@@ -26,7 +26,7 @@ class RegisterServiceImplement extends Service implements RegisterService
 
   public function register(RegisterRequest $registerRequest)
   {
-    $otp = mt_rand(100000, 999999);
+    $otp = mt_rand(1000, 9999);
 
     $inputData = $registerRequest->all();
     $inputData['otp'] = $otp;
@@ -68,7 +68,7 @@ class RegisterServiceImplement extends Service implements RegisterService
   public function verifyOTP(VerifyRequest $verifyRequest, $pk)
   {
     $verifyRequest->validate([
-      'otp' => 'required|array|size:6',
+      'otp' => 'required|array|size:4',
     ]);
 
     $residen = Residen::findOrFail($pk);
@@ -89,7 +89,7 @@ class RegisterServiceImplement extends Service implements RegisterService
   {
     $resendOTP = Residen::findOrFail($pk);
 
-    $newOTP = mt_rand(100000, 999999);
+    $newOTP = mt_rand(1000, 9999);
 
     $resendOTP->update([
       'otp' => $newOTP,

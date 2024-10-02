@@ -8,6 +8,10 @@ class Dosen extends Controller
 {
     public function index()
     {
-        return view("components.page.data-dosen.index");
+        return view("page.data-dosen.index");
+    }
+    public function create()
+    {
+        return view("page.data-dosen.create");
     }
 }
