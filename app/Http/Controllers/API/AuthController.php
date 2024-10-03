@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function actionRegister(RegisterRequest $registerRequest)
     {
         try {
-           DB::beginTransaction();
+            DB::beginTransaction();
 
             $data = $this->registerService->register($registerRequest);
 
@@ -36,17 +36,14 @@ class AuthController extends Controller
     public function verifyOtp(VerifyRequest $verifyRequest, $pk)
     {
         try {
-            DB::beginTransaction();
-
             $isVerify = $this->registerService->verifyOTP($verifyRequest, $pk);
 
-            if($isVerify) { 
+            if ($isVerify) {
                 return response()->json(['message' => 'Verify otp successfully', 'is_verified' => $isVerify]);
             } else {
-                return response()->json(['message' => 'Verify otp failed', 'is_verified' => $isVerify], 400); 
+                return response()->json(['message' => 'Verify otp failed', 'is_verified' => $isVerify], 400);
             }
         } catch (\Throwable $e) {
-            DB::rollBack();
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
         }
     }
