@@ -118,7 +118,3 @@
     width: 100%;
     object-fit: cover;
 }
-
-.parsley-error {
-    border-color: #dc3545 !important;
-}

@@ -22,7 +22,7 @@
 
             {{-- Master Data --}}
             <li class="menu-header">Master Data</li>
-            <li class="{{ Request::is('data-dosen') ? 'active' : '' }}">
+            <li class="{{ Request::is('data-dosen*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('data.dosen.index') }}"><i class="fas fa-user-tie"></i> <span>Data
                         Dosen</span></a>
             </li>
@@ -31,8 +31,9 @@
                     <span>Data Calon
                         Residen</span></a>
             </li>
-            <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-clipboard-list"></i> <span>Data
+            <li class="{{ Request::is('data-stase*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('data.stase.index') }}"><i class="fas fa-clipboard-list"></i>
+                    <span>Data
                         Stase</span></a>
             </li>
 

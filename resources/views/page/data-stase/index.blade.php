@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Dosen')
+@section('title', 'Data Stase')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,7 +17,7 @@
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item">Data Dosen</div>
+                            <div class="breadcrumb-item">Data Stase</div>
                         </div>
                     </ul>
                 </div>
@@ -37,8 +37,8 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('data-dosen/create') ? 'active' : '' }}"
-                                    href="{{ route('data.dosen.create') }}" data-toggle="tooltip" title="Tambah Data"><i
+                                <a class="btn btn-success {{ Request::is('data-stase/create') ? 'active' : '' }}"
+                                    href="{{ route('data.stase.create') }}" data-toggle="tooltip" title="Tambah Data"><i
                                         class="fas fa-edit pr-2"></i>Tambah</a>
                             </div>
                         </div>
@@ -51,39 +51,35 @@
                                             No
                                         </th>
                                         <th>Nama</th>
-                                        <th>NIP</th>
-                                        <th>Divisi</th>
-                                        <th>Alamat</th>
-                                        <th>Pangkat</th>
-                                        <th>No. Telepon</th>
-                                        <th>Tgl. Lahir</th>
+                                        <th>Catatan</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($dosen as $d)
+                                    @foreach ($stase as $s)
                                         <tr>
                                             <th>{{ $no++ }}</th>
-                                            <td>{{ $d->nm }}</td>
-                                            <td>{{ $d->nip }}</td>
-                                            <td>{{ $d->divisi }}</td>
-                                            <td>{{ $d->alamat }}</td>
-                                            <td>{{ $d->pangkat }}</td>
-                                            <td>{{ $d->tlp }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($d->tgllahir)) }}</td>
+                                            <td>{{ $s->nm }}</td>
+                                            <td>{{ $s->ctn }}</td>
+                                            <td>
+                                                <span class="badge {{ $s->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
+                                                    {{ $s->aktif === 1 ? 'Aktif' : 'Tidak Aktif' }}
+                                                </span>
+                                            </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('data.dosen.edit', $d->pk) }}"
-                                                        class="btn btn-info {{ Request::is('data-dosen/' . $d->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('data.stase.edit', $s->pk) }}"
+                                                        class="btn btn-info {{ Request::is('data-stase/' . $s->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fas fa-pencil-alt"></i></a>
 
-                                                    <form action="{{ route('data.dosen.destroy', $d->pk) }}" method="POST"
+                                                    <form action="{{ route('data.stase.destroy', $s->pk) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button"
-                                                            class="btn btn-danger" id="swal-6"><i
+                                                            class="btn btn-danger swal-6"><i
                                                                 class="fas fa-trash"></i>
                                                         </button>
                                                     </form>

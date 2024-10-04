@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Dosen')
+@section('title', 'Edit Dosen')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -18,7 +18,7 @@
                             <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
                             <div class="breadcrumb-item active"><a href="{{ route('data.dosen.index') }}">Data Dosen</a>
                             </div>
-                            <div class="breadcrumb-item">Tambah</div>
+                            <div class="breadcrumb-item">Edit</div>
                         </div>
                     </ul>
                 </div>
@@ -43,26 +43,27 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" action="{{ route('data.dosen.store') }}" method="POST"
+                                <form id="form" action="{{ route('data.dosen.update', $dosen->pk) }}" method="POST"
                                     data-parsley-validate>
                                     @csrf
-                                    @method('POST')
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
                                                 <label for="nama" class="col-sm-3">Nama</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="nm" id="nm"
-                                                        value="{{ old('nm') }}" required
+                                                        value="{{ old('nm', $dosen->nm) }}" required
                                                         data-parsley-required-message="Nama wajib diisi.">
                                                 </div>
                                             </div>
+
                                             <div class="mb-4 row align-items-center">
                                                 <label for="telepon" class="col-sm-3">No. Telepon</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text"
+                                                    <input type="tel"
                                                         class="form-control  @error('tlp') is-invalid @enderror"
-                                                        name="tlp" id="tlp" value="{{ old('tlp') }}" required
+                                                        name="tlp" id="tlp" value="{{ old('tlp', $dosen->tlp) }}" required
                                                         data-parsley-required-message="No. Telepon wajib diisi.">
                                                     @error('tlp')
                                                         <div class="invalid-feedback">
@@ -75,25 +76,15 @@
                                                 <label for="alamat" class="col-sm-3">Alamat</label>
                                                 <div class="col-sm-9">
                                                     <textarea class="form-control" name="alamat" id="alamat" required
-                                                        data-parsley-required-message="Alamat wajib diisi." style="height: 107px">{{ old('alamat') }}</textarea>
+                                                        data-parsley-required-message="Alamat wajib diisi." style="height: 107px">{{ old('alamat', $dosen->alamat) }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label for="kota" class="col-sm-3">Tgl. Lahir</label>
                                                 <div class="col-sm-9">
                                                     <input type="date" class="form-control" name="tgllahir"
-                                                        id="tgllahir" value="{{ old('tgllahir') }}" required
-                                                        data-parsley-required-message="Tgl. Lahir wajib diisi.">
-                                                </div>
-                                            </div>
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="pendidikan" class="col-sm-3">Kata Sandi</label>
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" name="pass"
-                                                        id="pass" required
-                                                        data-parsley-required-message="Kata Sandi wajib diisi."
-                                                        minlength="8"
-                                                        data-parsley-minlength-message="Kata Sandi minimal 8 karakter.">
+                                                        id="tgllahir" value="{{ old('tgllahir', $dosen->tgllahir) }}"
+                                                        required data-parsley-required-message="Tgl. Lahir wajib diisi.">
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +94,7 @@
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control @error('nip') is-invalid @enderror"
-                                                        name="nip" id="nip" value="{{ old('nip') }}" required
+                                                        name="nip" id="nip" value="{{ old('nip', $dosen->nip) }}" required
                                                         data-parsley-required-message="NIP wajib diisi.">
                                                     @error('nip')
                                                         <div class="invalid-feedback">
@@ -115,8 +106,8 @@
                                             <div class="mb-4 row align-items-center">
                                                 <label for="pekerjaan" class="col-sm-3">Divisi</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="divisi"
-                                                        id="divisi" value="{{ old('divisi') }}" required
+                                                    <input type="text" class="form-control" name="divisi" id="divisi"
+                                                        value="{{ old('divisi', $dosen->divisi) }}" required
                                                         data-parsley-required-message="Divisi wajib diisi.">
                                                 </div>
                                             </div>
@@ -124,24 +115,24 @@
                                                 <label for="perusahaan" class="col-sm-3">Pangkat</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="pangkat"
-                                                        id="pangkat" value="{{ old('pangkat') }}" required
-                                                        data-parsley-required-message="Pangkat wajib diisi.">
+                                                        id="pangkat" value="{{ old('pangkat', $dosen->pangkat) }}"
+                                                        required data-parsley-required-message="Pangkat wajib diisi.">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label for="perusahaan" class="col-sm-3">Golongan</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="golongan"
-                                                        id="golongan" value="{{ old('golongan') }}" required
-                                                        data-parsley-required-message="Golongan wajib diisi.">
+                                                        id="golongan" value="{{ old('golongan', $dosen->golongan) }}"
+                                                        required data-parsley-required-message="Golongan wajib diisi.">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label for="perusahaan" class="col-sm-3">Spesialias</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="spesialis"
-                                                        id="spesialis" value="{{ old('spesialis') }}" required
-                                                        data-parsley-required-message="Spesialis wajib diisi.">
+                                                        id="spesialis" value="{{ old('spesialis', $dosen->spesialis) }}"
+                                                        required data-parsley-required-message="Spesialis wajib diisi.">
                                                 </div>
                                             </div>
                                         </div>

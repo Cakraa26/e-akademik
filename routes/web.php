@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Dosen;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\StaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +24,23 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
 
 // Data Dosen
-Route::resource('data-dosen', Dosen::class)->names([
+Route::resource('data-dosen', DosenController::class)->names([
     'index' => 'data.dosen.index',
     'create' => 'data.dosen.create',
     'store' => 'data.dosen.store',
     'edit' => 'data.dosen.edit',
     'update' => 'data.dosen.update',
     'destroy' => 'data.dosen.destroy',
+]);
+
+// Data State
+Route::resource('data-stase', StaseController::class)->names([
+    'index' => 'data.stase.index',
+    'create' => 'data.stase.create',
+    'store' => 'data.stase.store',
+    'edit' => 'data.stase.edit',
+    'update' => 'data.stase.update',
+    'destroy' => 'data.stase.destroy',
 ]);
 
 // Data Mahasiswa
