@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Stase')
+@section('title', __('message.datastase'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,8 +16,9 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item">Data Stase</div>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item">{{ __('message.datastase') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -38,8 +39,9 @@
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
                                 <a class="btn btn-success {{ Request::is('data-stase/create') ? 'active' : '' }}"
-                                    href="{{ route('data.stase.create') }}" data-toggle="tooltip" title="Tambah Data"><i
-                                        class="fas fa-edit pr-2"></i>Tambah</a>
+                                    href="{{ route('data.stase.create') }}" data-toggle="tooltip"
+                                    title="{{ __('message.tambah') }}"><i
+                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -50,10 +52,10 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama</th>
-                                        <th>Catatan</th>
+                                        <th>{{ __('message.nama') }}</th>
+                                        <th>{{ __('message.ctn') }}</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,8 +66,9 @@
                                             <td>{{ $s->nm }}</td>
                                             <td>{{ $s->ctn }}</td>
                                             <td>
-                                                <span class="badge {{ $s->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
-                                                    {{ $s->aktif === 1 ? 'Aktif' : 'Tidak Aktif' }}
+                                                <span
+                                                    class="badge {{ $s->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
+                                                    {{ $s->aktif === 1 ? __('message.active') : __('message.inactive') }}
                                                 </span>
                                             </td>
                                             <td>
@@ -78,8 +81,7 @@
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="button"
-                                                            class="btn btn-danger swal-6"><i
+                                                        <button type="button" class="btn btn-danger swal-6"><i
                                                                 class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -112,5 +114,13 @@
                 scrollX: true
             });
         });
+    </script>
+
+    <script>
+        var translations = {
+            deleteConfirmation: "{{ __('message.deleteConfirm') }}",
+            cancel: "{{ __('message.cancel') }}",
+            confirm: "{{ __('message.confirm') }}"
+        };
     </script>
 @endpush

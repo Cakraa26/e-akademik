@@ -8,74 +8,72 @@
         </div>
         <ul class="sidebar-menu">
             {{-- General Menu --}}
-            <li class="menu-header">Menu Umum</li>
+            <li class="menu-header">{{ __('message.generalmenu') }}</li>
             <li class="{{ Request::is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>{{ __('message.dashboard') }}</span></a>
             </li>
 
             {{-- Setting --}}
             <li class="{{ Request::is('/setting') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/setting') }}"><i class="fas fa-cog"></i>
-                    <span>Setting</span></a>
+                    <span>{{ __('message.setting') }}</span></a>
             </li>
 
             {{-- Master Data --}}
             <li class="menu-header">Master Data</li>
             <li class="{{ Request::is('data-dosen*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('data.dosen.index') }}"><i class="fas fa-user-tie"></i> <span>Data
-                        Dosen</span></a>
+                <a class="nav-link" href="{{ route('data.dosen.index') }}"><i class="fas fa-user-tie"></i> <span>
+                        {{ __('message.datadosen') }}</span></a>
             </li>
             <li class="{{ Request::is('data-mahasiswa') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-user-plus"></i>
-                    <span>Data Calon
-                        Residen</span></a>
+                    <span>{{ __('message.datacalonresiden') }}</span></a>
             </li>
             <li class="{{ Request::is('data-stase*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('data.stase.index') }}"><i class="fas fa-clipboard-list"></i>
-                    <span>Data
-                        Stase</span></a>
+                    <span>{{ __('message.datastase') }}</span></a>
             </li>
 
             {{-- Data Residen --}}
-            <li class="menu-header">Data Residen</li>
+            <li class="menu-header">{{ __('message.dataresiden') }}</li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-users"></i> <span>Data
-                        Residen</span></a>
+                <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-users"></i>
+                    <span>{{ __('message.dataresiden') }}</span></a>
             </li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-brain"></i>
-                    <span>Kognitif</span></a>
+                    <span>{{ __('message.kognitif') }}</span></a>
             </li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-hand-holding-heart"></i>
-                    <span>Afektif</span></a>
+                    <span>{{ __('message.afektif') }}</span></a>
             </li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-hands"></i>
-                    <span>Psikomotorik</span></a>
+                    <span>{{ __('message.psikomotorik') }}</span></a>
             </li>
 
             {{-- Laporan --}}
-            <li class="menu-header">Laporan</li>
+            <li class="menu-header">{{ __('message.laporan') }}</li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-file-alt"></i> <span>Karya
-                        Ilmiah</span></a>
+                <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-file-alt"></i>
+                    <span>{{ __('message.karyailmiah') }}</span></a>
             </li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-chart-bar"></i>
-                    <span>Laporan - laporan</span></a>
+                    <span>{{ __('message.laporan') }}</span></a>
             </li>
 
             {{-- Data Akademik --}}
-            <li class="menu-header">Data Akademik</li>
+            <li class="menu-header">{{ __('message.akademik') }}</li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-clipboard-check"></i>
-                    <span>Absensi</span></a>
+                    <span>{{ __('message.absensi') }}</span></a>
             </li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-folder-open"></i>
-                    <span>Nilai</span></a>
+                    <span>{{ __('message.nilai') }}</span></a>
             </li>
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-download"></i> <span>Download

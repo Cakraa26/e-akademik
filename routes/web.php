@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Mahasiswa;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\StaseController;
@@ -22,6 +23,11 @@ use App\Http\Controllers\StaseController;
 
 // Dashboard
 Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
+
+Route::get('/locale/{locale}', function ($locale) {
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
 
 // Data Dosen
 Route::resource('data-dosen', DosenController::class)->names([
@@ -74,4 +80,5 @@ Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);
 });
+
 

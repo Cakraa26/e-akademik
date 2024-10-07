@@ -1,10 +1,37 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Stase')
+@section('title',  __('message.tambahstase'))
 
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
+    <style>
+        .load-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader {
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #fff;
+            animation: an1 1.5s ease infinite;
+        }
+
+        @keyframes an1 {
+            0% {
+                transform: rotate(0turn);
+            }
+
+            100% {
+                transform: rotate(3turn);
+            }
+        }
+    </style>
 @endpush
 
 @section('main')
@@ -15,10 +42,10 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item active"><a href="{{ route('data.stase.index') }}">Data Stase</a>
+                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item active"><a href="{{ route('data.stase.index') }}">{{ __('message.datastase') }}</a>
                             </div>
-                            <div class="breadcrumb-item">Tambah</div>
+                            <div class="breadcrumb-item">{{ __('message.tambah') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -50,19 +77,19 @@
                                     <div class="row">
                                         <div class="col-md-7">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="telepon" class="col-sm-3">Nama</label>
+                                                <label for="telepon" class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('nm') is-invalid @enderror"
                                                         name="nm" id="nm" value="{{ old('nm') }}" required
-                                                        data-parsley-required-message="Nama wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="ctn" class="col-sm-3">Catatan</label>
+                                                <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
                                                 <div class="col-sm-9">
                                                     <textarea class="form-control" name="ctn" id="ctn" required
-                                                        data-parsley-required-message="Catatan wajib diisi." style="height: 100px">{{ old('ctn') }}</textarea>
+                                                        data-parsley-required-message="{{ __('message.ctnrequired') }}" style="height: 100px">{{ old('ctn') }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,9 +103,9 @@
                                                         <div class="col-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="radio"
-                                                                    id="Active" name="aktif" value="1" 
+                                                                    id="Active" name="aktif" value="1"
                                                                     {{ old('aktif') == '1' ? 'checked' : '' }} checked>
-                                                                <label class="form-check-label">Aktif</label>
+                                                                <label class="form-check-label">{{ __('message.active') }}</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
@@ -86,7 +113,7 @@
                                                                 <input class="form-check-input" type="radio"
                                                                     id="NonActive" name="aktif" value="0"
                                                                     {{ old('aktif') == '0' ? 'checked' : '' }}>
-                                                                <label class="form-check-label">Tidak Aktif</label>
+                                                                <label class="form-check-label">{{ __('message.inactive') }}</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -99,10 +126,10 @@
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark mr-2" href="{{ route('data.stase.index') }}"> <i
-                                                    class="fas fa-arrow-left mr-1"></i> Kembali</a>
-                                            <button type="submit" class="btn btn-primary">
-                                                Simpan <i class="fas fa-save pl-1"></i>
+                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('data.stase.index') }}">
+                                                <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" class="btn btn-primary load-btn">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -131,5 +158,15 @@
                 errorTemplate: '<div></div>'
             })
         });
+    </script>
+
+    <script>
+        btn = document.querySelector(".load-btn");
+        const originalWidth = btn.offsetWidth;
+
+        btn.style.width = `${originalWidth}px`;
+        btn.onclick = function() {
+            this.innerHTML = "<div class='loader'></div>";
+        }
     </script>
 @endpush

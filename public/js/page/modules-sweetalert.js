@@ -22,9 +22,12 @@ $("#swal-5").click(function () {
 
 $(".swal-6").click(function () {
     swal({
-        title: "Yakin ingin menghapus data ini?",
+        title: translations.deleteConfirmation,
         icon: "warning",
-        buttons: true,
+        buttons: {
+            cancel: translations.cancel,
+            confirm: translations.confirm 
+        },
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {

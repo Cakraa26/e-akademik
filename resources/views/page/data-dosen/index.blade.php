@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Dosen')
+@section('title', __('message.datadosen'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,8 +16,9 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item">Data Dosen</div>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item">{{ __('message.datadosen') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -38,8 +39,9 @@
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
                                 <a class="btn btn-success {{ Request::is('data-dosen/create') ? 'active' : '' }}"
-                                    href="{{ route('data.dosen.create') }}" data-toggle="tooltip" title="Tambah Data"><i
-                                        class="fas fa-edit pr-2"></i>Tambah</a>
+                                    href="{{ route('data.dosen.create') }}" data-toggle="tooltip"
+                                    title="{{ __('message.tambah') }}"><i
+                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -50,14 +52,14 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama</th>
+                                        <th>{{ __('message.nama') }}</th>
                                         <th>NIP</th>
-                                        <th>Divisi</th>
-                                        <th>Alamat</th>
-                                        <th>Pangkat</th>
-                                        <th>No. Telepon</th>
-                                        <th>Tgl. Lahir</th>
-                                        <th>Action</th>
+                                        <th>{{ __('message.divisi') }}</th>
+                                        <th>{{ __('message.alamat') }}</th>
+                                        <th>{{ __('message.pangkat') }}</th>
+                                        <th>{{ __('message.tlp') }}</th>
+                                        <th>{{ __('message.tgllahir') }}</th>
+                                        <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,12 +80,12 @@
                                                         class="btn btn-info {{ Request::is('data-dosen/' . $d->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fas fa-pencil-alt"></i></a>
 
+
                                                     <form action="{{ route('data.dosen.destroy', $d->pk) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="button"
-                                                            class="btn btn-danger" id="swal-6"><i
+                                                        <button type="button" class="btn btn-danger swal-6"><i
                                                                 class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -116,5 +118,13 @@
                 scrollX: true
             });
         });
+    </script>
+
+    <script>
+        var translations = {
+            deleteConfirmation: "{{ __('message.deleteConfirm') }}",
+            cancel: "{{ __('message.cancel') }}",
+            confirm: "{{ __('message.confirm') }}"
+        };
     </script>
 @endpush

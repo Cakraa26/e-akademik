@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Dosen')
+@section('title', __('message.tambahdosen'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -15,10 +15,10 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item active"><a href="{{ route('data.dosen.index') }}">Data Dosen</a>
+                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item active"><a href="{{ route('data.dosen.index') }}">{{ __('message.datadosen') }}</a>
                             </div>
-                            <div class="breadcrumb-item">Tambah</div>
+                            <div class="breadcrumb-item">{{ __('message.tambah') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -50,20 +50,20 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="nama" class="col-sm-3">Nama</label>
+                                                <label for="nama" class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="nm" id="nm"
                                                         value="{{ old('nm') }}" required
-                                                        data-parsley-required-message="Nama wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="telepon" class="col-sm-3">No. Telepon</label>
+                                                <label for="telepon" class="col-sm-3">{{ __('message.tlp') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('tlp') is-invalid @enderror"
                                                         name="tlp" id="tlp" value="{{ old('tlp') }}" required
-                                                        data-parsley-required-message="No. Telepon wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.tlprequired') }}">
                                                     @error('tlp')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -72,28 +72,28 @@
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="alamat" class="col-sm-3">Alamat</label>
+                                                <label for="alamat" class="col-sm-3">{{ __('message.alamat') }}</label>
                                                 <div class="col-sm-9">
                                                     <textarea class="form-control" name="alamat" id="alamat" required
-                                                        data-parsley-required-message="Alamat wajib diisi." style="height: 107px">{{ old('alamat') }}</textarea>
+                                                        data-parsley-required-message="{{ __('message.alamatrequired') }}" style="height: 107px">{{ old('alamat') }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="kota" class="col-sm-3">Tgl. Lahir</label>
+                                                <label for="kota" class="col-sm-3">{{ __('message.tgllahir') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="date" class="form-control" name="tgllahir"
                                                         id="tgllahir" value="{{ old('tgllahir') }}" required
-                                                        data-parsley-required-message="Tgl. Lahir wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.tgllahirrequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="pendidikan" class="col-sm-3">Kata Sandi</label>
+                                                <label for="pendidikan" class="col-sm-3">{{ __('message.password') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="password" class="form-control" name="pass"
                                                         id="pass" required
-                                                        data-parsley-required-message="Kata Sandi wajib diisi."
+                                                        data-parsley-required-message="{{ __('message.passrequired') }}"
                                                         minlength="8"
-                                                        data-parsley-minlength-message="Kata Sandi minimal 8 karakter.">
+                                                        data-parsley-minlength-message="{{ __('message.passmin') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                                     <input type="text"
                                                         class="form-control @error('nip') is-invalid @enderror"
                                                         name="nip" id="nip" value="{{ old('nip') }}" required
-                                                        data-parsley-required-message="NIP wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.niprequired') }}">
                                                     @error('nip')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -113,35 +113,35 @@
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="pekerjaan" class="col-sm-3">Divisi</label>
+                                                <label for="pekerjaan" class="col-sm-3">{{ __('message.divisi') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="divisi"
                                                         id="divisi" value="{{ old('divisi') }}" required
-                                                        data-parsley-required-message="Divisi wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.divisirequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="perusahaan" class="col-sm-3">Pangkat</label>
+                                                <label for="perusahaan" class="col-sm-3">{{ __('message.pangkat') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="pangkat"
                                                         id="pangkat" value="{{ old('pangkat') }}" required
-                                                        data-parsley-required-message="Pangkat wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.pangkatrequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="perusahaan" class="col-sm-3">Golongan</label>
+                                                <label for="perusahaan" class="col-sm-3">{{ __('message.golongan') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="golongan"
                                                         id="golongan" value="{{ old('golongan') }}" required
-                                                        data-parsley-required-message="Golongan wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.golrequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="perusahaan" class="col-sm-3">Spesialias</label>
+                                                <label for="perusahaan" class="col-sm-3">{{ __('message.spesialis') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="spesialis"
                                                         id="spesialis" value="{{ old('spesialis') }}" required
-                                                        data-parsley-required-message="Spesialis wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.spesialisrequired') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -153,9 +153,9 @@
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
                                             <a class="btn btn-dark mr-2" href="{{ route('data.dosen.index') }}"> <i
-                                                    class="fas fa-arrow-left mr-1"></i> Kembali</a>
+                                                    class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                                             <button type="submit" class="btn btn-primary">
-                                                Simpan <i class="fas fa-save pl-1"></i>
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>

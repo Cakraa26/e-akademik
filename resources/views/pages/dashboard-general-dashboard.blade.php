@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', __('message.dashboard'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -48,7 +48,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Dashboard</h1>
+                <h1>{{ __('message.dashboard') }}</h1>
             </div>
             <div class="row">
                 <div class="col-xl-4 col-lg-6">
@@ -56,7 +56,7 @@
                         <div class="card-statistic-3 p-4">
                             <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0">Visitor</h5>
+                                <h5 class="card-title mb-0">{{ __('message.visitor') }}</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-12">
@@ -80,7 +80,7 @@
                         <div class="card-statistic-3 p-4">
                             <div class="card-icon card-icon-large"><i class="fas fa-user-md"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0">Register Residen</h5>
+                                <h5 class="card-title mb-0">{{ __('message.registerresiden') }}</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-12">
@@ -104,7 +104,7 @@
                         <div class="card-statistic-3 p-4">
                             <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0">Residen Aktif</h5>
+                                <h5 class="card-title mb-0">{{ __('message.residenaktif') }}</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-12">
@@ -130,8 +130,8 @@
                         <img src="{{ asset('img/logo.png') }}" alt="" width="100">
                     </div>
                     <h2>E - AKADEMIK</h2>
-                    <h4>Fakultas Kedokteran Universitas Udayana</h4>
-                    <h5>Program Studi Spesialis Orthopaedi dan Traumatologi</h5>
+                    <h4>{{ __('message.fkunud') }}</h4>
+                    <h5>{{ __('message.prodi') }}</h5>
                 </div>
             </div>
             {{-- <div class="row">

@@ -139,24 +139,38 @@
             </div>
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
+            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            @if (app()->getLocale() == 'id')
+                <img alt="image" src="{{ asset('img/flag/id.png') }}">
+                <div class="d-sm-none d-lg-inline-block">&nbsp;</div>
+            @else
+                <img alt="image" src="{{ asset('img/flag/en.png') }}">
+                <div class="d-sm-none d-lg-inline-block">&nbsp;</div>
+            @endif
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="/locale/id">
+                <img src="{{ asset('img/flag/id.png') }}" alt="Bahasa Indonesia"
+                    style="width: 20px; margin-right: 5px;"> Indonesia
+            </a>
+            <a class="dropdown-item" href="/locale/en">
+                <img src="{{ asset('img/flag/en.png') }}" alt="English" style="width: 20px; margin-right: 5px;">
+                English
+            </a>
+        </div>
+    </li>
+        <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
+                {{-- <a href="features-profile.html" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div> --}}
                 <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <i class="fas fa-sign-out-alt"></i> {{ __('message.logout') }}
                 </a>
             </div>
         </li>

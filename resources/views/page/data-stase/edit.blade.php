@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Stase')
+@section('title', __('message.editstase'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -15,10 +15,10 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item active"><a href="{{ route('data.stase.index') }}">Data Stase</a>
+                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item active"><a href="{{ route('data.stase.index') }}">{{ __('message.datastase') }}</a>
                             </div>
-                            <div class="breadcrumb-item">Edit</div>
+                            <div class="breadcrumb-item">{{ __('message.edit') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -50,19 +50,19 @@
                                     <div class="row">
                                         <div class="col-md-7">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="telepon" class="col-sm-3">Nama</label>
+                                                <label for="telepon" class="col-sm-3">{{ __('message.name') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('nm') is-invalid @enderror"
                                                         name="nm" id="nm" value="{{ old('nm', $stase->nm) }}" required
-                                                        data-parsley-required-message="Nama wajib diisi.">
+                                                        data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="ctn" class="col-sm-3">Catatan</label>
+                                                <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
                                                 <div class="col-sm-9">
                                                     <textarea class="form-control" name="ctn" id="ctn" required
-                                                        data-parsley-required-message="Catatan wajib diisi." style="height: 100px">{{ old('ctn', $stase->ctn) }}</textarea>
+                                                        data-parsley-required-message="{{ __('message.ctnrequired') }}" style="height: 100px">{{ old('ctn', $stase->ctn) }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                                                 <input class="form-check-input" type="radio"
                                                                     id="Active" name="aktif" value="1" 
                                                                     {{ old('aktif', $stase->aktif) == '1' ? 'checked' : '' }} checked>
-                                                                <label class="form-check-label">Aktif</label>
+                                                                <label class="form-check-label">{{ __('message.active') }}</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
@@ -86,7 +86,7 @@
                                                                 <input class="form-check-input" type="radio"
                                                                     id="NonActive" name="aktif" value="0"
                                                                     {{ old('aktif', $stase->aktif) == '0' ? 'checked' : '' }}>
-                                                                <label class="form-check-label">Tidak Aktif</label>
+                                                                <label class="form-check-label">{{ __('message.inactive') }}</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -98,9 +98,9 @@
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
                                             <a class="btn btn-dark mr-2" href="{{ route('data.stase.index') }}"> <i
-                                                    class="fas fa-arrow-left mr-1"></i> Kembali</a>
+                                                    class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                                             <button type="submit" class="btn btn-primary">
-                                                Simpan <i class="fas fa-save pl-1"></i>
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>
