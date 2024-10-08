@@ -24,8 +24,8 @@ class DosenController extends Controller
             'tlp' => 'required|unique:m_dosen,tlp',
             'nip' => 'required|unique:m_dosen,nip',
         ], [
-            'tlp.unique' => 'No. Telepon sudah terdaftar.',
-            'nip.unique' => 'NIP sudah terdaftar.',
+            'tlp.unique' => __('message.tlpunique'),
+            'nip.unique' => __('message.nipunique'),
         ]);
 
         try {
@@ -39,7 +39,7 @@ class DosenController extends Controller
 
             return redirect()
                 ->route('data.dosen.index')
-                ->with('success', 'Data Dosen berhasil ditambahkan');
+                ->with('success', __('message.success_dosen_added'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()
@@ -68,8 +68,8 @@ class DosenController extends Controller
                 Rule::unique('m_dosen', 'nip')->ignore($dosen->pk, 'pk'),
             ],
         ], [
-            'tlp.unique' => 'No. Telepon sudah terdaftar.',
-            'nip.unique' => 'NIP sudah terdaftar.',
+            'tlp.unique' => __('message.tlpunique'),
+            'nip.unique' => __('message.nipunique'),
         ]);
 
 
@@ -81,7 +81,7 @@ class DosenController extends Controller
 
             return redirect()
                 ->route('data.dosen.index')
-                ->with('success', 'Data Dosen berhasil diperbarui');
+                ->with('success', __('message.success_dosen_edit'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()
@@ -96,7 +96,7 @@ class DosenController extends Controller
 
             return redirect()
                 ->route('data.dosen.index')
-                ->with('success', 'Data Dosen berhasil dihapus.');
+                ->with('success', __('message.success_dosen_hapus'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()

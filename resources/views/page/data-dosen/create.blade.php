@@ -26,7 +26,7 @@
 
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>Sukses!</strong> {{ session('success') }}
+                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif
@@ -61,7 +61,7 @@
                                                 <label for="telepon" class="col-sm-3">{{ __('message.tlp') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"
-                                                        class="form-control  @error('tlp') is-invalid @enderror"
+                                                        class="form-control @error('tlp') is-invalid @enderror"
                                                         name="tlp" id="tlp" value="{{ old('tlp') }}" required
                                                         data-parsley-required-message="{{ __('message.tlprequired') }}">
                                                     @error('tlp')

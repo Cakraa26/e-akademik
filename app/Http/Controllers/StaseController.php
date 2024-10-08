@@ -27,7 +27,7 @@ class StaseController extends Controller
 
             return redirect()
                 ->route('data.stase.index')
-                ->with('success', 'Data Stase berhasil ditambahkan');
+                ->with('success', __('message.success_stase_added'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()
@@ -50,7 +50,7 @@ class StaseController extends Controller
 
             return redirect()
                 ->route('data.stase.index')
-                ->with('success', 'Data Stase berhasil diperbarui');
+                ->with('success', __('message.success_stase_edit'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()
@@ -65,7 +65,7 @@ class StaseController extends Controller
 
             return redirect()
                 ->route('data.stase.index')
-                ->with('success', 'Data Stase berhasil dihapus.');
+                ->with('success', __('message.success_stase_hapus'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title',  __('message.tambahstase'))
+@section('title', __('message.tambahstase'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -42,8 +42,10 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item active"><a href="{{ route('data.stase.index') }}">{{ __('message.datastase') }}</a>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('data.stase.index') }}">{{ __('message.datastase') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.tambah') }}</div>
                         </div>
@@ -53,7 +55,7 @@
 
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>Sukses!</strong> {{ session('success') }}
+                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif
@@ -105,7 +107,8 @@
                                                                 <input class="form-check-input" type="radio"
                                                                     id="Active" name="aktif" value="1"
                                                                     {{ old('aktif') == '1' ? 'checked' : '' }} checked>
-                                                                <label class="form-check-label">{{ __('message.active') }}</label>
+                                                                <label
+                                                                    class="form-check-label">{{ __('message.active') }}</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
@@ -113,7 +116,8 @@
                                                                 <input class="form-check-input" type="radio"
                                                                     id="NonActive" name="aktif" value="0"
                                                                     {{ old('aktif') == '0' ? 'checked' : '' }}>
-                                                                <label class="form-check-label">{{ __('message.inactive') }}</label>
+                                                                <label
+                                                                    class="form-check-label">{{ __('message.inactive') }}</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -128,7 +132,7 @@
                                         <div class="col-12 d-flex justify-content-end">
                                             <a class="btn btn-dark load-btn mr-2" href="{{ route('data.stase.index') }}">
                                                 <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
+                                            <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
                                             </button>
                                         </div>
@@ -168,5 +172,24 @@
         btn.onclick = function() {
             this.innerHTML = "<div class='loader'></div>";
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.querySelector("#submit-btn"); 
+            const originalWidth = btn.offsetWidth;
+
+            btn.style.width = `${originalWidth}px`;
+
+            const form = document.getElementById("form");
+
+            form.onsubmit = function(event) {
+                event.preventDefault(); 
+
+                if ($(this).parsley().isValid()) {
+                    btn.innerHTML = "<div class='loader'></div>";
+
+                    this.submit();
+                }
+            };
+        });
     </script>
 @endpush

@@ -26,13 +26,17 @@
                 <a class="nav-link" href="{{ route('data.dosen.index') }}"><i class="fas fa-user-tie"></i> <span>
                         {{ __('message.datadosen') }}</span></a>
             </li>
-            <li class="{{ Request::is('data-mahasiswa') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-user-plus"></i>
-                    <span>{{ __('message.datacalonresiden') }}</span></a>
-            </li>
             <li class="{{ Request::is('data-stase*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('data.stase.index') }}"><i class="fas fa-clipboard-list"></i>
                     <span>{{ __('message.datastase') }}</span></a>
+            </li>
+            <li class="{{ Request::is('data-psikomotorik*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('data.psikomotorik.index') }}"><i class="fas fa-hands"></i>
+                    <span>{{ __('message.psikomotorik') }}</span></a>
+            </li>
+            <li class="{{ Request::is('data-mahasiswa') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-user-plus"></i>
+                    <span>{{ __('message.datacalonresiden') }}</span></a>
             </li>
 
             {{-- Data Residen --}}

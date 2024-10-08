@@ -23,7 +23,7 @@ return [
     'laporan' => "Laporan",
     'absensi' => "Absensi",
     'nilai' => "Nilai",
-    'akademik' => "Data Akademik",
+    'akademik' => "Data Akademik",    
 
     // CRUD
     'tambah' => "Tambah",
@@ -34,6 +34,11 @@ return [
     'editdosen' => "Perbarui Dosen",
     'tambahstase' => "Tambah Stase",
     'editstase' => "Perbarui Stase",
+    'tambahpsikomotorik' => "Tambah Psikomotorik",
+    'editpsikomotorik' => "Perbarui Psikomotorik",
+    'tambahgroup' => "Tambah Group",
+    'tambahkategori' => "Tambah Kategori",
+    'tambahsubkategori' => "Tambah Sub Kategori",
 
     // Button
     'kembali' => "Kembali",
@@ -56,6 +61,8 @@ return [
     'ctn' => "Catatan",
     'active' => 'Aktif',
     'inactive' => 'Tidak Aktif',
+    'kategori' => "Kategori",
+    'subkategori' => "Sub Kategori",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -70,6 +77,26 @@ return [
     'golrequired' => "Golongan wajib diisi.",
     'spesialisrequired' => "Spesialis wajib diisi.",
     'ctnrequired' => "Catatan wajib diisi.",
+    'grouprequired' => "Group wajib diisi.",
+    'kategorifkrequired' => "Kategori wajib diisi.",
+    'subkategorifkrequired' => "Sub Kategori wajib diisi.",
+    'tlpunique' => "No. Telepon sudah terdaftar.",
+    'nipunique' => "NIP sudah terdaftar.",
+
+    // Alert
+    'success' => 'Sukses',
+    'success_psikomotorik_added' => 'Data Psikomotorik berhasil ditambahkan.',
+    'success_psikomotorik_edit' => 'Data Psikomotorik berhasil diperbarui.',
+    'success_psikomotorik_hapus' => 'Data Psikomotorik berhasil dihapus.',
+    'success_dosen_added' => 'Data Dosen berhasil ditambahkan.',
+    'success_dosen_edit' => 'Data Dosen berhasil diperbarui.',
+    'success_dosen_hapus' => 'Data Dosen berhasil dihapus.',
+    'success_stase_added' => 'Data Stase berhasil ditambahkan.',
+    'success_stase_edit' => 'Data Stase berhasil diperbarui.',
+    'success_stase_hapus' => 'Data Stase berhasil dihapus.',
+    'success_group_added' => 'Data Group berhasil ditambahkan.',
+    'success_kategori_added' => 'Data Kategori berhasil ditambahkan.',
+    'success_subkategori_added' => 'Sub Kategori berhasil ditambahkan.',
 ];
 
 ?>

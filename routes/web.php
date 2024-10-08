@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StaseController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SubKategoriController;
+use App\Http\Controllers\PsikomotorikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +61,46 @@ Route::resource('data-mahasiswa', Mahasiswa::class)->names([
     'edit' => 'data.mahasiswa.edit',
     'update' => 'data.mahasiswa.update',
     'destroy' => 'data.mahasiswa.destroy',
+]);
+
+// Data Psikomotorik
+Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
+    'index' => 'data.psikomotorik.index',
+    'create' => 'data.psikomotorik.create',
+    'store' => 'data.psikomotorik.store',
+    'edit' => 'data.psikomotorik.edit',
+    'update' => 'data.psikomotorik.update',
+    'destroy' => 'data.psikomotorik.destroy',
+]);
+
+// Data Group
+Route::resource('data-group', GroupController::class)->names([
+    'index' => 'data.group.index',
+    'create' => 'data.group.create',
+    'store' => 'data.group.store',
+    'edit' => 'data.group.edit',
+    'update' => 'data.group.update',
+    'destroy' => 'data.group.destroy',
+]);
+
+// Data Kategori
+Route::resource('data-kategori', KategoriController::class)->names([
+    'index' => 'data.kategori.index',
+    'create' => 'data.kategori.create',
+    'store' => 'data.kategori.store',
+    'edit' => 'data.kategori.edit',
+    'update' => 'data.kategori.update',
+    'destroy' => 'data.kategori.destroy',
+]);
+
+// Data Sub Kategori
+Route::resource('data-subkategori', SubKategoriController::class)->names([
+    'index' => 'data.subkategori.index',
+    'create' => 'data.subkategori.create',
+    'store' => 'data.subkategori.store',
+    'edit' => 'data.subkategori.edit',
+    'update' => 'data.subkategori.update',
+    'destroy' => 'data.subkategori.destroy',
 ]);
 
 // auth

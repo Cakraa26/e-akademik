@@ -27,7 +27,7 @@
             {{-- Alert --}}
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>Sukses!</strong> {{ session('success') }}
+                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif

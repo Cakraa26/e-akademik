@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.datadosen'))
+@section('title', __('message.psikomotorik'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -18,7 +18,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.datadosen') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.psikomotorik') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -38,8 +38,8 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('data-dosen/create') ? 'active' : '' }}"
-                                    href="{{ route('data.dosen.create') }}" data-toggle="tooltip"
+                                <a class="btn btn-success {{ Request::is('data-psikomotorik/create') ? 'active' : '' }}"
+                                    href="{{ route('data.psikomotorik.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
                                         class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
@@ -53,35 +53,29 @@
                                             No
                                         </th>
                                         <th>{{ __('message.nama') }}</th>
-                                        <th>NIP</th>
-                                        <th>{{ __('message.divisi') }}</th>
-                                        <th>{{ __('message.alamat') }}</th>
-                                        <th>{{ __('message.pangkat') }}</th>
-                                        <th>{{ __('message.tlp') }}</th>
-                                        <th>{{ __('message.tgllahir') }}</th>
+                                        <th>Group</th>
+                                        <th>{{ __('message.kategori') }}</th>
+                                        <th>{{ __('message.subkategori') }}</th>    
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($dosen as $d)
+                                    @foreach ($motorik as $m)
                                         <tr>
                                             <th>{{ $no++ }}</th>
-                                            <td>{{ $d->nm }}</td>
-                                            <td>{{ $d->nip }}</td>
-                                            <td>{{ $d->divisi }}</td>
-                                            <td>{{ $d->alamat }}</td>
-                                            <td>{{ $d->pangkat }}</td>
-                                            <td>{{ $d->tlp }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($d->tgllahir)) }}</td>
+                                            <td>{{ $m->nm }}</td>
+                                            <td>{{ $m->group->nm }}</td>
+                                            <td>{{ $m->kategori->nm }}</td>
+                                            <td>{{ $m->subkategori->nm }}</td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('data.dosen.edit', $d->pk) }}"
-                                                        class="btn btn-info {{ Request::is('data-dosen/' . $d->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('data.psikomotorik.edit', $m->pk) }}"
+                                                        class="btn btn-info {{ Request::is('data-psikomotorik/' . $m->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fas fa-pencil-alt"></i></a>
 
 
-                                                    <form action="{{ route('data.dosen.destroy', $d->pk) }}" method="POST"
+                                                    <form action="{{ route('data.psikomotorik.destroy', $m->pk) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
