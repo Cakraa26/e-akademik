@@ -7,34 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .load-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .loader {
-            pointer-events: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: #fff;
-            animation: an1 1.5s ease infinite;
-        }
-
-        @keyframes an1 {
-            0% {
-                transform: rotate(0turn);
-            }
-
-            100% {
-                transform: rotate(1turn);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
 @endpush
 
 @section('main')
@@ -327,6 +300,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/page/load-btn.js') }}"></script>
 
 
     <!-- Page Specific JS File -->
@@ -356,35 +330,6 @@
                 errorsWrapper: '<span class="invalid-feedback"></span>',
                 errorTemplate: '<div></div>'
             });
-        });
-    </script>
-
-    <script>
-        btn = document.querySelector(".load-btn");
-        const originalWidth = btn.offsetWidth;
-
-        btn.style.width = `${originalWidth}px`;
-        btn.onclick = function() {
-            this.innerHTML = "<div class='loader'></div>";
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const btn = document.querySelector("#submit-btn");
-            const originalWidth = btn.offsetWidth;
-
-            btn.style.width = `${originalWidth}px`;
-
-            const form = document.getElementById("form");
-
-            form.onsubmit = function(event) {
-                event.preventDefault();
-
-                if ($(this).parsley().isValid()) {
-                    btn.innerHTML = "<div class='loader'></div>";
-
-                    this.submit();
-                }
-            };
         });
     </script>
 @endpush

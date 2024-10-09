@@ -1845,8 +1845,8 @@ h6 .badge {
 
 .btn-info,
 .btn-info.disabled {
-    background-color: #3abaf4;
-    border-color: #3abaf4;
+    background-color: #0da8ee;
+    border-color: #0da8ee;
     color: #fff;
 }
 .btn-info:hover,
@@ -1855,7 +1855,7 @@ h6 .badge {
 .btn-info.disabled:hover,
 .btn-info.disabled:focus,
 .btn-info.disabled:active {
-    background-color: #0da8ee !important;
+    background-color: #3abaf4 !important;
     color: #fff;
 }
 

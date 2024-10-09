@@ -3,11 +3,11 @@
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li>
+            {{-- <li>
                 <a href="#" class="nav-link nav-link-lg nav-link-user">
                     <img alt="image" src="{{ asset('img/logo.png') }}" class="rounded-circle">
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </form>
     <ul class="navbar-nav navbar-right">

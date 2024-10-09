@@ -1,0 +1,25 @@
+.load-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #fff;
+    animation: an1 1.5s ease infinite;
+}
+
+@keyframes an1 {
+    0% {
+        transform: rotate(0turn);
+    }
+
+    100% {
+        transform: rotate(2turn);
+    }
+}
