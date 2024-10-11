@@ -11,12 +11,17 @@ class DosenController extends Controller
 {
     public function index()
     {
+        $type_menu = 'master-data';
         $dosen = Dosen::all();
-        return view("page.data-dosen.index", ['dosen' => $dosen,]);
+        return view("page.data-dosen.index", [
+            'dosen' => $dosen,
+            'type_menu' => $type_menu,
+        ]);
     }
     public function create()
     {
-        return view("page.data-dosen.create");
+        $type_menu = 'master-data';
+        return view("page.data-dosen.create", ['type_menu' => $type_menu]);
     }
     public function store(Request $request)
     {
@@ -48,10 +53,12 @@ class DosenController extends Controller
     }
     public function edit($pk)
     {
+        $type_menu = 'master-data';
         $dosen = Dosen::findOrFail($pk);
 
         return view('page.data-dosen.edit', [
-            'dosen' => $dosen
+            'dosen' => $dosen,
+            'type_menu' => $type_menu,
         ]);
     }
     public function update(Request $request, $pk)
@@ -71,7 +78,6 @@ class DosenController extends Controller
             'tlp.unique' => __('message.tlpunique'),
             'nip.unique' => __('message.nipunique'),
         ]);
-
 
         try {
             $inputData = $request->all();

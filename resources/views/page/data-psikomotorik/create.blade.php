@@ -90,6 +90,33 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <div class="mb-3 row">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Status</label>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    id="Active" name="aktif" value="1"
+                                                                    {{ old('aktif') == '1' ? 'checked' : '' }} checked>
+                                                                <label
+                                                                    class="form-check-label">{{ __('message.active') }}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    id="NonActive" name="aktif" value="0"
+                                                                    {{ old('aktif') == '0' ? 'checked' : '' }}>
+                                                                <label
+                                                                    class="form-check-label">{{ __('message.inactive') }}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
@@ -145,7 +172,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="datetime-local" class="form-control" id="datemodified" name="datemodified"
+                                    <input type="datetime-local" class="form-control" id="datemodified"
+                                        name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
                                     <div class="row mt-2">
@@ -173,7 +201,7 @@
 <div class="modal fade" id="AddGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form id="form2" action="{{ route('data.group.store') }}"
+            <form id="form2" action="{{ route('data.group.store', ['redirect' => 'psikomotorik']) }}"
                 method="POST" data-parsley-validate>
                 @csrf
                 <div class="modal-header">
@@ -192,11 +220,14 @@
                     </div>
                     <div class="row align-items-center">
                         <div class="col-md-2">
-                            <label for="ctn">{{ __('message.ctn') }}</label>
+                            <label class="form-label">Status</label>
                         </div>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="ctn" id="ctn" cols="30" rows="10" style="height: 100px;"
-                                required data-parsley-required-message="{{ __('message.ctnrequired') }}"></textarea>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="status" name="aktif"
+                                    value="1" {{ old('aktif') == '1' ? 'checked' : '' }} checked>
+                                <label class="form-check-label" for="status">{{ __('message.active') }}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,7 +235,7 @@
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('message.cancel') }}</button>
                     <button type="submit" class="btn btn-primary" name="redirect"
-                        value="item">{{ __('message.simpan') }}</button>
+                        value="psikomotorik">{{ __('message.simpan') }}</button>
                 </div>
             </form>
         </div>
@@ -215,7 +246,7 @@
 <div class="modal fade" id="AddKategori" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form id="form3" action="{{ route('data.kategori.store') }}"
+            <form id="form3" action="{{ route('kategori.psikomotorik.store', ['redirect' => 'psikomotorik']) }}"
                 method="POST" data-parsley-validate>
                 @csrf
                 <div class="modal-header">
@@ -234,11 +265,14 @@
                     </div>
                     <div class="row align-items-center">
                         <div class="col-md-2">
-                            <label for="ctn">{{ __('message.ctn') }}</label>
+                            <label class="form-label">Status</label>
                         </div>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="ctn" id="ctn" cols="30" rows="10" style="height: 100px;"
-                                required data-parsley-required-message="{{ __('message.ctnrequired') }}"></textarea>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="status" name="aktif"
+                                    value="1" {{ old('aktif') == '1' ? 'checked' : '' }} checked>
+                                <label class="form-check-label" for="status">{{ __('message.active') }}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,7 +280,7 @@
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('message.cancel') }}</button>
                     <button type="submit" class="btn btn-primary" name="redirect"
-                        value="item">{{ __('message.simpan') }}</button>
+                        value="psikomotorik">{{ __('message.simpan') }}</button>
                 </div>
             </form>
         </div>
@@ -257,7 +291,7 @@
 <div class="modal fade" id="AddSubKategori" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form id="form4" action="{{ route('data.subkategori.store') }}"
+            <form id="form4" action="{{ route('subkategori.motorik.store', ['redirect' => 'psikomotorik']) }}"
                 method="POST" data-parsley-validate>
                 @csrf
                 <div class="modal-header">
@@ -276,11 +310,14 @@
                     </div>
                     <div class="row align-items-center">
                         <div class="col-md-2">
-                            <label for="ctn">{{ __('message.ctn') }}</label>
+                            <label class="form-label">Status</label>
                         </div>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="ctn" id="ctn" cols="30" rows="10" style="height: 100px;"
-                                required data-parsley-required-message="{{ __('message.ctnrequired') }}"></textarea>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="status" name="aktif"
+                                    value="1" {{ old('aktif') == '1' ? 'checked' : '' }} checked>
+                                <label class="form-check-label" for="status">{{ __('message.active') }}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -288,7 +325,7 @@
                     <button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">{{ __('message.cancel') }}</button>
                     <button type="submit" class="btn btn-primary" name="redirect"
-                        value="item">{{ __('message.simpan') }}</button>
+                        value="psikomotorik">{{ __('message.simpan') }}</button>
                 </div>
             </form>
         </div>

@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
-@section('title', __('message.editstase'))
+@section('title', __('message.editsubkategori'))
 
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
+
 @endpush
 
 @section('main')
@@ -16,8 +17,10 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item active"><a href="{{ route('data.stase.index') }}">{{ __('message.datastase') }}</a>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('data.group.index') }}">{{ __('message.subktgmotorik') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.edit') }}</div>
                         </div>
@@ -44,7 +47,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" action="{{ route('data.stase.update', $stase->pk) }}" method="POST"
+                                <form id="form" action="{{ route('subkategori.motorik.update', $subktgmotorik->pk) }}" method="POST"
                                     data-parsley-validate>
                                     @csrf
                                     @method('PUT')
@@ -55,41 +58,22 @@
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('nm') is-invalid @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm', $stase->nm) }}" required
+                                                        name="nm" id="nm" value="{{ old('nm', $subktgmotorik->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
                                             </div>
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
-                                                <div class="col-sm-9">
-                                                    <textarea class="form-control" name="ctn" id="ctn" required
-                                                        data-parsley-required-message="{{ __('message.ctnrequired') }}" style="height: 100px">{{ old('ctn', $stase->ctn) }}</textarea>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                         <div class="col-md-5">
-                                            <div class="row mb-4">
+                                            <div class="row mb-3">
                                                 <div class="col-md-3">
                                                     <label class="form-label">Status</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio"
-                                                                    id="Active" name="aktif" value="1" 
-                                                                    {{ old('aktif', $stase->aktif) == '1' ? 'checked' : '' }} checked>
-                                                                <label class="form-check-label">{{ __('message.active') }}</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio"
-                                                                    id="NonActive" name="aktif" value="0"
-                                                                    {{ old('aktif', $stase->aktif) == '0' ? 'checked' : '' }}>
-                                                                <label class="form-check-label">{{ __('message.inactive') }}</label>
-                                                            </div>
-                                                        </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="status" name="aktif" value="1" 
+                                                            {{ old('aktif', $subktgmotorik->aktif) == '1' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="status">{{ __('message.active') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,10 +82,10 @@
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('data.stase.index') }}"> <i
-                                                    class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
+                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('subkategori.motorik.index') }}">
+                                                <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
                                             </button>
                                         </div>
                                     </div>

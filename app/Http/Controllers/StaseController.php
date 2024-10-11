@@ -9,12 +9,19 @@ class StaseController extends Controller
 {
     public function index()
     {
+        $type_menu = 'master-data';
         $stase = Stase::all();
-        return view("page.data-stase.index", ['stase' => $stase,]);
+        return view("page.data-stase.index", [
+            'stase' => $stase,
+            'type_menu' => $type_menu,
+        ]);
     }
     public function create()
     {
-        return view("page.data-stase.create");
+        $type_menu = 'master-data';
+        return view("page.data-stase.create", [
+            'type_menu' => $type_menu,
+        ]);
     }
     public function store(Request $request)
     {
@@ -36,10 +43,12 @@ class StaseController extends Controller
     }
     public function edit($pk)
     {
+        $type_menu = 'master-data';
         $stase = Stase::findOrFail($pk);
 
         return view('page.data-stase.edit', [
-            'stase' => $stase
+            'stase' => $stase,
+            'type_menu' => $type_menu,
         ]);
     }
     public function update(Request $request, $pk)

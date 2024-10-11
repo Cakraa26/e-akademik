@@ -84,23 +84,23 @@ Route::resource('data-group', GroupController::class)->names([
 ]);
 
 // Data Kategori
-Route::resource('data-kategori', KategoriController::class)->names([
-    'index' => 'data.kategori.index',
-    'create' => 'data.kategori.create',
-    'store' => 'data.kategori.store',
-    'edit' => 'data.kategori.edit',
-    'update' => 'data.kategori.update',
-    'destroy' => 'data.kategori.destroy',
+Route::resource('kategori-psikomotorik', KategoriController::class)->names([
+    'index' => 'kategori.psikomotorik.index',
+    'create' => 'kategori.psikomotorik.create',
+    'store' => 'kategori.psikomotorik.store',
+    'edit' => 'kategori.psikomotorik.edit',
+    'update' => 'kategori.psikomotorik.update',
+    'destroy' => 'kategori.psikomotorik.destroy',
 ]);
 
 // Data Sub Kategori
-Route::resource('data-subkategori', SubKategoriController::class)->names([
-    'index' => 'data.subkategori.index',
-    'create' => 'data.subkategori.create',
-    'store' => 'data.subkategori.store',
-    'edit' => 'data.subkategori.edit',
-    'update' => 'data.subkategori.update',
-    'destroy' => 'data.subkategori.destroy',
+Route::resource('subkategori-psikomotorik', SubKategoriController::class)->names([
+    'index' => 'subkategori.motorik.index',
+    'create' => 'subkategori.motorik.create',
+    'store' => 'subkategori.motorik.store',
+    'edit' => 'subkategori.motorik.edit',
+    'update' => 'subkategori.motorik.update',
+    'destroy' => 'subkategori.motorik.destroy',
 ]);
 
 // auth

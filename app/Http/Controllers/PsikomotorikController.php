@@ -11,14 +11,28 @@ use Illuminate\Support\Facades\Hash;
 
 class PsikomotorikController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $motorik = Psikomotorik::all();
+        $type_menu = 'psikomotorik';
+
+        $query = Psikomotorik::query();
+
+        $query->when(request()->has('groupfk') && request('groupfk') != '', function ($q) {
+            return $q->where('groupfk', request('groupfk'));
+        });
+
+        $query->when(request()->has('kategorifk') && request('kategorifk') != '', function ($q) {
+            return $q->where('kategorifk', request('kategorifk'));
+        });
+
+        $motorik = $query->get();
+
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
         $subkategori = SubKategori::select('pk', 'nm')->get();
 
         return view("page.data-psikomotorik.index", [
+            'type_menu' => $type_menu,
             'motorik' => $motorik,
             'group' => $group,
             'kategori' => $kategori,
@@ -27,11 +41,13 @@ class PsikomotorikController extends Controller
     }
     public function create()
     {
+        $type_menu = 'psikomotorik';
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
         $subkategori = SubKategori::select('pk', 'nm')->get();
 
         return view("page.data-psikomotorik.create", [
+            'type_menu' => $type_menu,
             'group' => $group,
             'kategori' => $kategori,
             'subkategori' => $subkategori,
@@ -67,12 +83,14 @@ class PsikomotorikController extends Controller
     }
     public function edit($pk)
     {
+        $type_menu = 'psikomotorik';
         $motorik = Psikomotorik::findOrFail($pk);
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
         $subkategori = SubKategori::select('pk', 'nm')->get();
 
         return view('page.data-psikomotorik.edit', [
+            'type_menu' => $type_menu,
             'motorik' => $motorik,
             'group' => $group,
             'kategori' => $kategori,
