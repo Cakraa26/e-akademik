@@ -50,21 +50,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="d-block">
-                        <label for="password" class="control-label">Konfirmasi Password</label>
-                    </div>
-                    <div class="input-group input-group-icon">
-                        <input type="password" />
-                        <div class="input-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                    </div>
-                    <div id="pwindicator" class="pwindicator">
-                        <div class="bar"></div>
-                        <div class="label"></div>
-                    </div>
-                </div>
 
                 <div class="form-group">
                     {{-- <button type="submit" class="btn btn-primary btn-block" tabindex="4">
