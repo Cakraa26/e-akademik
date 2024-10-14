@@ -47,9 +47,10 @@
                         </div>
 
                         <form action="" method="GET">
+                            @csrf
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <div class="mb-2">
+                                    <div class="mb-3">
                                         <label for="groupfk" class="form-label">{{ __('message.group') }}</label>
                                         <select class="form-select select2" id="groupfk" name="groupfk">
                                             <option value=""></option>
@@ -62,9 +63,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="mb-2">
-                                        <label for="kategoriInput"
-                                            class="form-label">{{ __('message.kategori') }}</label>
+                                    <div class="mb-3">
+                                        <label for="kategoriInput" class="form-label">{{ __('message.kategori') }}</label>
                                         <select class="form-select select2" id="kategorifk" name="kategorifk">
                                             <option value=""></option>
                                             @foreach ($kategori as $k)
@@ -73,6 +73,16 @@
                                                     {{ $k->nm }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label>&nbsp;</label>
+                                        <div class="d-flex">
+                                            <button type="submit" class="btn btn-primary mr-2">Filter <i class="fas fa-sort-amount-up pl-1"></i></button>
+                                            <a href="{{ route('data.psikomotorik.index') }}"
+                                                class="btn btn-secondary">Refresh</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -15,17 +15,13 @@ class PsikomotorikController extends Controller
     {
         $type_menu = 'psikomotorik';
 
-        $query = Psikomotorik::query();
+        $motorik = Psikomotorik::when($request->groupfk != null, function ($q) use ($request) {
+            return $q->where('groupfk', $request->groupfk);
+        })
+        ->when($request->kategorifk != null, function ($q) use ($request) {
+            return $q->where('kategorifk', $request->kategorifk);
+        })->get();
 
-        $query->when(request()->has('groupfk') && request('groupfk') != '', function ($q) {
-            return $q->where('groupfk', request('groupfk'));
-        });
-
-        $query->when(request()->has('kategorifk') && request('kategorifk') != '', function ($q) {
-            return $q->where('kategorifk', request('kategorifk'));
-        });
-
-        $motorik = $query->get();
 
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
