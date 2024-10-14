@@ -26,7 +26,7 @@ return [
     'akademik' => "Academic Data",
     'thnajaran' => "School Year",
     'tingkatresiden' => "Resident Level",
-    'rs' => "Hostpital",
+    'rs' => "Hospital",
     'jdwstase' => "Stase Schedule",
     'nilaistase' => "Stase Grade",
     'rekapnilai' => "Grade Recap",
