@@ -200,24 +200,24 @@
                 errorsWrapper: '<span class="invalid-feedback"></span>',
                 errorTemplate: '<div></div>',
             });
-            $('#form2').parsley({
-                errorClass: 'is-invalid parsley-error',
-                successClass: 'is-valid',
-                errorsWrapper: '<span class="invalid-feedback"></span>',
-                errorTemplate: '<div></div>'
-            });
-            $('#form3').parsley({
-                errorClass: 'is-invalid parsley-error',
-                successClass: 'is-valid',
-                errorsWrapper: '<span class="invalid-feedback"></span>',
-                errorTemplate: '<div></div>'
-            });
-            $('#form4').parsley({
-                errorClass: 'is-invalid parsley-error',
-                successClass: 'is-valid',
-                errorsWrapper: '<span class="invalid-feedback"></span>',
-                errorTemplate: '<div></div>'
-            });
+            // $('#form2').parsley({
+            //     errorClass: 'is-invalid parsley-error',
+            //     successClass: 'is-valid',
+            //     errorsWrapper: '<span class="invalid-feedback"></span>',
+            //     errorTemplate: '<div></div>'
+            // });
+            // $('#form3').parsley({
+            //     errorClass: 'is-invalid parsley-error',
+            //     successClass: 'is-valid',
+            //     errorsWrapper: '<span class="invalid-feedback"></span>',
+            //     errorTemplate: '<div></div>'
+            // });
+            // $('#form4').parsley({
+            //     errorClass: 'is-invalid parsley-error',
+            //     successClass: 'is-valid',
+            //     errorsWrapper: '<span class="invalid-feedback"></span>',
+            //     errorTemplate: '<div></div>'
+            // });
         });
     </script>
 @endpush
