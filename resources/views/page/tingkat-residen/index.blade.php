@@ -29,8 +29,7 @@
                     <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
-            @endif
-            @if (session('error'))
+            @elseif (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>

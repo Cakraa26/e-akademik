@@ -62,6 +62,7 @@ return [
     'editkategori' => "Update Category",
     'tambahsubkategori' => "Add Sub Category",
     'editsubkategori' => "Update Sub Category",
+    'tambahresiden' => "Add Resident",
 
     // Button
     'kembali' => "Back",
