@@ -188,7 +188,7 @@ class TingkatResidenController extends Controller
 
             if($tingkat_residen->residen()->exists()) {
                 return back()
-                    ->with('error', 'Tingkat residen tidak bisa dihapus karena masih digunakan.');
+                    ->with('warning', 'Tingkat residen tidak bisa dihapus karena masih digunakan.');
             }
 
             $tingkat_residen->residen()->delete();
