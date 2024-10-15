@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.editsubkategori'))
+@section('title', __('message.edittahunajaran'))
 
 @push('style')
     <!-- CSS Libraries -->

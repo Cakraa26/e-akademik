@@ -62,6 +62,8 @@ return [
     'editkategori' => "Update Category",
     'tambahsubkategori' => "Add Sub Category",
     'editsubkategori' => "Update Sub Category",
+    'tambahtahunajaran' => "Add Tahun Ajaran",
+    'edittahunajaran' => "Update Tahun Ajaran",
 
     // Button
     'kembali' => "Back",

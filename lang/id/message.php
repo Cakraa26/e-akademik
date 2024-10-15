@@ -23,7 +23,7 @@ return [
     'laporan' => "Laporan",
     'absensi' => "Absensi",
     'nilai' => "Nilai",
-    'akademik' => "Data Akademik",    
+    'akademik' => "Data Akademik",
     'thnajaran' => "Tahun Ajaran",
     'tingkatresiden' => "Tingkat Residen",
     'rs' => "Rumah Sakit",
@@ -61,6 +61,8 @@ return [
     'editkategori' => "Perbarui Kategori",
     'tambahsubkategori' => "Tambah Sub Kategori",
     'editsubkategori' => "Perbarui Sub Kategori",
+    'tambahtahunajaran' => "Tambah Tahun Ajaran",
+    'edittahunajaran' => "Perbarui Tahun Ajaran",
 
     // Button
     'kembali' => "Kembali",
