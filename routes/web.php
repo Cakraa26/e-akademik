@@ -11,6 +11,7 @@ use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\PsikomotorikController;
+use App\Http\Controllers\TingkatResidenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,16 @@ Route::resource('subkategori-psikomotorik', SubKategoriController::class)->names
     'edit' => 'subkategori.motorik.edit',
     'update' => 'subkategori.motorik.update',
     'destroy' => 'subkategori.motorik.destroy',
+]);
+
+// Data Tingkat Residen
+Route::resource('tingkat-residen', TingkatResidenController::class)->names([
+    'index' => 'tingkat.residen.index',
+    'create' => 'tingkat.residen.create',
+    'store' => 'tingkat.residen.store',
+    'edit' => 'tingkat.residen.edit',
+    'update' => 'tingkat.residen.update',
+    'destroy' => 'tingkat.residen.destroy',
 ]);
 
 // auth
