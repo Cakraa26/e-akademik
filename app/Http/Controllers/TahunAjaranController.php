@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class TahunAjaranController extends Controller
 {
-    public function index() {
-        
+    public function index()
+    {
         $type_menu = 'setting';
         $thn = TahunAjaran::all();
         return view("page.tahun-ajaran.index", [
@@ -18,7 +18,8 @@ class TahunAjaranController extends Controller
 
     }
 
-    public function create() {
+    public function create()
+    {
         $type_menu = 'setting';
         return view("page.tahun-ajaran.create", [
             'type_menu' => $type_menu,
@@ -28,7 +29,7 @@ class TahunAjaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nm' => 'required'
+            'nm' => 'required|unique:m_thnajaran,nm'
         ], [
             'nm' => __('message.nama')
         ]);
@@ -38,8 +39,8 @@ class TahunAjaranController extends Controller
             $TahunData['aktif'] = $request->has('aktif') ? 1 : 0;
 
             TahunAjaran::create([
-                'nm' => $TahunData ['nm'],
-                'aktif' => $TahunData ['aktif']
+                'nm' => $TahunData['nm'],
+                'aktif' => $TahunData['aktif']
             ]);
             return redirect()
                 ->route('tahun-ajaran.index')
@@ -66,7 +67,7 @@ class TahunAjaranController extends Controller
         $thn = TahunAjaran::findOrFail($pk);
 
         $request->validate([
-            'nm' => 'required'
+            'nm' => 'required|unique:m_thnajaran,nm,' . $pk . ',pk'
         ], [
             'nm' => __('message.nama')
         ]);
@@ -76,8 +77,8 @@ class TahunAjaranController extends Controller
             $TahunData['aktif'] = $request->has('aktif') ? 1 : 0;
 
             $thn->update([
-                'nm' => $TahunData ['nm'],
-                'aktif' => $TahunData ['aktif']
+                'nm' => $TahunData['nm'],
+                'aktif' => $TahunData['aktif']
             ]);
 
             return redirect()
@@ -94,14 +95,14 @@ class TahunAjaranController extends Controller
     {
         try {
             $TahunData = TahunAjaran::findOrFail($pk);
-            if($TahunData->kelas()->exists()){
+            if ($TahunData->kelas()->exists()) {
                 return back()
-                ->withInput()
-                ->with('warning', 'Peringatan! Tahun Ajaran tidak dapat dihapus karena masih digunakan');
+                    ->withInput()
+                    ->with('warning', 'Peringatan! Tahun Ajaran tidak dapat dihapus karena masih digunakan');
             }
             $TahunData->delete();
 
-            
+
             return redirect()
                 ->route('tahun-ajaran.index')
                 ->with('success', __('message.success_tahunajaran_hapus'));

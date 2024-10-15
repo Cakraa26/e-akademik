@@ -56,7 +56,7 @@
                                             <div class="mb-4 row align-items-center">
                                                 <label for="nama" class="col-sm-3">{{ __('message.namatahun') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nm" id="nm"
+                                                    <input type="text" class="form-control @error('nm') is-invalid @enderror" name="nm" id="nm"
                                                         value="{{ old('nm', $thn->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
