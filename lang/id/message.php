@@ -85,6 +85,9 @@ return [
     'inactive' => 'Tidak Aktif',
     'kategori' => "Kategori",
     'subkategori' => "Sub Kategori",
+    'tahunajaran' => "Tahun ajaran/Semester",
+    'aktif' => "Aktif",
+    'namatahun' => "Nama Tahun Ajaran - Semester",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -107,6 +110,7 @@ return [
 
     // Alert
     'success' => 'Sukses',
+    'warning' => 'Peringatan',
     'success_psikomotorik_added' => 'Data Psikomotorik berhasil ditambahkan.',
     'success_psikomotorik_edit' => 'Data Psikomotorik berhasil diperbarui.',
     'success_psikomotorik_hapus' => 'Data Psikomotorik berhasil dihapus.',
@@ -125,6 +129,9 @@ return [
     'success_subkategori_added' => 'Sub Kategori berhasil ditambahkan.',
     'success_subkategori_edit' => 'Sub Kategori berhasil diperbarui.',
     'success_subkategori_hapus' => 'Sub Kategori berhasil dihapus.',
+    'success_tahunajaran_added' => 'Data Tahun Ajaran berhasil ditambahkan.',
+    'success_tahunajaran_edit' => 'Data Tahun Ajaran berhasil diperbarui.',
+    'success_tahunajaran_hapus' => 'Data Tahun Ajaran berhasil dihapus.',
 ];
 
 ?>

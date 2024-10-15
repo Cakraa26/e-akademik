@@ -87,6 +87,11 @@ return [
     'kategori' => "Category",
     'subkategori' => "Sub Category",
 
+    // Tahun Ajaran
+    'aktif' => "Active",
+    'tahunajaran' => "School Year/Semester",
+    'namatahun' => "Name of School Year - Semester",
+
     // Validation
     'nmrequired' => "Name is required.",
     'tlprequired' => "Phone Number is required.",
