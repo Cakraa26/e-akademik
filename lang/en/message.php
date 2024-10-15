@@ -63,6 +63,7 @@ return [
     'tambahsubkategori' => "Add Sub Category",
     'editsubkategori' => "Update Sub Category",
     'tambahresiden' => "Add Resident",
+    'editresiden' => "Update Resident",
 
     // Button
     'kembali' => "Back",
@@ -70,6 +71,13 @@ return [
     'deleteConfirm' => 'Are you sure you want to delete this data?',
     'confirm' => 'Yes, delete it!',
     'cancel' => 'Cancel',
+
+    'kd' => "Code",
+    'warna' => "Color",
+    'semester' => "Semester",
+    'namatahapan' => "Stage Name",
+    'drsemester' => "From Semester",
+    'btssemester' => "End Semester",
 
     // Dosen
     'nama' => "Name",
