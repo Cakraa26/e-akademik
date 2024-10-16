@@ -64,6 +64,8 @@ return [
     'editsubkategori' => "Update Sub Category",
     'tambahresiden' => "Add Resident",
     'editresiden' => "Update Resident",
+    'tambahtahunajaran' => "Add Tahun Ajaran",
+    'edittahunajaran' => "Update Tahun Ajaran",
 
     // Button
     'kembali' => "Back",
@@ -95,6 +97,11 @@ return [
     'inactive' => 'Non Active',
     'kategori' => "Category",
     'subkategori' => "Sub Category",
+
+    // Tahun Ajaran
+    'aktif' => "Active",
+    'tahunajaran' => "School Year/Semester",
+    'namatahun' => "Name of School Year - Semester",
 
     // Validation
     'nmrequired' => "Name is required.",
@@ -135,6 +142,12 @@ return [
     'success_subkategori_added' => 'Sub Category has been successfully added.',
     'success_subkategori_edit' => 'Sub Category has been successfully updated.',
     'success_subkategori_hapus' => 'Sub Category has been successfully deleted.',
+    'success_residen_added' => 'Resident has been successfully added.',
+    'success_residen_edit' => 'Resident has been successfully updated.',
+    'success_residen_hapus' => 'Resident has been successfully deleted.',
+    'success_tahunajaran_added' => 'School Year has been successfully added.',
+    'success_tahunajaran_edit' => 'School Year has been successfully updated.',
+    'success_tahunajaran_hapus' => 'School Year has been successfully deleted.',
 ];
 
 ?>

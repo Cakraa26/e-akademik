@@ -12,6 +12,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
+use App\Http\Controllers\TahunAjaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,6 +115,16 @@ Route::resource('tingkat-residen', TingkatResidenController::class)->names([
     'destroy' => 'tingkat.residen.destroy',
 ]);
 
+// Data Tahun Ajaran
+Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
+    'index' => 'tahun-ajaran.index',
+    'create' => 'tahun-ajaran.create',
+    'store' => 'tahun-ajaran.store',
+    'edit' => 'tahun-ajaran.edit',
+    'update' => 'tahun-ajaran.update',
+    'destroy' => 'tahun-ajaran.destroy',
+]);
+
 // auth
 Route::get('/auth-forgot-password', function () {
     return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
@@ -135,5 +146,6 @@ Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);
 });
+
 
 

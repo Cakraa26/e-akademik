@@ -24,7 +24,7 @@ return [
     'laporan' => "Laporan",
     'absensi' => "Absensi",
     'nilai' => "Nilai",
-    'akademik' => "Data Akademik",    
+    'akademik' => "Data Akademik",
     'thnajaran' => "Tahun Ajaran",
     'tingkatresiden' => "Tingkat Residen",
     'rs' => "Rumah Sakit",
@@ -63,6 +63,8 @@ return [
     'editsubkategori' => "Perbarui Sub Kategori",
     'tambahresiden' => "Tambah Residen",
     'editresiden' => "Perbarui Residen",
+    'tambahtahunajaran' => "Tambah Tahun Ajaran",
+    'edittahunajaran' => "Perbarui Tahun Ajaran",
 
     // Button
     'kembali' => "Kembali",
@@ -93,6 +95,9 @@ return [
     'namatahapan' => "Nama Tahapan",
     'drsemester' => "Dari Semester",
     'btssemester' => "Batas Semester",
+    'tahunajaran' => "Tahun ajaran/Semester",
+    'aktif' => "Aktif",
+    'namatahun' => "Nama Tahun Ajaran - Semester",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -124,6 +129,7 @@ return [
 
     // Alert
     'success' => 'Sukses',
+    'warning' => 'Peringatan',
     'success_psikomotorik_added' => 'Data Psikomotorik berhasil ditambahkan.',
     'success_psikomotorik_edit' => 'Data Psikomotorik berhasil diperbarui.',
     'success_psikomotorik_hapus' => 'Data Psikomotorik berhasil dihapus.',
@@ -145,6 +151,9 @@ return [
     'success_residen_added' => 'Data Residen berhasil ditambahkan.',
     'success_residen_edit' => 'Data Residen berhasil diperbarui.',
     'success_residen_hapus' => 'Data Residen berhasil dihapus.',
+    'success_tahunajaran_added' => 'Data Tahun Ajaran berhasil ditambahkan.',
+    'success_tahunajaran_edit' => 'Data Tahun Ajaran berhasil diperbarui.',
+    'success_tahunajaran_hapus' => 'Data Tahun Ajaran berhasil dihapus.',
 ];
 
 ?>
