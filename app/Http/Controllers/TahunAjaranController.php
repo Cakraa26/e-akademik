@@ -30,7 +30,7 @@ class TahunAjaranController extends Controller
     {
         $request->validate([
             'nm' => 'required|unique:m_thnajaran,nm'
-        ], [
+        ], [], [
             'nm' => __('message.nama')
         ]);
 
@@ -68,7 +68,7 @@ class TahunAjaranController extends Controller
 
         $request->validate([
             'nm' => 'required|unique:m_thnajaran,nm,' . $pk . ',pk'
-        ], [
+        ], [], [
             'nm' => __('message.nama')
         ]);
 
