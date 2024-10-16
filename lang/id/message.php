@@ -13,6 +13,7 @@ return [
     'logout' => "Keluar",
     'setting' => "Pengaturan",
     'datadosen' => "Data Dosen",
+    'tingkatresiden' => "Tingkat Residen",
     'datacalonresiden' => "Data Calon Residen",
     'datastase' => "Data Stase",
     'dataresiden' => "Data Residen",
@@ -23,7 +24,7 @@ return [
     'laporan' => "Laporan",
     'absensi' => "Absensi",
     'nilai' => "Nilai",
-    'akademik' => "Data Akademik",    
+    'akademik' => "Data Akademik",
     'thnajaran' => "Tahun Ajaran",
     'tingkatresiden' => "Tingkat Residen",
     'rs' => "Rumah Sakit",
@@ -43,7 +44,6 @@ return [
     'residen' => "Residen",
     'record' => "Catatan",
 
-
     // CRUD
     'tambah' => "Tambah",
     'edit' => "Perbarui",
@@ -61,6 +61,10 @@ return [
     'editkategori' => "Perbarui Kategori",
     'tambahsubkategori' => "Tambah Sub Kategori",
     'editsubkategori' => "Perbarui Sub Kategori",
+    'tambahresiden' => "Tambah Residen",
+    'editresiden' => "Perbarui Residen",
+    'tambahtahunajaran' => "Tambah Tahun Ajaran",
+    'edittahunajaran' => "Perbarui Tahun Ajaran",
 
     // Button
     'kembali' => "Kembali",
@@ -85,6 +89,15 @@ return [
     'inactive' => 'Tidak Aktif',
     'kategori' => "Kategori",
     'subkategori' => "Sub Kategori",
+    'kd' => "Kode",
+    'warna' => "Warna",
+    'semester' => "Semester",
+    'namatahapan' => "Nama Tahapan",
+    'drsemester' => "Dari Semester",
+    'btssemester' => "Batas Semester",
+    'tahunajaran' => "Tahun ajaran/Semester",
+    'aktif' => "Aktif",
+    'namatahun' => "Nama Tahun Ajaran - Semester",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -104,9 +117,19 @@ return [
     'subkategorifkrequired' => "Sub Kategori wajib diisi.",
     'tlpunique' => "No. Telepon sudah terdaftar.",
     'nipunique' => "NIP sudah terdaftar.",
+    'namatahapanrequired' => "Nama Tahapan wajib diisi.",
+    'drsemesterrequired' => "Dari Semester wajib diisi.",
+    'drsemesternumeric' => "Dari Semester harus berupa angka.",
+    'btssemesterrequired' => "Batas Semester wajib diisi.",
+    'btssemesternumeric' => "Batas Semester harus berupa angka.",
+    'kdrequired' => "Kode wajib diisi.",
+    'kdunique' => "Kode sudah terdaftar.",
+    'warnarequired' => "Warna wajib diisi.",
+    'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
 
     // Alert
     'success' => 'Sukses',
+    'warning' => 'Peringatan',
     'success_psikomotorik_added' => 'Data Psikomotorik berhasil ditambahkan.',
     'success_psikomotorik_edit' => 'Data Psikomotorik berhasil diperbarui.',
     'success_psikomotorik_hapus' => 'Data Psikomotorik berhasil dihapus.',
@@ -125,6 +148,12 @@ return [
     'success_subkategori_added' => 'Sub Kategori berhasil ditambahkan.',
     'success_subkategori_edit' => 'Sub Kategori berhasil diperbarui.',
     'success_subkategori_hapus' => 'Sub Kategori berhasil dihapus.',
+    'success_residen_added' => 'Data Residen berhasil ditambahkan.',
+    'success_residen_edit' => 'Data Residen berhasil diperbarui.',
+    'success_residen_hapus' => 'Data Residen berhasil dihapus.',
+    'success_tahunajaran_added' => 'Data Tahun Ajaran berhasil ditambahkan.',
+    'success_tahunajaran_edit' => 'Data Tahun Ajaran berhasil diperbarui.',
+    'success_tahunajaran_hapus' => 'Data Tahun Ajaran berhasil dihapus.',
 ];
 
 ?>

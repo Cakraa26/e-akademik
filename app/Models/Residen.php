@@ -65,4 +65,9 @@ class Residen extends Model
 
         return $nextPk;
     }
+
+    public function tingkat()
+    {
+        return $this->belongsTo(TingkatResiden::class, 'tingkatfk', 'pk');
+    }
 }
