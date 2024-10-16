@@ -60,6 +60,9 @@
                                                         class="form-control  @error('kd') is-invalid @enderror"
                                                         name="kd" id="kode" value="{{ old('kd') }}" required
                                                         data-parsley-required-message="{{ __('message.kdrequired') }}">
+                                                    @error('kd')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -72,6 +75,9 @@
                                                         class="form-control  @error('nm') is-invalid @enderror"
                                                         name="nm" id="nm" value="{{ old('nm') }}" required
                                                         data-parsley-required-message="{{ __('message.namatahapanrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -91,6 +97,9 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('warna')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -104,6 +113,9 @@
                                                         name="darisemester" id="darisemester"
                                                         value="{{ old('darisemester') }}" required
                                                         data-parsley-required-message="{{ __('message.drsemesterrequired') }}">
+                                                    @error('darisemester')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -117,6 +129,9 @@
                                                         name="sampaisemester" id="sampaisemester"
                                                         value="{{ old('sampaisemester') }}" required
                                                         data-parsley-required-message="{{ __('message.btssemesterrequired') }}">
+                                                    @error('sampaisemester')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

@@ -146,5 +146,10 @@ return [
     */
 
     'attributes' => [
+        'kd' => 'Kode',
+        'nm' => 'Nama',
+        'darisemester' => 'Dari semester',
+        'sampaisemester' => 'Akhir semester',
+        'warna' => 'Warna'
     ],
 ];
