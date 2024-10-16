@@ -43,7 +43,7 @@
                     <li class='{{ Request::is('data-dosen*') ? 'active' : '' }}'>
                         <a class="nav-link" href="{{ route('data.dosen.index') }}">{{ __('message.datadosen') }}</a>
                     </li>
-                    <li class="{{ Request::is('data-mahasiswa') ? 'active' : '' }}">
+                    <li class="{{ Request::is('data-mahasiswa*') ? 'active' : '' }}">
                         <a class="nav-link"
                             href="{{ route('data.mahasiswa.index') }}">{{ __('message.datacalonresiden') }}</a>
                     </li>

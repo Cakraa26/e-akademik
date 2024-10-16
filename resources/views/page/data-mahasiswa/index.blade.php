@@ -1,12 +1,12 @@
 @extends('layouts.app')
-
-@section('title', 'Data Mahasiswa')
+@section('title', __('message.calonresiden'))
 
 @push('style')
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
 @endpush
-
 @section('main')
     <div class="main-content">
         <section class="section">
@@ -15,8 +15,9 @@
                 <div class="section-header-breadcrumb">
                     <ul class="nav nav-pills">
                         <div class="section-header-breadcrumb">
-                            <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                            <div class="breadcrumb-item">Data Mahasiswa</div>
+                            <div class="breadcrumb-item active"><a
+                                    href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
+                            <div class="breadcrumb-item">{{ __('message.calonresiden') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -25,7 +26,12 @@
             {{-- Alert --}}
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>Sukses!</strong> {{ session('success') }}
+                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            @elseif (session('warning'))
+                <div class="alert alert-warning alert-dismissible show fade" role="alert">
+                    <strong>Peringatan!</strong> {{ session('warning') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif
@@ -34,12 +40,6 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-4">
-                            <div class="col-md-5 col-lg-6 mb-md-0 text-center text-md-left">
-                                <a class="btn btn-success" href="" data-toggle="tooltip" title="Tambah Data"><i
-                                        class="fas fa-edit pr-2"></i>Tambah</a>
-                            </div>
-                        </div>
 
                         <div class="table-responsive">
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
@@ -48,117 +48,37 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Task Name</th>
-                                        <th>Progress</th>
-                                        <th>Members</th>
-                                        <th>Due Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>{{ __('message.tgldaftar') }}</th>
+                                        <th>{{ __('message.inisial') }}</th>
+                                        <th>{{ __('message.nmresiden') }}</th>
+                                        <th>{{ __('message.hp') }}</th>
+                                        <th>{{ __('message.asalfakultas') }}</th>
+                                        <th>{{ __('message.thnlulus') }}</th>
+                                        <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Create a mobile app</td>
-                                        <td class="align-middle">
-                                            <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                                                <div class="progress-bar bg-success" data-width="100%"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-5.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Wildan Ahdian">
-                                        </td>
-                                        <td>2018-01-20</td>
-                                        <td>
-                                            <div class="badge badge-success">Completed</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>Redesign homepage</td>
-                                        <td class="align-middle">
-                                            <div class="progress" data-height="4" data-toggle="tooltip" title="0%">
-                                                <div class="progress-bar" data-width="0"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Nur Alpiana">
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-3.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Hariono Yusup">
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-4.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Bagus Dwi Cahya">
-                                        </td>
-                                        <td>2018-04-10</td>
-                                        <td>
-                                            <div class="badge badge-info">Todo</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            3
-                                        </td>
-                                        <td>Backup database</td>
-                                        <td class="align-middle">
-                                            <div class="progress" data-height="4" data-toggle="tooltip" title="70%">
-                                                <div class="progress-bar bg-warning" data-width="70%"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Rizal Fakhri">
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-2.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Hasan Basri">
-                                        </td>
-                                        <td>2018-01-29</td>
-                                        <td>
-                                            <div class="badge badge-warning">In Progress</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            4
-                                        </td>
-                                        <td>Input data</td>
-                                        <td class="align-middle">
-                                            <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                                                <div class="progress-bar bg-success" data-width="100%"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-2.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Rizal Fakhri">
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-5.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Isnap Kiswandi">
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-4.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Yudi Nawawi">
-                                            <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                class="rounded-circle" width="35" data-toggle="tooltip"
-                                                title="Khaerul Anwar">
-                                        </td>
-                                        <td>2018-01-16</td>
-                                        <td>
-                                            <div class="badge badge-success">Completed</div>
-                                        </td>
-                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                    </tr>
+                                    @foreach ($residen as $mahasiswa)
+                                        <tr>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ date('d/m/Y', strtotime($mahasiswa->dateadded)) }}</td>
+                                            <td>{{ $mahasiswa->inisialresiden }}</td>
+                                            <td>{{ $mahasiswa->nm }}</td>
+                                            <td>{{ $mahasiswa->hp }}</td>
+                                            <td>{{ $mahasiswa->asalfk }}</td>
+                                            <td>{{ $mahasiswa->thnlulus }}</td>
+                                            <td>
+                                                <div>
+                                                    <a href="#" class="btn btn-success"><i
+                                                            class="fas fa-check"></i></a>
+
+                                                    <a href="{{ route('data-mahasiswa.show', $mahasiswa->pk) }}"
+                                                        type="button" class="btn btn-primary"><i class="fas fa-info"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -169,11 +89,13 @@
         </section>
     </div>
 @endsection
-
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
+    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script>

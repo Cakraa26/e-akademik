@@ -44,7 +44,6 @@ return [
     'residen' => "Resident",
     'record' => "Records",
 
-
     // CRUD
     'tambah' => "Add",
     'edit' => "Update",
@@ -87,6 +86,28 @@ return [
     'inactive' => 'Non Active',
     'kategori' => "Category",
     'subkategori' => "Sub Category",
+
+    // Tingkat Residen
+    'kd' => 'Code',
+    'namatahapan' => "Stage Name",
+    'warna' => "Color",
+    'drsemester' => 'From Semester',
+    'btssemester' => 'To Semester',
+
+    // pendaftaran residen 
+    'calonresiden' => "Resident Candidate",
+    'tgldaftar' => "Registration Date",
+    'inisial' => "Initial",
+    'nmresiden' => "Resident Name",
+    'hp' => "Phone Number",
+    'asalfakultas' => "Faculty Origin",
+    'thnlulus' => "Graduation Year",
+    'detailpendaftaranresiden' => "Resident Registration Details",
+    'groupmotorik' => "Psychomotor Group",
+    'kategorimotorik' => "Psychomotor Category",
+    'nmprosedur' => "Name (Procedure)",
+    'bimbingan' => "Guidance",
+    'mandiri' => 'Independent',
 
     // Validation
     'nmrequired' => "Name is required.",
