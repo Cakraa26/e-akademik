@@ -170,7 +170,9 @@ return [
         'nm' => 'Name',
         'darisemester' => 'From semester',
         'sampaisemester' => 'End semester',
-        'warna' => 'Color'
+        'warna' => 'Color',
+        'tlp' => 'Phone',
+        'nip' => 'NIP'
     ],
 
 ];

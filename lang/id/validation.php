@@ -150,6 +150,8 @@ return [
         'nm' => 'Nama',
         'darisemester' => 'Dari semester',
         'sampaisemester' => 'Akhir semester',
-        'warna' => 'Warna'
+        'warna' => 'Warna',
+        'tlp' => 'No HP',
+        'nip' => 'NIP'
     ],
 ];

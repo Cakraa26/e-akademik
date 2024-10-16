@@ -25,6 +25,10 @@ class StaseController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'nm' => 'required|unique:m_stase,nm',
+        ]);
+
         try {
             $inputData = $request->all();
             $inputData['addedbyfk'] = '0';
@@ -53,6 +57,10 @@ class StaseController extends Controller
     }
     public function update(Request $request, $pk)
     {
+        $request->validate([
+            'nm' => 'required|unique:m_stase,nm,' . $pk . ',pk',
+        ]);
+
         try {
             $stase = Stase::findOrFail($pk);
             $stase->update($request->all());
