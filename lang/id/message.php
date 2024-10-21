@@ -33,7 +33,6 @@ return [
     'grpmotorik' => "Grup Psikomotorik",
     'group' => "Grup",
     'ktgmotorik' => "Kategori Psikomotorik",
-    'kategori' => "Kategori",
     'subktgmotorik' => "Sub Kategori Psikomotorik",
     'dtmotorik' => "Data Psikomotorik",
     'mngmotorik' => "Monitoring Psikomotorik",
@@ -61,6 +60,9 @@ return [
     'editkategori' => "Perbarui Kategori",
     'tambahsubkategori' => "Tambah Sub Kategori",
     'editsubkategori' => "Perbarui Sub Kategori",
+    'detailmng' => "Detail Monitoring",
+    'approved' => 'Konfirmasi Persetujuan',
+    'confirmapprov' => 'Konfirmasi',
 
     // Button
     'kembali' => "Kembali",
@@ -68,9 +70,11 @@ return [
     'deleteConfirm' => 'Yakin ingin menghapus data ini?',
     'confirm' => 'Ya, hapus!',
     'cancel' => 'Batal',
+    'tutup' => 'Tutup',
 
     // Field 
     'nama' => "Nama",
+    'inisial' => "Inisial",
     'divisi' => "Divisi",
     'alamat' => "Alamat",
     'pangkat' => "Pangkat",
@@ -85,6 +89,20 @@ return [
     'inactive' => 'Tidak Aktif',
     'kategori' => "Kategori",
     'subkategori' => "Sub Kategori",
+    'tingkat' => "Tingkat",
+    'nmprosedur' => "Nama (Prosedur)",
+    'bimbingan' => "Bimbingan",
+    'mandiri' => "Mandiri",
+    'approve' => "Butuh Persetujuan",
+    'pilihgrup' => "Pilih Grup",
+    'pilihkategori' => "Pilih Kategori",
+    'cetak' => "Cetak",
+    'viewdetail' => "Lihat Detail",
+    'tglupload' => "Tanggal Diunggah",
+    'unduh' => "Unduh File",
+    'tahapan' => "Tahapan Karya Ilmiah",
+    'darismt' => "Dari Semester",
+    'batassmt' => "Batas Semester",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -104,6 +122,7 @@ return [
     'subkategorifkrequired' => "Sub Kategori wajib diisi.",
     'tlpunique' => "No. Telepon sudah terdaftar.",
     'nipunique' => "NIP sudah terdaftar.",
+    'tglrequired' => "Tanggal wajib diisi.",
 
     // Alert
     'success' => 'Sukses',
@@ -125,6 +144,7 @@ return [
     'success_subkategori_added' => 'Sub Kategori berhasil ditambahkan.',
     'success_subkategori_edit' => 'Sub Kategori berhasil diperbarui.',
     'success_subkategori_hapus' => 'Sub Kategori berhasil dihapus.',
+    'success_approved' => 'Berhasil disetujui!',
 ];
 
 ?>

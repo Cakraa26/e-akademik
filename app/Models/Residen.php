@@ -52,6 +52,10 @@ class Residen extends Model
     protected $table = 'm_residen';
     protected $primaryKey = 'pk';
     public $timestamps = false;
+    public function tingkat()
+    {
+        return $this->belongsTo(Tingkat::class, 'tingkatfk', 'pk');
+    }
     protected static function booted()
     {
         static::creating(function ($model) {

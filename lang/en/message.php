@@ -33,7 +33,6 @@ return [
     'grpmotorik' => "Psychomotor Group",
     'group' => "Group",
     'ktgmotorik' => "Psychomotor Category",
-    'kategori' => "Category",
     'subktgmotorik' => "Psychomotor Subcategory",
     'dtmotorik' => "Psychomotor Data",
     'mngmotorik' => "Psychomotor Monitoring",
@@ -43,7 +42,6 @@ return [
     'residenkarya' => "Resident Scientific Work",
     'residen' => "Resident",
     'record' => "Records",
-
 
     // CRUD
     'tambah' => "Add",
@@ -62,6 +60,9 @@ return [
     'editkategori' => "Update Category",
     'tambahsubkategori' => "Add Sub Category",
     'editsubkategori' => "Update Sub Category",
+    'detailmng' => "Monitoring Detail",
+    'approved' => 'Approval Confirmation',
+    'confirmapprov' => 'Confirmation',
 
     // Button
     'kembali' => "Back",
@@ -69,9 +70,11 @@ return [
     'deleteConfirm' => 'Are you sure you want to delete this data?',
     'confirm' => 'Yes, delete it!',
     'cancel' => 'Cancel',
+    'tutup' => 'Close',
 
-    // Dosen
+    // Field
     'nama' => "Name",
+    'inisial' => "Initial",
     'divisi' => "Division",
     'alamat' => "Address",
     'pangkat' => "Rank",
@@ -86,6 +89,21 @@ return [
     'inactive' => 'Non Active',
     'kategori' => "Category",
     'subkategori' => "Sub Category",
+    'tingkat' => "Level",
+    'nmprosedur' => "Name (Procedure)",
+    'bimbingan' => "Guidance",
+    'mandiri' => "Independent",
+    'approve' => "Need Approval",
+    'pilihgrup' => "Select Group",
+    'pilihkategori' => "Select Category",
+    'cetak' => "Print",
+    'viewdetail' => "View Detail",
+    'tglupload' => "Date Uploaded",
+    'unduh' => "Download File",
+    'tahapan' => "Stages of Scientific Work",
+    'darismt' => "From Semester",
+    'batassmt' => "Semester Limit",
+
 
     // Validation
     'nmrequired' => "Name is required.",
@@ -105,6 +123,7 @@ return [
     'subkategorifkrequired' => "Sub Category is required.",
     'tlpunique' => "Phone number is already registered.",
     'nipunique' => "NIP is already registered.",
+    'tglrequired' => "Date is required.",
 
     // Alert
     'success' => 'Success',
@@ -126,6 +145,7 @@ return [
     'success_subkategori_added' => 'Sub Category has been successfully added.',
     'success_subkategori_edit' => 'Sub Category has been successfully updated.',
     'success_subkategori_hapus' => 'Sub Category has been successfully deleted.',
+    'success_approved' => 'Successfully approved!',
 ];
 
 ?>
