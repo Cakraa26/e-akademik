@@ -26,7 +26,6 @@ return [
     'nilai' => "Nilai",
     'akademik' => "Data Akademik",
     'thnajaran' => "Tahun Ajaran",
-    'tingkatresiden' => "Tingkat Residen",
     'rs' => "Rumah Sakit",
     'jdwstase' => "Jadwal Stase",
     'nilaistase' => "Nilai Stase",
@@ -43,6 +42,9 @@ return [
     'residenkarya' => "Karya Ilmiah Residen",
     'residen' => "Residen",
     'record' => "Catatan",
+    'calonresiden' => "Calon Residen",
+    'detailpendaftaranresiden' => "Detail Pendaftaran Residen",
+
 
     // CRUD
     'tambah' => "Tambah",
@@ -87,7 +89,6 @@ return [
     'ctn' => "Catatan",
     'active' => 'Aktif',
     'inactive' => 'Tidak Aktif',
-    'kategori' => "Kategori",
     'subkategori' => "Sub Kategori",
     'kd' => "Kode",
     'warna' => "Warna",
@@ -98,6 +99,17 @@ return [
     'tahunajaran' => "Tahun ajaran/Semester",
     'aktif' => "Aktif",
     'namatahun' => "Nama Tahun Ajaran - Semester",
+    'tgldaftar' => "Tgl Daftar",
+    'inisial' => "Inisial",
+    'nmresiden' => "Nama Residen",
+    'hp' => "Hp",
+    'asalfakultas' => "Asal Fakultas",
+    'thnlulus' => "Thn Lulus",
+    'nmprosedur' => "Nama (Prosedur)",
+    'bimbingan' => "Bimbingan",
+    'mandiri' => 'Mandiri',
+    'groupmotorik' => "Grup Psikomotorik",
+    'kategorimotorik' => "Kategori Psikomotorik",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",

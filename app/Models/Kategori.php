@@ -25,4 +25,9 @@ class Kategori extends Model
 
         return $nextPk;
     }
+
+    public function motorik()
+    {
+        return $this->hasMany(Motorik::class, 'kategorifk', 'pk');
+    }
 }

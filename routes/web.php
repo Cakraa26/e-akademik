@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
@@ -9,6 +8,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
@@ -53,16 +53,6 @@ Route::resource('data-stase', StaseController::class)->names([
     'edit' => 'data.stase.edit',
     'update' => 'data.stase.update',
     'destroy' => 'data.stase.destroy',
-]);
-
-// Data Mahasiswa
-Route::resource('data-mahasiswa', Mahasiswa::class)->names([
-    'index' => 'data.mahasiswa.index',
-    'create' => 'data.mahasiswa.create',
-    'store' => 'data.mahasiswa.store',
-    'edit' => 'data.mahasiswa.edit',
-    'update' => 'data.mahasiswa.update',
-    'destroy' => 'data.mahasiswa.destroy',
 ]);
 
 // Data Psikomotorik
@@ -123,6 +113,15 @@ Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
     'edit' => 'tahun-ajaran.edit',
     'update' => 'tahun-ajaran.update',
     'destroy' => 'tahun-ajaran.destroy',
+]);
+// Data Calon Residen
+Route::resource('data-mahasiswa', MahasiswaController::class)->names([
+    'index' => 'data.mahasiswa.index',
+    'create' => 'data.mahasiswa.create',
+    'store' => 'data.mahasiswa.store',
+    'edit' => 'data.mahasiswa.edit',
+    'update' => 'data.mahasiswa.update',
+    'destroy' => 'data.mahasiswa.destroy',
 ]);
 
 // auth

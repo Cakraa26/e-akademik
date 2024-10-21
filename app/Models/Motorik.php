@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GroupMotorik extends Model
+class Motorik extends Model
 {
     use HasFactory;
-    protected $table = 'm_group_motorik';
+    protected $table = 'm_motorik';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
@@ -26,8 +26,18 @@ class GroupMotorik extends Model
         return $nextPk;
     }
 
-    public function motorik()
+    public function tmotorik()
     {
-        return $this->hasMany(Motorik::class, 'groupfk', 'pk');
+        return $this->hasMany(TMotorik::class, 'motorikfk', 'pk');
+    }
+
+    public function group_motorik()
+    {
+        return $this->belongsTo(GroupMotorik::class, 'groupfk', 'pk');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class, 'kategorifk', 'pk');
     }
 }
