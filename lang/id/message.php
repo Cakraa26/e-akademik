@@ -33,7 +33,6 @@ return [
     'grpmotorik' => "Grup Psikomotorik",
     'group' => "Grup",
     'ktgmotorik' => "Kategori Psikomotorik",
-    'kategori' => "Kategori",
     'subktgmotorik' => "Sub Kategori Psikomotorik",
     'dtmotorik' => "Data Psikomotorik",
     'mngmotorik' => "Monitoring Psikomotorik",
@@ -67,6 +66,9 @@ return [
     'editresiden' => "Perbarui Residen",
     'tambahtahunajaran' => "Tambah Tahun Ajaran",
     'edittahunajaran' => "Perbarui Tahun Ajaran",
+    'detailmng' => "Detail Monitoring",
+    'approved' => 'Konfirmasi Persetujuan',
+    'confirmapprov' => 'Konfirmasi',
 
     // Button
     'kembali' => "Kembali",
@@ -74,9 +76,11 @@ return [
     'deleteConfirm' => 'Yakin ingin menghapus data ini?',
     'confirm' => 'Ya, hapus!',
     'cancel' => 'Batal',
+    'tutup' => 'Tutup',
 
     // Field 
     'nama' => "Nama",
+    'inisial' => "Inisial",
     'divisi' => "Divisi",
     'alamat' => "Alamat",
     'pangkat' => "Pangkat",
@@ -100,7 +104,6 @@ return [
     'aktif' => "Aktif",
     'namatahun' => "Nama Tahun Ajaran - Semester",
     'tgldaftar' => "Tgl Daftar",
-    'inisial' => "Inisial",
     'nmresiden' => "Nama Residen",
     'hp' => "Hp",
     'asalfakultas' => "Asal Fakultas",
@@ -110,6 +113,15 @@ return [
     'mandiri' => 'Mandiri',
     'groupmotorik' => "Grup Psikomotorik",
     'kategorimotorik' => "Kategori Psikomotorik",
+    'tingkat' => "Tingkat",
+    'approve' => "Butuh Persetujuan",
+    'pilihgrup' => "Pilih Grup",
+    'pilihkategori' => "Pilih Kategori",
+    'cetak' => "Cetak",
+    'viewdetail' => "Lihat Detail",
+    'tglupload' => "Tanggal Diunggah",
+    'unduh' => "Unduh File",
+    'tahapan' => "Tahapan Karya Ilmiah",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -138,6 +150,7 @@ return [
     'kdunique' => "Kode sudah terdaftar.",
     'warnarequired' => "Warna wajib diisi.",
     'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
+    'tglrequired' => "Tanggal wajib diisi.",
 
     // Alert
     'success' => 'Sukses',
@@ -166,6 +179,5 @@ return [
     'success_tahunajaran_added' => 'Data Tahun Ajaran berhasil ditambahkan.',
     'success_tahunajaran_edit' => 'Data Tahun Ajaran berhasil diperbarui.',
     'success_tahunajaran_hapus' => 'Data Tahun Ajaran berhasil dihapus.',
+    'success_approved' => 'Berhasil disetujui!',
 ];
-
-?>

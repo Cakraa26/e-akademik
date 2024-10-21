@@ -5,32 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Psikomotorik extends Model
+class t_motorik extends Model
 {
     use HasFactory;
-    protected $table = 'm_motorik';
+    protected $table = 't_motorik';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
-    public function group()
+    public function residen()
     {
-        return $this->belongsTo(GroupMotorik::class, 'groupfk', 'pk');
+        return $this->belongsTo(Residen::class, 'residenfk', 'pk');
     }
-    public function kategori()
+    public function motorik()
     {
-        return $this->belongsTo(Kategori::class, 'kategorifk', 'pk');
+        return $this->belongsTo(Psikomotorik::class, 'motorikfk', 'pk');
     }
-    public function subkategori()
+    public function motorikDetails()
     {
-        return $this->belongsTo(SubKategori::class, 'subkategorifk', 'pk');
-    }
-    public function semester()
-    {
-        return $this->belongsTo(Semester::class, 'semester', 'pk');
-    }
-    public function t_motorik()
-    {
-        return $this->hasMany(t_motorik::class, 'motorikfk');
+        return $this->hasMany(t_motorik_dt::class, 't_motorik_fk');
     }
     protected static function booted()
     {

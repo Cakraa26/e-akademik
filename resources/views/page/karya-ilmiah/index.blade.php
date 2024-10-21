@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
-@section('title', __('message.psikomotorik'))
+@section('title', __('message.mstkarya'))
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
 @endpush
@@ -19,7 +18,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.psikomotorik') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.mstkarya') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -39,54 +38,12 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('data-psikomotorik/create') ? 'active' : '' }}"
-                                    href="{{ route('data.psikomotorik.create') }}" data-toggle="tooltip"
+                                <a class="btn btn-success {{ Request::is('karya-ilmiah/create') ? 'active' : '' }}"
+                                    href="{{ route('karya-ilmiah.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
                                         class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
-
-                        <form action="" method="GET">
-                            @csrf
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="groupfk" class="form-label">{{ __('message.group') }}</label>
-                                        <select class="form-select select2" id="groupfk" name="groupfk">
-                                            <option value=""></option>
-                                            @foreach ($group as $g)
-                                                <option value="{{ $g->pk }}"
-                                                    {{ Request::get('groupfk') == $g->pk ? 'selected' : '' }}>
-                                                    {{ $g->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="kategoriInput" class="form-label">{{ __('message.kategori') }}</label>
-                                        <select class="form-select select2" id="kategorifk" name="kategorifk">
-                                            <option value=""></option>
-                                            @foreach ($kategori as $k)
-                                                <option value="{{ $k->pk }}"
-                                                    {{ Request::get('kategorifk') == $k->pk ? 'selected' : '' }}>
-                                                    {{ $k->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mt-n4 mt-md-0">
-                                    <div class="mb-3">
-                                        <label>&nbsp;</label>
-                                        <div class="d-flex">
-                                            <button type="submit" class="btn btn-primary mr-2">Filter <i class="fas fa-sort-amount-up pl-1"></i></button>
-                                            <a href="{{ route('data.psikomotorik.index') }}"
-                                                class="btn btn-secondary">Refresh <i class="fas fa-sync-alt pl-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
 
                         <div class="table-responsive">
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
@@ -95,32 +52,34 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>{{ __('message.nama') }}</th>
-                                        {{-- <th>Group</th> --}}
-                                        <th>{{ __('message.kategori') }}</th>
-                                        <th>{{ __('message.subkategori') }}</th>
+                                        <th>{{ __('message.tahapan') }}</th>
+                                        <th>{{ __('message.darismt') }}</th>
+                                        <th>{{ __('message.batassmt') }}</th>
                                         <th>Status</th>
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($motorik as $m)
+                                    @foreach ($karya as $k)
                                         <tr>
                                             <th>{{ $no++ }}</th>
-                                            <td>{{ $m->nm }}</td>
-                                            {{-- <td>{{ $m->group->nm }}</td> --}}
-                                            <td>{{ $m->kategori->nm }}</td>
-                                            <td>{{ $m->subkategori->nm }}</td>
-                                            <td>{{ $m->aktif === 1 ? __('message.active') : __('message.inactive') }}</td>
+                                            <td>{{ $k->nm }}</td>
+                                            <td>{{ $k->darisemester }}</td>
+                                            <td>{{ $k->sampaisemester }}</td>
+                                            <td>
+                                                <input class="custom-switch-input" type="radio"
+                                                    id="switch-{{ $k->pk }}" {{ $k->aktif === 1 ? 'checked' : '' }}
+                                                    disabled>
+                                                <span class="custom-switch-indicator"></span>
+                                            </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('data.psikomotorik.edit', $m->pk) }}"
-                                                        class="btn btn-info {{ Request::is('data-psikomotorik/' . $m->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('karya-ilmiah.edit', $k->pk) }}"
+                                                        class="btn btn-info {{ Request::is('karya-ilmiah/' . $k->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fas fa-pencil-alt"></i></a>
 
-
-                                                    <form action="{{ route('data.psikomotorik.destroy', $m->pk) }}"
+                                                    <form action="{{ route('karya-ilmiah.destroy', $k->pk) }}"
                                                         method="POST" style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
@@ -149,7 +108,6 @@
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
-    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script>
