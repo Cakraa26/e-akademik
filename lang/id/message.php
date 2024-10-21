@@ -122,8 +122,6 @@ return [
     'tglupload' => "Tanggal Diunggah",
     'unduh' => "Unduh File",
     'tahapan' => "Tahapan Karya Ilmiah",
-    'darismt' => "Dari Semester",
-    'batassmt' => "Batas Semester",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",

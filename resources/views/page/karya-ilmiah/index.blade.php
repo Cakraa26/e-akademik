@@ -68,10 +68,6 @@
                                             <td>{{ $k->darisemester }}</td>
                                             <td>{{ $k->sampaisemester }}</td>
                                             <td>
-                                                {{-- <span
-                                                    class="badge {{ $k->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
-                                                    {{ $k->aktif === 1 ? __('message.active') : __('message.inactive') }}
-                                                </span> --}}
                                                 <input class="custom-switch-input" type="radio"
                                                     id="switch-{{ $k->pk }}" {{ $k->aktif === 1 ? 'checked' : '' }}
                                                     disabled>

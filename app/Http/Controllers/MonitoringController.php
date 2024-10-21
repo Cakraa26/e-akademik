@@ -97,7 +97,6 @@ class MonitoringController extends Controller
     }
     public function approveStore(Request $request, $pk)
     {
-        dd($request->all());
         try {
             $tmotorik = t_motorik::findOrFail($pk);
 

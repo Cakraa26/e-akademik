@@ -76,14 +76,13 @@ return [
     'cancel' => 'Cancel',
     'tutup' => 'Close',
 
+    // Field
     'kd' => "Code",
     'warna' => "Color",
     'semester' => "Semester",
     'namatahapan' => "Stage Name",
     'drsemester' => "From Semester",
     'btssemester' => "End Semester",
-
-    // Dosen
     'nama' => "Name",
     'inisial' => "Initial",
     'divisi' => "Division",
@@ -111,8 +110,6 @@ return [
     'tglupload' => "Date Uploaded",
     'unduh' => "Download File",
     'tahapan' => "Stages of Scientific Work",
-    'darismt' => "From Semester",
-    'batassmt' => "Semester Limit",
 
 
     // Tahun Ajaran
