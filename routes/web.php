@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\KaryaIlmiahController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
@@ -122,6 +124,30 @@ Route::resource('data-mahasiswa', MahasiswaController::class)->names([
     'edit' => 'data.mahasiswa.edit',
     'update' => 'data.mahasiswa.update',
     'destroy' => 'data.mahasiswa.destroy',
+]);
+
+// Monitoring Psikomotorik
+Route::resource('monitoring-motorik', MonitoringController::class)->names([
+    'index' => 'monitoring.index',
+    'create' => 'monitoring.create',
+    'store' => 'monitoring.store',
+    'edit' => 'monitoring.edit',
+    'update' => 'monitoring.update',
+    'destroy' => 'monitoring.destroy',
+]);
+
+Route::get('/monitoring-motorik/{pk}/detail', [MonitoringController::class, 'detail'])->name('monitoring.detail');
+Route::get('/monitoring-motorik/{pk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
+Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
+
+// Karya Ilmiah
+Route::resource('karya-ilmiah', KaryaIlmiahController::class)->names([
+    'index' => 'karya-ilmiah.index',
+    'create' => 'karya-ilmiah.create',
+    'store' => 'karya-ilmiah.store',
+    'edit' => 'karya-ilmiah.edit',
+    'update' => 'karya-ilmiah.update',
+    'destroy' => 'karya-ilmiah.destroy',
 ]);
 
 // auth
