@@ -70,4 +70,9 @@ class Residen extends Model
     {
         return $this->belongsTo(TingkatResiden::class, 'tingkatfk', 'pk');
     }
+
+    public function tmotorik()
+    {
+        return $this->hasMany(TMotorik::class, 'residenfk', 'pk');
+    }
 }

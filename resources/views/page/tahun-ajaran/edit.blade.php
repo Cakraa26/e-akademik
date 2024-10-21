@@ -59,6 +59,9 @@
                                                     <input type="text" class="form-control @error('nm') is-invalid @enderror" name="nm" id="nm"
                                                         value="{{ old('nm', $thn->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

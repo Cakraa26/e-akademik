@@ -16,7 +16,7 @@ class TingkatResidenController extends Controller
     {
         $type_menu = 'setting';
         $tingkat_resident = TingkatResiden::all();
-        return view('page.tingkat-residen.index', [
+        return view("page.tingkat-residen.index", [
             'type_menu' => $type_menu,
             'residen' => $tingkat_resident,
         ]);
@@ -52,23 +52,15 @@ class TingkatResidenController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kd' => 'required|unique:m_tingkat,kd',
-            'nm' => 'required',
-            'darisemester' => 'required|numeric',
-            'sampaisemester' => 'required|numeric',
-            'warna' => 'required|in:Merah,Hijau,Kuning,Biru,Putih,Ungu',
-        ], [
-            'kd.required' => __('message.kdrequired'),
-            'kd.unique' => __('message.kdunique'),
-            'nm.required' => __('message.nmrequired'),
-            'darisemester.required' => __('message.drsemesterrequired'),
-            'darisemester.numeric' => __('message.drsemesternumeric'),
-            'sampaisemester.required' => __('message.btssemesterrequired'),
-            'sampaisemester.numeric' => __('message.btssemesternumeric'),
-            'warna.required' => __('message.warnarequired'),
-            'warna.in' => __('message.warna_in'),
-        ]);
+        $request->validate(
+            [
+                'kd' => 'required|unique:m_tingkat,kd',
+                'nm' => 'required',
+                'darisemester' => 'required|numeric',
+                'sampaisemester' => 'required|numeric',
+                'warna' => 'required|in:Merah,Hijau,Kuning,Biru,Putih,Ungu',
+            ]
+        );
 
         try {
             $inputData = $request->all();
@@ -141,16 +133,6 @@ class TingkatResidenController extends Controller
             'darisemester' => 'required|numeric',
             'sampaisemester' => 'required|numeric',
             'warna' => 'required|in:Merah,Hijau,Kuning,Biru,Putih,Ungu',
-        ], [
-            'kd.required' => __('message.kdrequired'),
-            'kd.unique' => __('message.kdunique'),
-            'nm.required' => __('message.nmrequired'),
-            'darisemester.required' => __('message.drsemesterrequired'),
-            'darisemester.numeric' => __('message.drsemesternumeric'),
-            'sampaisemester.required' => __('message.btssemesterrequired'),
-            'sampaisemester.numeric' => __('message.btssemesternumeric'),
-            'warna.required' => __('message.warnarequired'),
-            'warna.in' => __('message.warna_in'),
         ]);
 
         try {
@@ -186,7 +168,7 @@ class TingkatResidenController extends Controller
         try {
             $tingkat_residen = TingkatResiden::findOrFail($id);
 
-            if($tingkat_residen->residen()->exists()) {
+            if ($tingkat_residen->residen()->exists()) {
                 return back()
                     ->with('warning', 'Tingkat residen tidak bisa dihapus karena masih digunakan.');
             }

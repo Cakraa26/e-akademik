@@ -60,6 +60,9 @@
                                                         class="form-control  @error('nm') is-invalid @enderror"
                                                         name="nm" id="nm" value="{{ old('nm') }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
