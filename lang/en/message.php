@@ -33,7 +33,6 @@ return [
     'grpmotorik' => "Psychomotor Group",
     'group' => "Group",
     'ktgmotorik' => "Psychomotor Category",
-    'kategori' => "Category",
     'subktgmotorik' => "Psychomotor Subcategory",
     'dtmotorik' => "Psychomotor Data",
     'mngmotorik' => "Psychomotor Monitoring",
@@ -43,7 +42,6 @@ return [
     'residenkarya' => "Resident Scientific Work",
     'residen' => "Resident",
     'record' => "Records",
-
 
     // CRUD
     'tambah' => "Add",
@@ -62,6 +60,13 @@ return [
     'editkategori' => "Update Category",
     'tambahsubkategori' => "Add Sub Category",
     'editsubkategori' => "Update Sub Category",
+    'tambahresiden' => "Add Resident",
+    'editresiden' => "Update Resident",
+    'tambahtahunajaran' => "Add Tahun Ajaran",
+    'edittahunajaran' => "Update Tahun Ajaran",
+    'detailmng' => "Monitoring Detail",
+    'approved' => 'Approval Confirmation',
+    'confirmapprov' => 'Confirmation',
 
     // Button
     'kembali' => "Back",
@@ -69,9 +74,17 @@ return [
     'deleteConfirm' => 'Are you sure you want to delete this data?',
     'confirm' => 'Yes, delete it!',
     'cancel' => 'Cancel',
+    'tutup' => 'Close',
 
-    // Dosen
+    // Field
+    'kd' => "Code",
+    'warna' => "Color",
+    'semester' => "Semester",
+    'namatahapan' => "Stage Name",
+    'drsemester' => "From Semester",
+    'btssemester' => "End Semester",
     'nama' => "Name",
+    'inisial' => "Initial",
     'divisi' => "Division",
     'alamat' => "Address",
     'pangkat' => "Rank",
@@ -84,8 +97,20 @@ return [
     'ctn' => "Note",
     'active' => 'Active',
     'inactive' => 'Non Active',
-    'kategori' => "Category",
     'subkategori' => "Sub Category",
+    'tingkat' => "Level",
+    'nmprosedur' => "Name (Procedure)",
+    'bimbingan' => "Guidance",
+    'mandiri' => "Independent",
+    'approve' => "Need Approval",
+    'pilihgrup' => "Select Group",
+    'pilihkategori' => "Select Category",
+    'cetak' => "Print",
+    'viewdetail' => "View Detail",
+    'tglupload' => "Date Uploaded",
+    'unduh' => "Download File",
+    'tahapan' => "Stages of Scientific Work",
+
 
     // Tahun Ajaran
     'aktif' => "Active",
@@ -99,6 +124,17 @@ return [
     'bulan5' => "Month 5",
     'bulan6' => "Month 6",
 
+
+    // pendaftaran residen 
+    'calonresiden' => "Resident Candidate",
+    'tgldaftar' => "Registration Date",
+    'nmresiden' => "Resident Name",
+    'hp' => "Phone Number",
+    'asalfakultas' => "Faculty Origin",
+    'thnlulus' => "Graduation Year",
+    'detailpendaftaranresiden' => "Resident Registration Details",
+    'groupmotorik' => "Psychomotor Group",
+    'kategorimotorik' => "Psychomotor Category",
 
     // Validation
     'nmrequired' => "Name is required.",
@@ -118,6 +154,7 @@ return [
     'subkategorifkrequired' => "Sub Category is required.",
     'tlpunique' => "Phone number is already registered.",
     'nipunique' => "NIP is already registered.",
+    'tglrequired' => "Date is required.",
 
     // Alert
     'success' => 'Success',
@@ -139,6 +176,11 @@ return [
     'success_subkategori_added' => 'Sub Category has been successfully added.',
     'success_subkategori_edit' => 'Sub Category has been successfully updated.',
     'success_subkategori_hapus' => 'Sub Category has been successfully deleted.',
+    'success_residen_added' => 'Resident has been successfully added.',
+    'success_residen_edit' => 'Resident has been successfully updated.',
+    'success_residen_hapus' => 'Resident has been successfully deleted.',
+    'success_tahunajaran_added' => 'School Year has been successfully added.',
+    'success_tahunajaran_edit' => 'School Year has been successfully updated.',
+    'success_tahunajaran_hapus' => 'School Year has been successfully deleted.',
+    'success_approved' => 'Successfully approved!',
 ];
-
-?>

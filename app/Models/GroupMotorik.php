@@ -25,4 +25,9 @@ class GroupMotorik extends Model
 
         return $nextPk;
     }
+
+    public function motorik()
+    {
+        return $this->hasMany(Motorik::class, 'groupfk', 'pk');
+    }
 }

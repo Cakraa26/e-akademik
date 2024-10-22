@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\KaryaIlmiahController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\PsikomotorikController;
+use App\Http\Controllers\TingkatResidenController;
 use App\Http\Controllers\TahunAjaranController;
 
 /*
@@ -54,16 +57,6 @@ Route::resource('data-stase', StaseController::class)->names([
     'destroy' => 'data.stase.destroy',
 ]);
 
-// Data Mahasiswa
-Route::resource('data-mahasiswa', Mahasiswa::class)->names([
-    'index' => 'data.mahasiswa.index',
-    'create' => 'data.mahasiswa.create',
-    'store' => 'data.mahasiswa.store',
-    'edit' => 'data.mahasiswa.edit',
-    'update' => 'data.mahasiswa.update',
-    'destroy' => 'data.mahasiswa.destroy',
-]);
-
 // Data Psikomotorik
 Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
     'index' => 'data.psikomotorik.index',
@@ -104,6 +97,16 @@ Route::resource('subkategori-psikomotorik', SubKategoriController::class)->names
     'destroy' => 'subkategori.motorik.destroy',
 ]);
 
+// Data Tingkat Residen
+Route::resource('tingkat-residen', TingkatResidenController::class)->names([
+    'index' => 'tingkat.residen.index',
+    'create' => 'tingkat.residen.create',
+    'store' => 'tingkat.residen.store',
+    'edit' => 'tingkat.residen.edit',
+    'update' => 'tingkat.residen.update',
+    'destroy' => 'tingkat.residen.destroy',
+]);
+
 // Data Tahun Ajaran
 Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
     'index' => 'tahun-ajaran.index',
@@ -112,6 +115,39 @@ Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
     'edit' => 'tahun-ajaran.edit',
     'update' => 'tahun-ajaran.update',
     'destroy' => 'tahun-ajaran.destroy',
+]);
+// Data Calon Residen
+Route::resource('data-mahasiswa', MahasiswaController::class)->names([
+    'index' => 'data.mahasiswa.index',
+    'create' => 'data.mahasiswa.create',
+    'store' => 'data.mahasiswa.store',
+    'edit' => 'data.mahasiswa.edit',
+    'update' => 'data.mahasiswa.update',
+    'destroy' => 'data.mahasiswa.destroy',
+]);
+
+// Monitoring Psikomotorik
+Route::resource('monitoring-motorik', MonitoringController::class)->names([
+    'index' => 'monitoring.index',
+    'create' => 'monitoring.create',
+    'store' => 'monitoring.store',
+    'edit' => 'monitoring.edit',
+    'update' => 'monitoring.update',
+    'destroy' => 'monitoring.destroy',
+]);
+
+Route::get('/monitoring-motorik/{pk}/detail', [MonitoringController::class, 'detail'])->name('monitoring.detail');
+Route::get('/monitoring-motorik/{pk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
+Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
+
+// Karya Ilmiah
+Route::resource('karya-ilmiah', KaryaIlmiahController::class)->names([
+    'index' => 'karya-ilmiah.index',
+    'create' => 'karya-ilmiah.create',
+    'store' => 'karya-ilmiah.store',
+    'edit' => 'karya-ilmiah.edit',
+    'update' => 'karya-ilmiah.update',
+    'destroy' => 'karya-ilmiah.destroy',
 ]);
 
 // auth

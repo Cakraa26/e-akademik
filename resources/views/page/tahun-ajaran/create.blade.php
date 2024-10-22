@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.thnajaran'))
+@section('title', __('message.tambahtahunajaran'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -34,6 +34,7 @@
                 </div>
             @endif
 
+<<<<<<< HEAD
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
@@ -146,6 +147,34 @@
                                                     {{ old('aktif') == '1' ? 'checked' : '' }} checked>
                                                 <label class="form-check-label"
                                                     for="status">{{ __('message.thnaktif') }}</label>
+=======
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                <strong>Error!</strong> {{ session('error') }}
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+            </div>
+        @endif
+        <div class="section-body">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="form" action="{{ route('tahun-ajaran.store') }}" method="POST"
+                                data-parsley-validate>
+                                @csrf
+                                @method('POST')
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-4 row align-items-center">
+                                            <label for="nama" class="col-sm-3">{{ __('message.namatahun') }}</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control @error('nm') is-invalid @enderror" name="nm" id="nm"
+                                                    value="{{ old('nm') }}" required
+                                                    data-parsley-required-message="{{ __('message.nmrequired') }}">
+                                                @error('nm')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+>>>>>>> 1d40a69b0d4515bc9340c7ca7f860afacf45001c
                                             </div>
                                         </div>
                                     </div>

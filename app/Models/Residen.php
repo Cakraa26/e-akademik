@@ -52,6 +52,7 @@ class Residen extends Model
     protected $table = 'm_residen';
     protected $primaryKey = 'pk';
     public $timestamps = false;
+
     protected static function booted()
     {
         static::creating(function ($model) {
@@ -64,5 +65,15 @@ class Residen extends Model
         $nextPk = $last ? $last->pk + 1 : 1;
 
         return $nextPk;
+    }
+
+    public function tingkat()
+    {
+        return $this->belongsTo(TingkatResiden::class, 'tingkatfk', 'pk');
+    }
+
+    public function tmotorik()
+    {
+        return $this->hasMany(TMotorik::class, 'residenfk', 'pk');
     }
 }

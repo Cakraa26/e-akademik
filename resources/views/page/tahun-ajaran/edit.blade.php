@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
+<<<<<<< HEAD
 @section('title', __('message.thnajaran'))
+=======
+@section('title', __('message.edittahunajaran'))
+>>>>>>> 1d40a69b0d4515bc9340c7ca7f860afacf45001c
 
 @push('style')
     <!-- CSS Libraries -->
@@ -56,9 +60,12 @@
                                                 <label for="nama"
                                                     class="col-sm-4">{{ __('message.namatahun') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nm" id="nm"
+                                                    <input type="text" class="form-control @error('nm') is-invalid @enderror" name="nm" id="nm"
                                                         value="{{ old('nm', $thn->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

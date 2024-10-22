@@ -28,9 +28,6 @@ class DosenController extends Controller
         $request->validate([
             'tlp' => 'required|unique:m_dosen,tlp',
             'nip' => 'required|unique:m_dosen,nip',
-        ], [
-            'tlp.unique' => __('message.tlpunique'),
-            'nip.unique' => __('message.nipunique'),
         ]);
 
         try {
@@ -66,17 +63,8 @@ class DosenController extends Controller
         $dosen = Dosen::findOrFail($pk);
 
         $request->validate([
-            'tlp' => [
-                'required',
-                Rule::unique('m_dosen', 'tlp')->ignore($dosen->pk, 'pk'),
-            ],
-            'nip' => [
-                'required',
-                Rule::unique('m_dosen', 'nip')->ignore($dosen->pk, 'pk'),
-            ],
-        ], [
-            'tlp.unique' => __('message.tlpunique'),
-            'nip.unique' => __('message.nipunique'),
+            'tlp' => 'required|unique:m_dosen,tlp,' . $dosen->pk . ',pk',
+            'nip' => 'required|unique:m_dosen,nip,' . $dosen->pk . ',pk',
         ]);
 
         try {
