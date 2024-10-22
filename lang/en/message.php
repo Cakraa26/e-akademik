@@ -91,6 +91,14 @@ return [
     'aktif' => "Active",
     'tahunajaran' => "School Year/Semester",
     'namatahun' => "Name of School Year - Semester",
+    'thnaktif' => "Activate the current school year",
+    'bulan1' => "Month 1",
+    'bulan2' => "Month 2",
+    'bulan3' => "Month 3",
+    'bulan4' => "Month 4",
+    'bulan5' => "Month 5",
+    'bulan6' => "Month 6",
+
 
     // Validation
     'nmrequired' => "Name is required.",

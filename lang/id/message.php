@@ -87,7 +87,15 @@ return [
     'subkategori' => "Sub Kategori",
     'tahunajaran' => "Tahun ajaran/Semester",
     'aktif' => "Aktif",
+    'thnaktif' => "Aktifkan tahun ajaran sekarang",
     'namatahun' => "Nama Tahun Ajaran - Semester",
+    'date' => "date",
+    'bulan1' => "Bulan 1",
+    'bulan2' => "Bulan 2",
+    'bulan3' => "Bulan 3",
+    'bulan4' => "Bulan 4",
+    'bulan5' => "Bulan 5",
+    'bulan6' => "Bulan 6",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -107,6 +115,12 @@ return [
     'subkategorifkrequired' => "Sub Kategori wajib diisi.",
     'tlpunique' => "No. Telepon sudah terdaftar.",
     'nipunique' => "NIP sudah terdaftar.",
+    'bln1required' => "Bulan 1 wajib diisi",
+    'bln2required' => "Bulan 2 wajib diisi",
+    'bln3required' => "Bulan 3 wajib diisi",
+    'bln4required' => "Bulan 4 wajib diisi",
+    'bln5required' => "Bulan 5 wajib diisi",
+    'bln6required' => "Bulan 6 wajib diisi",
 
     // Alert
     'success' => 'Sukses',

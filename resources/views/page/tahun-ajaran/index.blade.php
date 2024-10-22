@@ -54,26 +54,24 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('message.aksi') }}</th>
                                         <th class="text-center">
                                             No
                                         </th>
                                         <th>{{ __('message.tahunajaran') }}</th>
                                         <th>{{ __('message.aktif') }}</th>
-                                        <th>{{ __('message.aksi') }}</th>
+                                        <th>{{ __('message.bulan1') }}</th>
+                                        <th>{{ __('message.bulan2') }}</th>
+                                        <th>{{ __('message.bulan3') }}</th>
+                                        <th>{{ __('message.bulan4') }}</th>
+                                        <th>{{ __('message.bulan5') }}</th>
+                                        <th>{{ __('message.bulan6') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($thn as $th)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $th->nm }}</td>
-                                            <td>
-                                                <span
-                                                class="badge {{ $th->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
-                                                {{ $th->aktif === 1 ? __('message.active') : __('message.inactive') }}
-                                   </span>
-                                </td>
                                             <td>
                                                 <div>
                                                     <a href="{{ route('tahun-ajaran.edit', $th->pk) }}"
@@ -81,8 +79,8 @@
                                                             class="fas fa-pencil-alt"></i></a>
 
 
-                                                    <form action="{{ route('tahun-ajaran.destroy', $th->pk) }}" method="POST"
-                                                        style="display: inline">
+                                                    <form action="{{ route('tahun-ajaran.destroy', $th->pk) }}"
+                                                        method="POST" style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-danger swal-6"><i
@@ -91,6 +89,20 @@
                                                     </form>
                                                 </div>
                                             </td>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $th->nm }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $th->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
+                                                    {{ $th->aktif === 1 ? __('message.active') : __('message.inactive') }}
+                                                </span>
+                                            </td>
+                                            <td>{{ date('d/m/Y', strtotime($th->bulan1)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($th->bulan2)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($th->bulan3)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($th->bulan4)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($th->bulan5)) }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($th->bulan6)) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
