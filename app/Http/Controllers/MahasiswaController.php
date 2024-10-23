@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\CalonResiden;
 use App\Models\GroupMotorik;
-use App\Models\Kategori;
+use App\Models\KategoriMotorik as Kategori;
 use App\Models\Motorik;
 use App\Models\Residen;
-use App\Models\TMotorik;
+use App\Models\MotorikTransaction;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller

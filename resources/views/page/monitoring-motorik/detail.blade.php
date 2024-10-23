@@ -126,7 +126,7 @@
                                                 <div class="text-center">
                                                     <a href="{{ route('monitoring.approve', $t->pk) }}"
                                                         class="btn btn-primary mr-2">
-                                                        {{ $t->motorikDetails->where('stsapproved', 1)->sum('jmlfile') }}
+                                                        {{ $t->motorikData->where('stsapproved', 1)->sum('jmlfile') }}
                                                     </a>
                                                     <i class="fas fa-ellipsis-v"></i>
                                                     <a href="{{ route('monitoring.approve', $t->residen->pk) }}" class="btn btn-primary ml-2">

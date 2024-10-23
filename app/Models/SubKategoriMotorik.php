@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubKategori extends Model
+class SubKategoriMotorik extends Model
 {
     use HasFactory;
     protected $table = 'm_subkategori_motorik';
