@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AcademicController;
 use App\Http\Controllers\API\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'actionRegister']);
 Route::post('/register/verify-otp/{pk}', [AuthController::class, 'verifyOtp']);
 Route::patch('/register/verify-otp/{pk}/resend', [AuthController::class, 'resendOTP']);
+
+Route::prefix("academic")->group(function () {
+    Route::prefix('karya-ilmiah')->group(function () {
+        Route::get("/residen/{residenId}", [AcademicController::class, 'getKaryaIlimiahByResiden']);
+        Route::put("/{karyaIlmiahId}/residen/{residenId}/upload", [AcademicController::class, 'residenUploadKaryaIlmiah']);
+    });
+});

@@ -152,6 +152,7 @@ return [
         'sampaisemester' => 'Akhir semester',
         'warna' => 'Warna',
         'tlp' => 'No HP',
-        'nip' => 'NIP'
+        'nip' => 'NIP',
+        'karyaIlmiah' => 'Karya Ilmiah'
     ],
 ];
