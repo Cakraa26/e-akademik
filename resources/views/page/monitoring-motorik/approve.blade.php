@@ -39,7 +39,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('monitoring.detail', $tmotorik->pk) }}" class="btn btn-icon"><i
+                    <a href="{{ route('monitoring.detail', $tmotorik->residen->pk) }}" class="btn btn-icon"><i
                             class="fas fa-arrow-left"></i></a>
                 </div>
                 <h1>{{ __('message.approved') }}</h1>
@@ -49,10 +49,10 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorik') }}</a>
+                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorikpendek') }}</a>
                             </div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.detail', $tmotorik->pk) }}">{{ __('message.detailmng') }}</a>
+                                    href="{{ route('monitoring.detail', $tmotorik->pk) }}">{{ __('message.detailmngpendek') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.confirmapprov') }}</div>
                         </div>
@@ -122,10 +122,10 @@
                                     <div class="mb-4 row align-items-center">
                                         <label class="col-sm-4">File</label>
                                         <div class="col-sm-8">
-                                            <input type="file" id="dropify" name="nmfile" class="dropify"
+                                            <input type="file" id="fileInput" name="nmfile" class="dropify"
                                                 data-height="80" />
                                             <a class="btn-download" id="download-link" href="#"
-                                                style="display:none;">{{ __('message.unduh') }}<i
+                                                style="display:none; margin-top:10px;">{{ __('message.unduh') }}<i
                                                     class="fas fa-download pl-1"></i></a>
                                         </div>
                                     </div>
@@ -220,5 +220,25 @@
 
     <script>
         $('.dropify').dropify();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var fileInput = document.getElementById('fileInput');
+            var downloadLink = document.getElementById('download-link');
+
+            fileInput.addEventListener('change', function(event) {
+                if (fileInput.files && fileInput.files[0]) {
+                    downloadLink.style.display = 'inline-block';
+
+                    var file = fileInput.files[0];
+                    var fileUrl = URL.createObjectURL(file);
+                    downloadLink.href = fileUrl;
+                    downloadLink.download = file.name;
+                } else {
+                    downloadLink.style.display = 'none';
+                }
+            });
+        });
     </script>
 @endpush

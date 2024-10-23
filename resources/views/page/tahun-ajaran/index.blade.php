@@ -46,7 +46,7 @@
                                 <a class="btn btn-success {{ Request::is('tahun-ajaran/create') ? 'active' : '' }}"
                                     href="{{ route('tahun-ajaran.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@
                                                 <div>
                                                     <a href="{{ route('tahun-ajaran.edit', $th->pk) }}"
                                                         class="btn btn-info {{ Request::is('tahun-ajaran/' . $th->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fa-solid fa-pen-to-square"></i></a>
 
 
                                                     <form action="{{ route('tahun-ajaran.destroy', $th->pk) }}" method="POST"

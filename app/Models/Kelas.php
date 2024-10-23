@@ -30,4 +30,12 @@ class Kelas extends Model
     {
         return $this->belongsTo(TahunAjaran::class, 'thnajaranfk', 'pk');
     }
+    public function residen()
+    {
+        return $this->belongsTo(Residen::class, 'residenfk', 'pk'); 
+    }
+    public function tingkat()
+    {
+        return $this->belongsTo(Tingkat::class, 'tingkatfk', ownerKey: 'pk'); 
+    }
 }

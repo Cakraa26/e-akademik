@@ -41,7 +41,7 @@
                                 <a class="btn btn-success {{ Request::is('kategori-psikomotorik/create') ? 'active' : '' }}"
                                     href="{{ route('kategori.psikomotorik.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@
                                                 <div>
                                                     <a href="{{ route('kategori.psikomotorik.edit', $k->pk) }}"
                                                         class="btn btn-info {{ Request::is('kategori.psikomotorik/' . $k->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fa-solid fa-pen-to-square"></i></a>
 
                                                     <form action="{{ route('kategori.psikomotorik.destroy', $k->pk) }}" method="POST"
                                                         style="display: inline">

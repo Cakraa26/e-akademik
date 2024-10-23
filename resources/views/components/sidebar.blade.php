@@ -23,7 +23,8 @@
                         <a class="nav-link" href="{{ route('tahun-ajaran.index') }}">{{ __('message.thnajaran') }}</a>
                     </li>
                     <li class="{{ Request::is('tingkat-residen*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
+                        <a class="nav-link"
+                            href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
                     </li>
                     <li class="{{ Request::is('stase') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('stase') }}">Stase</a>
@@ -47,8 +48,14 @@
                         <a class="nav-link"
                             href="{{ route('data.mahasiswa.index') }}">{{ __('message.datacalonresiden') }}</a>
                     </li>
+                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.databaseresiden') }}</a>
+                    </li>
                     <li class="{{ Request::is('data-stase*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('data.stase.index') }}">{{ __('message.datastase') }}</a>
+                    </li>
+                    <li class="{{ Request::is('data-kelas*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('data.kelas.index') }}">{{ __('message.datakelas') }}</a>
                     </li>
                 </ul>
             </li>
@@ -85,13 +92,16 @@
                         <a class="nav-link" href="{{ route('data.group.index') }}">{{ __('message.grpmotorik') }}</a>
                     </li>
                     <li class="{{ Request::is('kategori-psikomotorik*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('kategori.psikomotorik.index') }}">{{ __('message.ktgmotorik') }}</a>
+                        <a class="nav-link"
+                            href="{{ route('kategori.psikomotorik.index') }}">{{ __('message.ktgmotorik') }}</a>
                     </li>
                     <li class="{{ Request::is('subkategori-psikomotorik*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('subkategori.motorik.index') }}">{{ __('message.subktgmotorik') }}</a>
+                        <a class="nav-link"
+                            href="{{ route('subkategori.motorik.index') }}">{{ __('message.subktgmotorik') }}</a>
                     </li>
                     <li class="{{ Request::is('data-psikomotorik*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('data.psikomotorik.index') }}">{{ __('message.dtmotorik') }}</a>
+                        <a class="nav-link"
+                            href="{{ route('data.psikomotorik.index') }}">{{ __('message.dtmotorik') }}</a>
                     </li>
                     <li class="{{ Request::is('monitoring-motorik*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('monitoring.index') }}">{{ __('message.mngmotorik') }}</a>
@@ -123,7 +133,8 @@
                         class="fas fa-file-alt"></i><span>{{ __('message.karyailmiah') }}</span></a>
                 <ul class="dropdown-menu">
                     <li class='{{ Request::is('karya-ilmiah*') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('karya-ilmiah.index') }}">{{ __('message.mstkarya') }}</a>
+                        <a class="nav-link"
+                            href="{{ route('karya-ilmiah.index') }}">{{ __('message.mstkarya') }}</a>
                     </li>
                     <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.residenkarya') }}</a>

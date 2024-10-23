@@ -24,9 +24,9 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorik') }}</a>
+                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorikpendek') }}</a>
                             </div>
-                            <div class="breadcrumb-item">{{ __('message.detailmng') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.detailmngpendek') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -39,7 +39,9 @@
                 </div>
 
                 <div class="d-flex justify-content-end align-items-center mb-3">
-                    <button type="button" class="btn btn-dark mr-2" id="btnCetak">{{ __('message.cetak') }}<i
+                    <button type="button" class="btn btn-dark mr-2" id="btnCetak"><i
+                        class='fas fa-arrow-left pr-2'></i>{{ __('message.kembali') }}</button>
+                    <button type="button" class="btn btn-primary mr-2" id="btnCetak">{{ __('message.cetak') }}<i
                             class='fas fa-print pl-2'></i></button>
                     <button type="button" class="btn btn-success" id="btnCetak">Excel<i
                             class="fas fa-file-excel pl-2"></i></button>
@@ -125,11 +127,11 @@
                                             <td>
                                                 <div class="text-center">
                                                     <a href="{{ route('monitoring.approve', $t->pk) }}"
-                                                        class="btn btn-primary mr-2">
+                                                        class="btn btn-secondary mr-2">
                                                         {{ $t->motorikDetails->where('stsapproved', 1)->sum('jmlfile') }}
                                                     </a>
                                                     <i class="fas fa-ellipsis-v"></i>
-                                                    <a href="{{ route('monitoring.approve', $t->residen->pk) }}" class="btn btn-primary ml-2">
+                                                    <a href="{{ route('monitoring.approve', $t->residen->pk) }}" class="btn btn-secondary ml-2">
                                                         {{ $t->sum('stsmandiri') }}
                                                     </a>
                                                 </div>

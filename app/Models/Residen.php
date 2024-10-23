@@ -8,49 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Residen extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nim',
-        'nm',
-        'nickname',
-        'inisialresiden',
-        'ktp',
-        'email',
-        'hp',
-        'password',
-        'tempatlahir',
-        'tgllahir',
-        'alamatktp',
-        'alamattinggal',
-        'agama',
-        'goldarah',
-        'thnmasuk',
-        'thnlulus',
-        'asalfk',
-        'statusresiden',
-        'statuskawin',
-        'nmpasangan',
-        'alamatpasangan',
-        'hppasangan',
-        'anak',
-        'nmayah',
-        'nmibu',
-        'alamatortu',
-        'anakke',
-        'jmlsaudara',
-        'nmkontak',
-        'hpkontak',
-        'hubkontak',
-        'addedbyfk',
-        'lastuserfk',
-        'datemodified',
-        'angkatanfk',
-        'kelasfk',
-        'otp',
-        'waktu',
-        'is_verified',
-    ];
     protected $table = 'm_residen';
     protected $primaryKey = 'pk';
+    protected $guarded = ['pk'];
     public $timestamps = false;
 
     protected static function booted()
@@ -71,9 +31,17 @@ class Residen extends Model
     {
         return $this->belongsTo(TingkatResiden::class, 'tingkatfk', 'pk');
     }
+    public function karyailmiah()
+    {
+        return $this->belongsTo(KaryaIlmiah::class, 'karyailmiahfk', 'pk');
+    }
 
     public function tmotorik()
     {
         return $this->hasMany(TMotorik::class, 'residenfk', 'pk');
+    }
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'residenfk', 'pk');
     }
 }

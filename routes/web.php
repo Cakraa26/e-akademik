@@ -6,15 +6,16 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\KaryaIlmiahController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\KaryaIlmiahController;
 use App\Http\Controllers\SubKategoriController;
+use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
-use App\Http\Controllers\TahunAjaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +125,16 @@ Route::resource('data-mahasiswa', MahasiswaController::class)->names([
     'edit' => 'data.mahasiswa.edit',
     'update' => 'data.mahasiswa.update',
     'destroy' => 'data.mahasiswa.destroy',
+]);
+
+// Data Kelas
+Route::resource('data-kelas', KelasController::class)->names([
+    'index' => 'data.kelas.index',
+    'create' => 'data.kelas.create',
+    'store' => 'data.kelas.store',
+    'edit' => 'data.kelas.edit',
+    'update' => 'data.kelas.update',
+    'destroy' => 'data.kelas.destroy',
 ]);
 
 // Monitoring Psikomotorik
