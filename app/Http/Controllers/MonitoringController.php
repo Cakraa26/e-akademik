@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Residen;
 use App\Models\Tingkat;
-use App\Models\Kategori;
+use App\Models\KategoriMotorik as Kategori;
 use App\Models\Semester;
-use App\Models\t_motorik;
-use App\Models\SubKategori;
+use App\Models\MotorikTransaction as t_motorik;
+use App\Models\SubKategoriMotorik as SubKategori;
 use App\Models\TahunAjaran;
 use Illuminate\Support\Str;
 use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
-use App\Models\t_motorik_dt;
+use App\Models\MotorikTransactionData as t_motorik_dt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,7 +49,7 @@ class MonitoringController extends Controller
     {
         $type_menu = 'psikomotorik';
         $residen = Residen::findOrFail($pk);
-        $tmotorik = t_motorik::with('motorik', 'motorikDetails')
+        $tmotorik = t_motorik::with('motorik', 'motorikData')
             ->where('residenfk', $residen->pk)
             ->when($request->groupfk != null, function ($q) use ($request) {
                 return $q->whereHas('motorik', function ($query) use ($request) {
@@ -82,7 +82,7 @@ class MonitoringController extends Controller
         $type_menu = 'psikomotorik';
         $residen = Residen::all();
         $tingkat = Tingkat::select('pk', 'nm')->get();
-        $tmotorik = t_motorik::with('motorik', 'motorikDetails')->where('pk', $pk)->findOrFail($pk);
+        $tmotorik = t_motorik::with('motorik', 'motorikData')->where('pk', $pk)->findOrFail($pk);
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
 

@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class t_motorik_dt extends Model
+class MotorikTransaction extends Model
 {
     use HasFactory;
-    protected $table = 't_motorik_dt';
+    protected $table = 't_motorik';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
-    public function tmotorik()
-    {
-        return $this->belongsTo(t_motorik::class, 't_motorik_fk', 'pk');
-    }
     protected static function booted()
     {
         static::creating(function ($model) {
@@ -28,5 +24,20 @@ class t_motorik_dt extends Model
         $nextPk = $last ? $last->pk + 1 : 1;
 
         return $nextPk;
+    }
+
+    public function residen()
+    {
+        return $this->belongsTo(Residen::class, 'residenfk', 'pk');
+    }
+
+    public function motorik()
+    {
+        return $this->belongsTo(Motorik::class, 'motorikfk', 'pk');
+    }
+
+    public function motorikData()
+    {
+        return $this->hasMany(MotorikTransactionData::class, 't_motorik_fk');
     }
 }
