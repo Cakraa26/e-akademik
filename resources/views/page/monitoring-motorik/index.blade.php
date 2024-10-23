@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.psikomotorik'))
+@section('title', __('message.mngmotorik'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -19,7 +19,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.psikomotorik') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.mngmotorik') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -49,38 +49,52 @@
                         <form action="" method="GET">
                             @csrf
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="mb-3">
-                                        <label for="groupfk" class="form-label">{{ __('message.group') }}</label>
-                                        <select class="form-select select2" id="groupfk" name="groupfk">
+                                        <label for="semester" class="form-label">Semester</label>
+                                        <select class="form-select select2" id="semester" name="semester">
                                             <option value=""></option>
-                                            @foreach ($group as $g)
-                                                <option value="{{ $g->pk }}"
-                                                    {{ Request::get('groupfk') == $g->pk ? 'selected' : '' }}>
-                                                    {{ $g->nm }}</option>
+                                            @foreach ($semester as $s)
+                                                <option value="{{ $s->pk }}"
+                                                    {{ Request::get('semester') == $s->pk ? 'selected' : '' }}>
+                                                    {{ $s->semester }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
+                                        <select class="form-select select2" id="thnajaranfk" name="thnajaranfk">
+                                            <option value=""></option>
+                                            @foreach ($thnajaran as $t)
+                                                <option value="{{ $t->pk }}"
+                                                    {{ Request::get('thnajaranfk') == $t->pk ? 'selected' : '' }}>
+                                                    {{ $t->nm }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="kategoriInput" class="form-label">{{ __('message.kategori') }}</label>
-                                        <select class="form-select select2" id="kategorifk" name="kategorifk">
+                                        <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
+                                        <select class="form-select select2" id="tingkatfk" name="tingkatfk">
                                             <option value=""></option>
-                                            @foreach ($kategori as $k)
-                                                <option value="{{ $k->pk }}"
-                                                    {{ Request::get('kategorifk') == $k->pk ? 'selected' : '' }}>
-                                                    {{ $k->nm }}</option>
+                                            @foreach ($tingkat as $t)
+                                                <option value="{{ $t->pk }}"
+                                                    {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
+                                                    {{ $t->nm }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mt-n4 mt-md-0">
+                                <div class="col-md-3 mt-n4 mt-md-0">
                                     <div class="mb-3">
                                         <label>&nbsp;</label>
                                         <div class="d-flex">
-                                            <button type="submit" class="btn btn-primary mr-2">Filter <i class="fas fa-sort-amount-up pl-1"></i></button>
-                                            <a href="{{ route('data.psikomotorik.index') }}"
+                                            <button type="submit" class="btn btn-primary mr-2">Filter <i
+                                                    class="fas fa-sort-amount-up pl-1"></i></button>
+                                            <a href="{{ route('monitoring.index') }}"
                                                 class="btn btn-secondary">Refresh <i class="fas fa-sync-alt pl-1"></i></a>
                                         </div>
                                     </div>
@@ -95,40 +109,29 @@
                                         <th class="text-center">
                                             No
                                         </th>
+                                        <th>{{ __('message.inisial') }}</th>
                                         <th>{{ __('message.nama') }}</th>
                                         {{-- <th>Group</th> --}}
-                                        <th>{{ __('message.kategori') }}</th>
-                                        <th>{{ __('message.subkategori') }}</th>
-                                        <th>Status</th>
+                                        <th>Semester</th>
+                                        <th>{{ __('message.tingkat') }}</th>
                                         <th>{{ __('message.aksi') }}</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($motorik as $m)
+                                    @foreach ($residen as $r)
                                         <tr>
                                             <th>{{ $no++ }}</th>
-                                            <td>{{ $m->nm }}</td>
-                                            {{-- <td>{{ $m->group->nm }}</td> --}}
-                                            <td>{{ $m->kategori->nm }}</td>
-                                            <td>{{ $m->subkategori->nm }}</td>
-                                            <td>{{ $m->aktif === 1 ? __('message.active') : __('message.inactive') }}</td>
+                                            <td>{{ $r->inisialresiden }}</td>
+                                            <td>{{ $r->nm }}</td>
+                                            <td>{{ $r->semester }}</td>
+                                            <td>{{ $r->tingkat->kd }}</td>
+                                            <td>Need Aprroved</td>
                                             <td>
-                                                <div>
-                                                    <a href="{{ route('data.psikomotorik.edit', $m->pk) }}"
-                                                        class="btn btn-info {{ Request::is('data-psikomotorik/' . $m->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-
-
-                                                    <form action="{{ route('data.psikomotorik.destroy', $m->pk) }}"
-                                                        method="POST" style="display: inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="btn btn-danger swal-6"><i
-                                                                class="fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                <a href="{{ route('monitoring.detail', $r->pk) }}"
+                                                    class="btn btn-dark btn-table {{ Request::is('monitoring-motorik/' . $r->pk . '/detail') ? 'active' : '' }}"><i
+                                                        class="fas fa-info"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

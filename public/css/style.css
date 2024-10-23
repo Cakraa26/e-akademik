@@ -191,15 +191,15 @@ label.required::after {
     border-color: #dc3545 !important;
 }
 .btn-form {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #1a5319;
-  border: none;
-  color: #ffd35a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #1a5319;
+    border: none;
+    color: #ffd35a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btn-form:hover,
 .btn-form:focus,
@@ -207,8 +207,17 @@ label.required::after {
 .btn-form.disabled:hover,
 .btn-form.disabled:focus,
 .btn-form.disabled:active {
-  background-color: #256b24 !important;
-  color: #ffd35a !important;
+    background-color: #256b24 !important;
+    color: #ffd35a !important;
+}
+.btn-table {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @media (max-width: 575.98px) {
     .lead {
@@ -825,7 +834,7 @@ select.form-control:not([size]):not([multiple]) {
     padding-bottom: 20px;
 }
 .card .card-body .section-title {
-    margin: 30px 0 10px 0;
+    // margin: 30px 0 10px 0;
     font-size: 16px;
 }
 .card .card-body .section-title:before {
@@ -1763,8 +1772,8 @@ h6 .badge {
 
 .btn-dark,
 .btn-dark.disabled {
-    background-color: #191d21;
-    border-color: #191d21;
+    background-color: #000;
+    border-color: #000;
     color: #fff;
 }
 .btn-dark:hover,
@@ -1773,7 +1782,7 @@ h6 .badge {
 .btn-dark.disabled:hover,
 .btn-dark.disabled:focus,
 .btn-dark.disabled:active {
-    background-color: black !important;
+    background-color: #191d21 !important;
 }
 
 .btn-outline-dark:hover,
@@ -3243,13 +3252,16 @@ pre {
 .section .section-header .btn {
     font-size: 12px;
 }
-.section .section-title {
+.section .section-title,
+.section .section-title2 {
     font-size: 18px;
     color: #191d21;
     font-weight: 600;
     position: relative;
-    margin: 30px 0 25px 0;
+    // margin: 30px 0 25px 0;
+    margin-bottom: 25px;
 }
+
 .section .section-title:before {
     content: " ";
     border-radius: 5px;

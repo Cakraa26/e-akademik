@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.thnajaran'))
+@section('title', __('message.mstkarya'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -18,7 +18,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.thnajaran') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.mstkarya') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -30,11 +30,6 @@
                     <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
-            @elseif (session('warning'))
-                <div class="alert alert-warning alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.warning') }}!</strong> {{ session('warning') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
             @endif
             {{-- Alert End --}}
 
@@ -43,8 +38,8 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('tahun-ajaran/create') ? 'active' : '' }}"
-                                    href="{{ route('tahun-ajaran.create') }}" data-toggle="tooltip"
+                                <a class="btn btn-success {{ Request::is('karya-ilmiah/create') ? 'active' : '' }}"
+                                    href="{{ route('karya-ilmiah.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
                                         class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
@@ -54,32 +49,37 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('message.aksi') }}</th>
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>{{ __('message.tahunajaran') }}</th>
-                                        <th>{{ __('message.aktif') }}</th>
-                                        <th>{{ __('message.bulan1') }}</th>
-                                        <th>{{ __('message.bulan2') }}</th>
-                                        <th>{{ __('message.bulan3') }}</th>
-                                        <th>{{ __('message.bulan4') }}</th>
-                                        <th>{{ __('message.bulan5') }}</th>
-                                        <th>{{ __('message.bulan6') }}</th>
+                                        <th>{{ __('message.tahapan') }}</th>
+                                        <th>{{ __('message.darismt') }}</th>
+                                        <th>{{ __('message.batassmt') }}</th>
+                                        <th>Status</th>
+                                        <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($thn as $th)
+                                    @foreach ($karya as $k)
                                         <tr>
+                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $k->nm }}</td>
+                                            <td>{{ $k->darisemester }}</td>
+                                            <td>{{ $k->sampaisemester }}</td>
+                                            <td>
+                                                <input class="custom-switch-input" type="radio"
+                                                    id="switch-{{ $k->pk }}" {{ $k->aktif === 1 ? 'checked' : '' }}
+                                                    disabled>
+                                                <span class="custom-switch-indicator"></span>
+                                            </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('tahun-ajaran.edit', $th->pk) }}"
-                                                        class="btn btn-info {{ Request::is('tahun-ajaran/' . $th->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('karya-ilmiah.edit', $k->pk) }}"
+                                                        class="btn btn-info {{ Request::is('karya-ilmiah/' . $k->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fas fa-pencil-alt"></i></a>
 
-
-                                                    <form action="{{ route('tahun-ajaran.destroy', $th->pk) }}"
+                                                    <form action="{{ route('karya-ilmiah.destroy', $k->pk) }}"
                                                         method="POST" style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
@@ -89,20 +89,6 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $th->nm }}</td>
-                                            <td>
-                                                <span
-                                                    class="badge {{ $th->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
-                                                    {{ $th->aktif === 1 ? __('message.active') : __('message.inactive') }}
-                                                </span>
-                                            </td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan1)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan2)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan3)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan4)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan5)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan6)) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

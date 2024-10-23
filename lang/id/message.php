@@ -33,7 +33,6 @@ return [
     'grpmotorik' => "Grup Psikomotorik",
     'group' => "Grup",
     'ktgmotorik' => "Kategori Psikomotorik",
-    'kategori' => "Kategori",
     'subktgmotorik' => "Sub Kategori Psikomotorik",
     'dtmotorik' => "Data Psikomotorik",
     'mngmotorik' => "Monitoring Psikomotorik",
@@ -67,6 +66,9 @@ return [
     'editresiden' => "Perbarui Residen",
     'tambahtahunajaran' => "Tambah Tahun Ajaran",
     'edittahunajaran' => "Perbarui Tahun Ajaran",
+    'detailmng' => "Detail Monitoring",
+    'approved' => 'Konfirmasi Persetujuan',
+    'confirmapprov' => 'Konfirmasi',
 
     // Button
     'kembali' => "Kembali",
@@ -74,9 +76,11 @@ return [
     'deleteConfirm' => 'Yakin ingin menghapus data ini?',
     'confirm' => 'Ya, hapus!',
     'cancel' => 'Batal',
+    'tutup' => 'Tutup',
 
     // Field 
     'nama' => "Nama",
+    'inisial' => "Inisial",
     'divisi' => "Divisi",
     'alamat' => "Alamat",
     'pangkat' => "Pangkat",
@@ -98,9 +102,16 @@ return [
     'btssemester' => "Batas Semester",
     'tahunajaran' => "Tahun ajaran/Semester",
     'aktif' => "Aktif",
+    'thnaktif' => "Aktifkan tahun ajaran sekarang",
     'namatahun' => "Nama Tahun Ajaran - Semester",
+    'date' => "date",
+    'bulan1' => "Bulan 1",
+    'bulan2' => "Bulan 2",
+    'bulan3' => "Bulan 3",
+    'bulan4' => "Bulan 4",
+    'bulan5' => "Bulan 5",
+    'bulan6' => "Bulan 6",
     'tgldaftar' => "Tgl Daftar",
-    'inisial' => "Inisial",
     'nmresiden' => "Nama Residen",
     'hp' => "Hp",
     'asalfakultas' => "Asal Fakultas",
@@ -110,6 +121,15 @@ return [
     'mandiri' => 'Mandiri',
     'groupmotorik' => "Grup Psikomotorik",
     'kategorimotorik' => "Kategori Psikomotorik",
+    'tingkat' => "Tingkat",
+    'approve' => "Butuh Persetujuan",
+    'pilihgrup' => "Pilih Grup",
+    'pilihkategori' => "Pilih Kategori",
+    'cetak' => "Cetak",
+    'viewdetail' => "Lihat Detail",
+    'tglupload' => "Tanggal Diunggah",
+    'unduh' => "Unduh File",
+    'tahapan' => "Tahapan Karya Ilmiah",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -129,6 +149,12 @@ return [
     'subkategorifkrequired' => "Sub Kategori wajib diisi.",
     'tlpunique' => "No. Telepon sudah terdaftar.",
     'nipunique' => "NIP sudah terdaftar.",
+    'bln1required' => "Bulan 1 wajib diisi",
+    'bln2required' => "Bulan 2 wajib diisi",
+    'bln3required' => "Bulan 3 wajib diisi",
+    'bln4required' => "Bulan 4 wajib diisi",
+    'bln5required' => "Bulan 5 wajib diisi",
+    'bln6required' => "Bulan 6 wajib diisi",
     'namatahapanrequired' => "Nama Tahapan wajib diisi.",
     'drsemesterrequired' => "Dari Semester wajib diisi.",
     'drsemesternumeric' => "Dari Semester harus berupa angka.",
@@ -138,6 +164,7 @@ return [
     'kdunique' => "Kode sudah terdaftar.",
     'warnarequired' => "Warna wajib diisi.",
     'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
+    'tglrequired' => "Tanggal wajib diisi.",
 
     // Alert
     'success' => 'Sukses',
@@ -166,6 +193,5 @@ return [
     'success_tahunajaran_added' => 'Data Tahun Ajaran berhasil ditambahkan.',
     'success_tahunajaran_edit' => 'Data Tahun Ajaran berhasil diperbarui.',
     'success_tahunajaran_hapus' => 'Data Tahun Ajaran berhasil dihapus.',
+    'success_approved' => 'Berhasil disetujui!',
 ];
-
-?>
