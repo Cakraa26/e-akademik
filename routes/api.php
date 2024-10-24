@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AcademicController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MasterDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,12 @@ Route::prefix("academic")->group(function () {
         Route::get("/residen/{residenId}", [AcademicController::class, 'getKaryaIlimiahByResiden']);
         Route::put("/{karyaIlmiahId}/residen/{residenId}/upload", [AcademicController::class, 'residenUploadKaryaIlmiah']);
     });
+
+    Route::prefix('psikomotorik')->group(function () {
+        Route::get('', [AcademicController::class, 'getPsikomotorikByResiden']);
+        Route::get('/{motorikTransactionId}', [AcademicController::class, 'getPsikomotorikDetailByResiden']);
+    });
 });
+
+Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
+Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);
