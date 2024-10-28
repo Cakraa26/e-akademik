@@ -30,6 +30,26 @@ class TahunAjaranController extends Controller
     {
         $request->validate([
             'nm' => 'required|unique:m_thnajaran,nm'
+        ], [
+            'nm' => __('message.nama'),
+            'bulan1' => 'required'
+        ], [
+            'bulan1' => __('message.bulan1'),
+            'bulan2' => 'required'
+        ], [
+            'bulan2' => __('message.bulan2'),
+            'bulan3' => 'required'
+        ], [
+            'bulan3' => __('message.bulan3'),
+            'bulan4' => 'required'
+        ], [
+            'bulan4' => __('message.bulan4'),
+            'bulan5' => 'required'
+        ], [
+            'bulan5' => __('message.bulan5'),
+            'bulan6' => 'required'
+        ], [
+            'bulan6' => __('message.bulan6'),
         ]);
 
         try {

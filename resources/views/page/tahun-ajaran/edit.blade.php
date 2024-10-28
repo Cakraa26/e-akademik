@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
-<<<<<<< HEAD
-@section('title', __('message.thnajaran'))
-=======
 @section('title', __('message.edittahunajaran'))
->>>>>>> 1d40a69b0d4515bc9340c7ca7f860afacf45001c
 
 @push('style')
     <!-- CSS Libraries -->
@@ -151,7 +147,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="status"
                                                     name="aktif" value="1"
-                                                    {{ old('aktif') == '1' ? 'checked' : '' }}>
+                                                    {{ old('aktif', $thn->aktif) == '1' ? 'checked' : '' }}>
                                                 <label class="form-check-label"
                                                     for="status">{{ __('message.thnaktif') }}</label>
                                             </div>
