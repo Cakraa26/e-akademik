@@ -173,7 +173,8 @@ return [
         'warna' => 'Color',
         'tlp' => 'Phone',
         'nip' => 'NIP',
-        'karyaIlmiah' => 'Scientific Work'
+        'karyaIlmiah' => 'Scientific Work',
+        'fileMotorik' => 'Psikomotorik File'
     ],
 
 ];

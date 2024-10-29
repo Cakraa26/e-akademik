@@ -34,6 +34,9 @@ Route::prefix("academic")->group(function () {
     Route::prefix('psikomotorik')->group(function () {
         Route::get('', [AcademicController::class, 'getPsikomotorikByResiden']);
         Route::get('/{motorikTransactionId}', [AcademicController::class, 'getPsikomotorikDetailByResiden']);
+        Route::post('/{motorikId}/upload', [AcademicController::class, 'uploadPsikomotorikByResiden']);
+        Route::patch('/{motorikId}/upload/{motorikTransactionDataId}', [AcademicController::class, 'updateUploadPsikomotorikByResiden']);
+        Route::delete('/{motorikId}/upload/{motorikTransactionDataId}', [AcademicController::class, 'deleteUploadPsikomotorikByResiden']);
     });
 });
 

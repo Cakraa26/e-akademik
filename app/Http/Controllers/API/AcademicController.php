@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Academic\ResidenUpdateUploadPsikomotorikRequest;
 use App\Http\Requests\Academic\ResidenUploadKaryaIlmiahRequest;
+use App\Http\Requests\Academic\ResidenUploadPsikomotorikRequest;
 use App\Models\KaryaIlmiahData;
 use App\Models\MotorikTransaction;
+use App\Models\MotorikTransactionData;
 use App\Models\SubKategoriMotorik;
 use DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -119,6 +122,59 @@ class AcademicController extends Controller
         }
     }
 
+    public function uploadPsikomotorikByResiden(ResidenUploadPsikomotorikRequest $request, $motorikId)
+    {
+        // mandiri => 0
+        // bimbingan => 1
+
+        DB::beginTransaction();
+
+        try {
+            $motorikTransaction = MotorikTransaction::where('motorikfk', $motorikId)->where('residenfk', 1)->first();
+
+            if (!$motorikTransaction) {
+                $motorikTransaction = MotorikTransaction::create([
+                    'motorikfk' => $motorikId,
+                    'residenfk' => 1,
+                    'qtymandiri' => $request->status == 0 ? 1 : 0,
+                    'qtybimbingan' => $request->status == 1 ? 1 : 0,
+                    'stsmandiri' => $request->status == 0 ? 1 : 0,
+                    'stsbimbingan' => $request->status == 1 ? 1 : 0,
+                ]);
+            } else {
+                $motorikTransaction->qtymandiri = $request->status == 0 ? $motorikTransaction->qtymandiri + 1 : $motorikTransaction->qtymandiri;
+                $motorikTransaction->qtybimbingan = $request->status == 1 ? $motorikTransaction->qtybimbingan + 1 : $motorikTransaction->qtybimbingan;
+                if ($request->status == 0) {
+                    $motorikTransaction->stsmandiri = 1;
+                } else if ($request->status == 1) {
+                    $motorikTransaction->stsbimbingan = 1;
+                }
+                $motorikTransaction->save();
+            }
+
+            $file = Storage::disk('public')->put('motorik-residen', $request->file('fileMotorik'));
+
+            $motorikTransaction->motorikData()->create([
+                'residenfk' => 1,
+                'motorikfk' => $motorikId,
+                'tgl' => now()->format('Y-m-d H:i:s'),
+                'nmfile' => $file,
+                'stsmandiri' => $request->status == 0 ? 1 : 0,
+                'stsbimbingan' => $request->status == 1 ? 1 : 0,
+                'stsapproved' => 1,
+                'semester' => 1,
+                'tingkatfk' => 1,
+            ]);
+
+            DB::commit();
+
+            return response()->json(['data' => $motorikTransaction], 200);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
     public function getPsikomotorikDetailByResiden($motorikTransactionId)
     {
         try {
@@ -130,6 +186,7 @@ class AcademicController extends Controller
                 ->where('t_motorik.pk', $motorikTransactionId)
                 ->select(
                     't_motorik_dt.pk',
+                    't_motorik.pk as motorikpk',
                     't_motorik_dt.tgl',
                     'm_tingkat.nm as tingkat',
                     't_motorik_dt.semester',
@@ -169,6 +226,85 @@ class AcademicController extends Controller
         }
     }
 
+    public function updateUploadPsikomotorikByResiden(ResidenUpdateUploadPsikomotorikRequest $request, $motorikId, $motorikTransactionDataId)
+    {
+        // mandiri => 0
+        // bimbingan => 1
 
+        DB::beginTransaction();
 
+        try {
+            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', 1)->firstOrFail();
+            $motorikTransactionData = $motorikTransaction->motorikData()->findOrFail($motorikTransactionDataId);
+
+            if ($motorikTransactionData->stsapproved == 2) {
+                return response()->json(['message' => 'Forbidden'], 403);
+            }
+
+            if (Storage::disk('public')->exists($motorikTransactionData->nmfile)) {
+                Storage::disk('public')->delete($motorikTransactionData->nmfile);
+            }
+
+            $motorikTransactionData->update([
+                'nmfile' => Storage::disk('public')->put('motorik-residen', $request->file('fileMotorik')),
+                'stsapproved' => 1
+            ]);
+
+            if ($motorikTransactionData->stsmandiri == 1) {
+                $motorikTransaction->stsmandiri = 1;
+            } else if ($motorikTransactionData->stsbimbingan == 1) {
+                $motorikTransaction->stsbimbingan = 1;
+            }
+            $motorikTransaction->save();
+
+            DB::commit();
+
+            return response()->json(['data' => $motorikTransaction], 200);
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Data not found'], 404);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function deleteUploadPsikomotorikByResiden($motorikId, $motorikTransactionDataId)
+    {
+        DB::beginTransaction();
+
+        try {
+            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', 1)->firstOrFail();
+            $motorikTransactionData = $motorikTransaction->motorikData()->findOrFail($motorikTransactionDataId);
+
+            if ($motorikTransactionData->stsapproved == 2) {
+                return response()->json(['message' => 'Forbidden'], 403);
+            }
+
+            if (Storage::disk('public')->exists($motorikTransactionData->nmfile)) {
+                Storage::disk('public')->delete($motorikTransactionData->nmfile);
+            }
+
+            if ($motorikTransactionData->stsmandiri == 1) {
+                $motorikTransaction->stsmandiri = $motorikTransaction->motorikData()->where('stsmandiri', 1)->count() - 1 > 0 ? 1 : 0;
+                $motorikTransaction->qtymandiri -= 1;
+            } else if ($motorikTransactionData->stsbimbingan == 1) {
+                $motorikTransaction->stsbimbingan = $motorikTransaction->motorikData()->where('stsbimbingan', 1)->count() - 1 > 0 ? 1 : 0;
+                $motorikTransaction->qtybimbingan -= 1;
+            }
+
+            $motorikTransaction->save();
+            $motorikTransactionData->delete();
+
+            DB::commit();
+
+            return response()->json(['data' => $motorikTransaction], 200);
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Data not found'], 404);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
 }
