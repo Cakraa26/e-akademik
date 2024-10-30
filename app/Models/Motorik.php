@@ -40,4 +40,9 @@ class Motorik extends Model
     {
         return $this->belongsTo(KategoriMotorik::class, 'kategorifk', 'pk');
     }
+
+    public function subCategory()
+    {
+        return $this->belongsTo(SubKategoriMotorik::class, 'subkategorifk', 'pk');
+    }
 }
