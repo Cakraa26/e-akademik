@@ -172,7 +172,9 @@ return [
         'sampaisemester' => 'End semester',
         'warna' => 'Color',
         'tlp' => 'Phone',
-        'nip' => 'NIP'
+        'nip' => 'NIP',
+        'karyaIlmiah' => 'Scientific Work',
+        'fileMotorik' => 'Psikomotorik File'
     ],
 
 ];

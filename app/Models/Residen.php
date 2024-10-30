@@ -3,54 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Residen extends Model
+class Residen extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = [
-        'nim',
-        'nm',
-        'nickname',
-        'inisialresiden',
-        'ktp',
-        'email',
-        'hp',
-        'password',
-        'tempatlahir',
-        'tgllahir',
-        'alamatktp',
-        'alamattinggal',
-        'agama',
-        'goldarah',
-        'thnmasuk',
-        'thnlulus',
-        'asalfk',
-        'statusresiden',
-        'statuskawin',
-        'nmpasangan',
-        'alamatpasangan',
-        'hppasangan',
-        'anak',
-        'nmayah',
-        'nmibu',
-        'alamatortu',
-        'anakke',
-        'jmlsaudara',
-        'nmkontak',
-        'hpkontak',
-        'hubkontak',
-        'addedbyfk',
-        'lastuserfk',
-        'datemodified',
-        'angkatanfk',
-        'kelasfk',
-        'otp',
-        'waktu',
-        'is_verified',
-    ];
     protected $table = 'm_residen';
     protected $primaryKey = 'pk';
+    protected $guarded = ['pk'];
     public $timestamps = false;
 
     protected static function booted()
@@ -71,9 +31,24 @@ class Residen extends Model
     {
         return $this->belongsTo(TingkatResiden::class, 'tingkatfk', 'pk');
     }
-
+    public function karyailmiah()
+    {
+        return $this->belongsTo(KaryaIlmiah::class, 'karyailmiahfk', 'pk');
+    }
     public function tmotorik()
     {
-        return $this->hasMany(TMotorik::class, 'residenfk', 'pk');
+        return $this->hasMany(MotorikTransaction::class, 'residenfk', 'pk');
+    }
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'residenfk', 'pk');
+    }
+    public function jadwal()
+    {
+        return $this->hasMany(JadwalTransaction::class, 'residenfk', 'pk');
+    }
+    public function tahunajaran()
+    {
+        return $this->belongsTo(TahunAjaran::class, 'thnajaranfk', 'pk');
     }
 }

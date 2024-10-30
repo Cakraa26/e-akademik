@@ -36,6 +36,14 @@ return [
     */
 
     'guards' => [
+        'residen' => [
+            'driver' => 'session',
+            'provider' => 'residen',
+        ],
+        'dosen' => [
+            'driver' => 'session',
+            'provider' => 'dosen',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -63,6 +71,15 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'residen' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Residen::class,
+        ],
+        'dosen' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dosen::class,
         ],
 
         // 'users' => [

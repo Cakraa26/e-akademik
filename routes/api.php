@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\AcademicController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MasterDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +24,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'actionRegister']);
 Route::post('/register/verify-otp/{pk}', [AuthController::class, 'verifyOtp']);
 Route::patch('/register/verify-otp/{pk}/resend', [AuthController::class, 'resendOTP']);
+
+Route::prefix("academic")->group(function () {
+    Route::prefix('karya-ilmiah')->group(function () {
+        Route::get("/residen/{residenId}", [AcademicController::class, 'getKaryaIlimiahByResiden']);
+        Route::put("/{karyaIlmiahId}/residen/{residenId}/upload", [AcademicController::class, 'residenUploadKaryaIlmiah']);
+    });
+
+    Route::prefix('psikomotorik')->group(function () {
+        Route::get('', [AcademicController::class, 'getPsikomotorikByResiden']);
+        Route::get('/{motorikTransactionId}', [AcademicController::class, 'getPsikomotorikDetailByResiden']);
+        Route::post('/{motorikId}/upload', [AcademicController::class, 'uploadPsikomotorikByResiden']);
+        Route::patch('/{motorikId}/upload/{motorikTransactionDataId}', [AcademicController::class, 'updateUploadPsikomotorikByResiden']);
+        Route::delete('/{motorikId}/upload/{motorikTransactionDataId}', [AcademicController::class, 'deleteUploadPsikomotorikByResiden']);
+    });
+});
+
+Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
+Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);

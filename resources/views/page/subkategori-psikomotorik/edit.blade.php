@@ -5,8 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
-
 @endpush
 
 @section('main')
@@ -47,8 +45,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" action="{{ route('subkategori.motorik.update', $subktgmotorik->pk) }}" method="POST"
-                                    data-parsley-validate>
+                                <form id="form" action="{{ route('subkategori.motorik.update', $subktgmotorik->pk) }}"
+                                    method="POST" data-parsley-validate>
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
@@ -58,11 +56,12 @@
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('nm') is-invalid @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm', $subktgmotorik->nm) }}" required
+                                                        name="nm" id="nm"
+                                                        value="{{ old('nm', $subktgmotorik->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
                                         <div class="col-md-5">
                                             <div class="row mb-3">
@@ -71,9 +70,11 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="status" name="aktif" value="1" 
+                                                        <input class="form-check-input" type="checkbox" id="status"
+                                                            name="aktif" value="1"
                                                             {{ old('aktif', $subktgmotorik->aktif) == '1' ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="status">{{ __('message.active') }}</label>
+                                                        <label class="form-check-label"
+                                                            for="status">{{ __('message.active') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -82,10 +83,10 @@
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('subkategori.motorik.index') }}">
-                                                <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
+                                            <a class="btn btn-dark mr-2" href="{{ route('subkategori.motorik.index') }}">
+                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -103,7 +104,6 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script>

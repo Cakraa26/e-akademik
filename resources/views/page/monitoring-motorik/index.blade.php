@@ -37,15 +37,6 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-4">
-                            <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('data-psikomotorik/create') ? 'active' : '' }}"
-                                    href="{{ route('data.psikomotorik.create') }}" data-toggle="tooltip"
-                                    title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
-                            </div>
-                        </div>
-
                         <form action="" method="GET">
                             @csrf
                             <div class="row mb-3">
@@ -111,7 +102,6 @@
                                         </th>
                                         <th>{{ __('message.inisial') }}</th>
                                         <th>{{ __('message.nama') }}</th>
-                                        {{-- <th>Group</th> --}}
                                         <th>Semester</th>
                                         <th>{{ __('message.tingkat') }}</th>
                                         <th>{{ __('message.aksi') }}</th>

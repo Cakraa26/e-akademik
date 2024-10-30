@@ -5,8 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
-
 @endpush
 
 @section('main')
@@ -52,37 +50,88 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="nama" class="col-sm-3">{{ __('message.namatahun') }}</label>
+                                                <label class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control @error('nm') is-invalid @enderror" name="nm" id="nm"
-                                                        value="{{ old('nm', $thn->nm) }}" required
+                                                    <input type="text" placeholder="{{ __('message.placeholdernm') }}"
+                                                        class="form-control @error('nm') is-invalid @enderror"
+                                                        name="nm" id="nm" value="{{ old('nm', $thn->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                     @error('nm')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                        <span class="invalid-feedback">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.bulan1') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="month" class="form-control" name="bulan1" id="bulan1"
+                                                        value="{{ old('bulan1', $thn->bulan1) }}" required
+                                                        data-parsley-required-message="{{ __('message.bln1required') }}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.bulan2') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="month" class="form-control" name="bulan2" id="bulan2"
+                                                        value="{{ old('bulan2', $thn->bulan2) }}" required
+                                                        data-parsley-required-message="{{ __('message.bln2required') }}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.bulan3') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="month" class="form-control" name="bulan3" id="bulan3"
+                                                        value="{{ old('bulan3', $thn->bulan3) }}" required
+                                                        data-parsley-required-message="{{ __('message.bln3required') }}">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Status</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="status" name="aktif" value="1" 
-                                                    {{ old('aktif', $thn->aktif) == '1' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="status">{{ __('message.active') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.bulan4') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="month" class="form-control" name="bulan4" id="bulan3"
+                                                        value="{{ old('bulan4', $thn->bulan4) }}" required
+                                                        data-parsley-required-message="{{ __('message.bln4required') }}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.bulan5') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="month" class="form-control" name="bulan5" id="bulan5"
+                                                        value="{{ old('bulan5', $thn->bulan5) }}" required
+                                                        data-parsley-required-message="{{ __('message.bln5required') }}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.bulan6') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="month" class="form-control" name="bulan6" id="bulan6"
+                                                        value="{{ old('bulan6', $thn->bulan6) }}" required
+                                                        data-parsley-required-message="{{ __('message.bln6required') }}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3"></label>
+                                                <div class="form-check ml-md-3">
+                                                    <input class="form-check-input" type="checkbox" id="aktif"
+                                                        name="aktif" value="1"
+                                                        {{ old('aktif', $thn->aktif) == '1' ? 'checked' : '' }}>
+                                                    <label class="form-check-label">{{ __('message.thnaktif') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('tahun-ajaran.index') }}">
-                                                <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
+                                            <a class="btn btn-dark mr-2"
+                                                href="{{ route('tahun-ajaran.index') }}">
+                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -100,7 +149,6 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script>

@@ -18,11 +18,11 @@ class Psikomotorik extends Model
     }
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategorifk', 'pk');
+        return $this->belongsTo(KategoriMotorik::class, 'kategorifk', 'pk');
     }
     public function subkategori()
     {
-        return $this->belongsTo(SubKategori::class, 'subkategorifk', 'pk');
+        return $this->belongsTo(SubKategoriMotorik::class, 'subkategorifk', 'pk');
     }
     public function semester()
     {
@@ -30,7 +30,7 @@ class Psikomotorik extends Model
     }
     public function t_motorik()
     {
-        return $this->hasMany(t_motorik::class, 'motorikfk');
+        return $this->hasMany(MotorikTransaction::class, 'motorikfk');
     }
     protected static function booted()
     {

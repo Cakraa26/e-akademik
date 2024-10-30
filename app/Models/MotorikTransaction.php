@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kelas extends Model
+class MotorikTransaction extends Model
 {
     use HasFactory;
-    protected $table = 'm_kelas';
+    protected $table = 't_motorik';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
@@ -26,16 +26,18 @@ class Kelas extends Model
         return $nextPk;
     }
 
-    public function thnajaran()
-    {
-        return $this->belongsTo(TahunAjaran::class, 'thnajaranfk', 'pk');
-    }
     public function residen()
     {
-        return $this->belongsTo(Residen::class, 'residenfk', 'pk'); 
+        return $this->belongsTo(Residen::class, 'residenfk', 'pk');
     }
-    public function tingkat()
+
+    public function motorik()
     {
-        return $this->belongsTo(Tingkat::class, 'tingkatfk', ownerKey: 'pk'); 
+        return $this->belongsTo(Motorik::class, 'motorikfk', 'pk');
+    }
+
+    public function motorikData()
+    {
+        return $this->hasMany(MotorikTransactionData::class, 't_motorik_fk');
     }
 }

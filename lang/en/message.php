@@ -16,6 +16,8 @@ return [
     'datacalonresiden' => "Resident Candidate",
     'datastase' => "Stase Data",
     'dataresiden' => "Resident Data",
+    'databaseresiden' => "Resident Database",
+    'datakelas' => "Class Data",
     'kognitif' => "Cognitive",
     'afektif' => "Affective",
     'psikomotorik' => "Psychomotor",
@@ -36,6 +38,7 @@ return [
     'subktgmotorik' => "Psychomotor Subcategory",
     'dtmotorik' => "Psychomotor Data",
     'mngmotorik' => "Psychomotor Monitoring",
+    'mngmotorikpendek' => "Monitoring",
     'atrjam' => "Time Settings",
     'dftabsensi' => "Attendance List",
     'mstkarya' => "Scientific Work Master",
@@ -45,6 +48,7 @@ return [
 
     // CRUD
     'tambah' => "Add",
+    'generateclass' => "Generate Class",
     'edit' => "Update",
 
     // CRUD Dosen
@@ -65,8 +69,11 @@ return [
     'tambahtahunajaran' => "Add Tahun Ajaran",
     'edittahunajaran' => "Update Tahun Ajaran",
     'detailmng' => "Monitoring Detail",
+    'detailmngpendek' => "Detail",
     'approved' => 'Approval Confirmation',
     'confirmapprov' => 'Confirmation',
+    'editkelas' => "Update Class",
+    'editjadwal' => "Update Schedule",
 
     // Button
     'kembali' => "Back",
@@ -96,8 +103,10 @@ return [
     'spesialis' => "Specialist",
     'ctn' => "Note",
     'active' => 'Active',
+    'cuti' => "Leave",
     'inactive' => 'Non Active',
     'subkategori' => "Sub Category",
+    'kategori' => "Category",
     'tingkat' => "Level",
     'nmprosedur' => "Name (Procedure)",
     'bimbingan' => "Guidance",
@@ -110,12 +119,20 @@ return [
     'tglupload' => "Date Uploaded",
     'unduh' => "Download File",
     'tahapan' => "Stages of Scientific Work",
-
+    'nodata' => "No data available.",
 
     // Tahun Ajaran
     'aktif' => "Active",
     'tahunajaran' => "School Year/Semester",
-    'namatahun' => "Name of School Year - Semester",
+    'thnaktif' => "Activate the current school year",
+    'bulan1' => "Month 1",
+    'bulan2' => "Month 2",
+    'bulan3' => "Month 3",
+    'bulan4' => "Month 4",
+    'bulan5' => "Month 5",
+    'bulan6' => "Month 6",
+    'placeholdernm' => "exm : 2023/2024 Ganjil",
+
 
     // pendaftaran residen 
     'calonresiden' => "Resident Candidate",
@@ -127,6 +144,19 @@ return [
     'detailpendaftaranresiden' => "Resident Registration Details",
     'groupmotorik' => "Psychomotor Group",
     'kategorimotorik' => "Psychomotor Category",
+
+    // Modal m_kelas
+    'hasiluas' => "UAS RESULT",
+    'totaluasuts' => "TOTAL (UAS + UTS + STAGE)",
+    'hasil' => "RESULT",
+    'keterangansemester' => "Semester Description",
+    'keterangankarya' => "Scientific Work Description",
+    'keterangantingkat' => "Level Description",
+    'benarmcq' => "CORRECT MCQ",
+    'spine' => "SPINE",
+    'lower' => "LOWER BACK",
+    'tangan' => "HAND",
+    'hasilosce' => "OSCE RESULT",
 
     // Validation
     'nmrequired' => "Name is required.",
@@ -174,5 +204,12 @@ return [
     'success_tahunajaran_added' => 'School Year has been successfully added.',
     'success_tahunajaran_edit' => 'School Year has been successfully updated.',
     'success_tahunajaran_hapus' => 'School Year has been successfully deleted.',
+    'success_tahunajaran_warning' => 'Warning! Data cannot be deleted because it is in use.',
     'success_approved' => 'Successfully approved!',
+    'success_kelas_edit' => 'Class Data has been successfully updated.',
+    'success_kelas_added' => 'Class Data has been successfully added.',
+    'success_jadwal_added' => 'Stase Schedule has been successfully added.',
+    'success_logout' => 'You have successfully logged out.',
+    'konfirm' => 'Are you sure you want to logout?',
+    'error_username' => 'Incorrect username or password.',
 ];

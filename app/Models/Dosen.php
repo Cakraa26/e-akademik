@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Dosen extends Model
+class Dosen extends Authenticatable
 {
     use HasFactory;
     protected $table = 'm_dosen';
@@ -24,5 +25,11 @@ class Dosen extends Model
         $nextPk = $last ? $last->pk + 1 : 1;
 
         return $nextPk;
+    }
+    protected function type(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["0", "1"][$value],
+        );
     }
 }

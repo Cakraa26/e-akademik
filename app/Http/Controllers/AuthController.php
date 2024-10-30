@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Residen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\VerifyRequest;
 use App\Services\Auth\Register\RegisterService;
@@ -51,7 +49,7 @@ class AuthController extends Controller
             $isVerified = $this->registerService->verifyOTP($request, $pk);
 
             DB::commit();
-            if($isVerified) {
+            if ($isVerified) {
                 return redirect()->route('auth.login')->with('success', 'Nomor Telepon berhasil diverifikasi.');
             } else {
                 return back()->withErrors(['otp' => 'OTP tidak valid atau kadaluwarsa.']);
@@ -80,5 +78,28 @@ class AuthController extends Controller
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
+    }
+    public function postLogin(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $user = DB::table('account')
+            ->where('username', $username)
+            ->first();
+
+        if ($user && Hash::check($password, $user->password)) {
+            Session::put('role', $user->role);
+
+            return redirect()->route('dashboard');
+        }
+
+        return back()->with('error',__('message.error_username'),
+        );
+    }
+    public function logout()
+    {
+        Session::flush();
+        return redirect('/')->with('success', __('message.success_logout'));
     }
 }

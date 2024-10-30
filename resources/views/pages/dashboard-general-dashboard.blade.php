@@ -129,7 +129,7 @@
                     <div class="mb-3">
                         <img src="{{ asset('img/logo.png') }}" alt="" width="100">
                     </div>
-                    <h2>E - AKADEMIK</h2>
+                    <h2>CISOT</h2>
                     <h4>{{ __('message.fkunud') }}</h4>
                     <h5>{{ __('message.prodi') }}</h5>
                 </div>
