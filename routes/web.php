@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\JadwalStase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\JadwalStase;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\StaseController;
+use App\Http\Controllers\KaryaIlmiahResiden;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MonitoringController;
@@ -146,7 +147,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/monitoring-motorik/{pk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
     Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
 
-    // Karya Ilmiah
+    // Karya Ilmiah Admin
     Route::resource('karya-ilmiah', KaryaIlmiahController::class)->names([
         'index' => 'karya-ilmiah.index',
         'create' => 'karya-ilmiah.create',
@@ -178,6 +179,11 @@ Route::middleware(['checkRole:1'])->group(function () {
 });
 
 Route::middleware(['checkRole:3'])->group(function () {
+    // Karya Ilmiah Residen
+    Route::resource('karya-ilmiah-residen', KaryaIlmiahResiden::class)->names([
+        'index' => 'karya-ilmiah.residen.index',
+    ]);
+
     // Data Psikomotorik
     Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
         'index' => 'data.psikomotorik.index',

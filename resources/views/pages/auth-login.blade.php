@@ -23,6 +23,13 @@
         </div>
     @endif
 
+    @if (session('gagal'))
+        <div class="alert alert-danger alert-dismissible show fade" role="alert">
+            {{ session('gagal') }}
+            <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+    @endif
+
     @if ($errors->any())
         <div class="alert alert-danger">
             {{ $errors->first() }}
@@ -79,8 +86,3 @@
     </div>
 @endsection
 
-@push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
-    <!-- Page Specific JS File -->
-@endpush

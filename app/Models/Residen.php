@@ -35,6 +35,10 @@ class Residen extends Authenticatable
     {
         return $this->belongsTo(KaryaIlmiah::class, 'karyailmiahfk', 'pk');
     }
+    public function tkaryailmiah()
+    {
+        return $this->hasMany(KaryaIlmiahData::class, 'residenfk', 'pk');
+    }
     public function tmotorik()
     {
         return $this->hasMany(MotorikTransaction::class, 'residenfk', 'pk');

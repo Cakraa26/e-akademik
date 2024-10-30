@@ -65,12 +65,13 @@
                         <span>{{ __('message.dtmotorik') }}</span></a>
                 </li>
 
+                {{-- Laporan --}}
                 <li class="menu-header">
                 <li class="menu-header">{{ __('message.record') }}</li>
                 </li>
 
-                <li class="{{ Request::is('karya-ilmiah') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('karya-ilmiah') }}"><i class="fas fa-file-alt"></i>
+                <li class="{{ Request::is('karya-ilmiah-residen') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i class="fas fa-file-alt"></i>
                         <span>{{ __('message.karyailmiah') }}</span></a>
                 </li>
                 <li class="{{ Request::is('laporan') ? 'active' : '' }}">

@@ -212,4 +212,5 @@ return [
     'success_logout' => 'You have successfully logged out.',
     'konfirm' => 'Are you sure you want to logout?',
     'error_username' => 'Incorrect username or password.',
+    'error_not_verified' => 'Your account has not been verified.',
 ];
