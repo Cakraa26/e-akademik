@@ -94,7 +94,9 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return back()->with('error',__('message.error_username'),
+        return back()->with(
+            'error',
+            __('message.error_username'),
         );
     }
     public function logout()
