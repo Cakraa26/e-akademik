@@ -39,8 +39,8 @@
                 </div>
 
                 <div class="d-flex justify-content-end align-items-center mb-3">
-                    <button type="button" class="btn btn-dark mr-2" id="btnCetak"><i
-                        class='fas fa-arrow-left pr-2'></i>{{ __('message.kembali') }}</button>
+                    <a class="btn btn-dark mr-2" href="{{ route('monitoring.index') }}">
+                        <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                     <button type="button" class="btn btn-primary mr-2" id="btnCetak">{{ __('message.cetak') }}<i
                             class='fas fa-print pl-2'></i></button>
                     <button type="button" class="btn btn-success" id="btnCetak">Excel<i
@@ -120,18 +120,19 @@
                                         <tr>
                                             <th>{{ $no++ }}</th>
                                             <td>{{ $t->motorik->nm }}</td>
-                                            <td>{{ $t->motorik->group->nm }}</td>
-                                            <td>{{ $t->motorik->kategori->nm }}</td>
+                                            <td>{{ $t->motorik->motorikGroup->nm }}</td>
+                                            <td>{{ $t->motorik->category->nm }}</td>
                                             <td>{{ $t->qtybimbingan }}</td>
                                             <td>{{ $t->qtymandiri }}</td>
                                             <td>
                                                 <div class="text-center">
                                                     <a href="{{ route('monitoring.approve', $t->pk) }}"
                                                         class="btn btn-secondary mr-2">
-                                                        {{ $t->motorikDetails->where('stsapproved', 1)->sum('jmlfile') }}
+                                                        {{ $t->motorikData->where('stsapproved', 1)->sum('jmlfile') }}
                                                     </a>
                                                     <i class="fas fa-ellipsis-v"></i>
-                                                    <a href="{{ route('monitoring.approve', $t->residen->pk) }}" class="btn btn-secondary ml-2">
+                                                    <a href="{{ route('monitoring.approve', $t->residen->pk) }}"
+                                                        class="btn btn-secondary ml-2">
                                                         {{ $t->sum('stsmandiri') }}
                                                     </a>
                                                 </div>
@@ -174,7 +175,7 @@
                                     </thead>
                                     <tbody>
                                         @php $no = 1; @endphp
-                                        @foreach ($t->motorikDetails as $detail)
+                                        @foreach ($t->motorikData as $detail)
                                             <tr>
                                                 <th>{{ $no++ }}</th>
                                                 <td>{{ $detail->tgl }}</td>

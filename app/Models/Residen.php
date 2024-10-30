@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Residen extends Model
+class Residen extends Authenticatable
 {
     use HasFactory;
     protected $table = 'm_residen';
@@ -35,13 +35,20 @@ class Residen extends Model
     {
         return $this->belongsTo(KaryaIlmiah::class, 'karyailmiahfk', 'pk');
     }
-
     public function tmotorik()
     {
-        return $this->hasMany(TMotorik::class, 'residenfk', 'pk');
+        return $this->hasMany(MotorikTransaction::class, 'residenfk', 'pk');
     }
     public function kelas()
     {
         return $this->hasMany(Kelas::class, 'residenfk', 'pk');
+    }
+    public function jadwal()
+    {
+        return $this->hasMany(JadwalTransaction::class, 'residenfk', 'pk');
+    }
+    public function tahunajaran()
+    {
+        return $this->belongsTo(TahunAjaran::class, 'thnajaranfk', 'pk');
     }
 }

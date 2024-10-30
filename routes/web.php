@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\JadwalStase;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
@@ -27,147 +28,172 @@ use App\Http\Controllers\TingkatResidenController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('pages.auth-login', ['type_menu' => 'auth']);
+})->name('login');
 
-// Route::redirect('/', '/dashboard-general-dashboard');
-
-// Dashboard
-Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
+Route::post('/login/post', [AuthController::class, 'postLogin'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
 });
 
-// Data Dosen
-Route::resource('data-dosen', DosenController::class)->names([
-    'index' => 'data.dosen.index',
-    'create' => 'data.dosen.create',
-    'store' => 'data.dosen.store',
-    'edit' => 'data.dosen.edit',
-    'update' => 'data.dosen.update',
-    'destroy' => 'data.dosen.destroy',
-]);
+// Dashboard
+Route::get('/dashboard', function () {
+    return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+})->middleware('checkRole:0,1,3')->name('dashboard');
 
-// Data State
-Route::resource('data-stase', StaseController::class)->names([
-    'index' => 'data.stase.index',
-    'create' => 'data.stase.create',
-    'store' => 'data.stase.store',
-    'edit' => 'data.stase.edit',
-    'update' => 'data.stase.update',
-    'destroy' => 'data.stase.destroy',
-]);
+Route::middleware(['checkRole:0'])->group(function () {
 
-// Data Psikomotorik
-Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
-    'index' => 'data.psikomotorik.index',
-    'create' => 'data.psikomotorik.create',
-    'store' => 'data.psikomotorik.store',
-    'edit' => 'data.psikomotorik.edit',
-    'update' => 'data.psikomotorik.update',
-    'destroy' => 'data.psikomotorik.destroy',
-]);
+});
 
-// Data Group
-Route::resource('data-group', GroupController::class)->names([
-    'index' => 'data.group.index',
-    'create' => 'data.group.create',
-    'store' => 'data.group.store',
-    'edit' => 'data.group.edit',
-    'update' => 'data.group.update',
-    'destroy' => 'data.group.destroy',
-]);
+Route::middleware(['checkRole:1'])->group(function () {
+    // Data Dosen
+    Route::resource('data-dosen', DosenController::class)->names([
+        'index' => 'data.dosen.index',
+        'create' => 'data.dosen.create',
+        'store' => 'data.dosen.store',
+        'edit' => 'data.dosen.edit',
+        'update' => 'data.dosen.update',
+        'destroy' => 'data.dosen.destroy',
+    ]);
 
-// Data Kategori
-Route::resource('kategori-psikomotorik', KategoriController::class)->names([
-    'index' => 'kategori.psikomotorik.index',
-    'create' => 'kategori.psikomotorik.create',
-    'store' => 'kategori.psikomotorik.store',
-    'edit' => 'kategori.psikomotorik.edit',
-    'update' => 'kategori.psikomotorik.update',
-    'destroy' => 'kategori.psikomotorik.destroy',
-]);
+    // Data Calon Residen
+    Route::resource('data-mahasiswa', MahasiswaController::class)->names([
+        'index' => 'data.mahasiswa.index',
+        'create' => 'data.mahasiswa.create',
+        'store' => 'data.mahasiswa.store',
+        'edit' => 'data.mahasiswa.edit',
+        'update' => 'data.mahasiswa.update',
+        'destroy' => 'data.mahasiswa.destroy',
+    ]);
 
-// Data Sub Kategori
-Route::resource('subkategori-psikomotorik', SubKategoriController::class)->names([
-    'index' => 'subkategori.motorik.index',
-    'create' => 'subkategori.motorik.create',
-    'store' => 'subkategori.motorik.store',
-    'edit' => 'subkategori.motorik.edit',
-    'update' => 'subkategori.motorik.update',
-    'destroy' => 'subkategori.motorik.destroy',
-]);
+    // Data State
+    Route::resource('data-stase', StaseController::class)->names([
+        'index' => 'data.stase.index',
+        'create' => 'data.stase.create',
+        'store' => 'data.stase.store',
+        'edit' => 'data.stase.edit',
+        'update' => 'data.stase.update',
+        'destroy' => 'data.stase.destroy',
+    ]);
 
-// Data Tingkat Residen
-Route::resource('tingkat-residen', TingkatResidenController::class)->names([
-    'index' => 'tingkat.residen.index',
-    'create' => 'tingkat.residen.create',
-    'store' => 'tingkat.residen.store',
-    'edit' => 'tingkat.residen.edit',
-    'update' => 'tingkat.residen.update',
-    'destroy' => 'tingkat.residen.destroy',
-]);
+    // Data Kelas
+    Route::resource('data-kelas', KelasController::class)->names([
+        'index' => 'data.kelas.index',
+        'create' => 'data.kelas.create',
+        'store' => 'data.kelas.store',
+        'edit' => 'data.kelas.edit',
+        'update' => 'data.kelas.update',
+        'destroy' => 'data.kelas.destroy',
+    ]);
 
-// Data Tahun Ajaran
-Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
-    'index' => 'tahun-ajaran.index',
-    'create' => 'tahun-ajaran.create',
-    'store' => 'tahun-ajaran.store',
-    'edit' => 'tahun-ajaran.edit',
-    'update' => 'tahun-ajaran.update',
-    'destroy' => 'tahun-ajaran.destroy',
-]);
-// Data Calon Residen
-Route::resource('data-mahasiswa', MahasiswaController::class)->names([
-    'index' => 'data.mahasiswa.index',
-    'create' => 'data.mahasiswa.create',
-    'store' => 'data.mahasiswa.store',
-    'edit' => 'data.mahasiswa.edit',
-    'update' => 'data.mahasiswa.update',
-    'destroy' => 'data.mahasiswa.destroy',
-]);
+    // Jadwal Stase
+    Route::resource('jadwal-stase', JadwalStase::class)->names([
+        'index' => 'jadwal.stase.index',
+        'create' => 'jadwal.stase.create',
+        // 'store' => 'jadwal.stase.store',
+        'edit' => 'jadwal.stase.edit',
+        'update' => 'jadwal.stase.update',
+        'destroy' => 'jadwal.stase.destroy',
+    ]);
+    Route::post('/jadwal-stase/{pk}/store', [JadwalStase::class, 'store'])->name('jadwal.stase.store');
+    ;
 
-// Data Kelas
-Route::resource('data-kelas', KelasController::class)->names([
-    'index' => 'data.kelas.index',
-    'create' => 'data.kelas.create',
-    'store' => 'data.kelas.store',
-    'edit' => 'data.kelas.edit',
-    'update' => 'data.kelas.update',
-    'destroy' => 'data.kelas.destroy',
-]);
+    // Data Group
+    Route::resource('data-group', GroupController::class)->names([
+        'index' => 'data.group.index',
+        'create' => 'data.group.create',
+        'store' => 'data.group.store',
+        'edit' => 'data.group.edit',
+        'update' => 'data.group.update',
+        'destroy' => 'data.group.destroy',
+    ]);
 
-// Monitoring Psikomotorik
-Route::resource('monitoring-motorik', MonitoringController::class)->names([
-    'index' => 'monitoring.index',
-    'create' => 'monitoring.create',
-    'store' => 'monitoring.store',
-    'edit' => 'monitoring.edit',
-    'update' => 'monitoring.update',
-    'destroy' => 'monitoring.destroy',
-]);
+    // Data Kategori
+    Route::resource('kategori-psikomotorik', KategoriController::class)->names([
+        'index' => 'kategori.psikomotorik.index',
+        'create' => 'kategori.psikomotorik.create',
+        'store' => 'kategori.psikomotorik.store',
+        'edit' => 'kategori.psikomotorik.edit',
+        'update' => 'kategori.psikomotorik.update',
+        'destroy' => 'kategori.psikomotorik.destroy',
+    ]);
 
-Route::get('/monitoring-motorik/{pk}/detail', [MonitoringController::class, 'detail'])->name('monitoring.detail');
-Route::get('/monitoring-motorik/{pk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
-Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
+    // Data Sub Kategori
+    Route::resource('subkategori-psikomotorik', SubKategoriController::class)->names([
+        'index' => 'subkategori.motorik.index',
+        'create' => 'subkategori.motorik.create',
+        'store' => 'subkategori.motorik.store',
+        'edit' => 'subkategori.motorik.edit',
+        'update' => 'subkategori.motorik.update',
+        'destroy' => 'subkategori.motorik.destroy',
+    ]);
 
-// Karya Ilmiah
-Route::resource('karya-ilmiah', KaryaIlmiahController::class)->names([
-    'index' => 'karya-ilmiah.index',
-    'create' => 'karya-ilmiah.create',
-    'store' => 'karya-ilmiah.store',
-    'edit' => 'karya-ilmiah.edit',
-    'update' => 'karya-ilmiah.update',
-    'destroy' => 'karya-ilmiah.destroy',
-]);
+    // Monitoring Psikomotorik
+    Route::resource('monitoring-motorik', MonitoringController::class)->names([
+        'index' => 'monitoring.index',
+        'create' => 'monitoring.create',
+        'store' => 'monitoring.store',
+        'edit' => 'monitoring.edit',
+        'update' => 'monitoring.update',
+        'destroy' => 'monitoring.destroy',
+    ]);
+
+    Route::get('/monitoring-motorik/{pk}/detail', [MonitoringController::class, 'detail'])->name('monitoring.detail');
+    Route::get('/monitoring-motorik/{pk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
+    Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
+
+    // Karya Ilmiah
+    Route::resource('karya-ilmiah', KaryaIlmiahController::class)->names([
+        'index' => 'karya-ilmiah.index',
+        'create' => 'karya-ilmiah.create',
+        'store' => 'karya-ilmiah.store',
+        'edit' => 'karya-ilmiah.edit',
+        'update' => 'karya-ilmiah.update',
+        'destroy' => 'karya-ilmiah.destroy',
+    ]);
+
+    // Data Tahun Ajaran
+    Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
+        'index' => 'tahun-ajaran.index',
+        'create' => 'tahun-ajaran.create',
+        'store' => 'tahun-ajaran.store',
+        'edit' => 'tahun-ajaran.edit',
+        'update' => 'tahun-ajaran.update',
+        'destroy' => 'tahun-ajaran.destroy',
+    ]);
+
+    // Data Tingkat Residen
+    Route::resource('tingkat-residen', TingkatResidenController::class)->names([
+        'index' => 'tingkat.residen.index',
+        'create' => 'tingkat.residen.create',
+        'store' => 'tingkat.residen.store',
+        'edit' => 'tingkat.residen.edit',
+        'update' => 'tingkat.residen.update',
+        'destroy' => 'tingkat.residen.destroy',
+    ]);
+});
+
+Route::middleware(['checkRole:3'])->group(function () {
+    // Data Psikomotorik
+    Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
+        'index' => 'data.psikomotorik.index',
+        'create' => 'data.psikomotorik.create',
+        'store' => 'data.psikomotorik.store',
+        'edit' => 'data.psikomotorik.edit',
+        'update' => 'data.psikomotorik.update',
+        'destroy' => 'data.psikomotorik.destroy',
+    ]);
+});
 
 // auth
 Route::get('/auth-forgot-password', function () {
     return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
 });
-Route::get('/auth-login', function () {
-    return view('pages.auth-login', ['type_menu' => 'auth']);
-})->name('auth.login');
+
 
 //Register
 Route::get('/auth-register', function () {

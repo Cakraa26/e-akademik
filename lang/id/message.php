@@ -50,6 +50,7 @@ return [
 
     // CRUD
     'tambah' => "Tambah",
+    'generateclass' => "Buat Kelas",
     'edit' => "Perbarui",
 
     // CRUD Page
@@ -74,6 +75,7 @@ return [
     'approved' => 'Konfirmasi Persetujuan',
     'confirmapprov' => 'Konfirmasi',
     'editkelas' => "Perbarui Kelas",
+    'editjadwal' => "Perbarui Jadwal",
 
     // Button
     'kembali' => "Kembali",
@@ -106,11 +108,10 @@ return [
     'namatahapan' => "Nama Tahapan",
     'drsemester' => "Dari Semester",
     'btssemester' => "Batas Semester",
-    'tahunajaran' => "Tahun ajaran/Semester",
+    'tahunajaran' => "Tahun Ajaran/Semester",
     'aktif' => "Aktif",
     'cuti' => "Cuti",
     'thnaktif' => "Aktifkan tahun ajaran sekarang",
-    'namatahun' => "Nama Tahun Ajaran - Semester",
     'date' => "date",
     'bulan1' => "Bulan 1",
     'bulan2' => "Bulan 2",
@@ -118,6 +119,7 @@ return [
     'bulan4' => "Bulan 4",
     'bulan5' => "Bulan 5",
     'bulan6' => "Bulan 6",
+    'placeholdernm' => "cth : 2023/2024 Ganjil",
     'tgldaftar' => "Tgl Daftar",
     'nmresiden' => "Nama Residen",
     'hp' => "Hp",
@@ -137,6 +139,20 @@ return [
     'tglupload' => "Tanggal Diunggah",
     'unduh' => "Unduh File",
     'tahapan' => "Tahapan Karya Ilmiah",
+    'nodata' => "Tidak ada data yang tersedia.",
+
+    // Modal m_kelas
+    'hasiluas' => "HASIL UAS",
+    'totaluasuts' => "TOTAL (UAS + UTS + STASE)",
+    'hasil' => "HASIL",
+    'keterangansemester' => "Keterangan Semester",
+    'keterangankarya' => "Keterangan Karya Ilmiah",
+    'keterangantingkat' => "Keterangan Tingkat",
+    'benarmcq' => "BENAR MCQ",
+    'spine' => "TULANG BELAKANG",
+    'lower' => "TULANG BAWAH",
+    'tangan' => "HAND",
+    'hasilosce' => "HASIL OSCE",
 
     // Validation
     'nmrequired' => "Nama wajib diisi.",
@@ -197,9 +213,15 @@ return [
     'success_residen_added' => 'Data Residen berhasil ditambahkan.',
     'success_residen_edit' => 'Data Residen berhasil diperbarui.',
     'success_residen_hapus' => 'Data Residen berhasil dihapus.',
-    'success_tahunajaran_added' => 'Data Tahun Ajaran berhasil ditambahkan.',
-    'success_tahunajaran_edit' => 'Data Tahun Ajaran berhasil diperbarui.',
-    'success_tahunajaran_hapus' => 'Data Tahun Ajaran berhasil dihapus.',
+    'success_tahunajaran_added' => 'Tahun Ajaran berhasil ditambahkan.',
+    'success_tahunajaran_edit' => 'Tahun Ajaran berhasil diperbarui.',
+    'success_tahunajaran_hapus' => 'Tahun Ajaran berhasil dihapus.',
+    'success_tahunajaran_warning' => 'Peringatan! Data tidak dapat dihapus karena sedang digunakan.',
     'success_approved' => 'Berhasil disetujui!',
     'success_kelas_edit' => 'Data Kelas berhasil diperbarui.',
+    'success_kelas_added' => 'Data Kelas berhasil ditambahkan.',
+    'success_jadwal_added' => 'Jadwal Stase berhasil ditambahkan.',
+    'success_logout' => 'Anda telah berhasil keluar.',
+    'konfirm' => 'Yakin ingin keluar?',
+    'error_username' => 'Username atau password salah.',
 ];

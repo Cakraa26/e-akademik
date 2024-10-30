@@ -1501,19 +1501,23 @@ table tr:hover .table-links {
     color: #fff;
 }
 .badge.badge-primary {
-    background-color: #1a5319;
+    background-color: #cfe2ff;
+    color: #052c65;
 }
 .badge.badge-secondary {
-    background-color: #cdd3d8;
+    background-color: #e2e3e5;
+    color: #2b2f32;
 }
 .badge.badge-success {
-    background-color: #63ed7a;
+    background-color: #d1e7dd;
+    color: #0a3622;
 }
 .badge.badge-info {
     background-color: #3abaf4;
 }
 .badge.badge-danger {
-    background-color: #fc544b;
+    background-color: #f8d7da;
+    color: #58151c;
 }
 .badge.badge-light {
     background-color: #e3eaef;

@@ -159,10 +159,10 @@
 
                             <div class="row mt-2">
                                 <div class="col-12 d-flex justify-content-end">
-                                    <a class="btn btn-dark load-btn mr-2"
+                                    <a class="btn btn-dark mr-2"
                                         href="{{ route('monitoring.detail', $tmotorik->residen->pk) }}">
                                         <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                    <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
+                                    <button type="submit" class="btn btn-primary">
                                         {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                     </button>
                                 </div>

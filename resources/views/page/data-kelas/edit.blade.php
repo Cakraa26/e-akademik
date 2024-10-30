@@ -6,7 +6,6 @@
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
 @endpush
 
 @section('main')
@@ -103,8 +102,7 @@
                                             <div class="mb-4 row align-items-center">
                                                 <label class="col-sm-3">{{ __('message.ctn') }}</label>
                                                 <div class="col-sm-9">
-                                                    <textarea class="form-control" name="ctn_tingkat" id="ctn_tingkat" required
-                                                        data-parsley-required-message="{{ __('message.ctnrequired') }}" style="height: 100px">{{ old('ctn_tingkat', $kelas->ctn_tingkat) }}</textarea>
+                                                    <textarea class="form-control" name="ctn_tingkat" id="ctn_tingkat" style="height: 100px">{{ old('ctn_tingkat', $kelas->ctn_tingkat) }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
@@ -124,10 +122,10 @@
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('data.kelas.index') }}">
-                                                <i class="fas fa-arrow-left pr-2"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
+                                            <a class="btn btn-dark mr-2" href="{{ route('data.kelas.index') }}">
+                                                <i class="fas fa-arrow-left pr-1"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -146,7 +144,6 @@
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script>

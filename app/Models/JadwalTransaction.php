@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 
-class Dosen extends Authenticatable
+class JadwalTransaction extends Model
 {
     use HasFactory;
-    protected $table = 'm_dosen';
+    protected $table = 't_jadwal';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
@@ -26,10 +25,12 @@ class Dosen extends Authenticatable
 
         return $nextPk;
     }
-    protected function type(): Attribute
+    public function stase()
     {
-        return new Attribute(
-            get: fn ($value) =>  ["0", "1"][$value],
-        );
+        return $this->belongsTo(Stase::class, 'stasefk', 'pk');
+    }
+    public function nilai()
+    {
+        return $this->hasMany(JadwalTransactionNilai::class, 'jadwalfk'); 
     }
 }
