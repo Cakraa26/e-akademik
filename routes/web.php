@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HariKerjaController;
 use App\Http\Controllers\KaryaIlmiahController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KategoriController;
@@ -116,6 +117,17 @@ Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
     'update' => 'tahun-ajaran.update',
     'destroy' => 'tahun-ajaran.destroy',
 ]);
+
+// Data Hari Kerja
+Route::resource('hari-kerja', HariKerjaController::class)->names([
+    'index' => 'hari.kerja.index',
+    'create' => 'hari.kerja.create',
+    'store' => 'hari.kerja.store',
+    'edit' => 'hari.kerja.edit',
+    'update' => 'hari.kerja.update',
+    'destroy' => 'hari.kerja.destroy',
+]);
+
 // Data Calon Residen
 Route::resource('data-mahasiswa', MahasiswaController::class)->names([
     'index' => 'data.mahasiswa.index',

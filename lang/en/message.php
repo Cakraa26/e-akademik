@@ -111,6 +111,16 @@ return [
     'unduh' => "Download File",
     'tahapan' => "Stages of Scientific Work",
 
+    // Hari Kerja
+    'masuk' => "Entry",
+    'keluar' => "Out",
+    'harikerja' => "Working Days",
+    'hari' => "Day",
+    'tambahharikerja' => "Add working days",
+    'editharikerja' => "Edit working days",
+    'jammasuk' => "Entry time",
+    'jamselesai' => "Over time",
+    'hariaktif' => "Activate Workday",
 
     // Tahun Ajaran
     'aktif' => "Active",
@@ -182,5 +192,8 @@ return [
     'success_tahunajaran_added' => 'School Year has been successfully added.',
     'success_tahunajaran_edit' => 'School Year has been successfully updated.',
     'success_tahunajaran_hapus' => 'School Year has been successfully deleted.',
+    'success_harikerja_added' => 'Workday data successfully added',
+    'success_harikerja_edit' => 'Workday data successfully updated',
+    'success_harikerja_hapus' => 'Workday data successfully deleted',
     'success_approved' => 'Successfully approved!',
 ];

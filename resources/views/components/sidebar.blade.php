@@ -28,6 +28,9 @@
                     <li class="{{ Request::is('stase') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('stase') }}">Stase</a>
                     </li>
+                    <li class='{{ Request::is('hari-kerja*') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
+                    </li>
                     <li class="{{ Request::is('rs') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('rs') }}">{{ __('message.rs') }}</a>
                     </li>
