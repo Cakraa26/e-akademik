@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $type_menu = "master-data";
-        $residen = Residen::where('statuskuliah', '0')->get();
+        $residen = Residen::where('statuskuliah', '0')->where('aktif', '0')->get();
         return view('page.data-mahasiswa.index', [
             'type_menu' => $type_menu,
             'residen' => $residen,
