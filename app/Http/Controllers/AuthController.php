@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Residen;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\VerifyRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\Auth\Register\RegisterService;
 
 class AuthController extends Controller
@@ -89,13 +90,20 @@ class AuthController extends Controller
             ->first();
 
         if ($user && Hash::check($password, $user->password)) {
-            Session::put('role', $user->role);
+            if ($user->is_verified == 1) {
+                Session::put('nm', $user->nm);
+                Session::put('semester', $user->semester);
+                Session::put('tingkat', $user->tingkat->kd);
 
-            return redirect()->route('dashboard');
+                Session::put('role', $user->role);
+                return redirect()
+                    ->route('dashboard');
+            } else {
+                return back()->with('gagal', __('message.error_not_verified'));
+            }
         }
 
-        return back()->with('error',__('message.error_username'),
-        );
+        return back()->with('error', __('message.error_username'));
     }
     public function logout()
     {

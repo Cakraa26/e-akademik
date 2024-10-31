@@ -224,4 +224,5 @@ return [
     'success_logout' => 'Anda telah berhasil keluar.',
     'konfirm' => 'Yakin ingin keluar?',
     'error_username' => 'Username atau password salah.',
+    'error_not_verified' => 'Akun Anda belum terverifikasi.',
 ];

@@ -164,14 +164,15 @@
                 <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
             </a>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <div class="dropdown-menu dropdown-menu-right">
-                    <button type="submit" class="btn text-danger" onClick="return confirm('{{ __('message.konfirm') }}');">
+            <div class="dropdown-menu dropdown-menu-right">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn text-danger"
+                        onClick="return confirm('{{ __('message.konfirm') }}');">
                         <i class="fas fa-sign-out-alt pl-2 pr-1"></i> {{ __('message.logout') }}
                     </button>
-                </div>
-            </form>
+                </form>
+            </div>
         </li>
     </ul>
 </nav>
