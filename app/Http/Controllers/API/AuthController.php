@@ -76,7 +76,7 @@ class AuthController extends Controller
             $user = User::where('username', $username)
                 ->first();
 
-            if (!$user && !Hash::check($password, $user->password)) {
+            if (!$user && $user->role != 1 && !Hash::check($password, $user->password)) {
                 return response()->json(['message' => 'Unauthorized'], 401);
             }
 
@@ -94,7 +94,14 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        try {
+            $request->user()->currentAccessToken()->delete();
+
+            return response()->json([], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
+        }
     }
 }
