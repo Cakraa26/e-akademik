@@ -120,6 +120,9 @@ return [
     'unduh' => "Download File",
     'tahapan' => "Stages of Scientific Work",
     'nodata' => "No data available.",
+    'pending' => "Pending",
+    'selesai' => "Completed",
+    'upload' => "Upload",
 
     // Tahun Ajaran
     'aktif' => "Active",
@@ -213,4 +216,5 @@ return [
     'konfirm' => 'Are you sure you want to logout?',
     'error_username' => 'Incorrect username or password.',
     'error_not_verified' => 'Your account has not been verified.',
+    'success_file_uploaded' => 'File has been successfully uploaded.',
 ];
