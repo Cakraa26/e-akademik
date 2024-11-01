@@ -13,8 +13,20 @@ class KaryaIlmiahData extends Model
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->pk = $model->generatePk();
+        });
+    }
+    protected function generatePk()
+    {
+        $last = self::orderBy('pk', 'desc')->first();
+        $nextPk = $last ? $last->pk + 1 : 1;
 
-    public function karyaIlmiah()
+        return $nextPk;
+    }
+    public function karyailmiahpk()
     {
         return $this->belongsTo(KaryaIlmiah::class, 'karyailmiahfk', 'pk');
     }

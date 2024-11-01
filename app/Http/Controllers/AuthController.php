@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Residen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,16 +86,11 @@ class AuthController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        $user = DB::table('account')
-            ->where('username', $username)
-            ->first();
+        $user = User::where('username', $username)->first();
 
         if ($user && Hash::check($password, $user->password)) {
             if ($user->is_verified == 1) {
-                Session::put('nm', $user->nm);
-                Session::put('semester', $user->semester);
-                Session::put('tingkat', $user->tingkat->kd);
-
+                Auth::login($user);
                 Session::put('role', $user->role);
                 return redirect()
                     ->route('dashboard');

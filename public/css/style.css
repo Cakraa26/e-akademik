@@ -129,7 +129,7 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
 .text-success-all *,
 .text-success-all *:before,
 .text-success-all *:after {
-    color: #47c363 !important;
+    color: #198754 !important;
 }
 
 .text-info,
@@ -143,14 +143,14 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
 .text-warning-all *,
 .text-warning-all *:before,
 .text-warning-all *:after {
-    color: #ffa426 !important;
+    color: #ffc107 !important;
 }
 
 .text-danger,
 .text-danger-all *,
 .text-danger-all *:before,
 .text-danger-all *:after {
-    color: #fc544b !important;
+    color: #dc3545 !important;
 }
 
 .text-light,
@@ -1498,7 +1498,8 @@ table tr:hover .table-links {
     font-size: 12px;
 }
 .badge.badge-warning {
-    color: #fff;
+    background-color: #fff3cd;
+    color: #664d03;
 }
 .badge.badge-primary {
     background-color: #cfe2ff;

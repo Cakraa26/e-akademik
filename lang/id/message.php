@@ -140,6 +140,9 @@ return [
     'unduh' => "Unduh File",
     'tahapan' => "Tahapan Karya Ilmiah",
     'nodata' => "Tidak ada data yang tersedia.",
+    'pending' => "Tertunda",
+    'selesai' => "Selesai",
+    'upload' => "Unggah",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -225,4 +228,5 @@ return [
     'konfirm' => 'Yakin ingin keluar?',
     'error_username' => 'Username atau password salah.',
     'error_not_verified' => 'Akun Anda belum terverifikasi.',
+    'success_file_uploaded' => 'File telah berhasil diunggah.',
 ];

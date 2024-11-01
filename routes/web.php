@@ -44,7 +44,7 @@ Route::get('/locale/{locale}', function ($locale) {
 // Dashboard
 Route::get('/dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-})->middleware('checkRole:0,1,3')->name('dashboard');
+})->middleware('checkRole:0,1,2')->name('dashboard');
 
 Route::middleware(['checkRole:0'])->group(function () {
 
@@ -101,7 +101,6 @@ Route::middleware(['checkRole:1'])->group(function () {
         'destroy' => 'jadwal.stase.destroy',
     ]);
     Route::post('/jadwal-stase/{pk}/store', [JadwalStase::class, 'store'])->name('jadwal.stase.store');
-    ;
 
     // Data Group
     Route::resource('data-group', GroupController::class)->names([
@@ -178,11 +177,12 @@ Route::middleware(['checkRole:1'])->group(function () {
     ]);
 });
 
-Route::middleware(['checkRole:3'])->group(function () {
+Route::middleware(['checkRole:2'])->group(function () {
     // Karya Ilmiah Residen
     Route::resource('karya-ilmiah-residen', KaryaIlmiahResiden::class)->names([
         'index' => 'karya-ilmiah.residen.index',
     ]);
+    Route::post('/karya-ilmiah-residen/store', [KaryaIlmiahResiden::class, 'store'])->name('karya-ilmiah.upload');
 
     // Data Psikomotorik
     Route::resource('data-psikomotorik', PsikomotorikController::class)->names([

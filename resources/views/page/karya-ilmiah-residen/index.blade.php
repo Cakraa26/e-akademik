@@ -5,7 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
 @endpush
 
 @section('main')
@@ -24,32 +23,47 @@
                 </div>
             </div>
 
-            {{-- Alert --}}
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-            {{-- Alert End --}}
-
             <div class="section-body">
                 <div class="row">
                     <div class="col-md-6">
                         <label class="form-label">{{ __('message.residen') }}</label>
-                        <h2 class="section-title2">{{ $nama }}</h2>
+                        <h2 class="section-title2">{{ auth()->user()->nm }}</h2>
                     </div>
                     <div class="col-md-6 text-md-right">
                         <label class="form-label">Semester</label>
-                        <h2 class="section-title2">{{ $semester }}</h2>
+                        <h2 class="section-title2">{{ auth()->user()->semester }}</h2>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <label class="form-label">{{ __('message.tingkat') }}</label>
-                        <h2 class="section-title2">{{ $tingkat }}</h2>
+                        <h2 class="section-title2">{{ auth()->user()->tingkat }}</h2>
                     </div>
                 </div>
+
+                {{-- Alert --}}
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible show fade" role="alert">
+                        <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
+                        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                        <strong>Error!</strong> {{ session('error') }}
+                        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                @endif
+                {{-- Alert End --}}
 
                 <div class="card">
                     <div class="card-body">
@@ -57,9 +71,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.nama') }}</th>
                                         <th>Status</th>
                                         <th>{{ __('message.ctn') }}</th>
@@ -68,19 +80,26 @@
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($karya as $k)
+                                    @foreach ($data as $k)
                                         <tr>
                                             <th>{{ $no++ }}</th>
                                             <td>{{ $k->nm }}</td>
                                             <td>
-                                                <input class="custom-switch-input" type="radio"
-                                                    id="switch-{{ $k->pk }}" {{ $k->aktif === 1 ? 'checked' : '' }}
-                                                    disabled>
-                                                <span class="custom-switch-indicator"></span>
+                                                @if ($k->stssudah === 0)
+                                                    <span></span>
+                                                @elseif ($k->stssudah === 1)
+                                                    <span class="badge badge-warning">{{ __('message.pending') }}</span>
+                                                @elseif ($k->stssudah === 2)
+                                                    <span class="badge badge-success">{{ __('message.selesai') }}</span>
+                                                @elseif ($k->stssudah === 3)
+                                                    <span class="badge badge-danger">{{ __('message.cancel') }}</span>
+                                                @endif
                                             </td>
-                                            <td>{{ $k->nm }}</td>
+                                            <td>{{ $k->ctnfile }}</td>
                                             <td>
-                                                <a href="#" class="text-primary">Upload</a>
+                                                <button type="button" class="btn text-primary pl-0" data-bs-toggle="modal"
+                                                    data-bs-target="#uploadModal">Upload<i
+                                                        class="fa-solid fa-upload pl-2"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -92,6 +111,29 @@
                 </div>
             </div>
         </section>
+
+        <!-- Modal Upload -->
+        @foreach ($data as $k)
+            <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="{{ route('karya-ilmiah.upload') }}"
+                            method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body">
+                                <input type="hidden" name="karyailmiahfk" value="{{ $k->karyailmiahpk }}">
+                                <input type="file" name="karyaIlmiah">
+                            </div>
+                            <div class="modal-footer mt-n3">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">{{ __('message.cancel') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('message.upload') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 @endsection
 
@@ -99,8 +141,7 @@
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
-    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script>
@@ -109,13 +150,5 @@
                 scrollX: true
             });
         });
-    </script>
-
-    <script>
-        var translations = {
-            deleteConfirmation: "{{ __('message.deleteConfirm') }}",
-            cancel: "{{ __('message.cancel') }}",
-            confirm: "{{ __('message.confirm') }}"
-        };
     </script>
 @endpush

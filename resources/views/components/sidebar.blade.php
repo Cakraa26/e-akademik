@@ -14,7 +14,7 @@
                     <span>{{ __('message.dashboard') }}</span></a>
             </li>
 
-            @if (session('role') == 3)
+            @if (session('role') == 2)
                 <li class="{{ Request::is('download-file') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('download-file') }}"><i class="fas fa-download"></i>
                         <span>Download File</span></a>
