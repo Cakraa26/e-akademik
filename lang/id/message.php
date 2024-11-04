@@ -143,6 +143,8 @@ return [
     'pending' => "Tertunda",
     'selesai' => "Selesai",
     'upload' => "Unggah",
+    'prosedur' => "Prosedur",
+    'menunggu' => "Menunggu",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",

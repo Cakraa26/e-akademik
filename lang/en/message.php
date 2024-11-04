@@ -123,6 +123,8 @@ return [
     'pending' => "Pending",
     'selesai' => "Completed",
     'upload' => "Upload",
+    'prosedur' => "Procedure",
+    'menunggu' => "Waiting",
 
     // Tahun Ajaran
     'aktif' => "Active",

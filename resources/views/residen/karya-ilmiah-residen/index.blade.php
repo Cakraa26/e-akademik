@@ -97,9 +97,9 @@
                                             </td>
                                             <td>{{ $k->ctnfile }}</td>
                                             <td>
-                                                <button type="button" class="btn text-primary pl-0" data-bs-toggle="modal"
-                                                    data-bs-target="#uploadModal">Upload<i
-                                                        class="fa-solid fa-upload pl-2"></i></button>
+                                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                                    data-bs-target="#uploadModal{{ $k->karyailmiahpk }}"><i
+                                                        class="fa-solid fa-upload"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -114,15 +114,18 @@
 
         <!-- Modal Upload -->
         @foreach ($data as $k)
-            <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="uploadModal{{ $k->karyailmiahpk }}" tabindex="-1"
+                aria-labelledby="uploadModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="{{ route('karya-ilmiah.upload') }}"
-                            method="POST" enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h5>{{ __('message.upload') }} File - {{ $k->nm }}</h5>
+                        </div>
+                        <form action="{{ route('karya-ilmiah.upload') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="modal-body">
-                                <input type="hidden" name="karyailmiahfk" value="{{ $k->karyailmiahpk }}">
-                                <input type="file" name="karyaIlmiah">
+                            <div class="modal-body mt-n2">
+                                <input type="hidden" name="karyailmiahpk" value="{{ $k->karyailmiahpk }}">
+                                <input type="file" class="form-control" name="karyaIlmiah">
                             </div>
                             <div class="modal-footer mt-n3">
                                 <button type="button" class="btn btn-secondary"

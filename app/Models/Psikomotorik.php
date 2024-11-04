@@ -30,7 +30,8 @@ class Psikomotorik extends Model
     }
     public function t_motorik()
     {
-        return $this->hasMany(MotorikTransaction::class, 'motorikfk');
+        return $this->hasMany(MotorikTransaction::class, 'motorikfk', 'pk')
+        ->where('residenfk', auth()->user()->pk);
     }
     protected static function booted()
     {

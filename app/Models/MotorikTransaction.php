@@ -35,6 +35,10 @@ class MotorikTransaction extends Model
     {
         return $this->belongsTo(Motorik::class, 'motorikfk', 'pk');
     }
+    public function psikomotorik()
+    {
+        return $this->belongsTo(Psikomotorik::class, 'motorikfk', 'pk');
+    }
 
     public function motorikData()
     {

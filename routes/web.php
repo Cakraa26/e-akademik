@@ -17,6 +17,7 @@ use App\Http\Controllers\KaryaIlmiahController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
+use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\TingkatResidenController;
 
 /*
@@ -102,6 +103,16 @@ Route::middleware(['checkRole:1'])->group(function () {
     ]);
     Route::post('/jadwal-stase/{pk}/store', [JadwalStase::class, 'store'])->name('jadwal.stase.store');
 
+    // Data Psikomotorik
+    Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
+        'index' => 'data.psikomotorik.index',
+        'create' => 'data.psikomotorik.create',
+        'store' => 'data.psikomotorik.store',
+        'edit' => 'data.psikomotorik.edit',
+        'update' => 'data.psikomotorik.update',
+        'destroy' => 'data.psikomotorik.destroy',
+    ]);
+    
     // Data Group
     Route::resource('data-group', GroupController::class)->names([
         'index' => 'data.group.index',
@@ -178,20 +189,17 @@ Route::middleware(['checkRole:1'])->group(function () {
 });
 
 Route::middleware(['checkRole:2'])->group(function () {
-    // Karya Ilmiah Residen
+    // Karya Ilmiah 
     Route::resource('karya-ilmiah-residen', KaryaIlmiahResiden::class)->names([
         'index' => 'karya-ilmiah.residen.index',
+        'store' => 'karya-ilmiah.upload',
     ]);
-    Route::post('/karya-ilmiah-residen/store', [KaryaIlmiahResiden::class, 'store'])->name('karya-ilmiah.upload');
 
-    // Data Psikomotorik
-    Route::resource('data-psikomotorik', PsikomotorikController::class)->names([
-        'index' => 'data.psikomotorik.index',
-        'create' => 'data.psikomotorik.create',
-        'store' => 'data.psikomotorik.store',
-        'edit' => 'data.psikomotorik.edit',
-        'update' => 'data.psikomotorik.update',
-        'destroy' => 'data.psikomotorik.destroy',
+    // Psikomotorik
+    Route::resource('psikomotorik', PsikomotorikResiden::class)->names([
+        'index' => 'psikomotorik.index',
+        'store' => 'psikomotorik.upload',
+        'edit' => 'psikomotorik.detail',
     ]);
 });
 

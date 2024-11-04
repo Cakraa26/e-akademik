@@ -1746,7 +1746,7 @@ h6 .badge {
 .btn-outline-success.disabled:hover,
 .btn-outline-success.disabled:focus,
 .btn-outline-success.disabled:active {
-    background-color: #47c363 !important;
+    background-color: #256b24 !important;
     color: #fff !important;
 }
 
@@ -1905,8 +1905,8 @@ h6 .badge {
 }
 .btn-outline-primary,
 .btn-outline-primary.disabled {
-    border-color: #1a5319;
-    color: #1a5319;
+    border-color: #265073;
+    color: #265073;
 }
 .btn-outline-primary:hover,
 .btn-outline-primary:focus,
@@ -1914,7 +1914,7 @@ h6 .badge {
 .btn-outline-primary.disabled:hover,
 .btn-outline-primary.disabled:focus,
 .btn-outline-primary.disabled:active {
-    background-color: #1a5319 !important;
+    background-color: #316a97 !important;
     color: #fff;
 }
 
