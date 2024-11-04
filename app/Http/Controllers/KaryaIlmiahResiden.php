@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KaryaIlmiah;
 use Illuminate\Http\Request;
 use App\Models\KaryaIlmiahData;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +30,7 @@ class KaryaIlmiahResiden extends Controller
                 ->where('m_karyailmiah.aktif', 1)
                 ->get();
 
-            return view("page.karya-ilmiah-residen.index", [
+            return view("residen.karya-ilmiah-residen.index", [
                 'data' => $data,
                 'type_menu' => $type_menu,
             ]);
@@ -48,6 +47,7 @@ class KaryaIlmiahResiden extends Controller
         try {
             $residenId = auth()->user()->pk;
             $karyaIlmiahId = $request->karyailmiahpk;
+            
             $data = KaryaIlmiahData::where('residenfk', $residenId)
                 ->where('karyailmiahfk', $karyaIlmiahId)
                 ->first();
@@ -68,15 +68,18 @@ class KaryaIlmiahResiden extends Controller
                 [
                     'uploadfile' => $filePath,
                     'stssudah' => 1,
-                    'semester' => 1,
-                    'tingkatfk' => 1,
+                    'semester' => auth()->user()->semester,
+                    'tingkatfk' => auth()->user()->tingkatfk,
                 ]
             );
-        
+
+            DB::commit();
+
             return redirect()
                 ->route('karya-ilmiah.residen.index')
                 ->with('success', __('message.success_file_uploaded'));
         } catch (\Exception $e) {
+            DB::rollBack();
             return back()
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());

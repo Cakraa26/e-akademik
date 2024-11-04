@@ -26,7 +26,7 @@ class KaryaIlmiahData extends Model
 
         return $nextPk;
     }
-    public function karyailmiahpk()
+    public function karyailmiah()
     {
         return $this->belongsTo(KaryaIlmiah::class, 'karyailmiahfk', 'pk');
     }

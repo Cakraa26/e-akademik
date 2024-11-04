@@ -13,6 +13,7 @@ use App\Models\SubKategoriMotorik;
 use DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Log;
 use Storage;
 
 class AcademicController extends Controller
@@ -90,7 +91,7 @@ class AcademicController extends Controller
             $data = DB::table('m_motorik')
                 ->leftJoin('t_motorik', function ($join) {
                     $join->on('m_motorik.pk', '=', 't_motorik.motorikfk')
-                        ->where('t_motorik.residenfk', 1);
+                        ->where('t_motorik.residenfk', auth()->user()->pk);
                 })
                 ->join('m_subkategori_motorik', 'm_motorik.subkategorifk', '=', 'm_subkategori_motorik.pk')
                 ->where('m_motorik.kategorifk', $request->motorikKategori)
@@ -107,6 +108,7 @@ class AcademicController extends Controller
                     't_motorik.qtybimbingan as bimbingan',
                     DB::raw("CASE WHEN t_motorik.stsmandiri = 1 OR t_motorik.stsbimbingan = 1 THEN 'waiting' ELSE '' END as status")
                 )
+                ->orderBy("motorik_pk")
                 ->get();
 
             $grouped = $data->groupBy('subkategori_name')->map(function ($items, $subkategori) {
@@ -130,12 +132,12 @@ class AcademicController extends Controller
         DB::beginTransaction();
 
         try {
-            $motorikTransaction = MotorikTransaction::where('motorikfk', $motorikId)->where('residenfk', 1)->first();
+            $motorikTransaction = MotorikTransaction::where('motorikfk', $motorikId)->where('residenfk', auth()->user()->pk)->first();
 
             if (!$motorikTransaction) {
                 $motorikTransaction = MotorikTransaction::create([
                     'motorikfk' => $motorikId,
-                    'residenfk' => 1,
+                    'residenfk' => auth()->user()->pk,
                     'qtymandiri' => $request->status == 0 ? 1 : 0,
                     'qtybimbingan' => $request->status == 1 ? 1 : 0,
                     'stsmandiri' => $request->status == 0 ? 1 : 0,
@@ -155,15 +157,15 @@ class AcademicController extends Controller
             $file = Storage::disk('public')->put('motorik-residen', $request->file('fileMotorik'));
 
             $motorikTransaction->motorikData()->create([
-                'residenfk' => 1,
+                'residenfk' => auth()->user()->pk,
                 'motorikfk' => $motorikId,
                 'tgl' => now()->format('Y-m-d H:i:s'),
                 'nmfile' => $file,
                 'stsmandiri' => $request->status == 0 ? 1 : 0,
                 'stsbimbingan' => $request->status == 1 ? 1 : 0,
                 'stsapproved' => 1,
-                'semester' => 1,
-                'tingkatfk' => 1,
+                'semester' => auth()->user()->semesterfk,
+                'tingkatfk' => auth()->user()->tingkatfk,
             ]);
 
             DB::commit();
@@ -178,12 +180,11 @@ class AcademicController extends Controller
     public function getPsikomotorikDetailByResiden($motorikTransactionId)
     {
         try {
-            $data = DB::table('t_motorik')
-                ->join('t_motorik_dt', 't_motorik.pk', '=', 't_motorik_dt.motorikfk')
+            $data = DB::table('t_motorik_dt')
+                ->join('t_motorik', 't_motorik_dt.t_motorik_fk', '=', 't_motorik.pk')
                 ->join('m_motorik', 'm_motorik.pk', '=', 't_motorik.motorikfk')
                 ->join('m_subkategori_motorik', 'm_motorik.subkategorifk', '=', 'm_subkategori_motorik.pk')
                 ->join('m_tingkat', 't_motorik_dt.tingkatfk', '=', 'm_tingkat.pk')
-                ->where('t_motorik.pk', $motorikTransactionId)
                 ->select(
                     't_motorik_dt.pk',
                     't_motorik.pk as motorikpk',
@@ -211,6 +212,7 @@ class AcademicController extends Controller
                 END as can_upload"),
                     't_motorik_dt.ctn'
                 )
+                ->where('t_motorik.pk', $motorikTransactionId)
                 ->get();
 
             return response()->json(
@@ -234,7 +236,7 @@ class AcademicController extends Controller
         DB::beginTransaction();
 
         try {
-            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', 1)->firstOrFail();
+            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', auth()->user()->pk)->firstOrFail();
             $motorikTransactionData = $motorikTransaction->motorikData()->findOrFail($motorikTransactionDataId);
 
             if ($motorikTransactionData->stsapproved == 2) {
@@ -274,7 +276,7 @@ class AcademicController extends Controller
         DB::beginTransaction();
 
         try {
-            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', 1)->firstOrFail();
+            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', auth()->user()->pk)->firstOrFail();
             $motorikTransactionData = $motorikTransaction->motorikData()->findOrFail($motorikTransactionDataId);
 
             if ($motorikTransactionData->stsapproved == 2) {

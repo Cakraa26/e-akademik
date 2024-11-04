@@ -60,8 +60,8 @@
                 </li>
 
                 {{-- Psikomotorik --}}
-                <li class="{{ Request::is('data-psikomotorik*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('data.psikomotorik.index') }}"><i class="fas fa-hands"></i>
+                <li class="{{ Request::is('psikomotorik') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('psikomotorik.index') }}"><i class="fas fa-hands"></i>
                         <span>{{ __('message.dtmotorik') }}</span></a>
                 </li>
 
