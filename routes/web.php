@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\MotorikTransaction;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\JadwalStase;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UASController;
+use App\Http\Controllers\UTSController;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
@@ -12,12 +16,12 @@ use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KaryaIlmiahResiden;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KaryaIlmiahController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
-use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\TingkatResidenController;
 
 /*
@@ -112,7 +116,7 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'data.psikomotorik.update',
         'destroy' => 'data.psikomotorik.destroy',
     ]);
-    
+
     // Data Group
     Route::resource('data-group', GroupController::class)->names([
         'index' => 'data.group.index',
@@ -154,7 +158,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     ]);
 
     Route::get('/monitoring-motorik/{pk}/detail', [MonitoringController::class, 'detail'])->name('monitoring.detail');
-    Route::get('/monitoring-motorik/{pk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
+    Route::get('/monitoring-motorik/{pk}/{residenfk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
     Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
 
     // Karya Ilmiah Admin
@@ -186,6 +190,20 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'tingkat.residen.update',
         'destroy' => 'tingkat.residen.destroy',
     ]);
+
+    // UAS
+    Route::resource('uas', UASController::class)->names([
+        'index' => 'uas.index',
+        'edit' => 'uas.edit',
+        'update' => 'uas.update',
+    ]);
+
+    // UTS
+    Route::resource('uts', UTSController::class)->names([
+        'index' => 'uts.index',
+        'edit' => 'uts.edit',
+        'update' => 'uts.update',
+    ]);
 });
 
 Route::middleware(['checkRole:2'])->group(function () {
@@ -199,8 +217,11 @@ Route::middleware(['checkRole:2'])->group(function () {
     Route::resource('psikomotorik', PsikomotorikResiden::class)->names([
         'index' => 'psikomotorik.index',
         'store' => 'psikomotorik.upload',
-        'edit' => 'psikomotorik.detail',
+        'edit' => 'psikomotorik.edit',
+        'destroy' => 'psikomotorik.destroy',
     ]);
+    Route::post('/psikomotorik/upload-detail', [PsikomotorikResiden::class, 'uploadDetail'])->name('psikomotorik.upload.detail');
+
 });
 
 // auth

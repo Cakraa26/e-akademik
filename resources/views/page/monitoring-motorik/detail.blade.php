@@ -126,12 +126,12 @@
                                             <td>{{ $t->qtymandiri }}</td>
                                             <td>
                                                 <div class="text-center">
-                                                    <a href="{{ route('monitoring.approve', $t->pk) }}"
+                                                    <a href="{{ route('monitoring.approve', ['pk' => $t->pk, 'residenfk' => $t->residenfk]) }}"
                                                         class="btn btn-secondary mr-2">
                                                         {{ $t->motorikData->where('stsapproved', 1)->sum('jmlfile') }}
                                                     </a>
                                                     <i class="fas fa-ellipsis-v"></i>
-                                                    <a href="{{ route('monitoring.approve', $t->residen->pk) }}"
+                                                    <a href="{{ route('monitoring.approve', ['pk' => $t->pk, 'residenfk' => $t->residenfk]) }}"
                                                         class="btn btn-secondary ml-2">
                                                         {{ $t->sum('stsmandiri') }}
                                                     </a>

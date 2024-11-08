@@ -22,7 +22,6 @@ class PsikomotorikController extends Controller
                 return $q->where('kategorifk', $request->kategorifk);
             })->get();
 
-
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
         $subkategori = SubKategori::select('pk', 'nm')->get();
