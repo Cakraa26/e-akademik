@@ -223,7 +223,7 @@
         });
     </script> --}}
 
-    <script>
+    {{-- <script>
         $('.dropify').dropify();
     </script>
 
@@ -245,5 +245,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endpush
