@@ -22,6 +22,7 @@ return [
     'kognitif' => "Kognitif",
     'afektif' => "Afektif",
     'psikomotorik' => "Psikomotorik",
+    'detailmotorik' => "Detail Psikomotorik",
     'karyailmiah' => "Karya Ilmiah",
     'laporan' => "Laporan",
     'absensi' => "Absensi",
@@ -31,7 +32,7 @@ return [
     'rs' => "Rumah Sakit",
     'jdwstase' => "Jadwal Stase",
     'nilaistase' => "Nilai Stase",
-    'rekapnilai' => "Rekap Nilai",
+    'rekapnilai' => "Nilai Rekap",
     'grpmotorik' => "Grup Psikomotorik",
     'group' => "Grup",
     'ktgmotorik' => "Kategori Psikomotorik",
@@ -46,7 +47,8 @@ return [
     'record' => "Catatan",
     'calonresiden' => "Calon Residen",
     'detailpendaftaranresiden' => "Detail Pendaftaran Residen",
-
+    'harikerja' => "Hari Kerja",
+    'dftabsensi' => "Daftar Absensi",
 
     // CRUD
     'tambah' => "Tambah",
@@ -105,7 +107,6 @@ return [
     'kd' => "Kode",
     'warna' => "Warna",
     'semester' => "Semester",
-    'namatahapan' => "Nama Tahapan",
     'drsemester' => "Dari Semester",
     'btssemester' => "Batas Semester",
     'tahunajaran' => "Tahun Ajaran/Semester",
@@ -145,9 +146,13 @@ return [
     'upload' => "Unggah",
     'prosedur' => "Prosedur",
     'menunggu' => "Menunggu",
+    'tanggal' => "Tanggal",
+    'disetujui' => "Disetujui",
+    'hapus' => "Hapus",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
+    'hasiluts' => "HASIL UTS",
     'totaluasuts' => "TOTAL (UAS + UTS + STASE)",
     'hasil' => "HASIL",
     'keterangansemester' => "Keterangan Semester",
@@ -231,4 +236,6 @@ return [
     'error_username' => 'Username atau password salah.',
     'error_not_verified' => 'Akun Anda belum terverifikasi.',
     'success_file_uploaded' => 'File telah berhasil diunggah.',
+    'success_deleted' => 'Data berhasil dihapus.',
+    'success_edit' => 'Data berhasil diperbarui.',
 ];

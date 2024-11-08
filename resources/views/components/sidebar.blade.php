@@ -60,7 +60,7 @@
                 </li>
 
                 {{-- Psikomotorik --}}
-                <li class="{{ Request::is('psikomotorik') ? 'active' : '' }}">
+                <li class="{{ Request::is('psikomotorik*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('psikomotorik.index') }}"><i class="fas fa-hands"></i>
                         <span>{{ __('message.dtmotorik') }}</span></a>
                 </li>
@@ -95,10 +95,10 @@
                                 href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
                         </li>
                         <li class="{{ Request::is('stase') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('stase') }}">Stase</a>
+                            <a class="nav-link" href="{{ url('stase') }}">{{ __('message.harikerja') }}</a>
                         </li>
                         <li class="{{ Request::is('rs') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('rs') }}">{{ __('message.rs') }}</a>
+                            <a class="nav-link" href="{{ url('rs') }}">{{ __('message.upload') }} File</a>
                         </li>
                     </ul>
                 </li>
@@ -143,11 +143,11 @@
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.nilaistase') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">UTS</a>
+                        <li class="{{ Request::is('uts') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('uts.index') }}">UTS</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">UAS</a>
+                        <li class="{{ Request::is('uas') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('uas.index') }}">UAS</a>
                         </li>
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.rekapnilai') }}</a>

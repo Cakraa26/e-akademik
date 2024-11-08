@@ -112,8 +112,8 @@ class JadwalStase extends Controller
                         'tingkatfk' => $residen->tingkatfk,
                         'bulan' => $date['bulan'],
                         'tahun' => $date['tahun'],
-                        'stasefk' => $request->input($inputName),
                     ];
+                    
                     $update = [
                         'stasefk' => $request->input($inputName),
                     ];
@@ -126,7 +126,6 @@ class JadwalStase extends Controller
                         $create = [
                             'jadwalfk' => $jadwalTransaction->pk,
                             'dosenfk' => $d->dosenfk,
-                            'stasefk' => $request->input($inputName),
                         ];
 
                         $update = [

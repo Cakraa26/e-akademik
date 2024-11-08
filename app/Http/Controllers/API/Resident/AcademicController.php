@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Academic\ResidenUpdateUploadPsikomotorikRequest;
 use App\Http\Requests\Academic\ResidenUploadKaryaIlmiahRequest;
 use App\Http\Requests\Academic\ResidenUploadPsikomotorikRequest;
+use App\Models\JadwalTransactionNilai;
 use App\Models\KaryaIlmiahData;
 use App\Models\MotorikTransaction;
 use App\Models\MotorikTransactionData;
@@ -309,4 +310,78 @@ class AcademicController extends Controller
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    public function getNilaiStaseResiden(Request $request)
+    {
+        $monthNow = now()->format('m');
+
+        try {
+            $data = DB::table('t_jadwal_nilai')
+                ->join('t_jadwal', 't_jadwal_nilai.jadwalfk', '=', 't_jadwal.pk')
+                ->join('m_dosen', 't_jadwal_nilai.dosenfk', '=', 'm_dosen.pk')
+                ->join('m_stase', 't_jadwal_nilai.stasefk', '=', 'm_stase.pk')
+                ->join('m_thnajaran', 't_jadwal.thnajaranfk', '=', 'm_thnajaran.pk')
+                ->select(
+                    't_jadwal.bulan',
+                    't_jadwal.tahun',
+                    DB::raw('CONCAT("1-", t_jadwal.bulan, "-", t_jadwal.tahun) as date'),
+                    'm_stase.nm as stase',
+                    'm_dosen.nm as dosen',
+                    't_jadwal_nilai.nilai',
+                    't_jadwal_nilai.stsnilai as status',
+                    DB::raw("CASE WHEN t_jadwal_nilai.stsnilai != 3 THEN 1 ELSE 0 END as can_upload"),
+                    DB::raw("CASE WHEN t_jadwal.bulan < $monthNow AND (t_jadwal_nilai.nmfile IS NOT NULL OR t_jadwal_nilai.stsnilai != 3) THEN 1 ELSE 0 END as highlight_row_red")
+                )
+                ->where('t_jadwal.residenfk', auth()->user()->pk)
+                ->where('m_thnajaran.pk', $request->tahunAjaran)
+                ->orderBy('t_jadwal.bulan')
+                ->get();
+
+            // map query result 
+            $grouped = $data->groupBy('date')->map(function ($items, $date) {
+                return [
+                    'date' => $date,
+                    'data' => $items,
+                ];
+            })->values();
+
+            return response()->json(['data' => $grouped], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => 'Failed to retrieve data', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function uploadStaseResiden(Request $request, $staseJadwalNilaiId)
+    {
+        DB::beginTransaction();
+
+        try {
+            $staseNilai = JadwalTransactionNilai::findOrFail($staseJadwalNilaiId);
+
+            if ($staseNilai->stsnilai == 3) {
+                return response()->json(['message' => 'Forbidden'], 403);
+            }
+
+            if ($staseNilai->nmfile && Storage::disk('public')->exists($staseNilai->nmfile)) {
+                Storage::disk('public')->delete($staseNilai->nmfile);
+            }
+
+            $filePath = Storage::disk('public')->put('stase-residen', $request->file('fileStase'));
+
+            $staseNilai->nmfile = $filePath;
+            $staseNilai->stsnilai = 1;
+            $staseNilai->save();
+
+            DB::commit();
+
+            return response()->json(['data' => $staseNilai], 200);
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Data not found'], 404);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
 }

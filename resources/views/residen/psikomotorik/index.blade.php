@@ -147,8 +147,8 @@
                                                             data-bs-target="#uploadModal{{ $m->pk }}">{{ __('message.upload') }}</button>
                                                        
                                                         @foreach ($m->t_motorik as $tmotorik)
-                                                        <a href="{{ route('psikomotorik.detail', $tmotorik->pk) }}"
-                                                            class="btn p-0 text-secondary {{ Request::is('psikomotorik/' . $tmotorik->pk . '/detail') ? 'active' : '' }}">Detail</a>
+                                                        <a href="{{ route('psikomotorik.edit', $tmotorik->pk) }}"
+                                                            class="btn p-0 text-secondary {{ Request::is('psikomotorik/' . $tmotorik->pk . '/edit') ? 'active' : '' }}">Detail</a>
                                                         @endforeach
                                                     </td>
                                                 </tr>

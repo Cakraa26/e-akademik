@@ -21,6 +21,7 @@ return [
     'kognitif' => "Cognitive",
     'afektif' => "Affective",
     'psikomotorik' => "Psychomotor",
+    'detailmotorik' => "Psychomotor Detail",
     'karyailmiah' => "Scientific Work",
     'laporan' => "Reports",
     'absensi' => "Attendance",
@@ -45,6 +46,7 @@ return [
     'residenkarya' => "Resident Scientific Work",
     'residen' => "Resident",
     'record' => "Records",
+    'harikerja' => "Working Day",
 
     // CRUD
     'tambah' => "Add",
@@ -87,7 +89,6 @@ return [
     'kd' => "Code",
     'warna' => "Color",
     'semester' => "Semester",
-    'namatahapan' => "Stage Name",
     'drsemester' => "From Semester",
     'btssemester' => "End Semester",
     'nama' => "Name",
@@ -125,6 +126,9 @@ return [
     'upload' => "Upload",
     'prosedur' => "Procedure",
     'menunggu' => "Waiting",
+    'tanggal' => "Date",
+    'disetujui' => "Approved",
+    'hapus' => "Delete",
 
     // Tahun Ajaran
     'aktif' => "Active",
@@ -137,7 +141,6 @@ return [
     'bulan5' => "Month 5",
     'bulan6' => "Month 6",
     'placeholdernm' => "exm : 2023/2024 Ganjil",
-
 
     // pendaftaran residen 
     'calonresiden' => "Resident Candidate",
@@ -152,6 +155,7 @@ return [
 
     // Modal m_kelas
     'hasiluas' => "UAS RESULT",
+    'hasiluts' => "UTS RESULT",
     'totaluasuts' => "TOTAL (UAS + UTS + STAGE)",
     'hasil' => "RESULT",
     'keterangansemester' => "Semester Description",
@@ -219,4 +223,6 @@ return [
     'error_username' => 'Incorrect username or password.',
     'error_not_verified' => 'Your account has not been verified.',
     'success_file_uploaded' => 'File has been successfully uploaded.',
+    'success_deleted' => 'Data has been successfully deleted.',
+    'success_edit' => 'Data has been successfully updated.',
 ];
