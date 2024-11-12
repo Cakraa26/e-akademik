@@ -57,6 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Master Data
     Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
     Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);
+    Route::get("/tahun-ajaran", [MasterDataController::class, 'getTahunAjaran']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

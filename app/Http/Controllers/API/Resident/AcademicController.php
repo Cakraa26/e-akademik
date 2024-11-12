@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Academic\ResidenUpdateUploadPsikomotorikRequest;
 use App\Http\Requests\Academic\ResidenUploadKaryaIlmiahRequest;
 use App\Http\Requests\Academic\ResidenUploadPsikomotorikRequest;
+use App\Http\Requests\Academic\ResidenUploadStaseRequest;
 use App\Models\JadwalTransactionNilai;
 use App\Models\KaryaIlmiahData;
 use App\Models\MotorikTransaction;
@@ -322,15 +323,16 @@ class AcademicController extends Controller
                 ->join('m_stase', 't_jadwal_nilai.stasefk', '=', 'm_stase.pk')
                 ->join('m_thnajaran', 't_jadwal.thnajaranfk', '=', 'm_thnajaran.pk')
                 ->select(
+                    't_jadwal_nilai.pk',
                     't_jadwal.bulan',
                     't_jadwal.tahun',
-                    DB::raw('CONCAT("1-", t_jadwal.bulan, "-", t_jadwal.tahun) as date'),
+                    DB::raw('CONCAT(t_jadwal.tahun, "-", t_jadwal.bulan, "-", "01") as date'),
                     'm_stase.nm as stase',
                     'm_dosen.nm as dosen',
-                    't_jadwal_nilai.nilai',
+                    DB::raw("CASE WHEN t_jadwal_nilai.nilai > 0 THEN 1 ELSE 0 END as has_nilai"),
                     't_jadwal_nilai.stsnilai as status',
-                    DB::raw("CASE WHEN t_jadwal_nilai.stsnilai != 3 THEN 1 ELSE 0 END as can_upload"),
-                    DB::raw("CASE WHEN t_jadwal.bulan < $monthNow AND (t_jadwal_nilai.nmfile IS NOT NULL OR t_jadwal_nilai.stsnilai != 3) THEN 1 ELSE 0 END as highlight_row_red")
+                    DB::raw("CASE WHEN t_jadwal_nilai.stsnilai != 3 AND t_jadwal_nilai.nilai = 0 THEN 1 ELSE 0 END as can_upload"),
+                    DB::raw("CASE WHEN t_jadwal.bulan < $monthNow AND (t_jadwal_nilai.nmfile IS NOT NULL OR t_jadwal_nilai.stsnilai != 2) THEN 1 ELSE 0 END as highlight_row_red")
                 )
                 ->where('t_jadwal.residenfk', auth()->user()->pk)
                 ->where('m_thnajaran.pk', $request->tahunAjaran)
@@ -351,7 +353,7 @@ class AcademicController extends Controller
         }
     }
 
-    public function uploadStaseResiden(Request $request, $staseJadwalNilaiId)
+    public function uploadStaseResiden(ResidenUploadStaseRequest $request, $staseJadwalNilaiId)
     {
         DB::beginTransaction();
 
