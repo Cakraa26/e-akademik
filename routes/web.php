@@ -12,6 +12,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
+use App\Http\Controllers\UploadFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,16 @@ Route::resource('data-mahasiswa', MahasiswaController::class)->names([
     'edit' => 'data.mahasiswa.edit',
     'update' => 'data.mahasiswa.update',
     'destroy' => 'data.mahasiswa.destroy',
+]);
+
+// Upload File
+Route::resource('upload-file', UploadFileController::class)->names([
+    'index' => 'upload.file.index',
+    'create' => 'upload.file.create',
+    'store' => 'upload.file.store',
+    'edit' => 'upload.file.edit',
+    'update' => 'upload.file.update',
+    'destroy' => 'upload.file.destroy',
 ]);
 
 // auth

@@ -44,6 +44,7 @@ return [
     'record' => "Catatan",
     'calonresiden' => "Calon Residen",
     'detailpendaftaranresiden' => "Detail Pendaftaran Residen",
+    'uploadfile' => "Upload File",
 
 
     // CRUD
@@ -65,6 +66,8 @@ return [
     'editsubkategori' => "Perbarui Sub Kategori",
     'tambahresiden' => "Tambah Residen",
     'editresiden' => "Perbarui Residen",
+    'tambahFile' => "Tambah File",
+    'editFile' => "Perbarui File",
 
     // Button
     'kembali' => "Kembali",
@@ -133,6 +136,8 @@ return [
     'kdrequired' => "Kode wajib diisi.",
     'kdunique' => "Kode sudah terdaftar.",
     'warnarequired' => "Warna wajib diisi.",
+    'ctnrequired' => "Catatan wajib diisi.",
+    'filerequired' => "File wajib diisi.",
     'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
 
     // Alert
@@ -158,6 +163,9 @@ return [
     'success_residen_added' => 'Data Residen berhasil ditambahkan.',
     'success_residen_edit' => 'Data Residen berhasil diperbarui.',
     'success_residen_hapus' => 'Data Residen berhasil dihapus.',
+    'success_file_added' => 'File berhasil diupload.',
+    'success_file_hapus' => 'File berhasil dihapus.',
+    'success_file_edit' => 'File berhasil diperbarui.',
 ];
 
 ?>
