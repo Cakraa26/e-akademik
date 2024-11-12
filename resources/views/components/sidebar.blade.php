@@ -97,9 +97,6 @@
                         <li class="{{ Request::is('stase') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('stase') }}">{{ __('message.harikerja') }}</a>
                         </li>
-                        <li class="{{ Request::is('rs') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('rs') }}">{{ __('message.upload') }} File</a>
-                        </li>
                         <li class="{{ Request::is('upload-file*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.uploadfile') }}</a>
                         </li>
