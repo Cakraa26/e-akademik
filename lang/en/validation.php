@@ -165,6 +165,16 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'kd' => 'Code',
+        'nm' => 'Name',
+        'darisemester' => 'From semester',
+        'sampaisemester' => 'End semester',
+        'warna' => 'Color',
+        'tlp' => 'Phone',
+        'nip' => 'NIP',
+        'karyaIlmiah' => 'Scientific Work',
+        'fileMotorik' => 'Psikomotorik File'
+    ],
 
 ];

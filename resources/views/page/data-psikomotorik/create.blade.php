@@ -7,7 +7,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
 @endpush
 
 @section('main')
@@ -178,11 +177,11 @@
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2"
+                                            <a class="btn btn-dark mr-2"
                                                 href="{{ route('data.psikomotorik.index') }}">
-                                                <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
+                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" id="submit-btn" class="btn btn-primary">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -337,8 +336,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
-
 
     <!-- Page Specific JS File -->
     <script>

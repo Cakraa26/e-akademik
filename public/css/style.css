@@ -129,7 +129,7 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
 .text-success-all *,
 .text-success-all *:before,
 .text-success-all *:after {
-    color: #47c363 !important;
+    color: #198754 !important;
 }
 
 .text-info,
@@ -143,14 +143,14 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
 .text-warning-all *,
 .text-warning-all *:before,
 .text-warning-all *:after {
-    color: #ffa426 !important;
+    color: #ffc107 !important;
 }
 
 .text-danger,
 .text-danger-all *,
 .text-danger-all *:before,
 .text-danger-all *:after {
-    color: #fc544b !important;
+    color: #dc3545 !important;
 }
 
 .text-light,
@@ -191,15 +191,15 @@ label.required::after {
     border-color: #dc3545 !important;
 }
 .btn-form {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #1a5319;
-  border: none;
-  color: #ffd35a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #1a5319;
+    border: none;
+    color: #ffd35a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btn-form:hover,
 .btn-form:focus,
@@ -207,8 +207,17 @@ label.required::after {
 .btn-form.disabled:hover,
 .btn-form.disabled:focus,
 .btn-form.disabled:active {
-  background-color: #256b24 !important;
-  color: #ffd35a !important;
+    background-color: #256b24 !important;
+    color: #ffd35a !important;
+}
+.btn-table {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @media (max-width: 575.98px) {
     .lead {
@@ -825,7 +834,7 @@ select.form-control:not([size]):not([multiple]) {
     padding-bottom: 20px;
 }
 .card .card-body .section-title {
-    margin: 30px 0 10px 0;
+    // margin: 30px 0 10px 0;
     font-size: 16px;
 }
 .card .card-body .section-title:before {
@@ -1489,22 +1498,27 @@ table tr:hover .table-links {
     font-size: 12px;
 }
 .badge.badge-warning {
-    color: #fff;
+    background-color: #fff3cd;
+    color: #664d03;
 }
 .badge.badge-primary {
-    background-color: #1a5319;
+    background-color: #cfe2ff;
+    color: #052c65;
 }
 .badge.badge-secondary {
-    background-color: #cdd3d8;
+    background-color: #e2e3e5;
+    color: #2b2f32;
 }
 .badge.badge-success {
-    background-color: #63ed7a;
+    background-color: #d1e7dd;
+    color: #0a3622;
 }
 .badge.badge-info {
     background-color: #3abaf4;
 }
 .badge.badge-danger {
-    background-color: #fc544b;
+    background-color: #f8d7da;
+    color: #58151c;
 }
 .badge.badge-light {
     background-color: #e3eaef;
@@ -1732,7 +1746,7 @@ h6 .badge {
 .btn-outline-success.disabled:hover,
 .btn-outline-success.disabled:focus,
 .btn-outline-success.disabled:active {
-    background-color: #47c363 !important;
+    background-color: #256b24 !important;
     color: #fff !important;
 }
 
@@ -1763,8 +1777,8 @@ h6 .badge {
 
 .btn-dark,
 .btn-dark.disabled {
-    background-color: #191d21;
-    border-color: #191d21;
+    background-color: #000;
+    border-color: #000;
     color: #fff;
 }
 .btn-dark:hover,
@@ -1773,7 +1787,7 @@ h6 .badge {
 .btn-dark.disabled:hover,
 .btn-dark.disabled:focus,
 .btn-dark.disabled:active {
-    background-color: black !important;
+    background-color: #191d21 !important;
 }
 
 .btn-outline-dark:hover,
@@ -1891,8 +1905,8 @@ h6 .badge {
 }
 .btn-outline-primary,
 .btn-outline-primary.disabled {
-    border-color: #1a5319;
-    color: #1a5319;
+    border-color: #265073;
+    color: #265073;
 }
 .btn-outline-primary:hover,
 .btn-outline-primary:focus,
@@ -1900,7 +1914,7 @@ h6 .badge {
 .btn-outline-primary.disabled:hover,
 .btn-outline-primary.disabled:focus,
 .btn-outline-primary.disabled:active {
-    background-color: #1a5319 !important;
+    background-color: #316a97 !important;
     color: #fff;
 }
 
@@ -3243,13 +3257,16 @@ pre {
 .section .section-header .btn {
     font-size: 12px;
 }
-.section .section-title {
+.section .section-title,
+.section .section-title2 {
     font-size: 18px;
     color: #191d21;
     font-weight: 600;
     position: relative;
-    margin: 30px 0 25px 0;
+    // margin: 30px 0 25px 0;
+    margin-bottom: 25px;
 }
+
 .section .section-title:before {
     content: " ";
     border-radius: 5px;

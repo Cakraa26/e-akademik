@@ -5,7 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
 @endpush
 
 @section('main')
@@ -56,6 +55,9 @@
                                                     <input type="text" class="form-control" name="nm" id="nm"
                                                         value="{{ old('nm') }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
@@ -153,9 +155,9 @@
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('data.dosen.index') }}"> <i
+                                            <a class="btn btn-dark mr-2" href="{{ route('data.dosen.index') }}"> <i
                                                     class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
+                                            <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
@@ -174,8 +176,6 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
-
 
     <!-- Page Specific JS File -->
     <script>

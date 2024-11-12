@@ -6,10 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "goodnesskay/laravelpdfviewer": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.12",
         "yaza/laravel-repository-service": "^3.2"
     },
     "require-dev": {

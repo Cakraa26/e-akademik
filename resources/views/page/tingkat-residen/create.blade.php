@@ -51,7 +51,7 @@
                                     data-parsley-validate>
                                     @csrf
                                     @method('POST')
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4 row align-items-center">
                                                 <label for="kode" class="col-sm-3">{{ __('message.kd') }}</label>
@@ -60,6 +60,9 @@
                                                         class="form-control  @error('kd') is-invalid @enderror"
                                                         name="kd" id="kode" value="{{ old('kd') }}" required
                                                         data-parsley-required-message="{{ __('message.kdrequired') }}">
+                                                    @error('kd')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -72,6 +75,9 @@
                                                         class="form-control  @error('nm') is-invalid @enderror"
                                                         name="nm" id="nm" value="{{ old('nm') }}" required
                                                         data-parsley-required-message="{{ __('message.namatahapanrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -91,6 +97,9 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('warna')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -104,6 +113,9 @@
                                                         name="darisemester" id="darisemester"
                                                         value="{{ old('darisemester') }}" required
                                                         data-parsley-required-message="{{ __('message.drsemesterrequired') }}">
+                                                    @error('darisemester')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -117,6 +129,9 @@
                                                         name="sampaisemester" id="sampaisemester"
                                                         value="{{ old('sampaisemester') }}" required
                                                         data-parsley-required-message="{{ __('message.btssemesterrequired') }}">
+                                                    @error('sampaisemester')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -128,18 +143,107 @@
                                                     for="inlineCheckbox1">{{ __('message.active') }}</label>
                                             </div>
                                         </div>
+                                    </div> --}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-4 row align-items-center">
+                                                <label for="kode" class="col-sm-3">{{ __('message.kd') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text"
+                                                        class="form-control  @error('kd') is-invalid @enderror"
+                                                        name="kd" id="kode" value="{{ old('kd') }}" required
+                                                        data-parsley-required-message="{{ __('message.kdrequired') }}">
+                                                    @error('kd')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label for="warna" class="col-sm-3">{{ __('message.warna') }}</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select select2 @error('warna') is-invalid @enderror"
+                                                        id="warna" name="warna" required
+                                                        data-parsley-required-message="{{ __('message.warnarequired') }}">
+                                                        <option value=""></option>
+                                                        @foreach ($warna as $wrn)
+                                                            <option value="{{ $wrn }}"
+                                                                {{ old('warna') == $wrn ? 'selected' : '' }}>
+                                                                {{ $wrn }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('warna')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label for="sampaisemester"
+                                                    class="col-sm-3">{{ __('message.btssemester') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number"
+                                                        class="form-control  @error('nm') is-invalid @enderror"
+                                                        name="sampaisemester" id="sampaisemester"
+                                                        value="{{ old('sampaisemester') }}" required
+                                                        data-parsley-required-message="{{ __('message.btssemesterrequired') }}">
+                                                    @error('sampaisemester')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-4 row align-items-center">
+                                                <label for="telepon" class="col-sm-3">{{ __('message.nama') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text"
+                                                        class="form-control  @error('nm') is-invalid @enderror"
+                                                        name="nm" id="nm" value="{{ old('nm') }}" required
+                                                        data-parsley-required-message="{{ __('message.namatahapanrequired') }}">
+                                                    @error('nm')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label for="darisemester"
+                                                    class="col-sm-3">{{ __('message.drsemester') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number"
+                                                        class="form-control  @error('nm') is-invalid @enderror"
+                                                        name="darisemester" id="darisemester"
+                                                        value="{{ old('darisemester') }}" required
+                                                        data-parsley-required-message="{{ __('message.drsemesterrequired') }}">
+                                                    @error('darisemester')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3"></label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" name="aktif"
+                                                            id="inlineCheckbox1" {{ old('aktif') ? 'checked' : '' }}
+                                                            value="1">
+                                                        <label class="form-check-label"
+                                                            for="inlineCheckbox1">{{ __('message.active') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <input type="datetime-local" class="form-control" id="datemodified"
                                         name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2"
+                                            <a class="btn btn-dark mr-2"
                                                 href="{{ route('tingkat.residen.index') }}">
-                                                <i class="fas fa-arrow-left mr-2"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-2"></i>
+                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
                                     </div>

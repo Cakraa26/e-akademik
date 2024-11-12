@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kategori extends Model
+class StaseDosen extends Model
 {
     use HasFactory;
-    protected $table = 'm_kategori_motorik';
+    protected $table = 'm_stase_dosen';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
@@ -24,10 +24,5 @@ class Kategori extends Model
         $nextPk = $last ? $last->pk + 1 : 1;
 
         return $nextPk;
-    }
-
-    public function motorik()
-    {
-        return $this->hasMany(Motorik::class, 'kategorifk', 'pk');
     }
 }

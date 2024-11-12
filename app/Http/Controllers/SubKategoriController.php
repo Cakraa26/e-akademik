@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubKategori;
+use App\Models\SubKategoriMotorik as SubKategori;
 use Illuminate\Http\Request;
 
 class SubKategoriController extends Controller

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubKategori extends Model
+class JadwalTransactionNilai extends Model
 {
     use HasFactory;
-    protected $table = 'm_subkategori_motorik';
+    protected $table = 't_jadwal_nilai';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
@@ -24,5 +24,9 @@ class SubKategori extends Model
         $nextPk = $last ? $last->pk + 1 : 1;
 
         return $nextPk;
+    }
+    public function jadwal()
+    {
+        return $this->belongsTo(JadwalTransaction::class, 'jadwalfk'); 
     }
 }

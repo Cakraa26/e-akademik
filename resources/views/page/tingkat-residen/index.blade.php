@@ -45,7 +45,7 @@
                                 <a class="btn btn-success {{ Request::is('data-dosen/create') ? 'active' : '' }}"
                                     href="{{ route('tingkat.residen.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
                                                 <div>
                                                     <a href="{{ route('tingkat.residen.edit', $data->pk) }}"
                                                         class="btn btn-info {{ Request::is('tingkat-residen/' . $data->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fa-solid fa-pen-to-square"></i></a>
 
 
                                                     <form action="{{ route('tingkat.residen.destroy', $data->pk) }}"

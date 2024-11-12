@@ -41,7 +41,7 @@
                                 <a class="btn btn-success {{ Request::is('data-dosen/create') ? 'active' : '' }}"
                                     href="{{ route('data.dosen.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@
                                                 <div>
                                                     <a href="{{ route('data.dosen.edit', $d->pk) }}"
                                                         class="btn btn-info {{ Request::is('data-dosen/' . $d->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fa-solid fa-pen-to-square"></i></a>
 
 
                                                     <form action="{{ route('data.dosen.destroy', $d->pk) }}" method="POST"
