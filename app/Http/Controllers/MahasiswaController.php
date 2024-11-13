@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\CalonResiden;
 use App\Models\GroupMotorik;
-use App\Models\Kategori;
+use App\Models\KategoriMotorik as Kategori;
 use App\Models\Motorik;
 use App\Models\Residen;
-use App\Models\TMotorik;
+use App\Models\MotorikTransaction;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $type_menu = "master-data";
-        $residen = Residen::where('statuskuliah', '0')->get();
+        $residen = Residen::where('statuskuliah', '0')->where('aktif', '0')->get();
         return view('page.data-mahasiswa.index', [
             'type_menu' => $type_menu,
             'residen' => $residen,

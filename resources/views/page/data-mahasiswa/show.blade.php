@@ -125,11 +125,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($residen->tmotorik as $tmotorik)
+                                    @foreach ($residen->motorikTransaction as $tmotorik)
                                         <tr class="text-center">
                                             <th>{{ $loop->iteration }}</th>
                                             <td>{{ $tmotorik->motorik->nm }}</td>
-                                            <td>{{ $tmotorik->motorik->group_motorik->nm }}</td>
+                                            <td>{{ $tmotorik->motorik->motorikGroup->nm }}</td>
                                             <td>{{ $tmotorik->motorik->category->nm }}</td>
                                             <td>{{ $tmotorik->qtybimbingan }}</td>
                                             <td>{{ $tmotorik->qtymandiri }}</td>

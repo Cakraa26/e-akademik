@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MotorikTransactionData;
 use App\Models\Residen;
 use App\Models\Tingkat;
-use App\Models\Kategori;
 use App\Models\Semester;
-use App\Models\t_motorik;
-use App\Models\SubKategori;
 use App\Models\TahunAjaran;
-use Illuminate\Support\Str;
 use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
-use App\Models\t_motorik_dt;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use App\Models\KategoriMotorik as Kategori;
+use App\Models\MotorikTransaction as t_motorik;
+use App\Models\MotorikTransactionData as t_motorik_dt;
 
 class MonitoringController extends Controller
 {
@@ -34,7 +34,6 @@ class MonitoringController extends Controller
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })->get();
-        ;
 
         return view("page.monitoring-motorik.index", [
             'type_menu' => $type_menu,
@@ -49,7 +48,7 @@ class MonitoringController extends Controller
     {
         $type_menu = 'psikomotorik';
         $residen = Residen::findOrFail($pk);
-        $tmotorik = t_motorik::with('motorik', 'motorikDetails')
+        $tmotorik = t_motorik::with('motorik', 'motorikData')
             ->where('residenfk', $residen->pk)
             ->when($request->groupfk != null, function ($q) use ($request) {
                 return $q->whereHas('motorik', function ($query) use ($request) {
@@ -77,20 +76,24 @@ class MonitoringController extends Controller
             'kategori' => $kategori,
         ]);
     }
-    public function approve(Request $request, $pk)
+    public function approve($pk, $residenfk)
     {
         $type_menu = 'psikomotorik';
-        $residen = Residen::all();
         $tingkat = Tingkat::select('pk', 'nm')->get();
-        $tmotorik = t_motorik::with('motorik', 'motorikDetails')->where('pk', $pk)->findOrFail($pk);
+        $tmotorik = t_motorik::with([
+            'motorikData' => function ($query) use ($residenfk) {
+                $query->where('residenfk', $residenfk);
+            }
+        ])->findOrFail($pk);
+        $tmotorik_dt = $tmotorik->motorikData->first();
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();
 
         return view("page.monitoring-motorik.approve", [
             'type_menu' => $type_menu,
-            'residen' => $residen,
             'tingkat' => $tingkat,
             'tmotorik' => $tmotorik,
+            'tmotorik_dt' => $tmotorik_dt,
             'group' => $group,
             'kategori' => $kategori,
         ]);
@@ -126,6 +129,30 @@ class MonitoringController extends Controller
             return redirect()
                 ->route('monitoring.detail', $tmotorik->residen->pk)
                 ->with('success', __('message.success_approved'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function update(Request $request)
+    {
+        $stsapproved_dt = $request->input('stsapproved');
+        $ctn_dt = $request->input('ctn');
+
+        try {
+            foreach ($stsapproved_dt as $pk => $stsapproved) {
+                $tmotorik_dt = MotorikTransactionData::findOrFail($pk);
+        
+                $tmotorik_dt->stsapproved = $stsapproved;
+                $tmotorik_dt->ctn = $ctn_dt[$pk];
+        
+                $tmotorik_dt->save();
+            }
+
+            return redirect()
+                ->route('monitoring.detail', $tmotorik_dt->residen->pk)
+                ->with('success', __('message.success_edit'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()

@@ -37,66 +37,50 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-4">
-                            <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('data-psikomotorik/create') ? 'active' : '' }}"
-                                    href="{{ route('data.psikomotorik.create') }}" data-toggle="tooltip"
-                                    title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
-                            </div>
-                        </div>
-
                         <form action="" method="GET">
                             @csrf
                             <div class="row mb-3">
-                                <div class="col-md-2">
-                                    <div class="mb-3">
-                                        <label for="semester" class="form-label">Semester</label>
-                                        <select class="form-select select2" id="semester" name="semester">
-                                            <option value=""></option>
-                                            @foreach ($semester as $s)
-                                                <option value="{{ $s->pk }}"
-                                                    {{ Request::get('semester') == $s->pk ? 'selected' : '' }}>
-                                                    {{ $s->semester }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <div class="col-md-3 mb-3 pr-0">
+                                    <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
+                                    <select class="form-control select2" name="thnajaranfk" id="thnajaranfk">
+                                        <option value=""></option>
+                                        @foreach ($thnajaran as $t)
+                                            <option value="{{ $t->pk }}"
+                                                {{ Request::get('thnajaranfk') == $t->pk ? 'selected' : '' }}>
+                                                {{ $t->nm }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
-                                        <select class="form-select select2" id="thnajaranfk" name="thnajaranfk">
-                                            <option value=""></option>
-                                            @foreach ($thnajaran as $t)
-                                                <option value="{{ $t->pk }}"
-                                                    {{ Request::get('thnajaranfk') == $t->pk ? 'selected' : '' }}>
-                                                    {{ $t->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <div class="col-md-4 mb-3 pr-0">
+                                    <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
+                                    <select class="form-control select2" name="tingkatfk" id="tingkatfk">
+                                        <option value=""></option>
+                                        @foreach ($tingkat as $t)
+                                            <option value="{{ $t->pk }}"
+                                                {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
+                                                {{ $t->kd }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
-                                        <select class="form-select select2" id="tingkatfk" name="tingkatfk">
-                                            <option value=""></option>
-                                            @foreach ($tingkat as $t)
-                                                <option value="{{ $t->pk }}"
-                                                    {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
-                                                    {{ $t->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                    <label for="semester" class="form-label">{{ __('message.semester') }}</label>
+                                    <select class="form-control select2" name="semester" id="semester">
+                                        <option value=""></option>
+                                        @foreach ($semester as $s)
+                                            <option value="{{ $s->pk }}"
+                                                {{ Request::get('semester') == $s->pk ? 'selected' : '' }}>
+                                                {{ $s->semester }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-3 mt-n4 mt-md-0">
-                                    <div class="mb-3">
-                                        <label>&nbsp;</label>
-                                        <div class="d-flex">
-                                            <button type="submit" class="btn btn-primary mr-2">Filter <i
-                                                    class="fas fa-sort-amount-up pl-1"></i></button>
-                                            <a href="{{ route('monitoring.index') }}"
-                                                class="btn btn-secondary">Refresh <i class="fas fa-sync-alt pl-1"></i></a>
-                                        </div>
+                                <div class="col-3 col-md-2 mb-3">
+                                    <label>&nbsp;</label>
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-danger mr-1"><i
+                                                class="fas fa-search"></i></button>
+                                        <a href="{{ route('monitoring.index') }}" class="btn btn-secondary">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +95,6 @@
                                         </th>
                                         <th>{{ __('message.inisial') }}</th>
                                         <th>{{ __('message.nama') }}</th>
-                                        {{-- <th>Group</th> --}}
                                         <th>Semester</th>
                                         <th>{{ __('message.tingkat') }}</th>
                                         <th>{{ __('message.aksi') }}</th>

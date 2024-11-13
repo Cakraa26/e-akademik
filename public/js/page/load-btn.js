@@ -2,6 +2,7 @@ btn = document.querySelector(".load-btn");
         const originalWidth = btn.offsetWidth;
 
         btn.style.width = `${originalWidth}px`;
+        
         btn.onclick = function() {
             this.innerHTML = "<div class='loader'></div>";
         }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
-use App\Models\SubKategori;
+use App\Models\KategoriMotorik as Kategori;
+use App\Models\SubKategoriMotorik as SubKategori;
 use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
 use Illuminate\Http\Request;
@@ -18,10 +18,9 @@ class PsikomotorikController extends Controller
         $motorik = Psikomotorik::when($request->groupfk != null, function ($q) use ($request) {
             return $q->where('groupfk', $request->groupfk);
         })
-        ->when($request->kategorifk != null, function ($q) use ($request) {
-            return $q->where('kategorifk', $request->kategorifk);
-        })->get();
-
+            ->when($request->kategorifk != null, function ($q) use ($request) {
+                return $q->where('kategorifk', $request->kategorifk);
+            })->get();
 
         $group = GroupMotorik::select('pk', 'nm')->get();
         $kategori = Kategori::select('pk', 'nm')->get();

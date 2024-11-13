@@ -26,18 +26,23 @@ class Motorik extends Model
         return $nextPk;
     }
 
-    public function tmotorik()
+    public function motorikTransaction()
     {
-        return $this->hasMany(TMotorik::class, 'motorikfk', 'pk');
+        return $this->hasMany(MotorikTransaction::class, 'motorikfk', 'pk');
     }
 
-    public function group_motorik()
+    public function motorikGroup()
     {
         return $this->belongsTo(GroupMotorik::class, 'groupfk', 'pk');
     }
 
     public function category()
     {
-        return $this->belongsTo(Kategori::class, 'kategorifk', 'pk');
+        return $this->belongsTo(KategoriMotorik::class, 'kategorifk', 'pk');
+    }
+
+    public function subCategory()
+    {
+        return $this->belongsTo(SubKategoriMotorik::class, 'subkategorifk', 'pk');
     }
 }

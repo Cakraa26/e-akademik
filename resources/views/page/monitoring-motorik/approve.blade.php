@@ -39,7 +39,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('monitoring.detail', $tmotorik->pk) }}" class="btn btn-icon"><i
+                    <a href="{{ route('monitoring.detail', $tmotorik->residen->pk) }}" class="btn btn-icon"><i
                             class="fas fa-arrow-left"></i></a>
                 </div>
                 <h1>{{ __('message.approved') }}</h1>
@@ -49,10 +49,10 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorik') }}</a>
+                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorikpendek') }}</a>
                             </div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.detail', $tmotorik->pk) }}">{{ __('message.detailmng') }}</a>
+                                    href="{{ route('monitoring.detail', $tmotorik->pk) }}">{{ __('message.detailmngpendek') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.confirmapprov') }}</div>
                         </div>
@@ -104,72 +104,77 @@
                     </div>
                 @endif
 
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{ route('approve.store', $tmotorik->pk) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="col-sm-4">{{ __('message.tglupload') }}</label>
-                                        <div class="col-sm-8">
-                                            <input type="date" class="form-control  @error('tgl') is-invalid @enderror"
-                                                name="tgl" id="tgl" value="{{ old('tgl') }}" required
-                                                data-parsley-required-message="{{ __('message.tglrequired') }}">
+                <form action="{{ route('monitoring.update', $tmotorik_dt->pk) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    @foreach ($tmotorik->motorikData as $detail)
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-4">{{ __('message.tglupload') }}</label>
+                                            <div class="col-sm-8">
+                                                <input type="datetime" class="form-control" name="tgl" id="tgl"
+                                                    value="{{ old('tgl', $detail->tgl) }}" readonly>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mb-4 row align-items-center">
-                                        <label class="col-sm-4">File</label>
-                                        <div class="col-sm-8">
-                                            <input type="file" id="dropify" name="nmfile" class="dropify"
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-4">File</label>
+                                            <div class="col-sm-8">
+                                                {{-- <input type="file" id="fileInput" name="nmfile" class="dropify"
                                                 data-height="80" />
                                             <a class="btn-download" id="download-link" href="#"
-                                                style="display:none;">{{ __('message.unduh') }}<i
-                                                    class="fas fa-download pl-1"></i></a>
+                                                style="display:none; margin-top:10px;">{{ __('message.unduh') }}<i
+                                                    class="fas fa-download pl-1"></i></a> --}}
+                                                <a href="{{ Storage::url($detail->nmfile) }}" download
+                                                    class="btn btn-outline-success btn-sm">Download <i
+                                                        class="fas fa-download pl-1"></i></a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row mb-3 align-items-center">
-                                        <label for="stsapproved" class="col-sm-3">Status</label>
-                                        <div class="col-sm-9">
-                                            <label class="mr-3">
-                                                <input type="radio" name="stsapproved" value="2"
-                                                    class="custom-switch-input" checked>
-                                                <span class="custom-switch-indicator"></span>
-                                                <span class="custom-switch-description">Approved</span>
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="stsapproved" value="3"
-                                                    class="custom-switch-input">
-                                                <span class="custom-switch-indicator"></span>
-                                                <span class="custom-switch-description">Cancel</span>
-                                            </label>
+                                    <div class="col-md-6">
+                                        <div class="row mb-3 align-items-center">
+                                            <label for="stsapproved" class="col-sm-3">Status</label>
+                                            <div class="col-sm-9">
+                                                <label class="mr-3">
+                                                    <input type="radio" name="stsapproved[{{ $detail->pk }}]" value="2"
+                                                        class="custom-switch-input"
+                                                        {{ $detail->stsapproved == 2 ? 'checked' : '' }}>
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <span class="custom-switch-description">Approved</span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stsapproved[{{ $detail->pk }}]" value="3"
+                                                        class="custom-switch-input"
+                                                        {{ $detail->stsapproved == 3 ? 'checked' : '' }}>
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <span class="custom-switch-description">Cancel</span>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3 align-items-center">
-                                        <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
-                                        <div class="col-sm-9">
-                                            <textarea class="form-control" name="ctn" id="ctn" style="height: 100px">{{ old('ctn') }}</textarea>
+                                        <div class="row align-items-center">
+                                            <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" name="ctn[{{ $detail->pk }}]" id="ctn" style="height: 100px">{{ old('ctn', $detail->ctn) }}</textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row mt-2">
-                                <div class="col-12 d-flex justify-content-end">
-                                    <a class="btn btn-dark load-btn mr-2"
-                                        href="{{ route('monitoring.detail', $tmotorik->residen->pk) }}">
-                                        <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                    <button type="submit" id="submit-btn" class="btn btn-primary load-btn">
-                                        {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+                    @endforeach
+                    <div class="row mt-2">
+                        <div class="col-12 d-flex justify-content-end">
+                            <a class="btn btn-dark mr-2" href="{{ route('monitoring.detail', $tmotorik->residen->pk) }}">
+                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </section>
     </div>
@@ -218,7 +223,27 @@
         });
     </script> --}}
 
-    <script>
+    {{-- <script>
         $('.dropify').dropify();
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var fileInput = document.getElementById('fileInput');
+            var downloadLink = document.getElementById('download-link');
+
+            fileInput.addEventListener('change', function(event) {
+                if (fileInput.files && fileInput.files[0]) {
+                    downloadLink.style.display = 'inline-block';
+
+                    var file = fileInput.files[0];
+                    var fileUrl = URL.createObjectURL(file);
+                    downloadLink.href = fileUrl;
+                    downloadLink.download = file.name;
+                } else {
+                    downloadLink.style.display = 'none';
+                }
+            });
+        });
+    </script> --}}
 @endpush

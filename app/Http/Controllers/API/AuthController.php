@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\VerifyRequest;
 use App\Services\Auth\Register\RegisterService;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -59,6 +63,44 @@ class AuthController extends Controller
             return response()->json(['data' => $resendOTP], 200);
         } catch (\Throwable $e) {
             DB::rollBack();
+            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        try {
+            $user = User::where('username', $username)
+                ->first();
+
+            if (!$user && $user->role != 1 && !Hash::check($password, $user->password)) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+
+            $token = $user->createToken(str()->random(40) . $username, [$user->role])->plainTextToken;
+
+            Auth::setUser($user);
+
+            return response()->json([
+                'user' => auth()->user(),
+                'token' => $token,
+                'role' => $user->role
+            ], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            $request->user()->currentAccessToken()->delete();
+
+            return response()->json([], 200);
+        } catch (\Throwable $e) {
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
         }
     }

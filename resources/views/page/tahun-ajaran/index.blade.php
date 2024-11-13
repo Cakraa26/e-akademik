@@ -46,7 +46,7 @@
                                 <a class="btn btn-success {{ Request::is('tahun-ajaran/create') ? 'active' : '' }}"
                                     href="{{ route('tahun-ajaran.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -54,29 +54,43 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('message.aksi') }}</th>
                                         <th class="text-center">
                                             No
                                         </th>
                                         <th>{{ __('message.tahunajaran') }}</th>
-                                        <th>{{ __('message.aktif') }}</th>
+                                        <th>Status</th>
                                         <th>{{ __('message.bulan1') }}</th>
                                         <th>{{ __('message.bulan2') }}</th>
                                         <th>{{ __('message.bulan3') }}</th>
                                         <th>{{ __('message.bulan4') }}</th>
                                         <th>{{ __('message.bulan5') }}</th>
                                         <th>{{ __('message.bulan6') }}</th>
+                                        <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($thn as $th)
                                         <tr>
+                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $th->nm }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $th->aktif === 1 ? 'badge-primary' : 'badge-secondary' }}">
+                                                    {{ $th->aktif === 1 ? __('message.active') : __('message.inactive') }}
+                                                </span>
+                                            </td>
+                                            <td>{{ date('F Y', strtotime($th->bulan1)) }}</td>
+                                            <td>{{ date('F Y', strtotime($th->bulan2)) }}</td>
+                                            <td>{{ date('F Y', strtotime($th->bulan3)) }}</td>
+                                            <td>{{ date('F Y', strtotime($th->bulan4)) }}</td>
+                                            <td>{{ date('F Y', strtotime($th->bulan5)) }}</td>
+                                            <td>{{ date('F Y', strtotime($th->bulan6)) }}</td>
                                             <td>
                                                 <div>
                                                     <a href="{{ route('tahun-ajaran.edit', $th->pk) }}"
                                                         class="btn btn-info {{ Request::is('tahun-ajaran/' . $th->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fa-solid fa-pen-to-square"></i></a>
 
 
                                                     <form action="{{ route('tahun-ajaran.destroy', $th->pk) }}"
@@ -89,20 +103,6 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $th->nm }}</td>
-                                            <td>
-                                                <span
-                                                    class="badge {{ $th->aktif === 1 ? 'badge-success' : 'badge-danger' }}">
-                                                    {{ $th->aktif === 1 ? __('message.active') : __('message.inactive') }}
-                                                </span>
-                                            </td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan1)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan2)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan3)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan4)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan5)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan6)) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

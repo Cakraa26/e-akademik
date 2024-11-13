@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Residen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\Auth\RegisterRequest;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Auth\VerifyRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\Auth\Register\RegisterService;
 
 class AuthController extends Controller
@@ -51,7 +51,7 @@ class AuthController extends Controller
             $isVerified = $this->registerService->verifyOTP($request, $pk);
 
             DB::commit();
-            if($isVerified) {
+            if ($isVerified) {
                 return redirect()->route('auth.login')->with('success', 'Nomor Telepon berhasil diverifikasi.');
             } else {
                 return back()->withErrors(['otp' => 'OTP tidak valid atau kadaluwarsa.']);
@@ -80,5 +80,30 @@ class AuthController extends Controller
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
+    }
+    public function postLogin(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $user = User::where('username', $username)->first();
+
+        if ($user && Hash::check($password, $user->password)) {
+            if ($user->is_verified == 1) {
+                Auth::login($user);
+                Session::put('role', $user->role);
+                return redirect()
+                    ->route('dashboard');
+            } else {
+                return back()->with('gagal', __('message.error_not_verified'));
+            }
+        }
+
+        return back()->with('error', __('message.error_username'));
+    }
+    public function logout()
+    {
+        Session::flush();
+        return redirect('/')->with('success', __('message.success_logout'));
     }
 }
