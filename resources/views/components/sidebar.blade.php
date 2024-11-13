@@ -25,9 +25,6 @@
                     <li class="{{ Request::is('tingkat-residen*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
                     </li>
-                    <li class="{{ Request::is('stase') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('stase') }}">Stase</a>
-                    </li>
                     <li class='{{ Request::is('hari-kerja*') ? 'active' : '' }}'>
                         <a class="nav-link" href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
                     </li>
