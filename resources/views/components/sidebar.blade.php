@@ -71,7 +71,8 @@
                 </li>
 
                 <li class="{{ Request::is('karya-ilmiah-residen') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i class="fas fa-file-alt"></i>
+                    <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i
+                            class="fas fa-file-alt"></i>
                         <span>{{ __('message.karyailmiah') }}</span></a>
                 </li>
                 <li class="{{ Request::is('laporan') ? 'active' : '' }}">
@@ -140,8 +141,9 @@
                             <a class="nav-link"
                                 href="{{ route('jadwal.stase.index') }}">{{ __('message.jdwstase') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.nilaistase') }}</a>
+                        <li class="{{ Request::is('nilai-stase') ? 'active' : '' }}">
+                            <a class="nav-link"
+                                href="{{ route('nilai.stase.index') }}">{{ __('message.nilaistase') }}</a>
                         </li>
                         <li class="{{ Request::is('uts') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('uts.index') }}">UTS</a>

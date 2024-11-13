@@ -29,6 +29,10 @@ class JadwalTransaction extends Model
     {
         return $this->belongsTo(Stase::class, 'stasefk', 'pk');
     }
+    public function residen()
+    {
+        return $this->belongsTo(Residen::class, 'residenfk', 'pk');
+    }
     public function nilai()
     {
         return $this->hasMany(JadwalTransactionNilai::class, 'jadwalfk'); 

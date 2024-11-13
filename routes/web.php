@@ -23,6 +23,7 @@ use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
+use App\Http\Controllers\NilaiStase;
 
 /*
 |--------------------------------------------------------------------------
@@ -189,6 +190,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'tingkat.residen.edit',
         'update' => 'tingkat.residen.update',
         'destroy' => 'tingkat.residen.destroy',
+    ]);
+
+    // Nilai Stase
+    Route::resource('nilai-stase', NilaiStase::class)->names([
+        'index' => 'nilai.stase.index',
+        'create' => 'nilai.stase.create',
+        'store' => 'nilai.stase.store',
+        'edit' => 'nilai.stase.edit',
+        'update' => 'nilai.stase.update',
+        'destroy' => 'nilai.stase.destroy',
     ]);
 
     // UAS

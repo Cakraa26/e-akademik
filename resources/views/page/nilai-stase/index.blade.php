@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.datakelas'))
+@section('title', __('message.nilaistase'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -23,7 +23,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.datakelas') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.nilaistase') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -73,7 +73,7 @@
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
                                                 class="fas fa-search"></i></button>
-                                        <a href="{{ route('data.kelas.index') }}" class="btn btn-secondary">
+                                        <a href="{{ route('nilai.stase.index') }}" class="btn btn-secondary">
                                             <i class="fas fa-sync-alt"></i>
                                         </a>
                                     </div>
@@ -107,8 +107,8 @@
                 @endif
                 {{-- Alert End --}}
 
-                @if ($kelas->isNotEmpty())
-                    @foreach ($kelas as $semester => $dataKelas)
+                @if ($jadwal->isNotEmpty())
+                    @foreach ($jadwal as $semester => $jadwal)
                         @if (request('semester') == null || request('semester') == $semester)
                             <div class="card">
                                 <div class="card-body">
@@ -120,37 +120,45 @@
                                                     <th class="text-center">
                                                         No
                                                     </th>
-                                                    <th>{{ __('message.inisial') }}</th>
                                                     <th>{{ __('message.nmresiden') }}</th>
-                                                    <th>{{ __('message.hp') }}</th>
-                                                    <th>{{ __('message.tingkat') }}</th>
-                                                    <th>{{ __('message.karyailmiah') }}</th>
-                                                    <th>Status</th>
+                                                    @foreach ($bulan as $b)
+                                                        <th>{{ date('F', strtotime($b)) }}</th>
+                                                    @endforeach
+                                                    <th>Total</th>
                                                     <th>{{ __('message.aksi') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @php $no = 1; @endphp
-                                                @foreach ($dataKelas as $k)
+                                                @foreach ($jadwal as $j)
                                                     <tr>
                                                         <th>{{ $no++ }}</th>
-                                                        <td>{{ $k->residen->inisialresiden }}</td>
-                                                        <td>{{ $k->residen->nm }}</td>
-                                                        <td>{{ $k->residen->hp }}</td>
-                                                        <td>{{ $k->tingkat->kd }}</td>
-                                                        <td>{{ $k->residen->karyailmiah->nm }}</td>
-                                                        <td>{{ $k->aktif === 1 ? __('message.active') : __('message.cuti') }}
-                                                        </td>
+                                                        <td>{{ $j->residen->nm }}</td>
+                                                        @php $total = 0; @endphp
+                                                        @foreach ($bulan as $b)
+                                                            @php
+                                                                $bulan = date('m', strtotime($b));
+
+                                                                $nilai = $j->nilai->filter(function ($query) use (
+                                                                    $bulan,
+                                                                ) {
+                                                                    return $query->jadwal->bulan == $bulan;
+                                                                });
+
+                                                                $rata =
+                                                                    $nilai->count() > 0
+                                                                        ? $nilai->sum('nilai') / $nilai->count()
+                                                                        : null;
+
+                                                                $total += $nilai->sum('nilai') / 6;
+                                                            @endphp
+                                                            <td>{{ $rata != null ? $rata : '0' }}</td>
+                                                        @endforeach
+                                                        <td>{{ $total }}</td>
                                                         <td>
                                                             <div>
-                                                                <a href="{{ route('data.kelas.edit', $k->pk) }}"
-                                                                    class="btn btn-info {{ Request::is('data-kelas/' . $k->pk . '/edit') ? 'active' : '' }}"><i
-                                                                        class="fa-solid fa-pen-to-square"></i></a>
-
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#ViewDetail{{ $k->pk }}"><i
-                                                                        class="fa-solid fa-eye"></i>
+                                                                <button type="button" class="btn btn-info"><i
+                                                                        class="fa-solid fa-edit"></i>
                                                                 </button>
                                                             </div>
                                                         </td>
@@ -179,93 +187,6 @@
 
             </div>
         </section>
-
-        {{-- Modal Detail --}}
-        @foreach ($kelas as $semester => $dataKelas)
-            @foreach ($dataKelas as $k)
-                <div class="modal fade" id="ViewDetail{{ $k->pk }}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <h6 class="text-center mb-3">DATA NILAI RESIDEN</h6>
-                                <div class="row">
-                                    <div class="col-md-5 mb-1">
-                                        <span>{{ __('message.nama') }} : {{ $k->residen->nm }}</span>
-                                    </div>
-                                    <div class="col-md-7 text-md-right mb-1">
-                                        <span>{{ __('message.thnajaran') }}/{{ __('message.semester') }} :
-                                            {{ $k->thnajaran->nm }}/{{ $k->semester }}</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5 mb-3">
-                                        <span>{{ __('message.tingkat') }} : {{ $k->tingkat->kd }}</span>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table border="1" class="table-striped table">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th colspan="2">MCQ</th>
-                                                <th colspan="7">OSCE</th>
-                                                <th rowspan="2">{{ __('message.hasiluas') }}</th>
-                                                <th colspan="4">{{ __('message.totaluasuts') }}</th>
-                                                <th rowspan="2">{{ __('message.hasil') }}</th>
-                                                <th rowspan="2">{{ __('message.keterangansemester') }}</th>
-                                                <th rowspan="2">{{ __('message.keterangankarya') }}</th>
-                                                <th rowspan="2">{{ __('message.keterangantingkat') }}</th>
-                                            </tr>
-                                            <tr class="text-center">
-                                                <th>{{ __('message.benarmcq') }}</th>
-                                                <th>MCQ</th>
-                                                <th>PED</th>
-                                                <th>TRAUMA</th>
-                                                <th>{{ __('message.spine') }}</th>
-                                                <th>{{ __('message.lower') }}</th>
-                                                <th>TUMOR</th>
-                                                <th>{{ __('message.tangan') }}</th>
-                                                <th>{{ __('message.hasilosce') }}</th>
-                                                <th>UAS (20%)</th>
-                                                <th>UTS (20%)</th>
-                                                <th>STASE (60%)</th>
-                                                <th>TOTAL</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $k->mcqbenar_uts }}</td>
-                                                <td>{{ $k->mcq_uts }}</td>
-                                                <td>{{ $k->osce_ped_uts }}</td>
-                                                <td>{{ $k->osce_trauma_uts }}</td>
-                                                <td>{{ $k->osce_spine_uts }}</td>
-                                                <td>{{ $k->osce_lower_uts }}</td>
-                                                <td>{{ $k->osce_tumor_uts }}</td>
-                                                <td>{{ $k->osce_hand_uts }}</td>
-                                                <td>{{ $k->hasil_osce_uts }}</td>
-                                                <td>{{ $k->uas }}</td>
-                                                <td>{{ $k->uas }}</td>
-                                                <td>{{ $k->uts }}</td>
-                                                <td>{{ $k->nilaistase }}</td>
-                                                <td>{{ $k->totalnilai }}</td>
-                                                <td>{{ $k->hasil }}</td>
-                                                <td>{{ $k->ctn_semester }}</td>
-                                                <td>{{ $k->ctn_karyailmiah }}</td>
-                                                <td>{{ $k->ctn_tingkat }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="modal-footer mt-n4">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">{{ __('message.tutup') }}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        @endforeach
     </div>
 @endsection
 
