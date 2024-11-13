@@ -50,6 +50,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::prefix('kognitif')->group(function () {
                 Route::get('/stase', [AcademicController::class, 'getNilaiStaseResiden']);
                 Route::put('/stase/{staseJadwalNilaiId}/upload', [AcademicController::class, 'uploadStaseResiden']);
+                Route::get('/uts', [AcademicController::class, 'getNilaiUTSResiden']);
+                Route::get('/uas', [AcademicController::class, 'getNilaiUASResiden']);
             });
         });
     });
