@@ -46,12 +46,18 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::patch('/{motorikId}/upload/{motorikTransactionDataId}', [AcademicController::class, 'updateUploadPsikomotorikByResiden']);
                 Route::delete('/{motorikId}/upload/{motorikTransactionDataId}', [AcademicController::class, 'deleteUploadPsikomotorikByResiden']);
             });
+
+            Route::prefix('kognitif')->group(function () {
+                Route::get('/stase', [AcademicController::class, 'getNilaiStaseResiden']);
+                Route::put('/stase/{staseJadwalNilaiId}/upload', [AcademicController::class, 'uploadStaseResiden']);
+            });
         });
     });
 
     // Master Data
     Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
     Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);
+    Route::get("/tahun-ajaran", [MasterDataController::class, 'getTahunAjaran']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

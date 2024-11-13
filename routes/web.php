@@ -24,6 +24,7 @@ use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
 use App\Http\Controllers\NilaiStase;
+use App\Http\Controllers\UploadFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -234,6 +235,16 @@ Route::middleware(['checkRole:2'])->group(function () {
     Route::post('/psikomotorik/upload-detail', [PsikomotorikResiden::class, 'uploadDetail'])->name('psikomotorik.upload.detail');
 
 });
+
+// Upload File
+Route::resource('upload-file', UploadFileController::class)->names([
+    'index' => 'upload.file.index',
+    'create' => 'upload.file.create',
+    'store' => 'upload.file.store',
+    'edit' => 'upload.file.edit',
+    'update' => 'upload.file.update',
+    'destroy' => 'upload.file.destroy',
+]);
 
 // auth
 Route::get('/auth-forgot-password', function () {
