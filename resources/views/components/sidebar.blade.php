@@ -103,8 +103,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="menu-header">Data</li>
                 {{-- Master Data --}}
                 <li class="nav-item dropdown {{ $type_menu === 'master-data' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Master
@@ -131,6 +129,8 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="menu-header">{{ __('message.akademik') }}</li>
 
                 {{-- Kognitif --}}
                 <li class="nav-item dropdown {{ $type_menu === 'kognitif' ? 'active' : '' }}">
@@ -185,7 +185,6 @@
                     </ul>
                 </li>
 
-                <li class="menu-header">{{ __('message.record') }}</li>
                 {{-- Afektif --}}
                 <li class="nav-item dropdown {{ $type_menu === 'afektif' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i
@@ -222,6 +221,8 @@
                     </ul>
                 </li>
 
+
+                <li class="menu-header">{{ __('message.record') }}</li>
                 {{-- Laporan --}}
                 <li class="nav-item dropdown {{ $type_menu === 'laporan' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i

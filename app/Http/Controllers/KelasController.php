@@ -32,6 +32,12 @@ class KelasController extends Controller
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })
+            ->when($request->search != null, function ($q) use ($request) {
+                return $q->whereHas('residen', function ($search) use ($request) {
+                    $search->where('nm', 'like', '%' . $request->search . '%')
+                        ->orWhere('hp', 'like', '%' . $request->search . '%');
+                });
+            })
             ->orderBy('semester', 'asc')
             ->get()
             ->groupBy('semester');

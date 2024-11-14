@@ -25,7 +25,7 @@ class NilaiStase extends Controller
             $selectTahunAjaran = TahunAjaran::where('aktif', 1)->first();
         }
 
-        $bulan = [
+        $bulans = [
             $selectTahunAjaran->bulan1,
             $selectTahunAjaran->bulan2,
             $selectTahunAjaran->bulan3,
@@ -43,6 +43,11 @@ class NilaiStase extends Controller
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })
+            ->when($request->nm != null, function ($q) use ($request) {
+                return $q->whereHas('residen', function ($query) use ($request) {
+                    $query->where('nm', 'like', '%' . $request->nm . '%');
+                });
+            })
             ->orderBy('semester', 'asc')
             ->get()
             ->groupBy('semester');
@@ -57,7 +62,7 @@ class NilaiStase extends Controller
             'tingkat' => $tingkat,
             'semester' => $semester,
             'residen' => $residen,
-            'bulan' => $bulan,
+            'bulans' => $bulans,
             'type_menu' => $type_menu,
         ]);
     }

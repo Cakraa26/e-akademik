@@ -27,7 +27,7 @@ return [
     'laporan' => "Laporan",
     'absensi' => "Absensi",
     'nilai' => "Nilai",
-    'akademik' => "Data Akademik",
+    'akademik' => "Akademik",
     'thnajaran' => "Tahun Ajaran",
     'rs' => "Rumah Sakit",
     'jdwstase' => "Jadwal Stase",
@@ -153,6 +153,7 @@ return [
     'tanggal' => "Tanggal",
     'disetujui' => "Disetujui",
     'hapus' => "Hapus",
+    'cari' => "Cari",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",

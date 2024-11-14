@@ -46,7 +46,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-0">
                                     <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
                                     <select class="form-control select2" name="tingkatfk" id="tingkatfk">
                                         <option value=""></option>
@@ -57,7 +57,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                <div class="col-md-1 mb-3 pr-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>
@@ -68,7 +68,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-3 col-md-2 mb-3">
+                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                    <label>&nbsp;</label>
+                                    <input type="text" name="nm" class="form-control" value="{{ request('nm') }}">
+                                </div>
+                                <div class="col-3 col-md-2">
                                     <label>&nbsp;</label>
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
@@ -108,7 +112,7 @@
                 {{-- Alert End --}}
 
                 @if ($jadwal->isNotEmpty())
-                    @foreach ($jadwal as $semester => $jadwal)
+                    @foreach ($jadwal as $semester => $jadwals)
                         @if (request('semester') == null || request('semester') == $semester)
                             <div class="card">
                                 <div class="card-body">
@@ -121,7 +125,7 @@
                                                         No
                                                     </th>
                                                     <th>{{ __('message.nmresiden') }}</th>
-                                                    @foreach ($bulan as $b)
+                                                    @foreach ($bulans as $b)
                                                         <th>{{ date('F', strtotime($b)) }}</th>
                                                     @endforeach
                                                     <th>Total</th>
@@ -130,12 +134,12 @@
                                             </thead>
                                             <tbody>
                                                 @php $no = 1; @endphp
-                                                @foreach ($jadwal as $j)
+                                                @foreach ($jadwals as $j)
                                                     <tr>
                                                         <th>{{ $no++ }}</th>
                                                         <td>{{ $j->residen->nm }}</td>
                                                         @php $total = 0; @endphp
-                                                        @foreach ($bulan as $b)
+                                                        @foreach ($bulans as $b)
                                                             @php
                                                                 $bulan = date('m', strtotime($b));
 
@@ -201,7 +205,8 @@
     <script>
         $(document).ready(function() {
             $('.myTable').DataTable({
-                scrollX: true
+                scrollX: true,
+                searching: false
             });
         });
     </script>
