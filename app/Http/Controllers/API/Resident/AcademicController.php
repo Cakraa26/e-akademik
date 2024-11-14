@@ -335,7 +335,7 @@ class AcademicController extends Controller
                     DB::raw("CASE WHEN t_jadwal.bulan < $monthNow AND (t_jadwal_nilai.nmfile IS NOT NULL OR t_jadwal_nilai.stsnilai != 2) THEN 1 ELSE 0 END as highlight_row_red")
                 )
                 ->where('t_jadwal.residenfk', auth()->user()->pk)
-                ->where('m_thnajaran.pk', $request->tahunAjaran)
+                ->where('m_thnajaran.pk', $request->tahunAjaran ? $request->tahunAjaran : auth()->user()->thnajaranfk)
                 ->orderBy('t_jadwal.bulan')
                 ->get();
 
@@ -386,4 +386,41 @@ class AcademicController extends Controller
         }
     }
 
+    public function getNilaiUTSResiden(Request $request)
+    {
+        try {
+            $data = DB::table('m_kelas')
+                ->join('m_thnajaran', 'm_kelas.thnajaranfk', '=', 'm_thnajaran.pk')
+                ->select(
+                    'm_thnajaran.nm as thnajaran',
+                    'status_uts',
+                )
+                ->where('m_kelas.thnajaranfk', $request->thnajaran ? $request->thnajaran : auth()->user()->thnajaranfk)
+                ->where('m_kelas.residenfk', auth()->user()->pk)
+                ->first();
+
+            return response()->json(['data' => $data], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
+    public function getNilaiUASResiden(Request $request)
+    {
+        try {
+            $data = DB::table('m_kelas')
+                ->join('m_thnajaran', 'm_kelas.thnajaranfk', '=', 'm_thnajaran.pk')
+                ->select(
+                    'm_thnajaran.nm as thnajaran',
+                    'status_uas',
+                )
+                ->where('m_kelas.thnajaranfk', $request->thnajaran ? $request->thnajaran : auth()->user()->thnajaranfk)
+                ->where('m_kelas.residenfk', auth()->user()->pk)
+                ->first();
+
+            return response()->json(['data' => $data], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
 }

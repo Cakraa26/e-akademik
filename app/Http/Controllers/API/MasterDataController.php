@@ -35,7 +35,7 @@ class MasterDataController extends Controller
     public function getTahunAjaran()
     {
         try {
-            $data = TahunAjaran::where("aktif", 1)->get();
+            $data = TahunAjaran::all();
 
             return response()->json(['data' => $data], 200);
         } catch (\Throwable $e) {
