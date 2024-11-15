@@ -95,8 +95,8 @@
                             <a class="nav-link"
                                 href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
                         </li>
-                        <li class="{{ Request::is('stase') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('stase') }}">{{ __('message.harikerja') }}</a>
+                        <li class='{{ Request::is('hari-kerja*') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
                         </li>
                         <li class="{{ Request::is('upload-file*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.uploadfile') }}</a>
