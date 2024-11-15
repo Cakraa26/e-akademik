@@ -184,6 +184,7 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'karya-ilmiah-residen.update',
         'destroy' => 'karya-ilmiah-residen.destroy',
     ]);
+    Route::get('/karya-ilmiah-residen/{pk}/detail', [KaryaIlmiahResidenAdmin::class, 'detail'])->name('karyailmiah.residen.detail');
 
     // Data Tahun Ajaran
     Route::resource('tahun-ajaran', TahunAjaranController::class)->names([

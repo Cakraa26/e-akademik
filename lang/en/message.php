@@ -78,6 +78,7 @@ return [
     'editjadwal' => "Update Schedule",
     'editnilaistase' => "Update Stase Grade",
     'editkaryailmiah' => "Update Scientific Work",
+    'tambahkaryailmiah' => "Add Scientific Work",
 
     // Button
     'kembali' => "Back",
@@ -244,4 +245,6 @@ return [
     'success_deleted' => 'Data has been successfully deleted.',
     'success_edit' => 'Data has been successfully updated.',
     'success_karyailmiah_edit' => 'Scientific Work has been successfully updated.',
+    'success_karyailmiah_added' => 'Scientific Work has been successfully added.',
+    'success_karyailmiah_hapus' => 'Scientific Work has been successfully deleted.',
 ];

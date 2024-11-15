@@ -137,25 +137,20 @@
                                             <td>{{ $k->karyailmiah->nm }}</td>
                                             <td>
                                                 @if ($k->stssudah === 0)
-                                                    <span class="text-secondary">{{ __('message.belum_upload') }}</span> 
+                                                    <span class="text-secondary">{{ __('message.belum_upload') }}</span>
                                                 @elseif ($k->stssudah === 1)
                                                     <span class="text-warning">{{ __('message.menunggu') }}</span>
                                                 @elseif ($k->stssudah === 2)
-                                                    {{ __('message.sudah_approve') }} 
+                                                    {{ __('message.sudah_approve') }}
                                                 @elseif ($k->stssudah === 3)
                                                     {{ __('message.cancel') }}
                                                 @endif
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('data.kelas.edit', $k->pk) }}"
-                                                        class="btn btn-info {{ Request::is('data-kelas/' . $k->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('karyailmiah.residen.detail', $k->pk) }}"
+                                                        class="btn btn-info {{ Request::is('karya-ilmiah-residen/' . $k->pk . '/detail') ? 'active' : '' }}"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
-
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                        data-bs-target="#ViewDetail{{ $k->pk }}"><i
-                                                            class="fa-solid fa-eye"></i>
-                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -175,7 +170,6 @@
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page Specific JS File -->

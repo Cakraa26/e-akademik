@@ -85,6 +85,7 @@ return [
     'editjadwal' => "Perbarui Jadwal",
     'editnilaistase' => "Perbarui Nilai Stase",
     'editkaryailmiah' => "Perbarui Karya Ilmiah",
+    'tambahkaryailmiah' => "Tambah Karya Ilmiah",
 
     // Button
     'kembali' => "Kembali",
@@ -265,4 +266,6 @@ return [
     'success_deleted' => 'Data berhasil dihapus.',
     'success_edit' => 'Data berhasil diperbarui.',
     'success_karyailmiah_edit' => 'Karya Ilmiah berhasil diperbarui.',
+    'success_karyailmiah_added' => 'Karya Ilmiah berhasil ditambahkan.',
+    'success_karyailmiah_hapus' => 'Karya Ilmiah berhasil dihapus.',
 ];
