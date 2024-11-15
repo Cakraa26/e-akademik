@@ -20,6 +20,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KaryaIlmiahController;
+use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
@@ -164,7 +165,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/monitoring-motorik/{pk}/{residenfk}/detail/approved', [MonitoringController::class, 'approve'])->name('monitoring.approve');
     Route::post('/monitoring-motorik/{pk}/detail/approved-store', [MonitoringController::class, 'approveStore'])->name('approve.store');
 
-    // Karya Ilmiah Admin
+    // Master Karya Ilmiah Admin
     Route::resource('karya-ilmiah', KaryaIlmiahController::class)->names([
         'index' => 'karya-ilmiah.index',
         'create' => 'karya-ilmiah.create',
@@ -172,6 +173,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'karya-ilmiah.edit',
         'update' => 'karya-ilmiah.update',
         'destroy' => 'karya-ilmiah.destroy',
+    ]);
+
+    // Karya Ilmiah Residen Admin
+    Route::resource('karya-ilmiah-residen', KaryaIlmiahResidenAdmin::class)->names([
+        'index' => 'karya-ilmiah-residen.index',
+        'create' => 'karya-ilmiah-residen.create',
+        'store' => 'karya-ilmiah-residen.store',
+        'edit' => 'karya-ilmiah-residen.edit',
+        'update' => 'karya-ilmiah-residen.update',
+        'destroy' => 'karya-ilmiah-residen.destroy',
     ]);
 
     // Data Tahun Ajaran
@@ -231,7 +242,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
 Route::middleware(['checkRole:2'])->group(function () {
     // Karya Ilmiah 
-    Route::resource('karya-ilmiah-residen', KaryaIlmiahResiden::class)->names([
+    Route::resource('.', KaryaIlmiahResiden::class)->names([
         'index' => 'karya-ilmiah.residen.index',
         'store' => 'karya-ilmiah.upload',
     ]);

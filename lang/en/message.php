@@ -143,6 +143,7 @@ return [
     'hapus' => "Delete",
     'cari' => "Search",
     'dosen' => "Lecturer",
+    'belum_upload' => "Not Yet Uploaded",
 
     // Tahun Ajaran
     'aktif' => "Active",

@@ -165,6 +165,7 @@ return [
     'hapus' => "Hapus",
     'cari' => "Cari",
     'dosen' => "Dosen",
+    'belum_upload' => "Belum Diunggah",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",

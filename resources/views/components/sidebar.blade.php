@@ -207,13 +207,13 @@
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-file-alt"></i><span>{{ __('message.karyailmiah') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('karya-ilmiah*') ? 'active' : '' }}'>
+                        <li class='{{ Request::is('karya-ilmiah*') && !Request::is('karya-ilmiah-residen*') ? 'active' : '' }}'>
                             <a class="nav-link"
                                 href="{{ route('karya-ilmiah.index') }}">{{ __('message.mstkarya') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <li class="{{ Request::is('karya-ilmiah-residen*') ? 'active' : '' }}">
                             <a class="nav-link"
-                                href="{{ url('blank-page') }}">{{ __('message.residenkarya') }}</a>
+                                href="{{ route('karya-ilmiah-residen.index') }}">{{ __('message.residenkarya') }}</a>
                         </li>
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.laporan') }}</a>
