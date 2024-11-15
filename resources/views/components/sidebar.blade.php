@@ -141,7 +141,7 @@
                             <a class="nav-link"
                                 href="{{ route('jadwal.stase.index') }}">{{ __('message.jdwstase') }}</a>
                         </li>
-                        <li class="{{ Request::is('nilai-stase') ? 'active' : '' }}">
+                        <li class="{{ Request::is('nilai-stase*') ? 'active' : '' }}">
                             <a class="nav-link"
                                 href="{{ route('nilai.stase.index') }}">{{ __('message.nilaistase') }}</a>
                         </li>

@@ -82,6 +82,8 @@ return [
     'confirmapprov' => 'Konfirmasi',
     'editkelas' => "Perbarui Kelas",
     'editjadwal' => "Perbarui Jadwal",
+    'editnilaistase' => "Perbarui Nilai Stase",
+    'editkaryailmiah' => "Perbarui Karya Ilmiah",
 
     // Button
     'kembali' => "Kembali",
@@ -154,6 +156,7 @@ return [
     'disetujui' => "Disetujui",
     'hapus' => "Hapus",
     'cari' => "Cari",
+    'dosen' => "Dosen",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -247,4 +250,5 @@ return [
     'success_file_uploaded' => 'File telah berhasil diunggah.',
     'success_deleted' => 'Data berhasil dihapus.',
     'success_edit' => 'Data berhasil diperbarui.',
+    'success_karyailmiah_edit' => 'Karya Ilmiah berhasil diperbarui.',
 ];

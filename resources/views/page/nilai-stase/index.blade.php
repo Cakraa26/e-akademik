@@ -125,7 +125,7 @@
                                                         No
                                                     </th>
                                                     <th>{{ __('message.nmresiden') }}</th>
-                                                    @foreach ($bulans as $b)
+                                                    @foreach ($bulan as $b)
                                                         <th>{{ date('F', strtotime($b)) }}</th>
                                                     @endforeach
                                                     <th>Total</th>
@@ -134,37 +134,28 @@
                                             </thead>
                                             <tbody>
                                                 @php $no = 1; @endphp
-                                                @foreach ($jadwals as $j)
+                                                @foreach ($jadwals->groupBy('residenfk') as $residenfk => $j)
                                                     <tr>
-                                                        <th>{{ $no++ }}</th>
-                                                        <td>{{ $j->residen->nm }}</td>
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $j->first()->residen->nm }}</td>
                                                         @php $total = 0; @endphp
-                                                        @foreach ($bulans as $b)
+                                                        @foreach ($bulan as $b)
                                                             @php
-                                                                $bulan = date('m', strtotime($b));
+                                                                $bulanNumber = date('m', strtotime($b));
 
-                                                                $nilai = $j->nilai->filter(function ($query) use (
-                                                                    $bulan,
-                                                                ) {
-                                                                    return $query->jadwal->bulan == $bulan;
-                                                                });
-
-                                                                $rata =
-                                                                    $nilai->count() > 0
-                                                                        ? $nilai->sum('nilai') / $nilai->count()
-                                                                        : null;
-
-                                                                $total += $nilai->sum('nilai') / 6;
+                                                                $nilai =
+                                                                    $j->where('bulan', $bulanNumber)->first()?->jadwalNilai
+                                                                        ?->nilai ?? 0;
+                                                                        
+                                                                $total += $nilai / 6;
                                                             @endphp
-                                                            <td>{{ $rata != null ? $rata : '0' }}</td>
+                                                            <td>{{ $nilai ?? '0' }}</td>
                                                         @endforeach
-                                                        <td>{{ $total }}</td>
+                                                        <td>{{ number_format($total, 2) }}</td>
                                                         <td>
-                                                            <div>
-                                                                <button type="button" class="btn btn-info"><i
-                                                                        class="fa-solid fa-edit"></i>
-                                                                </button>
-                                                            </div>
+                                                            <a href="{{ route('nilai.stase.edit', $j->first()->jadwalNilai->pk) }}"
+                                                                class="btn btn-info {{ Request::is('nilai-stase/' . $j->first()->jadwalNilai->pk . '/edit') ? 'active' : '' }}"><i
+                                                                    class="fa-solid fa-pen-to-square"></i></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -177,16 +168,6 @@
                     @endforeach
                 @else
                     <h5 class="text-center pt-3">{{ __('message.nodata') }}</h5>
-                    @if ($selectTahunAjaran && $selectTahunAjaran->aktif == 1)
-                        <form action="{{ route('data.kelas.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="select_thnajaran" id="select_thnajaran">
-                            <div class="d-flex justify-content-center mt-3">
-                                <button class="btn btn-primary" type="submit"><i
-                                        class="fas fa-plus pr-2"></i>{{ __('message.generateclass') }}</button>
-                            </div>
-                        </form>
-                    @endif
                 @endif
 
             </div>

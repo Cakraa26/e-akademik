@@ -76,6 +76,8 @@ return [
     'confirmapprov' => 'Confirmation',
     'editkelas' => "Update Class",
     'editjadwal' => "Update Schedule",
+    'editnilaistase' => "Update Stase Grade",
+    'editkaryailmiah' => "Update Scientific Work",
 
     // Button
     'kembali' => "Back",
@@ -130,6 +132,7 @@ return [
     'disetujui' => "Approved",
     'hapus' => "Delete",
     'cari' => "Search",
+    'dosen' => "Lecturer",
 
     // Tahun Ajaran
     'aktif' => "Active",
@@ -226,4 +229,5 @@ return [
     'success_file_uploaded' => 'File has been successfully uploaded.',
     'success_deleted' => 'Data has been successfully deleted.',
     'success_edit' => 'Data has been successfully updated.',
+    'success_karyailmiah_edit' => 'Scientific Work has been successfully updated.',
 ];

@@ -53,8 +53,8 @@
                                             No
                                         </th>
                                         <th>{{ __('message.tahapan') }}</th>
-                                        <th>{{ __('message.darismt') }}</th>
-                                        <th>{{ __('message.batassmt') }}</th>
+                                        <th>{{ __('message.drsemester') }}</th>
+                                        <th>{{ __('message.btssemester') }}</th>
                                         <th>Status</th>
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>
