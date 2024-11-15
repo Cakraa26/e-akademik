@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HariKerjaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KaryaIlmiahResiden;
@@ -215,6 +216,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'index' => 'uts.index',
         'edit' => 'uts.edit',
         'update' => 'uts.update',
+    ]);
+
+    // Data Hari Kerja
+    Route::resource('hari-kerja', HariKerjaController::class)->names([
+        'index' => 'hari.kerja.index',
+        'create' => 'hari.kerja.create',
+        'store' => 'hari.kerja.store',
+        'edit' => 'hari.kerja.edit',
+        'update' => 'hari.kerja.update',
+        'destroy' => 'hari.kerja.destroy',
     ]);
 });
 
