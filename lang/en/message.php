@@ -26,7 +26,7 @@ return [
     'laporan' => "Reports",
     'absensi' => "Attendance",
     'nilai' => "Grade",
-    'akademik' => "Academic Data",
+    'akademik' => "Academic",
     'thnajaran' => "School Year",
     'tingkatresiden' => "Resident Level",
     'rs' => "Hospital",
@@ -129,6 +129,7 @@ return [
     'tanggal' => "Date",
     'disetujui' => "Approved",
     'hapus' => "Delete",
+    'cari' => "Search",
 
     // Tahun Ajaran
     'aktif' => "Active",

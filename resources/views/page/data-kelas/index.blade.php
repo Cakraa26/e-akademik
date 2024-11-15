@@ -46,7 +46,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-0">
                                     <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
                                     <select class="form-control select2" name="tingkatfk" id="tingkatfk">
                                         <option value=""></option>
@@ -57,7 +57,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                <div class="col-md-1 mb-3 pr-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>
@@ -68,7 +68,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-3 col-md-2 mb-3">
+                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                    <label>&nbsp;</label>
+                                    <input type="text" name="search" class="form-control" value="{{ request('search') }}">
+                                </div>
+                                <div class="col-3 col-md-2">
                                     <label>&nbsp;</label>
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
@@ -280,21 +284,26 @@
     <script>
         $(document).ready(function() {
             $('.myTable').DataTable({
-                scrollX: true
+                scrollX: true,
+                searching: false
             });
         });
     </script>
 
     <script>
         function updateInput(value) {
-            document.getElementById('select_thnajaran').value = value;
+            const selectThnajaran = document.getElementById('select_thnajaran');
+            if (selectThnajaran) {
+                selectThnajaran.value = value;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             let selectElement = document.getElementById('thnajaranfk');
-            let initialValue = selectElement.value;
-
-            updateInput(initialValue);
+            if (selectElement) {
+                let initialValue = selectElement.value;
+                updateInput(initialValue);
+            }
         });
     </script>
 @endpush

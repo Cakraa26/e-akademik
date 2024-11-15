@@ -50,6 +50,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::prefix('kognitif')->group(function () {
                 Route::get('/stase', [AcademicController::class, 'getNilaiStaseResiden']);
                 Route::put('/stase/{staseJadwalNilaiId}/upload', [AcademicController::class, 'uploadStaseResiden']);
+                Route::get('/uts', [AcademicController::class, 'getNilaiUTSResiden']);
+                Route::get('/uas', [AcademicController::class, 'getNilaiUASResiden']);
             });
         });
     });
@@ -57,6 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Master Data
     Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
     Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);
+    Route::get("/tahun-ajaran", [MasterDataController::class, 'getTahunAjaran']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

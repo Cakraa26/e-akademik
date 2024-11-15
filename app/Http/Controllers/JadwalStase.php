@@ -44,6 +44,9 @@ class JadwalStase extends Controller
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })
+            ->when($request->nm != null, function ($q) use ($request) {
+                return $q->where('nm', 'like', '%' . $request->nm . '%');
+            })
             ->with([
                 'jadwal' => function ($query) use ($selectTahunAjaran) {
                     $query->where('thnajaranfk', $selectTahunAjaran->pk);

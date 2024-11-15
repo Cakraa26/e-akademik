@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JadwalTransaction extends Model
+class File extends Model
 {
     use HasFactory;
-    protected $table = 't_jadwal';
+    protected $table = 'm_file';
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
@@ -24,17 +24,5 @@ class JadwalTransaction extends Model
         $nextPk = $last ? $last->pk + 1 : 1;
 
         return $nextPk;
-    }
-    public function stase()
-    {
-        return $this->belongsTo(Stase::class, 'stasefk', 'pk');
-    }
-    public function residen()
-    {
-        return $this->belongsTo(Residen::class, 'residenfk', 'pk');
-    }
-    public function nilai()
-    {
-        return $this->hasMany(JadwalTransactionNilai::class, 'jadwalfk'); 
     }
 }

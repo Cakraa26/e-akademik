@@ -27,7 +27,7 @@ return [
     'laporan' => "Laporan",
     'absensi' => "Absensi",
     'nilai' => "Nilai",
-    'akademik' => "Data Akademik",
+    'akademik' => "Akademik",
     'thnajaran' => "Tahun Ajaran",
     'rs' => "Rumah Sakit",
     'jdwstase' => "Jadwal Stase",
@@ -47,6 +47,8 @@ return [
     'record' => "Catatan",
     'calonresiden' => "Calon Residen",
     'detailpendaftaranresiden' => "Detail Pendaftaran Residen",
+    'uploadfile' => "Upload File",
+
     'harikerja' => "Hari Kerja",
     'dftabsensi' => "Daftar Absensi",
 
@@ -70,6 +72,8 @@ return [
     'editsubkategori' => "Perbarui Sub Kategori",
     'tambahresiden' => "Tambah Residen",
     'editresiden' => "Perbarui Residen",
+    'tambahFile' => "Tambah File",
+    'editFile' => "Perbarui File",
     'tambahtahunajaran' => "Tambah Tahun Ajaran",
     'edittahunajaran' => "Perbarui Tahun Ajaran",
     'detailmng' => "Detail Monitoring",
@@ -149,6 +153,7 @@ return [
     'tanggal' => "Tanggal",
     'disetujui' => "Disetujui",
     'hapus' => "Hapus",
+    'cari' => "Cari",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -196,6 +201,7 @@ return [
     'kdrequired' => "Kode wajib diisi.",
     'kdunique' => "Kode sudah terdaftar.",
     'warnarequired' => "Warna wajib diisi.",
+    'filerequired' => "File wajib diisi.",
     'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
     'tglrequired' => "Tanggal wajib diisi.",
 
@@ -223,6 +229,9 @@ return [
     'success_residen_added' => 'Data Residen berhasil ditambahkan.',
     'success_residen_edit' => 'Data Residen berhasil diperbarui.',
     'success_residen_hapus' => 'Data Residen berhasil dihapus.',
+    'success_file_added' => 'File berhasil diupload.',
+    'success_file_hapus' => 'File berhasil dihapus.',
+    'success_file_edit' => 'File berhasil diperbarui.',
     'success_tahunajaran_added' => 'Tahun Ajaran berhasil ditambahkan.',
     'success_tahunajaran_edit' => 'Tahun Ajaran berhasil diperbarui.',
     'success_tahunajaran_hapus' => 'Tahun Ajaran berhasil dihapus.',

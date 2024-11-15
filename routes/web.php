@@ -23,6 +23,8 @@ use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
+use App\Http\Controllers\NilaiStase;
+use App\Http\Controllers\UploadFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,6 +193,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'destroy' => 'tingkat.residen.destroy',
     ]);
 
+    // Nilai Stase
+    Route::resource('nilai-stase', NilaiStase::class)->names([
+        'index' => 'nilai.stase.index',
+        'create' => 'nilai.stase.create',
+        'store' => 'nilai.stase.store',
+        'edit' => 'nilai.stase.edit',
+        'update' => 'nilai.stase.update',
+        'destroy' => 'nilai.stase.destroy',
+    ]);
+
     // UAS
     Route::resource('uas', UASController::class)->names([
         'index' => 'uas.index',
@@ -223,6 +235,16 @@ Route::middleware(['checkRole:2'])->group(function () {
     Route::post('/psikomotorik/upload-detail', [PsikomotorikResiden::class, 'uploadDetail'])->name('psikomotorik.upload.detail');
 
 });
+
+// Upload File
+Route::resource('upload-file', UploadFileController::class)->names([
+    'index' => 'upload.file.index',
+    'create' => 'upload.file.create',
+    'store' => 'upload.file.store',
+    'edit' => 'upload.file.edit',
+    'update' => 'upload.file.update',
+    'destroy' => 'upload.file.destroy',
+]);
 
 // auth
 Route::get('/auth-forgot-password', function () {
