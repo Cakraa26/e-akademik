@@ -37,7 +37,7 @@ class Residen extends Authenticatable
     }
     public function tkaryailmiah()
     {
-        return $this->hasMany(KaryaIlmiahData::class, 'residenfk', 'pk');
+        return $this->hasOne(KaryaIlmiahData::class, 'residenfk', 'pk');
     }
     public function tmotorik()
     {

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.tambahkaryailmiah'))
+@section('title', __('message.editkaryailmiah'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,7 +20,7 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('karya-ilmiah.index') }}">{{ __('message.mstkarya') }}</a>
                             </div>
-                            <div class="breadcrumb-item">{{ __('message.tambah') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.edit') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -45,9 +45,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" action="{{ route('karya-ilmiah.store') }}" method="POST"
+                                <form id="form" action="{{ route('karya-ilmiah.update', $karya->pk) }}" method="POST"
                                     data-parsley-validate>
                                     @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
@@ -55,7 +56,7 @@
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('nm') is-invalid @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm') }}"
+                                                        name="nm" id="nm" value="{{ old('nm', $karya->nm) }}"
                                                         required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
@@ -67,7 +68,7 @@
                                                     <input type="text"
                                                         class="form-control  @error('sampaisemester') is-invalid @enderror"
                                                         name="sampaisemester" id="sampaisemester"
-                                                        value="{{ old('sampaisemester') }}" required
+                                                        value="{{ old('sampaisemester', $karya->sampaisemester) }}" required
                                                         data-parsley-required-message="{{ __('message.btssemesterrequired') }}">
                                                 </div>
                                             </div>
@@ -80,7 +81,7 @@
                                                     <input type="text"
                                                         class="form-control  @error('darisemester') is-invalid @enderror"
                                                         name="darisemester" id="darisemester"
-                                                        value="{{ old('darisemester') }}" required
+                                                        value="{{ old('darisemester', $karya->darisemester) }}" required
                                                         data-parsley-required-message="{{ __('message.drsemesterrequired') }}">
                                                 </div>
                                             </div>
@@ -92,7 +93,7 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" id="status"
                                                             name="aktif" value="1"
-                                                            {{ old('aktif') == '1' ? 'checked' : '' }} checked>
+                                                            {{ old('aktif', $karya->aktif) == '1' ? 'checked' : '' }}>
                                                         <label class="form-check-label"
                                                             for="status">{{ __('message.active') }}</label>
                                                     </div>
