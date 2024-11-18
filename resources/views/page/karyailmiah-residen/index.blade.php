@@ -72,7 +72,7 @@
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
                                                 class="fas fa-search"></i></button>
-                                        <a href="{{ route('karya-ilmiah-residen.index') }}" class="btn btn-secondary">
+                                        <a href="{{ route('karyailmiahresiden.index') }}" class="btn btn-secondary">
                                             <i class="fas fa-sync-alt"></i>
                                         </a>
                                     </div>
@@ -148,8 +148,8 @@
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('karyailmiah.residen.detail', $k->pk) }}"
-                                                        class="btn btn-info {{ Request::is('karya-ilmiah-residen/' . $k->pk . '/detail') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('karyailmiahresiden.detail', $k->pk) }}"
+                                                        class="btn btn-info {{ Request::is('karyailmiah-residen/' . $k->pk . '/detail') ? 'active' : '' }}"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
                                                 </div>
                                             </td>

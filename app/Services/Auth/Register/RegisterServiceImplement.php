@@ -48,7 +48,7 @@ class RegisterServiceImplement extends Service implements RegisterService
       $curl,
       CURLOPT_HTTPHEADER,
       array(
-        "Authorization: 4Mnc6uqUiHGY3EAywsNG",
+        "Authorization: WE3ffVnPW31nZNfLV29q",
       )
     );
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -101,7 +101,7 @@ class RegisterServiceImplement extends Service implements RegisterService
       $curl,
       CURLOPT_HTTPHEADER,
       array(
-        "Authorization: 4Mnc6uqUiHGY3EAywsNG",
+        "Authorization: WE3ffVnPW31nZNfLV29q",
       )
     );
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");

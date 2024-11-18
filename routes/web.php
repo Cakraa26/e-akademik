@@ -20,6 +20,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KaryaIlmiahController;
+use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
@@ -187,6 +188,17 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'karya-ilmiah.update',
         'destroy' => 'karya-ilmiah.destroy',
     ]);
+
+    // Karya Ilmiah Residen Admin
+    Route::resource('karyailmiah-residen', KaryaIlmiahResidenAdmin::class)->names([
+        'index' => 'karyailmiahresiden.index',
+        'create' => 'karyailmiahresiden.create',
+        'store' => 'karyailmiahresiden.store',
+        'edit' => 'karyailmiahresiden.edit',
+        'update' => 'karyailmiahresiden.update',
+        'destroy' => 'karyailmiahresiden.destroy',
+    ]);
+    Route::get('/karyailmiah-residen/detail', [KaryaIlmiahResidenAdmin::class, 'detail'])->name('karyailmiahresiden.detail');
 
     // Data Tahun Ajaran
     Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
