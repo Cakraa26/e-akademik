@@ -25,7 +25,7 @@ class NilaiStase extends Controller
             $selectTahunAjaran = TahunAjaran::where('aktif', 1)->first();
         }
 
-        $bulans = [
+        $bulan = [
             $selectTahunAjaran->bulan1,
             $selectTahunAjaran->bulan2,
             $selectTahunAjaran->bulan3,
@@ -34,21 +34,17 @@ class NilaiStase extends Controller
             $selectTahunAjaran->bulan6,
         ];
 
-        $jadwal = JadwalTransaction::whereHas('nilai', function ($query) use ($selectTahunAjaran) {
-            return $query->where('thnajaranfk', $selectTahunAjaran->pk);
-        })
-            ->when($request->semester != null, function ($q) use ($request) {
-                return $q->where('semester', $request->semester);
+        $jadwal = JadwalTransaction::where('thnajaranfk', $selectTahunAjaran->pk)
+            ->whereHas('residen', function ($query) use ($request) {
+                $query->where('nm', 'like', '%' . $request->nm . '%');
             })
-            ->when($request->tingkatfk != null, function ($q) use ($request) {
-                return $q->where('tingkatfk', $request->tingkatfk);
+            ->when($request->semester, function ($query) use ($request) {
+                $query->where('semester', $request->semester);
             })
-            ->when($request->nm != null, function ($q) use ($request) {
-                return $q->whereHas('residen', function ($query) use ($request) {
-                    $query->where('nm', 'like', '%' . $request->nm . '%');
-                });
+            ->when($request->tingkatfk, function ($query) use ($request) {
+                $query->where('tingkatfk', $request->tingkatfk);
             })
-            ->orderBy('semester', 'asc')
+            ->with(['residen', 'nilai'])
             ->get()
             ->groupBy('semester');
 
@@ -62,7 +58,39 @@ class NilaiStase extends Controller
             'tingkat' => $tingkat,
             'semester' => $semester,
             'residen' => $residen,
-            'bulans' => $bulans,
+            'bulan' => $bulan,
+            'type_menu' => $type_menu,
+        ]);
+    }
+    public function edit($jadwalId)
+    {
+        $type_menu = 'kognitif';
+
+        $jadwal = JadwalTransaction::findOrFail($jadwalId);
+        $residenfk = $jadwal->residenfk;
+
+        $jadwals = JadwalTransaction::with(['nilai.stase', 'nilai.dosen'])
+            ->where('residenfk', $residenfk)
+            ->get();
+
+        $grup = collect();
+
+        foreach ($jadwals as $jadwal) {
+            $bulan = $jadwal->bulan;
+            $tahun = $jadwal->tahun;
+
+            $grup = $grup->merge($jadwal->nilai->groupBy(function ($item) use ($bulan, $tahun) {
+                return $bulan . $tahun;
+            }));
+        }
+
+        $kelas = Kelas::where('residenfk', $jadwal->residenfk)->first();
+        return view("page.nilai-stase.edit", [
+            'jadwal' => $jadwal,
+            'grup' => $grup,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'kelas' => $kelas,
             'type_menu' => $type_menu,
         ]);
     }
