@@ -25,7 +25,7 @@ class CheckOutRequest extends BaseRequest
     {
         return [
             'loc_out' => 'required',
-            'photo_out' => 'required|image|mimes:jpeg,png,jpg|max:10240',
+            'photo_out' => 'required|image|mimes:png,jpeg',
         ];
     }
 }
