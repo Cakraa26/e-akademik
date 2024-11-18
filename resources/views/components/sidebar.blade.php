@@ -96,7 +96,8 @@
                                 href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
                         </li>
                         <li class='{{ Request::is('hari-kerja*') ? 'active' : '' }}'>
-                            <a class="nav-link" href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
+                            <a class="nav-link"
+                                href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
                         </li>
                         <li class="{{ Request::is('upload-file*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.uploadfile') }}</a>
@@ -207,13 +208,14 @@
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-file-alt"></i><span>{{ __('message.karyailmiah') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('karya-ilmiah*') && !Request::is('karya-ilmiah-residen*') ? 'active' : '' }}'>
+                        <li
+                            class='{{ Request::is('karya-ilmiah*') && !Request::is('karya-ilmiah-residen*') ? 'active' : '' }}'>
                             <a class="nav-link"
                                 href="{{ route('karya-ilmiah.index') }}">{{ __('message.mstkarya') }}</a>
                         </li>
-                        <li class="{{ Request::is('karya-ilmiah-residen*') ? 'active' : '' }}">
+                        <li class="{{ Request::is('karyailmiah-residen*') ? 'active' : '' }}">
                             <a class="nav-link"
-                                href="{{ route('karya-ilmiah-residen.index') }}">{{ __('message.residenkarya') }}</a>
+                                href="{{ route('karyailmiahresiden.index') }}">{{ __('message.residenkarya') }}</a>
                         </li>
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.laporan') }}</a>
