@@ -44,7 +44,7 @@ class KaryaIlmiahResidenAdmin extends Controller
 
         $tingkat = Tingkat::all();
         $semester = Semester::all();
-        return view("page.karya-ilmiah-residen.index", [
+        return view("page.karyailmiah-residen.index", [
             'thnajaran' => $thnajaran,
             'selectTahunAjaran' => $selectTahunAjaran,
             'tingkat' => $tingkat,
