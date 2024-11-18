@@ -12,4 +12,8 @@ class KaryaIlmiah extends Model
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
+    public function tkaryailmiah()
+    {
+        return $this->hasMany(KaryaIlmiahData::class, 'karyailmiahfk');
+    }
 }

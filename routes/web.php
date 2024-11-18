@@ -190,7 +190,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     ]);
 
     // Karya Ilmiah Residen Admin
-    Route::resource('karyailmiah-residen', KaryaIlmiahResidenAdmin::class)->names([
+    Route::resource('karyailmiah-residen', KaryaIlmiahResidenAdmin::class)->parameters(['karyailmiah-residen' => 'pk'])->names([
         'index' => 'karyailmiahresiden.index',
         'create' => 'karyailmiahresiden.create',
         'store' => 'karyailmiahresiden.store',
@@ -198,7 +198,6 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'karyailmiahresiden.update',
         'destroy' => 'karyailmiahresiden.destroy',
     ]);
-    Route::get('/karyailmiah-residen/detail', [KaryaIlmiahResidenAdmin::class, 'detail'])->name('karyailmiahresiden.detail');
 
     // Data Tahun Ajaran
     Route::resource('tahun-ajaran', TahunAjaranController::class)->names([

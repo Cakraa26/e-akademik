@@ -148,8 +148,8 @@
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('karyailmiahresiden.detail', $k->pk) }}"
-                                                        class="btn btn-info {{ Request::is('karyailmiah-residen/' . $k->pk . '/detail') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('karyailmiahresiden.edit', $k->pk) }}"
+                                                        class="btn btn-info {{ Request::is('karyailmiah-residen/' . $k->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
                                                 </div>
                                             </td>
