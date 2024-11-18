@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Resident\AcademicController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MasterDataController;
+use App\Http\Controllers\API\Resident\AttendanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,13 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::get('/uts', [AcademicController::class, 'getNilaiUTSResiden']);
                 Route::get('/uas', [AcademicController::class, 'getNilaiUASResiden']);
             });
+        });
+
+        // attendance routes
+        Route::prefix("attendance")->group(function () {
+            Route::get('/state', [AttendanceController::class, 'getAttendanceState']);
+            Route::post('/check-in', [AttendanceController::class, 'checkIn']);
+            Route::post('/check-out', [AttendanceController::class, 'checkOut']);
         });
     });
 
