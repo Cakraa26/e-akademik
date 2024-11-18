@@ -50,14 +50,24 @@ Route::get('/locale/{locale}', function ($locale) {
     return redirect()->back();
 });
 
+//Register
+Route::get('/auth-register', function () {
+    return view('pages.auth-register', ['type_menu' => 'auth']);
+})->name('auth.register');
+Route::post('register/action', [AuthController::class, 'actionRegister'])->name('actionRegister');
+Route::get('/otp/verify/{residen}', [AuthController::class, 'otp'])->name('otp.verify');
+Route::post('/otp-register', [AuthController::class, 'otp']);
+Route::post('/otp/verify/{residen}', [AuthController::class, 'verifyOtp'])->name('otp.verify.post');
+Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp.resend');
+
 // Dashboard
 Route::get('/dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
 })->middleware('checkRole:0,1,2')->name('dashboard');
 
-Route::middleware(['checkRole:0'])->group(function () {
+// Route::middleware(['checkRole:0'])->group(function () {
 
-});
+// });
 
 Route::middleware(['checkRole:1'])->group(function () {
     // Data Dosen
@@ -273,17 +283,6 @@ Route::resource('upload-file', UploadFileController::class)->names([
 Route::get('/auth-forgot-password', function () {
     return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
 });
-
-
-//Register
-Route::get('/auth-register', function () {
-    return view('pages.auth-register', ['type_menu' => 'auth']);
-})->name('auth.register');
-Route::post('register/action', [AuthController::class, 'actionRegister'])->name('actionRegister');
-Route::get('/otp/verify/{residen}', [AuthController::class, 'otp'])->name('otp.verify');
-Route::post('/otp-register', [AuthController::class, 'otp']);
-Route::post('/otp/verify/{residen}', [AuthController::class, 'verifyOtp'])->name('otp.verify.post');
-Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp.resend');
 
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);
