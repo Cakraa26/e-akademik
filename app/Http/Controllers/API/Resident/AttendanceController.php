@@ -45,6 +45,8 @@ class AttendanceController extends Controller
             ], 400);
         }
 
+        Log::info($request->file('photo_in'));
+
         // cek apakah dia sudah melewati jumlah batas terlambat
 
         // simpan absen
@@ -60,9 +62,10 @@ class AttendanceController extends Controller
             ]);
 
             DB::commit();
-            return response()->json(['file' => $request->file('photo_in')], 200);
+            return response()->json($data, 200);
         } catch (\Throwable $e) {
             DB::rollBack();
+            Log::error($e->getMessage());
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
@@ -95,14 +98,13 @@ class AttendanceController extends Controller
         // simpan absen
         DB::beginTransaction();
         try {
-            $attendance->update([
-                'check_out' => now(),
-                'loc_out' => $request->loc_out,
-                'photo_out' => Storage::disk('public')->put('attendance-check-out', $request->file('photo_out'))
-            ]);
+            $attendance->check_out = now();
+            $attendance->loc_out = $request->loc_out;
+            $attendance->photo_out = Storage::disk('public')->put('attendance-check-out', $request->file('photo_out'));
+            $attendance->save();
 
             DB::commit();
-            return response()->json(['file' => $request->file('photo_out')], 200);
+            return response()->json($attendance, 200);
         } catch (\Throwable $e) {
             DB::rollBack();
             return response()->json(['message' => $e->getMessage()], 500);

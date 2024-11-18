@@ -26,7 +26,7 @@ class CheckInRequest extends BaseRequest
     {
         return [
             'loc_in' => 'required',
-            'photo_in' => 'required|image|mimes:jpeg,png,jpg|max:10240',
+            'photo_in' => 'required|image|mimes:png,jpeg',
         ];
     }
 }
