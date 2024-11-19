@@ -73,7 +73,6 @@
                 </li>
                 
                 {{-- Laporan --}}
-                <li class="menu-header">
                 <li class="menu-header">{{ __('message.record') }}</li>
                 </li>
 
