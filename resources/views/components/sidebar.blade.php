@@ -120,8 +120,8 @@
                             <a class="nav-link"
                                 href="{{ route('data.mahasiswa.index') }}">{{ __('message.datacalonresiden') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.databaseresiden') }}</a>
+                        <li class="{{ Request::is('database-residen*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('database.residen.index') }}">{{ __('message.databaseresiden') }}</a>
                         </li>
                         <li class="{{ Request::is('data-stase*') ? 'active' : '' }}">
                             <a class="nav-link"
