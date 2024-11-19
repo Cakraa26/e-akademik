@@ -144,18 +144,21 @@
                                                                 $bulanNumber = date('m', strtotime($b));
 
                                                                 $nilai =
-                                                                    $j->where('bulan', $bulanNumber)->first()?->jadwalNilai
-                                                                        ?->nilai ?? 0;
-                                                                        
+                                                                    $j->where('bulan', $bulanNumber)->first()
+                                                                        ?->jadwalNilai?->nilai ?? 0;
+
                                                                 $total += $nilai / 6;
                                                             @endphp
                                                             <td>{{ $nilai ?? '0' }}</td>
                                                         @endforeach
                                                         <td>{{ number_format($total, 2) }}</td>
                                                         <td>
-                                                            <a href="{{ route('nilai.stase.edit', $j->first()->jadwalNilai->pk) }}"
-                                                                class="btn btn-info {{ Request::is('nilai-stase/' . $j->first()->jadwalNilai->pk . '/edit') ? 'active' : '' }}"><i
-                                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                                            @if ($j->isNotEmpty() && $j->first()->jadwalNilai)
+                                                                <a href="{{ route('nilai.stase.edit', $j->first()->jadwalNilai->pk) }}"
+                                                                    class="btn btn-info {{ Request::is('nilai-stase/' . $j->first()->jadwalNilai->pk . '/edit') ? 'active' : '' }}">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                </a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach
