@@ -50,6 +50,8 @@ return [
     'harikerja' => "Hari Kerja",
     'uploadfile' => "Upload File",
     'dftabsensi' => "Daftar Absensi",
+    'detailkarya' => "Detail Karya Ilmiah",
+    'detailmng' => "Detail Monitoring",
 
     // CRUD
     'tambah' => "Tambah",
@@ -77,8 +79,7 @@ return [
     'edittahunajaran' => "Perbarui Tahun Ajaran",
     'tambahharikerja' => "Tambah Hari Kerja",
     'editharikerja' => "Perbarui Hari Kerja",
-    'detailmng' => "Detail Monitoring",
-    'detailmngpendek' => "Detail",
+    'detail' => "Detail",
     'approved' => 'Konfirmasi Persetujuan',
     'confirmapprov' => 'Konfirmasi',
     'editkelas' => "Perbarui Kelas",

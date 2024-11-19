@@ -47,6 +47,8 @@ return [
     'residen' => "Resident",
     'record' => "Records",
     'harikerja' => "Working Day",
+    'detailkarya' => "Scientific Work Detail",
+    'detailmng' => "Monitoring Detail",
 
     // CRUD
     'tambah' => "Add",
@@ -70,8 +72,7 @@ return [
     'editresiden' => "Update Resident",
     'tambahtahunajaran' => "Add Tahun Ajaran",
     'edittahunajaran' => "Update Tahun Ajaran",
-    'detailmng' => "Monitoring Detail",
-    'detailmngpendek' => "Detail",
+    'detail' => "Detail",
     'approved' => 'Approval Confirmation',
     'confirmapprov' => 'Confirmation',
     'editkelas' => "Update Class",

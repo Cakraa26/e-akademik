@@ -20,7 +20,7 @@
                         <span>Download File</span></a>
                 </li>
 
-                <li class="menu-header">Data</li>
+                <li class="menu-header">{{ __('message.akademik') }}</li>
                 {{-- Kognitif --}}
                 <li class="nav-item dropdown {{ $type_menu === 'kognitif' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i
@@ -65,16 +65,18 @@
                         <span>{{ __('message.dtmotorik') }}</span></a>
                 </li>
 
-                {{-- Laporan --}}
-                <li class="menu-header">
-                <li class="menu-header">{{ __('message.record') }}</li>
-                </li>
-
+                {{-- Karya Ilmiah --}}
                 <li class="{{ Request::is('karya-ilmiah-residen') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i
                             class="fas fa-file-alt"></i>
                         <span>{{ __('message.karyailmiah') }}</span></a>
                 </li>
+                
+                {{-- Laporan --}}
+                <li class="menu-header">
+                <li class="menu-header">{{ __('message.record') }}</li>
+                </li>
+
                 <li class="{{ Request::is('laporan') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('laporan') }}"><i class="fas fa-chart-bar"></i>
                         <span>{{ __('message.laporan') }}</span></a>
