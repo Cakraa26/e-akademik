@@ -62,11 +62,14 @@ class NilaiStase extends Controller
             'type_menu' => $type_menu,
         ]);
     }
-    public function edit($jadwalId)
+    public function edit($pk)
     {
         $type_menu = 'kognitif';
 
-        $jadwal = JadwalTransaction::findOrFail($jadwalId);
+        $jadwalNilai = JadwalTransactionNilai::with('jadwal')
+            ->findOrFail($pk);
+
+        $jadwal = $jadwalNilai->jadwal;
         $residenfk = $jadwal->residenfk;
 
         $jadwals = JadwalTransaction::with(['nilai.stase', 'nilai.dosen'])
@@ -79,12 +82,14 @@ class NilaiStase extends Controller
             $bulan = $jadwal->bulan;
             $tahun = $jadwal->tahun;
 
-            $grup = $grup->merge($jadwal->nilai->groupBy(function ($item) use ($bulan, $tahun) {
-                return $bulan . $tahun;
-            }));
+            $grup = $grup->merge(
+                $jadwal->nilai->groupBy(function ($item) use ($bulan, $tahun) {
+                    return $bulan . '-' . $tahun;
+                })
+            );
         }
 
-        $kelas = Kelas::where('residenfk', $jadwal->residenfk)->first();
+        $kelas = Kelas::where('residenfk', $residenfk)->first();
         return view("page.nilai-stase.edit", [
             'jadwal' => $jadwal,
             'grup' => $grup,
