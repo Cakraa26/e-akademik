@@ -52,16 +52,16 @@
                         <h2 class="section-title2">{{ $residen->email }}</h2>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">{{ __('message.hp') }}</label>
-                        <h2 class="section-title2">{{ $residen->hp }}</h2>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
                         <label class="form-label">{{ __('message.dateofbirth') }}</label>
                         <h2 class="section-title2">{{ $residen->tempatlahir }},
                             {{ date('d-m-Y', strtotime($residen->tgllahir)) }}</h2>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">{{ __('message.hp') }}</label>
+                        <h2 class="section-title2">{{ $residen->hp }}</h2>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">{{ __('message.alamatktp') }}</label>
