@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-2">
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">{{ __('message.ktp') }}</label>
                         <h2 class="section-title2">{{ $residen->ktp }}</h2>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-2">
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">{{ __('message.dateofbirth') }}</label>
                         <h2 class="section-title2">{{ $residen->tempatlahir }},
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-2">
+                <div class="row">
                     <div class="col-md-2">
                         <label class="form-label">{{ __('message.asalfk') }}</label>
                         <h2 class="section-title2">{{ $residen->asalfk }}</h2>
@@ -102,7 +102,7 @@
                 </div>
 
                 @if ($residen->statuskawin === 1)
-                    <div class="row mb-2">
+                    <div class="row">
                         <div class="col-md-4">
                             <label class="form-label">{{ __('message.nmpasangan') }}</label>
                             <h2 class="section-title2">{{ $residen->nmpasangan }}</h2>
@@ -122,7 +122,7 @@
                     </div>
                 @endif
 
-                <div class="row mb-2">
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">{{ __('message.nmayah') }}</label>
                         <h2 class="section-title2">{{ $residen->nmayah }}</h2>
