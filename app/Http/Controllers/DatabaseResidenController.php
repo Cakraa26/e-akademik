@@ -20,10 +20,10 @@ class DatabaseResidenController extends Controller
      */
     public function index(Request $request)
     {
-        $dataresiden = Residen::when($request->angkatanfk != null, function($q) use ($request) {
+        $dataresiden = Residen::when($request->angkatanfk != null, function ($q) use ($request) {
             return $q->where('thnajaranfk', $request->angkatanfk);
         })->when($request->statuskuliah != null, function ($q) use ($request) {
-            if($request->statuskuliah == 'semua') {
+            if ($request->statuskuliah == 'semua') {
                 return $q;
             }
             return $q->where('statuskuliah', $request->statuskuliah);
@@ -100,7 +100,7 @@ class DatabaseResidenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return dd($request->all());
     }
 
     /**

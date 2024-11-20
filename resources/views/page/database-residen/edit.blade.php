@@ -46,7 +46,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" action="{{ route('data.dosen.update', $residen->pk) }}" method="POST"
+                                <form id="form" action="{{ route('database.residen.update', $residen->pk) }}" method="POST"
                                     data-parsley-validate>
                                     @csrf
                                     @method('PUT')
@@ -347,8 +347,7 @@
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="nmpasangan"
                                                         id="nmpasangan"
-                                                        value="{{ old('nmpasangan', $residen->nmpasangan) }}" required
-                                                        data-parsley-required-message="{{ __('message.nmpasanganrequired') }}">
+                                                        value="{{ old('nmpasangan', $residen->nmpasangan) }}">
                                                     @error('nmpasangan')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -362,9 +361,7 @@
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="alamatpasangan"
                                                         id="alamatpasangan"
-                                                        value="{{ old('alamatpasangan', $residen->alamatpasangan) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.alamatpasanganrequired') }}">
+                                                        value="{{ old('alamatpasangan', $residen->alamatpasangan) }}">
                                                     @error('alamatpasangan')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -378,8 +375,7 @@
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="hppasangan"
                                                         id="hppasangan"
-                                                        value="{{ old('hppasangan', $residen->hppasangan) }}" required
-                                                        data-parsley-required-message="{{ __('message.hppasarangrequired') }}">
+                                                        value="{{ old('hppasangan', $residen->hppasangan) }}">
                                                     @error('hppasangan')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
