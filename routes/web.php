@@ -92,6 +92,7 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'data.mahasiswa.edit',
         'update' => 'data.mahasiswa.update',
         'destroy' => 'data.mahasiswa.destroy',
+        'show' => 'data.mahasiswa.show',
     ]);
 
     // Data State

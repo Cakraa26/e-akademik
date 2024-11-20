@@ -46,7 +46,7 @@ return [
     'residen' => "Residen",
     'record' => "Catatan",
     'calonresiden' => "Calon Residen",
-    'detailpendaftaranresiden' => "Detail Pendaftaran Residen",
+    'detailresiden' => "Detail Residen",
     'harikerja' => "Hari Kerja",
     'uploadfile' => "Upload File",
     'dftabsensi' => "Daftar Absensi",
@@ -98,6 +98,7 @@ return [
 
     // Field 
     'nama' => "Nama",
+    'nmpanggilan' => "Nama Panggilan",
     'inisial' => "Inisial",
     'divisi' => "Divisi",
     'alamat' => "Alamat",
@@ -138,7 +139,7 @@ return [
     'nmresiden' => "Nama Residen",
     'hp' => "Hp",
     'asalfakultas' => "Asal Fakultas",
-    'thnlulus' => "Thn Lulus",
+    'thnlulus' => "Tahun Lulus",
     'nmprosedur' => "Nama (Prosedur)",
     'bimbingan' => "Bimbingan",
     'mandiri' => 'Mandiri',
@@ -168,6 +169,32 @@ return [
     'cari' => "Cari",
     'dosen' => "Dosen",
     'belum_upload' => "Belum Diunggah",
+    'ktp' => "No. KTP",
+    'dateofbirth' => "Tempat / Tgl Lahir",
+    'alamatktp' => "Alamat KTP",
+    'agama' => "Agama",
+    'goldarah' => "Golongan Darah",
+    'thnmasuk' => "Tahun Masuk",
+    'thnlulusfk' => "Tahun Lulus",
+    'asalfk' => "Asal FK",
+    'stsresiden' => "Status Residen",
+    'stskawin' => "Status Kawin",
+    'menikah' => "Menikah",
+    'belummenikah' => "Belum Menikah",
+    'pns' => "PNS",
+    'patubel' => "Patubel",
+    'nmpasangan' => "Nama Suami / Istri",
+    'alamatpasangan' => "Alamat Suami / Istri",
+    'hppasangan' => "No. HP Suami / Istri",
+    'jmlanak' => "Jumlah Anak",
+    'nmayah' => "Nama Ayah",
+    'nmibu' => "Nama Ibu",
+    'alamatortu' => "Alamat Ayah / Ibu",
+    'anakke' => "Anak ke",
+    'jmlsaudara' => "Jumlah Saudara",
+    'nmkontakdarurat' => "Nama Kontak Darurat",
+    'hpkontakdarurat' => "Nomor Kontak Darurat",
+    'hubkontakdarurat' => "Hubungan",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -220,6 +247,8 @@ return [
     'filerequired' => "File wajib diisi.",
     'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
     'tglrequired' => "Tanggal wajib diisi.",
+    'ada' => "Terdapat",
+    'cek' => "Residen yang perlu diverifikasi.",
 
     // Alert
     'success' => 'Sukses',
@@ -269,4 +298,5 @@ return [
     'success_karyailmiah_edit' => 'Karya Ilmiah berhasil diperbarui.',
     'success_karyailmiah_added' => 'Karya Ilmiah berhasil ditambahkan.',
     'success_karyailmiah_hapus' => 'Karya Ilmiah berhasil dihapus.',
+    'success_confirm' => 'Konfirmasi data berhasil dilakukan.'
 ];

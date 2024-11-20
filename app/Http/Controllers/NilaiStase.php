@@ -66,37 +66,53 @@ class NilaiStase extends Controller
     {
         $type_menu = 'kognitif';
 
-        $jadwalNilai = JadwalTransactionNilai::with('jadwal')
-            ->findOrFail($pk);
+        $jadwalNilai = JadwalTransactionNilai::findOrFail($pk);
 
         $jadwal = $jadwalNilai->jadwal;
         $residenfk = $jadwal->residenfk;
 
-        $jadwals = JadwalTransaction::with(['nilai.stase', 'nilai.dosen'])
-            ->where('residenfk', $residenfk)
+        $jadwalNilais = JadwalTransactionNilai::with(['stase', 'dosen', 'jadwal'])
+            ->whereHas('jadwal', function ($query) use ($residenfk) {
+                $query->where('residenfk', $residenfk);
+            })
             ->get();
 
-        $grup = collect();
-
-        foreach ($jadwals as $jadwal) {
-            $bulan = $jadwal->bulan;
-            $tahun = $jadwal->tahun;
-
-            $grup = $grup->merge(
-                $jadwal->nilai->groupBy(function ($item) use ($bulan, $tahun) {
-                    return $bulan . '-' . $tahun;
-                })
-            );
-        }
+        $grup = $jadwalNilais->groupBy(function ($item) {
+            return $item->jadwal->bulan . '-' . $item->jadwal->tahun;
+        });
 
         $kelas = Kelas::where('residenfk', $residenfk)->first();
         return view("page.nilai-stase.edit", [
-            'jadwal' => $jadwal,
             'grup' => $grup,
-            'bulan' => $bulan,
-            'tahun' => $tahun,
-            'kelas' => $kelas,
             'type_menu' => $type_menu,
+            'jadwal' => $jadwal,
+            'kelas' => $kelas,
         ]);
+    }
+    public function update(Request $request, $pk)
+    {
+        try {
+            $nilai = JadwalTransactionNilai::findOrFail($pk);
+            $nilai->nilai = round($request->input('nilai'), 2);
+            $nilai->ctnfile = $request->input('ctnfile');
+            ;
+            $nilai->save();
+
+            $nilaistase = round($request->totalnilai, 2);
+            $residenfk = $nilai->jadwal->residenfk;
+            $kelas = Kelas::where('residenfk', $residenfk)->first();
+            if ($kelas) {
+                $kelas->nilaistase = $nilaistase;
+                $kelas->save();
+            }
+
+            return redirect()
+                ->route('nilai.stase.edit', $nilai->pk)
+                ->with('success', __('message.success_edit'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }
