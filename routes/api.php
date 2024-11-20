@@ -54,6 +54,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::get('/uts', [AcademicController::class, 'getNilaiUTSResiden']);
                 Route::get('/uas', [AcademicController::class, 'getNilaiUASResiden']);
             });
+
+            Route::get('/afektif', [AttendanceController::class, 'getAfektif']);
         });
 
         // attendance routes
