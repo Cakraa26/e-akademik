@@ -30,6 +30,11 @@
                     <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    <strong>Error!</strong> {{ session('error') }}
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
             @endif
             {{-- Alert End --}}
 
@@ -65,8 +70,8 @@
                                             <th>{{ $loop->iteration }}</th>
                                             <td>{{ $file->nm }}</td>
                                             <td>{{ $file->ctn }}</td>
-                                            <td><a href="{{ route('upload-file.show', $file->pk) }}" class="btn btn-primary"><i
-                                                        class="fa fa-download"></i></a>
+                                            <td><a href="{{ route('upload-file.show', $file->pk) }}"
+                                                    class="btn btn-primary"><i class="fa fa-download"></i></a>
                                             </td>
                                             <td>
                                                 <span

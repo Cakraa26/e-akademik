@@ -23,6 +23,15 @@
                 </div>
             </div>
 
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                <h2 class="section-title2 text-center">{{ $thnajaran->nm }}</h2>
+                @if ($count > 0)
+                    <div class="col-12 col-md-4 px-0 text-center alert alert-warning alert-dismissible show fade" role="alert">
+                       <strong><i class="fa-solid fa-triangle-exclamation pr-1"></i></strong> {{ __('message.ada') }} {{ $count }} {{ __('message.cek') }}
+                    </div>
+                @endif
+            </div>
+
             {{-- Alert --}}
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible show fade" role="alert">
@@ -40,9 +49,8 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-
                         <div class="table-responsive">
-                            <table class="table-striped table nowrap" id="myTable" style="width: 100%">
+                            <table class="table-striped table" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
@@ -54,27 +62,32 @@
                                         <th>{{ __('message.hp') }}</th>
                                         <th>{{ __('message.asalfakultas') }}</th>
                                         <th>{{ __('message.thnlulus') }}</th>
-                                        <th>{{ __('message.aksi') }}</th>
+                                        <th class="text-nowrap">{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($residen as $mahasiswa)
+                                    @foreach ($residen as $r)
                                         <tr>
                                             <th>{{ $loop->iteration }}</th>
-                                            <td>{{ date('d/m/Y', strtotime($mahasiswa->dateadded)) }}</td>
-                                            <td>{{ $mahasiswa->inisialresiden }}</td>
-                                            <td>{{ $mahasiswa->nm }}</td>
-                                            <td>{{ $mahasiswa->hp }}</td>
-                                            <td>{{ $mahasiswa->asalfk }}</td>
-                                            <td>{{ $mahasiswa->thnlulus }}</td>
-                                            <td>
+                                            <td>{{ date('d/m/Y', strtotime($r->dateadded)) }}</td>
+                                            <td>{{ $r->inisialresiden }}</td>
+                                            <td>{{ $r->nm }}</td>
+                                            <td>{{ $r->hp }}</td>
+                                            <td>{{ $r->asalfk }}</td>
+                                            <td>{{ $r->thnlulus }}</td>
+                                            <td class="text-nowrap">
                                                 <div>
-                                                    <a href="#" class="btn btn-success"><i
-                                                            class="fas fa-check"></i></a>
+                                                    <form action="{{ route('data.mahasiswa.update', $r->pk) }}"
+                                                        method="POST" style="display: inline">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="btn btn-primary"><i
+                                                                class="fas fa-check"></i></button>
+                                                    </form>
 
-                                                    <a href="{{ route('data-mahasiswa.show', $mahasiswa->pk) }}"
-                                                        type="button" class="btn btn-primary"><i class="fas fa-info"></i>
-                                                    </a>
+                                                    <a href="{{ route('data.mahasiswa.show', $r->pk) }}"
+                                                        class="btn btn-secondary {{ Request::is('data-mahasiswa/' . $r->pk . '/show') ? 'active' : '' }}"><i
+                                                            class="fa-solid fa-eye"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -82,7 +95,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>

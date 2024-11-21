@@ -96,6 +96,7 @@ return [
     'drsemester' => "From Semester",
     'btssemester' => "End Semester",
     'nama' => "Name",
+    'nmpanggilan' => "Nickname",
     'inisial' => "Initial",
     'divisi' => "Division",
     'alamat' => "Address",
@@ -124,6 +125,33 @@ return [
     'tglupload' => "Date Uploaded",
     'unduh' => "Download File",
     'tahapan' => "Stages of Scientific Work",
+    'ktp' => "ID Card Number",
+    'dateofbirth' => "Place / Date of Birth",
+    'alamatktp' => "ID Card Address",
+    'agama' => "Religion",
+    'goldarah' => "Blood Type",
+    'thnmasuk' => "Year of Entrance",
+    'thnlulusfk' => "Year of Graduation",
+    'asalfk' => "Medical School Origin",
+    'stsresiden' => "Resident Status",
+    'stskawin' => "Married Status",
+    'menikah' => "Married",
+    'belummenikah' => "Not Married",
+    'pns' => "Civil Servant",
+    'patubel' => "Study Leave",
+    'nmpasangan' => "Spouse's Name",
+    'alamatpasangan' => "Spouse's Address",
+    'hppasangan' => "Spouse's Phone Number",
+    'jmlanak' => "Number of Children",
+    'nmayah' => "Father's Name",
+    'nmibu' => "Mother's Name",
+    'alamatortu' => "Parents' Address",
+    'anakke' => "Child Number",
+    'jmlsaudara' => "Number of Siblings",
+    'nmkontakdarurat' => "Emergency Contact Name",
+    'hpkontakdarurat' => "Emergency Phone Number",
+    'hubkontakdarurat' => "Relationship with Emergency Contact",
+
 
     // Hari Kerja
     'masuk' => "Entry",
@@ -166,7 +194,7 @@ return [
     'hp' => "Phone Number",
     'asalfakultas' => "Faculty Origin",
     'thnlulus' => "Graduation Year",
-    'detailpendaftaranresiden' => "Resident Registration Details",
+    'detailresiden' => "Resident Details",
     'groupmotorik' => "Psychomotor Group",
     'kategorimotorik' => "Psychomotor Category",
 
@@ -203,6 +231,8 @@ return [
     'tlpunique' => "Phone number is already registered.",
     'nipunique' => "NIP is already registered.",
     'tglrequired' => "Date is required.",
+    'ada' => "There are",
+    'cek' => "Residents that need to be verified.",
 
     // Alert
     'success' => 'Success',
@@ -248,4 +278,5 @@ return [
     'success_karyailmiah_edit' => 'Scientific Work has been successfully updated.',
     'success_karyailmiah_added' => 'Scientific Work has been successfully added.',
     'success_karyailmiah_hapus' => 'Scientific Work has been successfully deleted.',
+    'success_confirm' => 'Data has been successfully confirmed.'
 ];
