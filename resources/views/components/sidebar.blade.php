@@ -71,7 +71,8 @@
                 </li>
 
                 <li class="{{ Request::is('karya-ilmiah-residen') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i class="fas fa-file-alt"></i>
+                    <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i
+                            class="fas fa-file-alt"></i>
                         <span>{{ __('message.karyailmiah') }}</span></a>
                 </li>
                 <li class="{{ Request::is('laporan') ? 'active' : '' }}">
@@ -97,11 +98,12 @@
                         <li class="{{ Request::is('stase') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('stase') }}">{{ __('message.harikerja') }}</a>
                         </li>
-                        <li class="{{ Request::is('rs') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('rs') }}">{{ __('message.upload') }} File</a>
-                        </li>
                         <li class="{{ Request::is('upload-file*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.uploadfile') }}</a>
+                        </li>
+                        <li class="{{ Request::is('pengumuman*') ? 'active' : '' }}">
+                            <a class="nav-link"
+                                href="{{ route('pengumuman.index') }}">{{ __('message.pengumuman') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -121,7 +123,8 @@
                                 href="{{ route('data.mahasiswa.index') }}">{{ __('message.datacalonresiden') }}</a>
                         </li>
                         <li class="{{ Request::is('database-residen*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('database.residen.index') }}">{{ __('message.databaseresiden') }}</a>
+                            <a class="nav-link"
+                                href="{{ route('database.residen.index') }}">{{ __('message.databaseresiden') }}</a>
                         </li>
                         <li class="{{ Request::is('data-stase*') ? 'active' : '' }}">
                             <a class="nav-link"

@@ -48,6 +48,7 @@ return [
     'calonresiden' => "Calon Residen",
     'detailpendaftaranresiden' => "Detail Pendaftaran Residen",
     'uploadfile' => "Upload File",
+    'pengumuman' => "Pengumuman",
 
     'harikerja' => "Hari Kerja",
     'dftabsensi' => "Daftar Absensi",
@@ -84,6 +85,8 @@ return [
     'confirmapprov' => 'Konfirmasi',
     'editkelas' => "Perbarui Kelas",
     'editjadwal' => "Perbarui Jadwal",
+    'tambahpengumuman' => "Tambah Pengumuman",
+    'editpengumuman' => "Perbarui Pengumuman",
 
     // Button
     'kembali' => "Kembali",
@@ -144,6 +147,9 @@ return [
     'cetak' => "Cetak",
     'viewdetail' => "Lihat Detail",
     'tglupload' => "Tanggal Diunggah",
+    'tglbuat' => "Tanggal Dibuat",
+    'tglberlaku' => "Tanggal Berlaku",
+    'tglberlakusampai' => "Tanggal Berlaku Sampai",
     'unduh' => "Unduh File",
     'tahapan' => "Tahapan Karya Ilmiah",
     'nodata' => "Tidak ada data yang tersedia.",
@@ -154,6 +160,7 @@ return [
     'menunggu' => "Menunggu",
     'tanggal' => "Tanggal",
     'disetujui' => "Disetujui",
+    'judul' => "Judul",
     'hapus' => "Hapus",
     'angkatan' => "Angkatan",
     'statuskuliah' => "Status Kuliah",
@@ -257,6 +264,8 @@ return [
     'warna_in' => "Warna harus Merah, Hijau, Kuning, Biru, Putih, atau Ungu.",
     'tglrequired' => "Tanggal wajib diisi.",
     'goldarahrequired' => "Golongan Darah wajib diisi.",
+    'tglbuatrequired' => "Tanggal Dibuat wajib diisi.",
+    'tglberlakurequired' => "Tanggal Berlaku wajib diisi.",
 
     // Alert
     'success' => 'Sukses',
@@ -285,6 +294,9 @@ return [
     'success_file_added' => 'File berhasil diupload.',
     'success_file_hapus' => 'File berhasil dihapus.',
     'success_file_edit' => 'File berhasil diperbarui.',
+    'success_pengumuman_deleted' => 'Pengumuman berhasil dihapus.',
+    'success_pengumuman_added' => 'Pengumuman berhasil ditambahkan.',
+    'success_pengumuman_edit' => 'Penuguman berhasil diperbarui.',
     'success_tahunajaran_added' => 'Tahun Ajaran berhasil ditambahkan.',
     'success_tahunajaran_edit' => 'Tahun Ajaran berhasil diperbarui.',
     'success_tahunajaran_hapus' => 'Tahun Ajaran berhasil dihapus.',

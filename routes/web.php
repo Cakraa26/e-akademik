@@ -20,6 +20,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KaryaIlmiahController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
@@ -224,6 +225,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'database.residen.edit',
         'update' => 'database.residen.update',
         'destroy' => 'database.residen.destroy',
+    ]);
+
+    // Pengumuman
+    Route::resource('pengumuman', PengumumanController::class)->names([
+        'index' => 'pengumuman.index',
+        'create' => 'pengumuman.create',
+        'store' => 'pengumuman.store',
+        'edit' => 'pengumuman.edit',
+        'update' => 'pengumuman.update',
+        'destroy' => 'pengumuman.destroy',
     ]);
 });
 
