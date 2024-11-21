@@ -264,6 +264,8 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'database.residen.edit',
         'update' => 'database.residen.update',
         'destroy' => 'database.residen.destroy',
+    ]);
+
     // Data Hari Kerja
     Route::resource('hari-kerja', HariKerjaController::class)->names([
         'index' => 'hari.kerja.index',
