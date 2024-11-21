@@ -110,4 +110,21 @@ class AttendanceController extends Controller
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    public function getAfektif(Request $request)
+    {
+        try {
+            $data = Absen::where('residenfk', auth()->user()->pk);
+
+            if ($request->has('start_date') && $request->has('end_date')) {
+                $data->whereBetween('check_in', [$request->start_date, $request->end_date]);
+            }
+
+            $data = $data->get();
+
+            return response()->json(['data' => $data], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
 }

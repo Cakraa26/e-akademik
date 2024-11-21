@@ -11,6 +11,7 @@ use App\Http\Controllers\UTSController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DatabaseResidenController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KelasController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\TingkatResidenController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('pages.auth-login', ['type_menu' => 'auth']);
 })->name('login');
@@ -245,6 +247,26 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'uts.update',
     ]);
 
+    // Upload File
+    Route::resource('upload-file', UploadFileController::class)->names([
+        'index' => 'upload.file.index',
+        'create' => 'upload.file.create',
+        'store' => 'upload.file.store',
+        'edit' => 'upload.file.edit',
+        'update' => 'upload.file.update',
+        'destroy' => 'upload.file.destroy',
+    ]);
+
+    // Database Residen
+    Route::resource('database-residen', DatabaseResidenController::class)->names([
+        'index' => 'database.residen.index',
+        'create' => 'database.residen.create',
+        'store' => 'database.residen.store',
+        'edit' => 'database.residen.edit',
+        'update' => 'database.residen.update',
+        'destroy' => 'database.residen.destroy',
+    ]);
+
     // Data Hari Kerja
     Route::resource('hari-kerja', HariKerjaController::class)->names([
         'index' => 'hari.kerja.index',
@@ -281,18 +303,7 @@ Route::middleware(['checkRole:2'])->group(function () {
         'destroy' => 'psikomotorik.destroy',
     ]);
     Route::post('/psikomotorik/upload-detail', [PsikomotorikResiden::class, 'uploadDetail'])->name('psikomotorik.upload.detail');
-
 });
-
-// Upload File
-Route::resource('upload-file', UploadFileController::class)->names([
-    'index' => 'upload.file.index',
-    'create' => 'upload.file.create',
-    'store' => 'upload.file.store',
-    'edit' => 'upload.file.edit',
-    'update' => 'upload.file.update',
-    'destroy' => 'upload.file.destroy',
-]);
 
 // auth
 Route::get('/auth-forgot-password', function () {

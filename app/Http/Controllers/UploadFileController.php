@@ -51,6 +51,10 @@ class UploadFileController extends Controller
     {
         $file = File::findOrFail($id);
 
+        // check if file exists
+        if (!Storage::exists($file->alamatfile)) {
+            return back()->with('error', 'File tidak ditemukan');
+        }
         return response()->download(storage_path('app/' . $file->alamatfile));
     }
     public function edit($id)

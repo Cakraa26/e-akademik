@@ -40,6 +40,11 @@
                     <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    <strong>Error!</strong> {{ session('error') }}
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
             @endif
             {{-- Alert End --}}
 
@@ -80,7 +85,7 @@
                                                     class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>
                                                 <a href="{{ Storage::url($file->alamatfile) }}" download
                                                     class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>
-                                            </td>
+                                            <td>
                                             <td>
                                                 <label class="custom-switch pl-0">
                                                     <input type="checkbox" name="aktif[{{ $file->pk }}]" value="2"
