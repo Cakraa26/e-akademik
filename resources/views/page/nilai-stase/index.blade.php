@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
-@section('title', __('message.jdwstase'))
+@section('title', __('message.nilaistase'))
 
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+    <style>
+        .table:not(.table-sm):not(.table-md):not(.dataTable) th {
+            border-bottom: 1px solid #666;
+        }
+    </style>
 @endpush
 
 @section('main')
@@ -18,7 +23,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.jdwstase') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.nilaistase') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -32,7 +37,8 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3 pr-0">
                                     <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
-                                    <select class="form-control select2" name="thnajaranfk" id="thnajaranfk">
+                                    <select class="form-control select2" name="thnajaranfk" id="thnajaranfk"
+                                        onchange="updateInput(this.value)">
                                         @foreach ($thnajaran as $t)
                                             <option value="{{ $t->pk }}"
                                                 {{ Request::get('thnajaranfk') == $t->pk || (!Request::get('thnajaranfk') && $t->aktif == 1) ? 'selected' : '' }}>
@@ -71,7 +77,7 @@
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
                                                 class="fas fa-search"></i></button>
-                                        <a href="{{ route('jadwal.stase.index') }}" class="btn btn-secondary">
+                                        <a href="{{ route('nilai.stase.index') }}" class="btn btn-secondary">
                                             <i class="fas fa-sync-alt"></i>
                                         </a>
                                     </div>
@@ -105,8 +111,8 @@
                 @endif
                 {{-- Alert End --}}
 
-                @if ($residen->isNotEmpty())
-                    @foreach ($residen as $semester => $dataResiden)
+                @if ($jadwal->isNotEmpty())
+                    @foreach ($jadwal as $semester => $jadwals)
                         @if (request('semester') == null || request('semester') == $semester)
                             <div class="card">
                                 <div class="card-body">
@@ -118,36 +124,41 @@
                                                     <th class="text-center">
                                                         No
                                                     </th>
-                                                    <th>{{ __('message.inisial') }}</th>
                                                     <th>{{ __('message.nmresiden') }}</th>
                                                     @foreach ($bulan as $b)
                                                         <th>{{ date('F', strtotime($b)) }}</th>
                                                     @endforeach
+                                                    <th>Total</th>
                                                     <th>{{ __('message.aksi') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @php $no = 1; @endphp
-                                                @foreach ($dataResiden as $r)
+                                                @foreach ($jadwals->groupBy('residenfk') as $residenfk => $j)
                                                     <tr>
-                                                        <th>{{ $no++ }}</th>
-                                                        <td>{{ $r->inisialresiden }}</td>
-                                                        <td>{{ $r->nm }}</td>
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $j->first()->residen->nm }}</td>
+                                                        @php $total = 0; @endphp
                                                         @foreach ($bulan as $b)
                                                             @php
-                                                                $b = date('m', strtotime($b));
+                                                                $bulanNumber = date('m', strtotime($b));
 
-                                                                $jadwal = $r->jadwal->firstWhere('bulan', $b);
+                                                                $nilai =
+                                                                    $j->where('bulan', $bulanNumber)->first()
+                                                                        ?->jadwalNilai?->nilai ?? 0;
+
+                                                                $total += $nilai / 6;
                                                             @endphp
-                                                            <td>{{ $jadwal && $jadwal->stase ? $jadwal->stase->nm : '' }}
-                                                            </td>
+                                                            <td>{{ $nilai ?? '0' }}</td>
                                                         @endforeach
+                                                        <td>{{ number_format($total, 2) }}</td>
                                                         <td>
-                                                            <div>
-                                                                <a href="{{ route('jadwal.stase.edit', $r->pk) }}"
-                                                                    class="btn btn-info {{ Request::is('jadwal-stase/' . $r->pk . '/edit') ? 'active' : '' }}"><i
-                                                                        class="fa-solid fa-pen-to-square"></i></a>
-                                                            </div>
+                                                            @if ($j->isNotEmpty() && $j->first()->jadwalNilai)
+                                                                <a href="{{ route('nilai.stase.edit', $j->first()->jadwalNilai->pk) }}"
+                                                                    class="btn btn-info {{ Request::is('nilai-stase/' . $j->first()->jadwalNilai->pk . '/edit') ? 'active' : '' }}">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                </a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -181,6 +192,23 @@
                 scrollX: true,
                 searching: false
             });
+        });
+    </script>
+
+    <script>
+        function updateInput(value) {
+            const selectThnajaran = document.getElementById('select_thnajaran');
+            if (selectThnajaran) {
+                selectThnajaran.value = value;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectElement = document.getElementById('thnajaranfk');
+            if (selectElement) {
+                let initialValue = selectElement.value;
+                updateInput(initialValue);
+            }
         });
     </script>
 @endpush

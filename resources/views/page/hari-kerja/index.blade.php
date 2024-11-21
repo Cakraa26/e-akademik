@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.mstkarya'))
+@section('title', __('message.harikerja'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -18,7 +18,7 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.mstkarya') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.harikerja') }}</div>
                         </div>
                     </ul>
                 </div>
@@ -30,18 +30,9 @@
                     <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
-            @endif
-            
-            @if (session('error'))
-                <div class="alert alert-danger alert-dismissible show fade" role="alert">
-                    {{ session('error') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-
-            @if (session('gagal'))
-                <div class="alert alert-danger alert-dismissible show fade" role="alert">
-                    {{ session('gagal') }}
+            @elseif (session('warning'))
+                <div class="alert alert-warning alert-dismissible show fade" role="alert">
+                    <strong>{{ __('message.warning') }}!</strong> {{ session('warning') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif
@@ -52,8 +43,8 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-5 mb-md-0">
-                                <a class="btn btn-success {{ Request::is('karya-ilmiah/create') ? 'active' : '' }}"
-                                    href="{{ route('karya-ilmiah.create') }}" data-toggle="tooltip"
+                                <a class="btn btn-success {{ Request::is('hari-kerja/create') ? 'active' : '' }}"
+                                    href="{{ route('hari.kerja.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
                                         class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
@@ -66,34 +57,35 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>{{ __('message.tahapan') }}</th>
-                                        <th>{{ __('message.drsemester') }}</th>
-                                        <th>{{ __('message.btssemester') }}</th>
-                                        <th>Status</th>
+                                        <th>{{ __('message.hari') }}</th>
+                                        <th>{{ __('message.masuk') }}</th>
+                                        <th>{{ __('message.keluar') }}</th>
+                                        <th>{{ __('message.aktif') }}</th>
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($karya as $k)
+                                    @foreach ($thn as $hr)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
-                                            <td>{{ $k->nm }}</td>
-                                            <td>{{ $k->darisemester }}</td>
-                                            <td>{{ $k->sampaisemester }}</td>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $hr->nm }}</td>
+                                            <td>{{ $hr->jammasuk }}</td>
+                                            <td>{{ $hr->jamselesai }}</td>
                                             <td>
-                                                <input class="custom-switch-input" type="radio"
-                                                    id="switch-{{ $k->pk }}" {{ $k->aktif === 1 ? 'checked' : '' }}
-                                                    disabled>
-                                                <span class="custom-switch-indicator"></span>
+                                                <span
+                                                    class="badge {{ $hr->stsaktif ? 'badge-success' : 'badge-danger' }}">
+                                                    {{ $hr->stsaktif ? __('message.active') : __('message.inactive') }}
+                                                </span>
                                             </td>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('karya-ilmiah.edit', $k->pk) }}"
-                                                        class="btn btn-info {{ Request::is('karya-ilmiah/' . $k->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('hari.kerja.edit', $hr->pk) }}"
+                                                        class="btn btn-info {{ Request::is('hari-kerja/' . $hr->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fas fa-pencil-alt"></i></a>
 
-                                                    <form action="{{ route('karya-ilmiah.destroy', $k->pk) }}"
+
+                                                    <form action="{{ route('hari.kerja.destroy', $hr->pk) }}"
                                                         method="POST" style="display: inline">
                                                         @csrf
                                                         @method('DELETE')

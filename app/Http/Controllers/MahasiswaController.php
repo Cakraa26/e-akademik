@@ -2,104 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CalonResiden;
-use App\Models\GroupMotorik;
-use App\Models\KategoriMotorik as Kategori;
-use App\Models\Motorik;
+use Carbon\Carbon;
 use App\Models\Residen;
-use App\Models\MotorikTransaction;
+use App\Models\TahunAjaran;
+use App\Models\GroupMotorik;
 use Illuminate\Http\Request;
+use App\Models\KategoriMotorik as Kategori;
 
 class MahasiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $type_menu = "master-data";
-        $residen = Residen::where('statuskuliah', '0')->where('aktif', '0')->get();
+        $residen = Residen::where('statuskuliah', '0')
+            ->where('aktif', '0')
+            ->get();
+
+        $count = Residen::where('statuskuliah', 0)
+            ->whereYear('dateadded', Carbon::now()->year) 
+            ->count();
+            
+        $thnajaran = TahunAjaran::where('aktif', 1)->first();
+
         return view('page.data-mahasiswa.index', [
             'type_menu' => $type_menu,
             'residen' => $residen,
+            'thnajaran' => $thnajaran,
+            'count' => $count,
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request, $id)
     {
         $residen = Residen::findOrFail($id);
         $type_menu = "master-data";
-        $m_group_motorik = GroupMotorik::all();
-        $m_kategori_motorik = Kategori::all();
-        return view('page.data-mahasiswa.show', [
+        return view('page.data-mahasiswa.detail', [
             'residen' => $residen,
-            'tmotorik' => $residen->tmotorik,
             'type_menu' => $type_menu,
-            'm_group_motorik' => $m_group_motorik,
-            'm_kategori_motorik' => $m_kategori_motorik,
         ]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update($pk)
     {
-        //
-    }
+        try {
+            $residen = Residen::findOrFail($pk);
+            $thnajaran = TahunAjaran::where('aktif', 1)->first();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            $inputData['aktif'] = 1;
+            $inputData['statuskuliah'] = 1;
+            $inputData['angkatanfk'] = $thnajaran->pk;
+            $inputData['thnajaranfk'] = $thnajaran->pk;
+
+            $residen->update($inputData);
+
+            return redirect()
+                ->route('data.mahasiswa.index')
+                ->with('success', __('message.success_confirm'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

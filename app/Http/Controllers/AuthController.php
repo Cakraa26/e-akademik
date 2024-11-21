@@ -52,7 +52,7 @@ class AuthController extends Controller
 
             DB::commit();
             if ($isVerified) {
-                return redirect()->route('auth.login')->with('success', 'Nomor Telepon berhasil diverifikasi.');
+                return redirect()->route('login')->with('success', 'Nomor Telepon berhasil diverifikasi.');
             } else {
                 return back()->withErrors(['otp' => 'OTP tidak valid atau kadaluwarsa.']);
             }

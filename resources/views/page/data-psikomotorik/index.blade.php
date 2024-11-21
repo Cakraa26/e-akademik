@@ -79,7 +79,8 @@
                                     <div class="mb-3">
                                         <label>&nbsp;</label>
                                         <div class="d-flex">
-                                            <button type="submit" class="btn btn-primary mr-2">Filter <i class="fas fa-sort-amount-up pl-1"></i></button>
+                                            <button type="submit" class="btn btn-primary mr-2">Filter <i
+                                                    class="fas fa-sort-amount-up pl-1"></i></button>
                                             <a href="{{ route('data.psikomotorik.index') }}"
                                                 class="btn btn-secondary">Refresh <i class="fas fa-sync-alt pl-1"></i></a>
                                         </div>

@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DatabaseResidenController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HariKerjaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\StaseController;
 use App\Http\Controllers\KaryaIlmiahResiden;
@@ -20,10 +21,12 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KaryaIlmiahController;
+use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\TingkatResidenController;
+use App\Http\Controllers\NilaiStase;
 use App\Http\Controllers\UploadFileController;
 
 /*
@@ -44,6 +47,20 @@ Route::get('/', function () {
 Route::post('/login/post', [AuthController::class, 'postLogin'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+//Register
+Route::get('/auth-register', function () {
+    return view('pages.auth-register', ['type_menu' => 'auth']);
+})->name('auth.register');
+Route::post('register/action', [AuthController::class, 'actionRegister'])->name('actionRegister');
+Route::get('/otp/verify/{residen}', [AuthController::class, 'otp'])->name('otp.verify');
+Route::post('/otp-register', [AuthController::class, 'otp']);
+Route::post('/otp/verify/{residen}', [AuthController::class, 'verifyOtp'])->name('otp.verify.post');
+Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp.resend');
+
+Route::get('/auth-reset-password', function () {
+    return view('pages.auth-reset-password', ['type_menu' => 'auth']);
+});
+
 Route::get('/locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
@@ -54,7 +71,9 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
 })->middleware('checkRole:0,1,2')->name('dashboard');
 
-Route::middleware(['checkRole:0'])->group(function () {});
+// Route::middleware(['checkRole:0'])->group(function () {
+
+// });
 
 Route::middleware(['checkRole:1'])->group(function () {
     // Data Dosen
@@ -75,6 +94,7 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'data.mahasiswa.edit',
         'update' => 'data.mahasiswa.update',
         'destroy' => 'data.mahasiswa.destroy',
+        'show' => 'data.mahasiswa.show',
     ]);
 
     // Data State
@@ -172,6 +192,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'destroy' => 'karya-ilmiah.destroy',
     ]);
 
+    // Karya Ilmiah Residen Admin
+    Route::resource('karyailmiah-residen', KaryaIlmiahResidenAdmin::class)->parameters(['karyailmiah-residen' => 'pk'])->names([
+        'index' => 'karyailmiahresiden.index',
+        'create' => 'karyailmiahresiden.create',
+        'store' => 'karyailmiahresiden.store',
+        'edit' => 'karyailmiahresiden.edit',
+        'update' => 'karyailmiahresiden.update',
+        'destroy' => 'karyailmiahresiden.destroy',
+    ]);
+
     // Data Tahun Ajaran
     Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
         'index' => 'tahun-ajaran.index',
@@ -190,6 +220,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'tingkat.residen.edit',
         'update' => 'tingkat.residen.update',
         'destroy' => 'tingkat.residen.destroy',
+    ]);
+
+    // Nilai Stase
+    Route::resource('nilai-stase', NilaiStase::class)->names([
+        'index' => 'nilai.stase.index',
+        'create' => 'nilai.stase.create',
+        'store' => 'nilai.stase.store',
+        'edit' => 'nilai.stase.edit',
+        'update' => 'nilai.stase.update',
+        'destroy' => 'nilai.stase.destroy',
     ]);
 
     // UAS
@@ -224,6 +264,14 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'database.residen.edit',
         'update' => 'database.residen.update',
         'destroy' => 'database.residen.destroy',
+    // Data Hari Kerja
+    Route::resource('hari-kerja', HariKerjaController::class)->names([
+        'index' => 'hari.kerja.index',
+        'create' => 'hari.kerja.create',
+        'store' => 'hari.kerja.store',
+        'edit' => 'hari.kerja.edit',
+        'update' => 'hari.kerja.update',
+        'destroy' => 'hari.kerja.destroy',
     ]);
 });
 
@@ -247,19 +295,4 @@ Route::middleware(['checkRole:2'])->group(function () {
 // auth
 Route::get('/auth-forgot-password', function () {
     return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
-});
-
-
-//Register
-Route::get('/auth-register', function () {
-    return view('pages.auth-register', ['type_menu' => 'auth']);
-})->name('auth.register');
-Route::post('register/action', [AuthController::class, 'actionRegister'])->name('actionRegister');
-Route::get('/otp/verify/{residen}', [AuthController::class, 'otp'])->name('otp.verify');
-Route::post('/otp-register', [AuthController::class, 'otp']);
-Route::post('/otp/verify/{residen}', [AuthController::class, 'verifyOtp'])->name('otp.verify.post');
-Route::post('/otp/resend/{pk}', [AuthController::class, 'resendOTP'])->name('otp.resend');
-
-Route::get('/auth-reset-password', function () {
-    return view('pages.auth-reset-password', ['type_menu' => 'auth']);
 });

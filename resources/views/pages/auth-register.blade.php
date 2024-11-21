@@ -57,7 +57,6 @@
                                 <li id="personal"><strong>Personal</strong></li>
                                 <li id="study"><strong>Study</strong></li>
                                 <li id="family"><strong>Family</strong></li>
-                                {{-- <li id="finish"><strong>Finish</strong></li> --}}
                             </ul>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
@@ -88,11 +87,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <label class="required">NIM</label>
+                                            <label>NIM</label>
                                             <div class="input-group input-group-icon">
                                                 <input type="text" id="nim" name="nim"
-                                                    value="{{ old('nim') }}" required
-                                                    data-parsley-required-message="NIM wajib diisi." />
+                                                    value="{{ old('nim') }}" />
                                                 <div class="input-icon">
                                                     <i class="fas fa-address-card"></i>
                                                 </div>
@@ -126,10 +124,12 @@
                                             <label class="required">No. KTP</label>
                                             <div class="input-group input-group-icon">
                                                 <input type="text" id="ktp" name="ktp"
-                                                    value="{{ old('ktp') }}" required
+                                                    value="{{ old('ktp') }}" required minlength="16" maxlength="16"
                                                     data-parsley-required-message="No. KTP wajib diisi."
                                                     data-parsley-type="number"
-                                                    data-parsley-type-message="No. KTP harus berupa angka valid." />
+                                                    data-parsley-type-message="No. KTP harus berupa angka valid."
+                                                    data-parsley-length="[16, 16]"
+                                                    data-parsley-length-message="No. KTP harus memuat 16 karakter." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-card"></i>
                                                 </div>

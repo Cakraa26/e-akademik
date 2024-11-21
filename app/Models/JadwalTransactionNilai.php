@@ -27,6 +27,18 @@ class JadwalTransactionNilai extends Model
     }
     public function jadwal()
     {
-        return $this->belongsTo(JadwalTransaction::class, 'jadwalfk'); 
+        return $this->belongsTo(JadwalTransaction::class, 'jadwalfk');
+    }
+    public function residen()
+    {
+        return $this->jadwal->residen(); 
+    }
+    public function stase()
+    {
+        return $this->belongsTo(Stase::class, 'stasefk');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'dosenfk');
     }
 }
