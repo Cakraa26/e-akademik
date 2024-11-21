@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Residen;
 use App\Models\TahunAjaran;
-use App\Models\GroupMotorik;
-use Illuminate\Http\Request;
-use App\Models\KategoriMotorik as Kategori;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
 {
@@ -30,19 +28,6 @@ class MahasiswaController extends Controller
             'thnajaran' => $thnajaran,
             'count' => $count,
         ]);
-    }
-    public function show(Request $request, $id)
-    {
-        $residen = Residen::findOrFail($id);
-        $type_menu = "master-data";
-        return view('page.data-mahasiswa.detail', [
-            'residen' => $residen,
-            'type_menu' => $type_menu,
-        ]);
-    }
-    public function edit($id)
-    {
-        //
     }
     public function update($pk)
     {

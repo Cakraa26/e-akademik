@@ -30,4 +30,8 @@ class Absen extends Model
             $model->lastuserfk = auth()->user()->pk;
         });
     }
+    public function residen()
+    {
+        return $this->belongsTo(Residen::class, 'residenfk');
+    }
 }

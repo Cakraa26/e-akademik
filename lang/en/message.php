@@ -80,6 +80,8 @@ return [
     'editnilaistase' => "Update Stase Grade",
     'editkaryailmiah' => "Update Scientific Work",
     'tambahkaryailmiah' => "Add Scientific Work",
+    'tambahabsen' => "Add Attendance",
+    'editabsen' => "Update Attendance",
 
     // Button
     'kembali' => "Back",
@@ -151,7 +153,10 @@ return [
     'nmkontakdarurat' => "Emergency Contact Name",
     'hpkontakdarurat' => "Emergency Phone Number",
     'hubkontakdarurat' => "Relationship with Emergency Contact",
-
+    'terlambat' => "Late",
+    'alpa' => "Absent",
+    'tanpaabsen' => "Without Attendance",
+    'koordinat' => "Coordinate",
 
     // Hari Kerja
     'masuk' => "Entry",
@@ -233,6 +238,11 @@ return [
     'tglrequired' => "Date is required.",
     'ada' => "There are",
     'cek' => "Residents that need to be verified.",
+    'jammasukrequired' => "Start Time is required",
+    'jamselesairequired' => "End Time is required",
+    'checkinrequired' => "Check-In is required.",
+    'checkoutrequired' => "Check-Out is required.",
+    'koordinatrequired' => "Coordinate is required.",
 
     // Alert
     'success' => 'Success',
@@ -278,5 +288,8 @@ return [
     'success_karyailmiah_edit' => 'Scientific Work has been successfully updated.',
     'success_karyailmiah_added' => 'Scientific Work has been successfully added.',
     'success_karyailmiah_hapus' => 'Scientific Work has been successfully deleted.',
-    'success_confirm' => 'Data has been successfully confirmed.'
+    'success_confirm' => 'Data has been successfully confirmed.',
+    'success_absensi_added' => 'Attendance berhasil ditambahkan.',
+    'success_absensi_edit' => 'Attendance berhasil diperbarui.',
+    'success_absensi_hapus' => 'Attendance has been successfully added.',
 ];

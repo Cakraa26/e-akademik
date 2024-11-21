@@ -5,7 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
 @endpush
 
 @section('main')
@@ -55,54 +54,34 @@
                                             <div class="mb-4 row align-items-center">
                                                 <label for="nm" class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text"
-                                                        class="form-control @error('nm')
-                                                        is-invalid
-                                                    @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm') }}" required
+                                                    <input type="text" class="form-control" name="nm" id="nm"
+                                                        value="{{ old('nm') }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
-                                                    @error('nm')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
                                                 <div class="col-sm-9">
-                                                    <textarea
-                                                        class="form-control @error('ctn')
-                                                        is-invalid
-                                                    @enderror"
-                                                        name="ctn" id="ctn" required data-parsley-required-message="{{ __('message.ctnrequired') }}"
-                                                        style="height: 107px">{{ old('ctn') }}</textarea>
-
-                                                    @error('ctn')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <textarea class="form-control" name="ctn" id="ctn" required
+                                                        data-parsley-required-message="{{ __('message.ctnrequired') }}" style="height: 107px">{{ old('ctn') }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label for="file"
                                                     class="col-sm-3">{{ __('message.uploadfile') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file" required data-parsley-required-message="{{ __('message.filerequired') }}" class="form-control @error('file') is-invalid @enderror" name="file">
-                                                    @error('file')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <input type="file" required
+                                                        data-parsley-required-message="{{ __('message.filerequired') }}"
+                                                        class="form-control" name="file" accept="application/pdf">
                                                 </div>
                                             </div>
-                                            <div class="mb-4 row align-items-center">
+                                            <div class="mb-2 row align-items-center">
                                                 <label for="alamat" class="col-sm-3">Status</label>
                                                 <div class="col-md-8">
                                                     <div class="form-check">
-                                                        <input class="form-check-input @error('aktif') is-invalid @enderror" type="checkbox" id="status"
-                                                            name="aktif" value="1" checked>
+                                                        <input class="form-check-input"
+                                                            type="checkbox" id="status" name="aktif" value="1"
+                                                            checked>
                                                         <label class="form-check-label" for="status">Aktif</label>
                                                     </div>
                                                 </div>
@@ -112,11 +91,11 @@
                                     <input type="datetime-local" class="form-control" id="datemodified" name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('upload.file.index') }}">
+                                            <a class="btn btn-dark mr-2" href="{{ route('upload.file.index') }}">
                                                 <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
+                                            <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
@@ -135,8 +114,6 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
-
 
     <!-- Page Specific JS File -->
     <script>

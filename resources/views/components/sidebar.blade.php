@@ -195,8 +195,8 @@
                         <li class='{{ Request::is('blank-page') ? 'active' : '' }}'>
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.atrjam') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.absensi') }}</a>
+                        <li class="{{ Request::is('absensi*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('absensi.index') }}">{{ __('message.absensi') }}</a>
                         </li>
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.dftabsensi') }}</a>

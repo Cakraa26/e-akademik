@@ -70,7 +70,7 @@
                                         <option value=""></option>
                                         @foreach ($thnajaran as $t)
                                             <option value="{{ $t->pk }}"
-                                                {{ Request::get('thnajaranfk') == $t->pk ? 'selected' : '' }}>
+                                                {{ Request::get('thnajaranfk') == $t->pk || (!Request::get('thnajaranfk') && $t->aktif == 1) ? 'selected' : '' }}>
                                                 {{ $t->nm }}</option>
                                         @endforeach
                                     </select>
@@ -137,12 +137,15 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($kelas as $k)
-                                        <tr id="row-{{ $k->pk }}">
+                                        <tr id="row-{{ $k->pk }}"
+                                            @if ($k->tingkatfk == 2) style="color: #FFF; background-color: red;" 
+                                            @elseif($k->tingkatfk == 3) style="color: #FFF; background-color: yellow;" 
+                                            @elseif($k->tingkatfk == 4) style="color: #FFF; background-color: green;" @endif>
                                             <form action="{{ route('uts.update', $k->pk) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $k->residen->nm }}</td>
+                                                <td class="text-nowrap">{{ $k->residen->nm }}</td>
                                                 <td>
                                                     <span class="view"
                                                         id="mcqbenar_uts-{{ $k->pk }}">{{ $k->mcqbenar_uts }}</span>

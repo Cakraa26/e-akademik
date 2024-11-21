@@ -87,6 +87,8 @@ return [
     'editnilaistase' => "Perbarui Nilai Stase",
     'editkaryailmiah' => "Perbarui Karya Ilmiah",
     'tambahkaryailmiah' => "Tambah Karya Ilmiah",
+    'tambahabsen' => "Tambah Absensi",
+    'editabsen' => "Perbarui Absensi",
 
     // Button
     'kembali' => "Kembali",
@@ -195,6 +197,10 @@ return [
     'nmkontakdarurat' => "Nama Kontak Darurat",
     'hpkontakdarurat' => "Nomor Kontak Darurat",
     'hubkontakdarurat' => "Hubungan",
+    'terlambat' => "Terlambat",
+    'alpa' => "Alpa",
+    'tanpaabsen' => "Tanpa Absen",
+    'koordinat' => "Koordinat",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -249,6 +255,9 @@ return [
     'tglrequired' => "Tanggal wajib diisi.",
     'ada' => "Terdapat",
     'cek' => "Residen yang perlu diverifikasi.",
+    'checkinrequired' => "Check-In wajib diisi.",
+    'checkoutrequired' => "Check-Out wajib diisi.",
+    'koordinatrequired' => "Koordinat wajib diisi.",
 
     // Alert
     'success' => 'Sukses',
@@ -298,5 +307,8 @@ return [
     'success_karyailmiah_edit' => 'Karya Ilmiah berhasil diperbarui.',
     'success_karyailmiah_added' => 'Karya Ilmiah berhasil ditambahkan.',
     'success_karyailmiah_hapus' => 'Karya Ilmiah berhasil dihapus.',
-    'success_confirm' => 'Konfirmasi data berhasil dilakukan.'
+    'success_confirm' => 'Konfirmasi data berhasil dilakukan.',
+    'success_absensi_added' => 'Absensi berhasil ditambahkan.',
+    'success_absensi_edit' => 'Absensi berhasil diperbarui.',
+    'success_absensi_hapus' => 'Absensi berhasil dihapus.',
 ];
