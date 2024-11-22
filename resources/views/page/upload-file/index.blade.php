@@ -77,15 +77,15 @@
                                 <tbody>
                                     @foreach ($files as $file)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $file->nm }}</td>
                                             <td>{{ $file->ctn }}</td>
                                             <td class="text-nowrap">
-                                                <a href="{{ Storage::url($file->alamatfile) }}"
-                                                    class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a>
-                                                <a href="{{ Storage::url($file->alamatfile) }}" download
+                                                {{-- <a href="{{ route('upload.file.show', $file->pk) }}"
+                                                    class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a> --}}
+                                                <a href="{{ route('upload.file.show', $file->pk) }}"
                                                     class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>
-                                            <td>
+                                            </td>
                                             <td>
                                                 <label class="custom-switch pl-0">
                                                     <input type="checkbox" name="aktif[{{ $file->pk }}]" value="2"

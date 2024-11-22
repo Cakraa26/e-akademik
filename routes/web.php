@@ -253,6 +253,7 @@ Route::middleware(['checkRole:1'])->group(function () {
         'index' => 'upload.file.index',
         'create' => 'upload.file.create',
         'store' => 'upload.file.store',
+        'show' => 'upload.file.show',
         'edit' => 'upload.file.edit',
         'update' => 'upload.file.update',
         'destroy' => 'upload.file.destroy',

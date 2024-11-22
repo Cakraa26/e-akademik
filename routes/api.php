@@ -4,6 +4,7 @@ use App\Http\Controllers\API\Resident\AcademicController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MasterDataController;
 use App\Http\Controllers\API\Resident\AttendanceController;
+use App\Http\Controllers\API\Resident\FormulirController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,9 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/check-in', [AttendanceController::class, 'checkIn']);
             Route::post('/check-out', [AttendanceController::class, 'checkOut']);
         });
+
+        // formulir routes
+        Route::get('/formulir', [FormulirController::class, 'getData']);
     });
 
     // Master Data

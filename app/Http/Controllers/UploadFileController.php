@@ -55,7 +55,8 @@ class UploadFileController extends Controller
         if (!Storage::exists($file->alamatfile)) {
             return back()->with('error', 'File tidak ditemukan');
         }
-        return response()->download(storage_path('app/' . $file->alamatfile));
+
+        return response()->download(public_path('storage/' . $file->alamatfile));
     }
     public function edit($id)
     {
