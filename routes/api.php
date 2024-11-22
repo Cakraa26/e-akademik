@@ -70,6 +70,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
     Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);
     Route::get("/tahun-ajaran", [MasterDataController::class, 'getTahunAjaran']);
+    Route::get("/setting", [MasterDataController::class, 'getSetting']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
