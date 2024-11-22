@@ -40,7 +40,6 @@ return [
     'dtmotorik' => "Data Psikomotorik",
     'mngmotorik' => "Monitoring Psikomotorik",
     'mngmotorikpendek' => "Monitoring",
-    'atrjam' => "Pengaturan Jam",
     'mstkarya' => "Master Karya Ilmiah",
     'residenkarya' => "Karya Ilmiah Residen",
     'residen' => "Residen",
@@ -212,6 +211,7 @@ return [
     'alpa' => "Alpa",
     'tanpaabsen' => "Tanpa Absen",
     'koordinat' => "Koordinat",
+    'sudah_approve' => "Disetujui",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",

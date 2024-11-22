@@ -76,12 +76,12 @@
                                 <div class="col-md-2 mb-3 pr-md-0 mt-n3 mt-md-0">
                                     <label class="form-label">&nbsp;</label>
                                     <input type="date" class="form-control" name="check_in"
-                                        value="{{ Request::get('check_in') }}">
+                                        value="{{ Request::get('check_in') ?: date('Y-m-d') }}">
                                 </div>
                                 <div class="col-md-2 mb-3 mt-n3 mt-md-0">
                                     <label class="form-label">&nbsp;</label>
                                     <input type="date" class="form-control" name="check_out"
-                                        value="{{ Request::get('check_out') }}">
+                                        value="{{ Request::get('check_out') ?: date('Y-m-d') }}">
                                 </div>
                             </div>
                             <div class="row mt-1">
@@ -130,15 +130,14 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($absen as $a)
-                                        <tr>
+                                        <tr @if ($a->alpa === 1) style="background-color: #E98580;" @endif>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ date('d/m/Y', strtotime($a->check_in)) }}</td>
                                             <td>{{ $a->residen->nm }}</td>
                                             <td>
                                                 @if ($a->loc_in !== null)
                                                     <a style="cursor: pointer;" data-bs-toggle="modal"
-                                                        data-bs-target="#checkinModal"
-                                                        onclick="updateCheckIn('{{ $a->loc_in }}', '{{ $a->pk }}')">
+                                                        data-bs-target="#checkinModal{{ $a->pk }}">
                                                         {{ date('H.i', strtotime($a->check_in)) }}
                                                     </a>
                                                 @else
@@ -148,8 +147,7 @@
                                             <td>
                                                 @if ($a->loc_out !== null)
                                                     <a style="cursor: pointer;" data-bs-toggle="modal"
-                                                        data-bs-target="#checkoutModal"
-                                                        onclick="updateCheckOut('{{ $a->loc_out }}', '{{ $a->pk }}')">
+                                                        data-bs-target="#checkoutModal{{ $a->pk }}">
                                                         {{ date('H.i', strtotime($a->check_out)) }}
                                                     </a>
                                                 @else
@@ -187,30 +185,56 @@
         </section>
 
         {{-- Modal Check In --}}
-        <div class="modal fade" id="checkinModal" tabindex="-1">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body p-0">
-                        <iframe id="googleMapCheckIn" src="" width="100%" height="500px" frameborder="0"
-                            style="border: 0;" allowfullscreen="">
-                        </iframe>
+        @foreach ($absen as $a)
+            <div class="modal fade" id="checkinModal{{ $a->pk }}" tabindex="-1">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <div class="row">
+                                <div class="col-12 col-md-4 pt-2 text-center" style="color: black">
+                                    <img src="{{ Storage::url($a->photo_in) }}" class="mb-3"
+                                        style="width: 150px; height: 150px; object-fit: cover;"
+                                        onerror="this.onerror=null;this.src='{{ asset('img/noimage.jpg') }}';">
+                                    <p class="mb-0">{{ $a->residen->nm }}</p>
+                                    <p class="mb-0">Semester {{ $a->semester->semester }}</p>
+                                    <p class="mb-0">{{ $a->tingkat->kd }}</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <iframe src="https://maps.google.com/maps?q={{ $a->loc_in }}&output=embed"
+                                        width="100%" height="300px" frameborder="0" style="border: 0;"
+                                        allowfullscreen=""></iframe>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{-- Modal Check Out --}}
-        <div class="modal fade" id="checkoutModal" tabindex="-1">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body p-0">
-                        <iframe id="googleMapCheckOut" src="" width="100%" height="500px" frameborder="0"
-                            style="border: 0;" allowfullscreen="">
-                        </iframe>
+            {{-- Modal Check Out --}}
+            <div class="modal fade" id="checkoutModal{{ $a->pk }}" tabindex="-1">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <div class="row">
+                                <div class="col-12 col-md-4 pt-2 text-center" style="color: black">
+                                    <img src="{{ Storage::url($a->photo_out) }}" class="mb-3"
+                                        style="width: 150px; height: 150px; object-fit: cover;"
+                                        onerror="this.onerror=null;this.src='{{ asset('img/noimage.jpg') }}';">
+                                    <p class="mb-0">{{ $a->residen->nm }}</p>
+                                    <p class="mb-0">Semester {{ $a->semester->semester }}</p>
+                                    <p class="mb-0">{{ $a->tingkat->kd }}</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <iframe src="https://maps.google.com/maps?q={{ $a->loc_out }}&output=embed"
+                                        width="100%" height="300px" frameborder="0" style="border: 0;"
+                                        allowfullscreen=""></iframe>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
 
     </div>
 @endsection
@@ -239,19 +263,5 @@
             cancel: "{{ __('message.cancel') }}",
             confirm: "{{ __('message.confirm') }}"
         };
-    </script>
-
-    <script>
-        function updateCheckIn(coordinates) {
-            const mapFrame = document.getElementById('googleMapCheckIn');
-            const googleMapsUrl = `https://www.google.com/maps?q=${coordinates}&output=embed`;
-            mapFrame.src = googleMapsUrl;
-        }
-
-        function updateCheckOut(coordinates) {
-            const mapFrame = document.getElementById('googleMapCheckOut');
-            const googleMapsUrl = `https://www.google.com/maps?q=${coordinates}&output=embed`;
-            mapFrame.src = googleMapsUrl;
-        }
     </script>
 @endpush

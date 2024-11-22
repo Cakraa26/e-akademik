@@ -192,14 +192,11 @@
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-user-check"></i><span>{{ __('message.afektif') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('blank-page') ? 'active' : '' }}'>
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.atrjam') }}</a>
-                        </li>
                         <li class="{{ Request::is('absensi*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('absensi.index') }}">{{ __('message.absensi') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.dftabsensi') }}</a>
+                        <li class="{{ Request::is('daftar-absensi*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('daftar.absensi.index') }}">{{ __('message.dftabsensi') }}</a>
                         </li>
                     </ul>
                 </li>

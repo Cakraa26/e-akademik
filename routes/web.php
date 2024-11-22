@@ -11,6 +11,7 @@ use App\Http\Controllers\UTSController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DaftarAbsensi;
 use App\Http\Controllers\DatabaseResidenController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
@@ -285,6 +286,16 @@ Route::middleware(['checkRole:1'])->group(function () {
         'edit' => 'absensi.edit',
         'update' => 'absensi.update',
         'destroy' => 'absensi.destroy',
+    ]);
+
+    // Daftar Absensi
+    Route::resource('daftar-absensi', DaftarAbsensi::class)->names([
+        'index' => 'daftar.absensi.index',
+        'create' => 'daftar.absensi.create',
+        'store' => 'daftar.absensi.store',
+        'edit' => 'daftar.absensi.edit',
+        'update' => 'daftar.absensi.update',
+        'destroy' => 'daftar.absensi.destroy',
     ]);
 });
 

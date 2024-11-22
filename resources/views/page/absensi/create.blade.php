@@ -111,7 +111,7 @@
                                                 <label class="col-sm-3 mr-3 d-none d-sm-block">&nbsp;</label>
                                                 <div class="form-check ml-3 ml-md-0">
                                                     <input class="form-check-input" type="checkbox" name="alpa"
-                                                        value="1" {{ old('alpa') == '1' ? 'checked' : '' }} checked>
+                                                        value="1" {{ old('alpa') == '1' ? 'checked' : '' }}>
                                                     <label class="form-check-label">{{ __('message.alpa') }}
                                                         / {{ __('message.tanpaabsen') }}</label>
                                                 </div>

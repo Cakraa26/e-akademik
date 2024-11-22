@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Absen;
 use App\Models\Residen;
 use App\Models\Tingkat;
@@ -16,7 +17,8 @@ class Absensi extends Controller
     {
         $type_menu = 'afektif';
 
-        $absen = Absen::when($request->thnajaranfk != null, function ($q) use ($request) {
+        $absen = Absen::whereDate('check_in', date('Y-m-d'))
+        ->when($request->thnajaranfk != null, function ($q) use ($request) {
             return $q->whereHas('residen', function ($thnajaranfk) use ($request) {
                 $thnajaranfk->where('thnajaranfk', $request->thnajaranfk);
             });
@@ -56,21 +58,46 @@ class Absensi extends Controller
     {
         try {
             $residen = Residen::where('pk', $request->residenfk)
-            ->select('tingkatfk', 'semester')
-            ->first();
+                ->select('tingkatfk', 'semester')
+                ->first();
 
             $alpa = $request->has('alpa') ? 1 : 0;
             $hadir = $alpa === 1 ? 0 : 1;
 
-            $inputData = $request->all();
-            $inputData['tingkatfk'] = $residen->tingkatfk;
-            $inputData['semesterfk'] = $residen->semester;
-            $inputData['loc_in'] = $request->input('coordinates');
-            $inputData['loc_out'] = $request->input('coordinates');
-            $inputData['alpa'] = $alpa;
-            $inputData['hadir'] = $hadir;
+            $checkIn = new Carbon($request->input('check_in'));
+            $checkOut = new Carbon($request->input('check_out'));
 
-            Absen::create($inputData);
+            $daysDiff = $checkIn->diffInDays($checkOut);
+
+            for ($i = 0; $i <= $daysDiff; $i++) {
+                $currentDate = $checkIn->copy()->addDays($i);
+                $checkInDate = $currentDate->format('Y-m-d');
+                $checkInDateTime = $checkInDate . ' ' . $checkIn->format('H:i:s');
+                $checkOutDateTime = $checkInDate . ' ' . $checkOut->format('H:i:s');
+
+                $absenEntry = Absen::whereDate('check_in', $checkInDate)
+                    ->where('residenfk', $request->residenfk)
+                    ->first();
+
+                $inputData = [
+                    'tingkatfk' => $residen->tingkatfk,
+                    'semesterfk' => $residen->semester,
+                    'loc_in' => $request->input('coordinates'),
+                    'loc_out' => $request->input('coordinates'),
+                    'alpa' => $alpa,
+                    'hadir' => $hadir,
+                    'check_in' => $checkInDateTime,
+                    'check_out' => $checkOutDateTime,
+                    'residenfk' => $request->residenfk,
+                    'ctn' => $request->ctn,
+                ];
+
+                if ($absenEntry) {
+                    $absenEntry->update($inputData);
+                } else {
+                    Absen::create($inputData);
+                }
+            }
 
             return redirect()
                 ->route('absensi.index')
@@ -98,8 +125,8 @@ class Absensi extends Controller
             $absen = Absen::findOrFail($pk);
 
             $residen = Residen::where('pk', $request->residenfk)
-            ->select('tingkatfk', 'semester')
-            ->first();
+                ->select('tingkatfk', 'semester')
+                ->first();
 
             $alpa = $request->has('alpa') ? 1 : 0;
             $hadir = $alpa === 1 ? 0 : 1;

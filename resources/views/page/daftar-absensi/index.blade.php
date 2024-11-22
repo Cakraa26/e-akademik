@@ -1,16 +1,12 @@
 @extends('layouts.app')
 
-@section('title', __('message.residenkarya'))
+@section('title', __('message.dftabsensi'))
 
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-    <style>
-        .table:not(.table-sm):not(.table-md):not(.dataTable) th {
-            border-bottom: 1px solid #666;
-        }
-    </style>
 @endpush
 
 @section('main')
@@ -23,11 +19,20 @@
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
-                            <div class="breadcrumb-item">{{ __('message.residenkarya') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.dftabsensi') }}</div>
                         </div>
                     </ul>
                 </div>
             </div>
+
+            {{-- Alert --}}
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible show fade" role="alert">
+                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            @endif
+            {{-- Alert End --}}
 
             <div class="section-body">
                 <div class="card">
@@ -72,7 +77,7 @@
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
                                                 class="fas fa-search"></i></button>
-                                        <a href="{{ route('karyailmiahresiden.index') }}" class="btn btn-secondary">
+                                        <a href="{{ route('daftar.absensi.index') }}" class="btn btn-secondary">
                                             <i class="fas fa-sync-alt"></i>
                                         </a>
                                     </div>
@@ -82,85 +87,40 @@
                     </div>
                 </div>
 
-                {{-- Alert --}}
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible show fade" role="alert">
-                        <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                        <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible show fade" role="alert">
-                        <strong>Error!</strong> {{ session('error') }}
-                        <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                    </div>
-                @endif
-
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible show fade" role="alert">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </div>
-                @endif
-                {{-- Alert End --}}
-
-
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="myTable table-striped table nowrap" style="width: 100%">
+                            <table class="table-striped table" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
                                             No
                                         </th>
                                         <th>{{ __('message.inisial') }}</th>
-                                        <th>{{ __('message.nmresiden') }}</th>
-                                        <th>Semester</th>
-                                        <th>{{ __('message.tingkat') }}</th>
-                                        <th>{{ __('message.karyailmiah') }}</th>
-                                        <th>Status</th>
-                                        <th>{{ __('message.aksi') }}</th>
+                                        <th>{{ __('message.nama') }}</th>
+                                        @foreach ($bulans as $b)
+                                            <th>{{ date('F', strtotime($b)) }}</th>
+                                        @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($tkaryailmiah as $k)
+                                    @foreach ($residen as $r)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
-                                            <td>{{ $k->residen->inisialresiden }}</td>
-                                            <td>{{ $k->residen->nm }}</td>
-                                            <td>{{ $k->residen->semester }}</td>
-                                            <td>{{ $k->residen->tingkat->kd }}</td>
-                                            <td>{{ $k->karyailmiah->nm }}</td>
-                                            <td>
-                                                @if ($k->stssudah === 0)
-                                                    <span class="text-secondary">{{ __('message.belum_upload') }}</span>
-                                                @elseif ($k->stssudah === 1)
-                                                    <span class="text-warning">{{ __('message.menunggu') }}</span>
-                                                @elseif ($k->stssudah === 2)
-                                                   <span class="text-success">{{ __('message.sudah_approve') }}</span>
-                                                @elseif ($k->stssudah === 3)
-                                                   <span class="text-danger">{{ __('message.cancel') }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <a href="{{ route('karyailmiahresiden.edit', $k->pk) }}"
-                                                        class="btn btn-info {{ Request::is('karyailmiah-residen/' . $k->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fa-solid fa-pen-to-square"></i></a>
-                                                </div>
-                                            </td>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $r->inisialresiden }}</td>
+                                            <td>{{ $r->nm }}</td>
+                                            @foreach ($bulans as $bulan)
+                                                <td>{{ $alpaCounts[$r->pk][$bulan] ?? 0 }}</td>
+                                            @endforeach
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
@@ -170,14 +130,25 @@
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script>
         $(document).ready(function() {
-            $('.myTable').DataTable({
+            $('#myTable').DataTable({
                 scrollX: true
             });
         });
+    </script>
+
+    <script>
+        var translations = {
+            deleteConfirmation: "{{ __('message.deleteConfirm') }}",
+            cancel: "{{ __('message.cancel') }}",
+            confirm: "{{ __('message.confirm') }}"
+        };
     </script>
 @endpush

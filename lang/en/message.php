@@ -40,7 +40,6 @@ return [
     'dtmotorik' => "Psychomotor Data",
     'mngmotorik' => "Psychomotor Monitoring",
     'mngmotorikpendek' => "Monitoring",
-    'atrjam' => "Time Settings",
     'dftabsensi' => "Attendance List",
     'mstkarya' => "Scientific Work Master",
     'residenkarya' => "Resident Scientific Work",
@@ -157,6 +156,7 @@ return [
     'alpa' => "Absent",
     'tanpaabsen' => "Without Attendance",
     'koordinat' => "Coordinate",
+    'sudah_approve' => "Approved",
 
     // Hari Kerja
     'masuk' => "Entry",
