@@ -5,7 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/load-btn.css') }}">
 @endpush
 
 @section('main')
@@ -46,8 +45,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" enctype="multipart/form-data" action="{{ route('upload.file.update', $file->pk) }}"
-                                    method="POST" data-parsley-validate>
+                                <form id="form" enctype="multipart/form-data"
+                                    action="{{ route('upload.file.update', $file->pk) }}" method="POST"
+                                    data-parsley-validate>
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
@@ -59,7 +59,8 @@
                                                         class="form-control @error('nm')
                                                         is-invalid
                                                     @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm', $file->nm) }}" required
+                                                        name="nm" id="nm" value="{{ old('nm', $file->nm) }}"
+                                                        required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                     @error('nm')
                                                         <span class="invalid-feedback" role="alert">
@@ -89,7 +90,9 @@
                                                 <label for="file"
                                                     class="col-sm-3">{{ __('message.uploadfile') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file" class="form-control @error('file') is-invalid @enderror" name="file">
+                                                    <input type="file"
+                                                        class="form-control @error('file') is-invalid @enderror"
+                                                        name="file" value="{{ old('alamatfile', $file->alamatfile) }}">
                                                     @error('file')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -97,12 +100,13 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="mb-4 row align-items-center">
+                                            <div class="mb-2 row align-items-center">
                                                 <label for="alamat" class="col-sm-3">Status</label>
                                                 <div class="col-md-8">
                                                     <div class="form-check">
-                                                        <input class="form-check-input @error('aktif') is-invalid @enderror" type="checkbox" id="status"
-                                                            name="aktif" value="1" {{ $file->aktif ? 'checked' : '' }}>
+                                                        <input class="form-check-input @error('aktif') is-invalid @enderror"
+                                                            type="checkbox" id="status" name="aktif" value="1"
+                                                            {{ $file->aktif ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="status">Aktif</label>
                                                     </div>
                                                 </div>
@@ -112,11 +116,11 @@
                                     <input type="datetime-local" class="form-control" id="datemodified" name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('upload.file.index') }}">
+                                            <a class="btn btn-dark mr-2" href="{{ route('upload.file.index') }}">
                                                 <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
+                                            <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
@@ -135,8 +139,6 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-    <script src="{{ asset('js/page/load-btn.js') }}"></script>
-
 
     <!-- Page Specific JS File -->
     <script>

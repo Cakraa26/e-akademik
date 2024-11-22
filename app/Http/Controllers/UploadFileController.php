@@ -10,11 +10,6 @@ use function Ramsey\Uuid\v1;
 
 class UploadFileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('page.upload-file.index', [
@@ -22,37 +17,19 @@ class UploadFileController extends Controller
             'files' => File::all(),
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('page.upload-file.create', [
             'type_menu' => 'setting',
         ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'nm' => 'required',
-            'ctn' => 'required',
-            'file' => 'required|mimes:pdf,doc,docx',
-        ]);
-
         try {
+            $filePath = Storage::disk('public')->put('upload-file', $request->file('file'));
             File::create([
                 'nm' => $request->nm,
-                'alamatfile' => $request->file('file')->store('files'),
+                'alamatfile' => $filePath,
                 'ctn' => $request->ctn,
                 'aktif' => $request->aktif ? 1 : 0,
                 'dateadded' => now(),
@@ -61,20 +38,15 @@ class UploadFileController extends Controller
                 'lastuserfk' => 0,
             ]);
 
-            return redirect(route('upload.file.index'))->with('success', __('message.success_file_added'));
-        } catch (\Exception $th) {
+            return redirect()
+                ->route('upload.file.index')
+                ->with('success', __('message.success_file_added'));
+        } catch (\Exception $e) {
             return back()
                 ->withInput()
-                ->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $file = File::findOrFail($id);
@@ -83,15 +55,9 @@ class UploadFileController extends Controller
         if (!Storage::exists($file->alamatfile)) {
             return back()->with('error', 'File tidak ditemukan');
         }
-        return response()->download(storage_path('app/' . $file->alamatfile));
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        return response()->download(public_path('storage/' . $file->alamatfile));
+    }
     public function edit($id)
     {
         $file = File::findOrFail($id);
@@ -100,14 +66,6 @@ class UploadFileController extends Controller
             'file' => $file,
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $file = File::findOrFail($id);
@@ -138,19 +96,11 @@ class UploadFileController extends Controller
                 ->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $file = File::findOrFail($id);
-
         try {
-            Storage::delete($file->alamatfile);
+            $file = File::findOrFail($id);
+            Storage::disk('public')->delete($file->alamatfile);
             $file->delete();
 
             return back()->with('success', __('message.success_file_hapus'));
