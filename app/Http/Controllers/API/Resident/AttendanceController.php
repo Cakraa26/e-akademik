@@ -35,19 +35,26 @@ class AttendanceController extends Controller
         $checkIn = now();
         $setting = DB::table('s_setting')->select('terlambat', 'jmlharikerja', 'max_alpa')->first();
         $totalAlpa = Absen::where('residenfk', auth()->user()->pk)->whereMonth('check_in', now())->where('alpa', 1)->count();
+        $attendance = Absen::where('residenfk', auth()->user()->pk)->whereDate('check_in', now())->first();
+
+        if (isset($attendance)) {
+            return response()->json([
+                'message' => 'Anda sudah absen masuk'
+            ], 428);
+        }
 
         // cek hari ini apakah aktif absen
         $date = HariKerja::where('code', date('w'))->firstOrFail();
         if ($date->stsaktif == 0) {
             return response()->json([
                 'message' => 'Hari ini tidak absen'
-            ], 400);
+            ], 428);
         }
 
-        if ($totalAlpa < $setting->max_alpa) {
+        if ($totalAlpa >= $setting->max_alpa) {
             return response()->json([
                 'message' => 'Anda sudah mencapai batas maksimal alpa'
-            ], 400);
+            ], 428);
         }
 
         // hitung total waktu terlambat
@@ -79,26 +86,19 @@ class AttendanceController extends Controller
     public function checkOut(CheckOutRequest $request)
     {
         // cek hari ini apakah aktif absen
-        // $date = HariKerja::where('code', date('w'))->firstOrFail();
-        // if ($date->stsaktif == 0) {
-        //     return response()->json([
-        //         'message' => 'Hari ini tidak absen'
-        //     ], 400);
-        // }
-
-        // // cek apakah belum saatnya absen
-        // if ($date->jamkeluar > date('H:i:s')) {
-        //     return response()->json([
-        //         'message' => 'Belum saatnya absen'
-        //     ], 400);
-        // }
+        $date = HariKerja::where('code', date('w'))->firstOrFail();
+        if ($date->stsaktif == 0) {
+            return response()->json([
+                'message' => 'Hari ini tidak absen'
+            ], 428);
+        }
 
         // cek apakah dia sudah absen masuk
         $attendance = Absen::where('residenfk', auth()->user()->pk)->whereDate('check_in', now())->first();
         if (!$attendance) {
             return response()->json([
                 'message' => 'Anda belum absen masuk'
-            ], 400);
+            ], 428);
         }
 
         // simpan absen
