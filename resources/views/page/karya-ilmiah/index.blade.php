@@ -31,6 +31,20 @@
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif
+            
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    {{ session('error') }}
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            @endif
+
+            @if (session('gagal'))
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    {{ session('gagal') }}
+                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            @endif
             {{-- Alert End --}}
 
             <div class="section-body">
@@ -53,8 +67,8 @@
                                             No
                                         </th>
                                         <th>{{ __('message.tahapan') }}</th>
-                                        <th>{{ __('message.darismt') }}</th>
-                                        <th>{{ __('message.batassmt') }}</th>
+                                        <th>{{ __('message.drsemester') }}</th>
+                                        <th>{{ __('message.btssemester') }}</th>
                                         <th>Status</th>
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>

@@ -18,7 +18,7 @@
 
     @if (session('error'))
         <div class="alert alert-danger alert-dismissible show fade" role="alert">
-            <strong>Error!</strong> {{ session('error') }}
+            {{ session('error') }}
             <button class="close" data-dismiss="alert"><span>&times;</span></button>
         </div>
     @endif
@@ -85,4 +85,3 @@
         </div>
     </div>
 @endsection
-

@@ -41,6 +41,17 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3 mb-3 pr-0">
+                                    <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
+                                    <select class="form-control select2" name="tingkatfk" id="tingkatfk">
+                                        <option value=""></option>
+                                        @foreach ($tingkat as $t)
+                                            <option value="{{ $t->pk }}"
+                                                {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
+                                                {{ $t->kd }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-1 mb-3 pr-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>
@@ -52,17 +63,10 @@
                                     </select>
                                 </div>
                                 <div class="col-8 col-md-3 mb-3 pr-0">
-                                    <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
-                                    <select class="form-control select2" name="tingkatfk" id="tingkatfk">
-                                        <option value=""></option>
-                                        @foreach ($tingkat as $t)
-                                            <option value="{{ $t->pk }}"
-                                                {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
-                                                {{ $t->kd }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>&nbsp;</label>
+                                    <input type="text" name="nm" class="form-control" value="{{ request('nm') }}">
                                 </div>
-                                <div class="col-3 col-md-3 mb-3">
+                                <div class="col-3 col-md-2">
                                     <label>&nbsp;</label>
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
@@ -108,9 +112,10 @@
                                 <div class="card-body">
                                     <h2 class="section-title">Semester : {{ $semester }}</h2>
                                     <div class="table-responsive">
-                                        <table class="myTable table-striped table nowrap" style="width: 100%">
+                                        <table class="myTable table-striped table" style="width: 100%">
                                             <thead>
                                                 <tr>
+                                                    <th>{{ __('message.aksi') }}</th>
                                                     <th class="text-center">
                                                         No
                                                     </th>
@@ -119,16 +124,22 @@
                                                     @foreach ($bulan as $b)
                                                         <th>{{ date('F', strtotime($b)) }}</th>
                                                     @endforeach
-                                                    <th>{{ __('message.aksi') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @php $no = 1; @endphp
                                                 @foreach ($dataResiden as $r)
                                                     <tr>
-                                                        <th>{{ $no++ }}</th>
+                                                        <td>
+                                                            <div>
+                                                                <a href="{{ route('jadwal.stase.edit', $r->pk) }}"
+                                                                    class="btn btn-info {{ Request::is('jadwal-stase/' . $r->pk . '/edit') ? 'active' : '' }}"><i
+                                                                        class="fa-solid fa-pen-to-square"></i></a>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ $no++ }}</td>
                                                         <td>{{ $r->inisialresiden }}</td>
-                                                        <td>{{ $r->nm }}</td>
+                                                        <td class="text-nowrap">{{ $r->nm }}</td>
                                                         @foreach ($bulan as $b)
                                                             @php
                                                                 $b = date('m', strtotime($b));
@@ -138,13 +149,6 @@
                                                             <td>{{ $jadwal && $jadwal->stase ? $jadwal->stase->nm : '' }}
                                                             </td>
                                                         @endforeach
-                                                        <td>
-                                                            <div>
-                                                                <a href="{{ route('jadwal.stase.edit', $r->pk) }}"
-                                                                    class="btn btn-info {{ Request::is('jadwal-stase/' . $r->pk . '/edit') ? 'active' : '' }}"><i
-                                                                        class="fa-solid fa-pen-to-square"></i></a>
-                                                            </div>
-                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -174,7 +178,8 @@
     <script>
         $(document).ready(function() {
             $('.myTable').DataTable({
-                scrollX: true
+                scrollX: true,
+                searching: false
             });
         });
     </script>

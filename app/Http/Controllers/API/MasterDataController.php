@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\KategoriMotorik;
 use App\Models\SubKategoriMotorik;
 use App\Models\TahunAjaran;
+use DB;
 use Illuminate\Http\Request;
 
 class MasterDataController extends Controller
@@ -35,7 +36,18 @@ class MasterDataController extends Controller
     public function getTahunAjaran()
     {
         try {
-            $data = TahunAjaran::where("aktif", 1)->get();
+            $data = TahunAjaran::all();
+
+            return response()->json(['data' => $data], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
+    public function getSetting()
+    {
+        try {
+            $data = DB::table('s_setting')->select('*')->first();
 
             return response()->json(['data' => $data], 200);
         } catch (\Throwable $e) {

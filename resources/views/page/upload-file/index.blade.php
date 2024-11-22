@@ -6,6 +6,16 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        .btn.btn-sm {
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            line-height: 25px;
+            text-align: center;
+        }
+    </style>
 @endpush
 
 @section('main')
@@ -46,12 +56,12 @@
                                 <a class="btn btn-success {{ Request::is('upload-file/create') ? 'active' : '' }}"
                                     href="{{ route('upload.file.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table-striped table nowrap" id="myTable" style="width: 100%">
+                            <table class="table-striped table" id="myTable" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
@@ -60,28 +70,35 @@
                                         <th>{{ __('message.nama') }}</th>
                                         <th>{{ __('message.ctn') }}</th>
                                         <th>File</th>
-                                        <th>{{ __('message.active') }}</th>
+                                        <th>Status</th>
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($files as $file)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $file->nm }}</td>
                                             <td>{{ $file->ctn }}</td>
-                                            <td><a href="{{ route('upload-file.show', $file->pk) }}"
-                                                    class="btn btn-primary"><i class="fa fa-download"></i></a>
+                                            <td class="text-nowrap">
+                                                {{-- <a href="{{ route('upload.file.show', $file->pk) }}"
+                                                    class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a> --}}
+                                                <a href="{{ route('upload.file.show', $file->pk) }}"
+                                                    class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>
                                             </td>
                                             <td>
-                                                <span
-                                                    class="badge badge-{{ $file->aktif ? 'success' : 'danger' }}">{{ $file->aktif ? __('message.active') : __('message.inactive') }}</span>
+                                                <label class="custom-switch pl-0">
+                                                    <input type="checkbox" name="aktif[{{ $file->pk }}]" value="2"
+                                                        class="custom-switch-input"
+                                                        {{ $file->aktif == 1 ? 'checked' : '' }} disabled>
+                                                    <span class="custom-switch-indicator"></span>
+                                                </label>
                                             </td>
-                                            <td>
+                                            <td class="text-nowrap">
                                                 <div>
                                                     <a href="{{ route('upload.file.edit', $file->pk) }}"
                                                         class="btn btn-info {{ Request::is('upload-file/' . $file->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fas fa-pen-to-square"></i></a>
                                                     <form action="{{ route('upload.file.destroy', $file->pk) }}"
                                                         method="POST" style="display: inline">
                                                         @csrf

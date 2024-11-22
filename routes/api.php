@@ -3,6 +3,8 @@
 use App\Http\Controllers\API\Resident\AcademicController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MasterDataController;
+use App\Http\Controllers\API\Resident\AttendanceController;
+use App\Http\Controllers\API\Resident\FormulirController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,14 +52,29 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::prefix('kognitif')->group(function () {
                 Route::get('/stase', [AcademicController::class, 'getNilaiStaseResiden']);
                 Route::put('/stase/{staseJadwalNilaiId}/upload', [AcademicController::class, 'uploadStaseResiden']);
+                Route::get('/uts', [AcademicController::class, 'getNilaiUTSResiden']);
+                Route::get('/uas', [AcademicController::class, 'getNilaiUASResiden']);
             });
+
+            Route::get('/afektif', [AttendanceController::class, 'getAfektif']);
         });
+
+        // attendance routes
+        Route::prefix("attendance")->group(function () {
+            Route::get('/state', [AttendanceController::class, 'getAttendanceState']);
+            Route::post('/check-in', [AttendanceController::class, 'checkIn']);
+            Route::post('/check-out', [AttendanceController::class, 'checkOut']);
+        });
+
+        // formulir routes
+        Route::get('/formulir', [FormulirController::class, 'getData']);
     });
 
     // Master Data
     Route::get("/motorik-kategori", [MasterDataController::class, 'getMotorikKategori']);
     Route::get("/motorik-subkategori", [MasterDataController::class, 'getMotorikSubKategori']);
     Route::get("/tahun-ajaran", [MasterDataController::class, 'getTahunAjaran']);
+    Route::get("/setting", [MasterDataController::class, 'getSetting']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

@@ -219,6 +219,9 @@ label.required::after {
     justify-content: center;
     align-items: center;
 }
+.form-check-input{
+    background-color: #000;
+}
 @media (max-width: 575.98px) {
     .lead {
         font-size: 17px;
@@ -792,16 +795,20 @@ select.form-control:not([size]):not([multiple]) {
 .alert.alert-success {
     background-color: #d1e7dd;
     color: #0a3622;
+    border: 1px solid #a3cfbb;
 }
 .alert.alert-info {
     background-color: #3abaf4;
 }
 .alert.alert-warning {
-    background-color: #ffa426;
+    background-color: #fff3cd;
+    color: #664d03;
+    border: 1px solid #FFE6A4;
 }
 .alert.alert-danger {
     background-color: #f8d7da;
     color: #58151c;
+    border: 1px solid #f1aeb5;
 }
 .alert.alert-light {
     background-color: #e3eaef;

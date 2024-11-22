@@ -20,7 +20,7 @@
                         <span>Download File</span></a>
                 </li>
 
-                <li class="menu-header">Data</li>
+                <li class="menu-header">{{ __('message.akademik') }}</li>
                 {{-- Kognitif --}}
                 <li class="nav-item dropdown {{ $type_menu === 'kognitif' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i
@@ -65,16 +65,17 @@
                         <span>{{ __('message.dtmotorik') }}</span></a>
                 </li>
 
-                {{-- Laporan --}}
-                <li class="menu-header">
-                <li class="menu-header">{{ __('message.record') }}</li>
-                </li>
-
+                {{-- Karya Ilmiah --}}
                 <li class="{{ Request::is('karya-ilmiah-residen') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('karya-ilmiah.residen.index') }}"><i
                             class="fas fa-file-alt"></i>
                         <span>{{ __('message.karyailmiah') }}</span></a>
                 </li>
+                
+                {{-- Laporan --}}
+                <li class="menu-header">{{ __('message.record') }}</li>
+                </li>
+
                 <li class="{{ Request::is('laporan') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('laporan') }}"><i class="fas fa-chart-bar"></i>
                         <span>{{ __('message.laporan') }}</span></a>
@@ -95,8 +96,9 @@
                             <a class="nav-link"
                                 href="{{ route('tingkat.residen.index') }}">{{ __('message.tingkatresiden') }}</a>
                         </li>
-                        <li class="{{ Request::is('stase') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('stase') }}">{{ __('message.harikerja') }}</a>
+                        <li class='{{ Request::is('hari-kerja*') ? 'active' : '' }}'>
+                            <a class="nav-link"
+                                href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
                         </li>
                         <li class="{{ Request::is('upload-file*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.uploadfile') }}</a>
@@ -107,8 +109,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="menu-header">Data</li>
                 {{-- Master Data --}}
                 <li class="nav-item dropdown {{ $type_menu === 'master-data' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Master
@@ -137,6 +137,8 @@
                     </ul>
                 </li>
 
+                <li class="menu-header">{{ __('message.akademik') }}</li>
+
                 {{-- Kognitif --}}
                 <li class="nav-item dropdown {{ $type_menu === 'kognitif' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i
@@ -146,8 +148,9 @@
                             <a class="nav-link"
                                 href="{{ route('jadwal.stase.index') }}">{{ __('message.jdwstase') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.nilaistase') }}</a>
+                        <li class="{{ Request::is('nilai-stase*') ? 'active' : '' }}">
+                            <a class="nav-link"
+                                href="{{ route('nilai.stase.index') }}">{{ __('message.nilaistase') }}</a>
                         </li>
                         <li class="{{ Request::is('uts') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('uts.index') }}">UTS</a>
@@ -189,20 +192,16 @@
                     </ul>
                 </li>
 
-                <li class="menu-header">{{ __('message.record') }}</li>
                 {{-- Afektif --}}
                 <li class="nav-item dropdown {{ $type_menu === 'afektif' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-user-check"></i><span>{{ __('message.afektif') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('blank-page') ? 'active' : '' }}'>
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.atrjam') }}</a>
+                        <li class="{{ Request::is('absensi*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('absensi.index') }}">{{ __('message.absensi') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.absensi') }}</a>
-                        </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.dftabsensi') }}</a>
+                        <li class="{{ Request::is('daftar-absensi*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('daftar.absensi.index') }}">{{ __('message.dftabsensi') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -212,13 +211,14 @@
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-file-alt"></i><span>{{ __('message.karyailmiah') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('karya-ilmiah*') ? 'active' : '' }}'>
+                        <li
+                            class='{{ Request::is('karya-ilmiah*') && !Request::is('karya-ilmiah-residen*') ? 'active' : '' }}'>
                             <a class="nav-link"
                                 href="{{ route('karya-ilmiah.index') }}">{{ __('message.mstkarya') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <li class="{{ Request::is('karyailmiah-residen*') ? 'active' : '' }}">
                             <a class="nav-link"
-                                href="{{ url('blank-page') }}">{{ __('message.residenkarya') }}</a>
+                                href="{{ route('karyailmiahresiden.index') }}">{{ __('message.residenkarya') }}</a>
                         </li>
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.laporan') }}</a>
@@ -226,6 +226,8 @@
                     </ul>
                 </li>
 
+
+                <li class="menu-header">{{ __('message.record') }}</li>
                 {{-- Laporan --}}
                 <li class="nav-item dropdown {{ $type_menu === 'laporan' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i

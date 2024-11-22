@@ -26,7 +26,7 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('monitoring.index') }}">{{ __('message.mngmotorikpendek') }}</a>
                             </div>
-                            <div class="breadcrumb-item">{{ __('message.detailmngpendek') }}</div>
+                            <div class="breadcrumb-item">{{ __('message.detail') }}</div>
                         </div>
                     </ul>
                 </div>

@@ -25,7 +25,6 @@ class Kelas extends Model
 
         return $nextPk;
     }
-
     public function thnajaran()
     {
         return $this->belongsTo(TahunAjaran::class, 'thnajaranfk', 'pk');
