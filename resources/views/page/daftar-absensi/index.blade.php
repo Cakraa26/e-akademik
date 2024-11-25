@@ -111,7 +111,11 @@
                                             <td>{{ $r->inisialresiden }}</td>
                                             <td>{{ $r->nm }}</td>
                                             @foreach ($bulans as $bulan)
-                                                <td>{{ $alpaCounts[$r->pk][$bulan] ?? 0 }}</td>
+                                                <td>
+                                                    <a href="{{ route('absensi.detail', ['pk' => $r->pk, 'bulan' => $bulan]) }}">
+                                                        {{ $alpaCounts[$r->pk][$bulan] ?? 0 }}
+                                                    </a>
+                                                </td>
                                             @endforeach
                                         </tr>
                                     @endforeach

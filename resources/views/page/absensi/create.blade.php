@@ -55,8 +55,9 @@
                                             <div class="mb-4 row align-items-center">
                                                 <label class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-select select2" id="residenfk" name="residenfk" required
-                                                    data-parsley-required-message="{{ __('message.nmrequired') }}">
+                                                    <select class="form-select select2" id="residenfk" name="residenfk"
+                                                        required
+                                                        data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                         <option value=""></option>
                                                         @foreach ($residen as $r)
                                                             <option value="{{ $r->pk }}"
@@ -89,7 +90,8 @@
                                                 <div class="col-sm-9 d-flex align-items-center">
                                                     <div class="col-10 pr-1 pl-0">
                                                         <input type="text" name="coordinates" id="coordinates"
-                                                            class="form-control" value="{{ old('coordinates') }}" readonly required
+                                                            class="form-control" value="{{ old('coordinates') }}" readonly
+                                                            required
                                                             data-parsley-required-message="{{ __('message.koordinatrequired') }}">
                                                     </div>
                                                     <div class="col-2 pl-1">

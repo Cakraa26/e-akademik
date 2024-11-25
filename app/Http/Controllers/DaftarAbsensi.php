@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Absen;
 use App\Models\Residen;
 use App\Models\Tingkat;
@@ -48,7 +49,7 @@ class DaftarAbsensi extends Controller
         foreach ($residen as $r) {
             $alpaCounts[$r->pk] = [];
             foreach ($bulans as $bulan) {
-                $monthYear = \Carbon\Carbon::createFromFormat('Y-m', $bulan);
+                $monthYear = Carbon::createFromFormat('Y-m', $bulan);
                 $month = $monthYear->format('m');
                 $year = $monthYear->format('Y');
 
@@ -71,6 +72,27 @@ class DaftarAbsensi extends Controller
             'semester' => $semester,
             'thnajaran' => $thnajaran,
             'tingkat' => $tingkat,
+            'type_menu' => $type_menu,
+        ]);
+    }
+    public function detail($pk, $bulan)
+    {
+        $type_menu = 'afektif';
+
+        $residen = Residen::findOrFail($pk);
+
+        $monthYear = Carbon::createFromFormat('Y-m', $bulan);
+        $month = $monthYear->format('m');
+        $year = $monthYear->format('Y');
+
+        $absen = Absen::where('residenfk', $pk)
+        ->whereMonth('check_in', $month)
+        ->whereYear('check_in', $year)
+        ->get();
+
+        return view("page.daftar-absensi.detail", [
+            'absen' => $absen,
+            'residen' => $residen,
             'type_menu' => $type_menu,
         ]);
     }

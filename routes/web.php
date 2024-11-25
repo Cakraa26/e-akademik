@@ -297,6 +297,8 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'daftar.absensi.update',
         'destroy' => 'daftar.absensi.destroy',
     ]);
+    Route::get('/absensi/{pk}/{bulan}/detail', [DaftarAbsensi::class, 'detail'])->name('absensi.detail');
+
 });
 
 Route::middleware(['checkRole:2'])->group(function () {

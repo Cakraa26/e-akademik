@@ -51,6 +51,7 @@ return [
     'dftabsensi' => "Daftar Absensi",
     'detailkarya' => "Detail Karya Ilmiah",
     'detailmng' => "Detail Monitoring",
+    'detailabsensi' => "Detail Absensi",
 
     // CRUD
     'tambah' => "Tambah",
