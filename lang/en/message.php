@@ -82,6 +82,8 @@ return [
     'tambahkaryailmiah' => "Add Scientific Work",
     'tambahabsen' => "Add Attendance",
     'editabsen' => "Update Attendance",
+    'tambahtingkat' => "Add Level",
+    'edittingkat' => "Update Level",
 
     // Button
     'kembali' => "Back",

@@ -67,7 +67,7 @@
                                 <tbody>
                                     @foreach ($residen as $data)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->darisemester . '-' . $data->sampaisemester }}</td>
                                             <td>{{ $data->kd }}</td>
                                             <td>{{ $data->nm }}</td>

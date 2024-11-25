@@ -94,6 +94,8 @@ return [
     'tambahkaryailmiah' => "Tambah Karya Ilmiah",
     'tambahabsen' => "Tambah Absensi",
     'editabsen' => "Perbarui Absensi",
+    'tambahtingkat' => "Tambah Tingkat",
+    'edittingkat' => "Perbarui Tingkat",
 
     // Button
     'kembali' => "Kembali",

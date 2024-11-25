@@ -70,7 +70,7 @@
                                         <option value=""></option>
                                         @foreach ($thnajaran as $t)
                                             <option value="{{ $t->pk }}"
-                                                {{ Request::get('thnajaranfk') == $t->pk ? 'selected' : '' }}>
+                                                {{ Request::get('thnajaranfk') == $t->pk || (!Request::get('thnajaranfk') && $t->aktif == 1) ? 'selected' : '' }}>
                                                 {{ $t->nm }}</option>
                                         @endforeach
                                     </select>
@@ -144,12 +144,15 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($kelas as $k)
-                                        <tr id="row-{{ $k->pk }}">
+                                        <tr id="row-{{ $k->pk }}"
+                                            @if ($k->tingkatfk == 1 || $k->tingkatfk == 2) style="background-color: #E98580;" 
+                                            @elseif($k->tingkatfk == 3) style="background-color: #F4D06F;" 
+                                            @elseif($k->tingkatfk == 4) style="background-color: #A4C686;" @endif>
                                             <form action="{{ route('uas.update', $k->pk) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $k->residen->nm }}</td>
+                                                <td class="text-nowrap">{{ $k->residen->nm }}</td>
                                                 <td>
                                                     <span class="view"
                                                         id="mcqbenar_uas-{{ $k->pk }}">{{ $k->mcqbenar_uas }}</span>

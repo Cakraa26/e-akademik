@@ -118,7 +118,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($tmotorik as $t)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $t->motorik->nm }}</td>
                                             <td>{{ $t->motorik->motorikGroup->nm }}</td>
                                             <td>{{ $t->motorik->category->nm }}</td>
@@ -128,12 +128,12 @@
                                                 <div class="text-center">
                                                     <a href="{{ route('monitoring.approve', ['pk' => $t->pk, 'residenfk' => $t->residenfk]) }}"
                                                         class="btn btn-secondary mr-2">
-                                                        {{ $t->motorikData->where('stsapproved', 1)->sum('jmlfile') }}
+                                                        {{ $t->motorikData->where('stsbimbingan', 1)->where('stsapproved', 1)->sum('jmlfile') }}
                                                     </a>
                                                     <i class="fas fa-ellipsis-v"></i>
                                                     <a href="{{ route('monitoring.approve', ['pk' => $t->pk, 'residenfk' => $t->residenfk]) }}"
                                                         class="btn btn-secondary ml-2">
-                                                        {{ $t->sum('stsmandiri') }}
+                                                        {{ $t->motorikData->where('stsmandiri', 1)->where('stsapproved', 1)->sum('jmlfile') }}
                                                     </a>
                                                 </div>
                                             </td>

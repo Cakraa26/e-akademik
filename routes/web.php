@@ -303,13 +303,10 @@ Route::middleware(['checkRole:1'])->group(function () {
     // Daftar Absensi
     Route::resource('daftar-absensi', DaftarAbsensi::class)->names([
         'index' => 'daftar.absensi.index',
-        'create' => 'daftar.absensi.create',
-        'store' => 'daftar.absensi.store',
-        'edit' => 'daftar.absensi.edit',
         'update' => 'daftar.absensi.update',
         'destroy' => 'daftar.absensi.destroy',
     ]);
-    Route::get('/absensi/{pk}/{bulan}/detail', [DaftarAbsensi::class, 'detail'])->name('absensi.detail');
+    Route::get('/daftar-absensi/{pk}/{bulan}/detail', [DaftarAbsensi::class, 'detail'])->name('daftar.absensi.detail');
 
 });
 

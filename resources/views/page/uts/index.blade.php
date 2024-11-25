@@ -102,7 +102,7 @@
                                     <div class="d-flex">
                                         <button type="submit" class="btn btn-danger mr-1"><i
                                                 class="fas fa-search"></i></button>
-                                        <a href="{{ route('uas.index') }}" class="btn btn-secondary">
+                                        <a href="{{ route('uts.index') }}" class="btn btn-secondary">
                                             <i class="fas fa-sync-alt"></i>
                                         </a>
                                     </div>
@@ -138,9 +138,9 @@
                                     @php $no = 1; @endphp
                                     @foreach ($kelas as $k)
                                         <tr id="row-{{ $k->pk }}"
-                                            @if ($k->tingkatfk == 2) style="color: #FFF; background-color: red;" 
-                                            @elseif($k->tingkatfk == 3) style="color: #FFF; background-color: yellow;" 
-                                            @elseif($k->tingkatfk == 4) style="color: #FFF; background-color: green;" @endif>
+                                            @if ($k->tingkatfk == 1 || $k->tingkatfk == 2) style="background-color: #E98580;" 
+                                            @elseif($k->tingkatfk == 3) style="background-color: #F4D06F;" 
+                                            @elseif($k->tingkatfk == 4) style="background-color: #A4C686;" @endif>
                                             <form action="{{ route('uts.update', $k->pk) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')

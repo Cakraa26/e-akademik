@@ -219,9 +219,6 @@ label.required::after {
     justify-content: center;
     align-items: center;
 }
-.form-check-input{
-    background-color: #000;
-}
 @media (max-width: 575.98px) {
     .lead {
         font-size: 17px;

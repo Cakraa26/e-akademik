@@ -26,13 +26,6 @@
                 </div>
             </div>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
@@ -52,8 +45,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="telepon" class="col-sm-3">{{ __('message.nama') }}</label>
-                                                <div class="col-sm-9">
+                                                <label for="telepon" class="col-sm-4">{{ __('message.nama') }}</label>
+                                                <div class="col-sm-8">
                                                     <input type="text"
                                                         class="form-control  @error('nm') is-invalid @enderror"
                                                         name="nm" id="nm" value="{{ old('nm', $karya->nm) }}"
@@ -63,8 +56,8 @@
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label for="telepon"
-                                                    class="col-sm-3">{{ __('message.btssemester') }}</label>
-                                                <div class="col-sm-9">
+                                                    class="col-sm-4">{{ __('message.btssemester') }}</label>
+                                                <div class="col-sm-8">
                                                     <input type="text"
                                                         class="form-control  @error('sampaisemester') is-invalid @enderror"
                                                         name="sampaisemester" id="sampaisemester"
@@ -76,8 +69,8 @@
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
                                                 <label for="telepon"
-                                                    class="col-sm-3">{{ __('message.drsemester') }}</label>
-                                                <div class="col-sm-9">
+                                                    class="col-sm-4">{{ __('message.drsemester') }}</label>
+                                                <div class="col-sm-8">
                                                     <input type="text"
                                                         class="form-control  @error('darisemester') is-invalid @enderror"
                                                         name="darisemester" id="darisemester"
@@ -86,7 +79,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3 align-items-center">
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <label class="form-label">Status</label>
                                                 </div>
                                                 <div class="col-md-8">
@@ -101,14 +94,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="datetime-local" class="form-control" id="datemodified" name="datemodified"
-                                        value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
                                             <a class="btn btn-dark mr-2" href="{{ route('karya-ilmiah.index') }}">
                                                 <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" id="submit-btn" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
