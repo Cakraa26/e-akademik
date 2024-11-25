@@ -97,12 +97,12 @@
                                                     {{ $th->aktif === 1 ? __('message.active') : __('message.inactive') }}
                                                 </span>
                                             </td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan1)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan2)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan3)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan4)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan5)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($th->bulan6)) }}</td>
+                                            <td>{{ $th->bulan1 }}</td>
+                                            <td>{{ $th->bulan2 }}</td>
+                                            <td>{{ $th->bulan3 }}</td>
+                                            <td>{{ $th->bulan4 }}</td>
+                                            <td>{{ $th->bulan5 }}</td>
+                                            <td>{{ $th->bulan6 }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

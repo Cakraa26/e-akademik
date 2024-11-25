@@ -29,27 +29,15 @@ class TahunAjaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nm' => 'required|unique:m_thnajaran,nm'
-        ], [
-            'nm' => __('message.nama'),
-            'bulan1' => 'required'
-        ], [
-            'bulan1' => __('message.bulan1'),
-            'bulan2' => 'required'
-        ], [
-            'bulan2' => __('message.bulan2'),
-            'bulan3' => 'required'
-        ], [
-            'bulan3' => __('message.bulan3'),
-            'bulan4' => 'required'
-        ], [
-            'bulan4' => __('message.bulan4'),
-            'bulan5' => 'required'
-        ], [
-            'bulan5' => __('message.bulan5'),
-            'bulan6' => 'required'
-        ], [
-            'bulan6' => __('message.bulan6'),
+            'nm' => 'required',
+            'bulan1' => 'required',
+            'bulan2' => 'required',
+            'bulan3' => 'required',
+            'bulan4' => 'required',
+            'bulan5' => 'required',
+            'bulan6' => 'required',
+            'nmdekan' => 'nullable',
+            'nip' => 'nullable',
         ]);
 
         try {
@@ -64,15 +52,15 @@ class TahunAjaranController extends Controller
                 'bulan4' => $TahunData ['bulan4'],
                 'bulan5' => $TahunData ['bulan5'],
                 'bulan6' => $TahunData ['bulan6'],
-                'aktif' => $TahunData ['aktif']
+                'aktif' => $TahunData ['aktif'],
+                'nmdekan' => $TahunData ['nmdekan'],
+                'nip' => $TahunData ['nip'],
             ]);
             return redirect()
                 ->route('tahun-ajaran.index')
                 ->with('success', __('message.success_tahunajaran_added'));
         } catch (\Exception $e) {
-            return back()
-                ->withInput()
-                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            return dd($e->getMessage());
         }
     }
 
@@ -91,27 +79,16 @@ class TahunAjaranController extends Controller
         $thn = TahunAjaran::findOrFail($pk);
 
         $request->validate([
-            'nm' => 'required|unique:m_thnajaran,nm,' . $pk . ',pk'
-        ], [
-            'nm' => __('message.nama'),
-            'bulan1' => 'required'
-        ], [
-            'bulan1' => __('message.bulan1'),
-            'bulan2' => 'required'
-        ], [
-            'bulan2' => __('message.bulan2'),
-            'bulan3' => 'required'
-        ], [
-            'bulan3' => __('message.bulan3'),
-            'bulan4' => 'required'
-        ], [
-            'bulan4' => __('message.bulan4'),
-            'bulan5' => 'required'
-        ], [
-            'bulan5' => __('message.bulan5'),
-            'bulan6' => 'required'
-        ], [
-            'bulan6' => __('message.bulan6'),
+            'nm' => 'required|unique:m_thnajaran,nm,' . $pk . ',pk',
+            'bulan1' => 'required',
+            'bulan2' => 'required',
+            'bulan3' => 'required',
+            'bulan4' => 'required',
+            'bulan5' => 'required',
+            'bulan6' => 'required',
+            'nmdekan' => 'nullable',
+            'nip' => 'nullable',
+            
         ]);
 
         try {

@@ -123,6 +123,8 @@ return [
     'bulan4' => "Month 4",
     'bulan5' => "Month 5",
     'bulan6' => "Month 6",
+    'kepalaprogram' => "Head of program",
+    'nip' => "NIP",
 
 
     // pendaftaran residen 

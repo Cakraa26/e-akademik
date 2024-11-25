@@ -19,7 +19,7 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('tahun-ajaran.index') }}">{{ __('message.tahunajaran') }}</a>
+                                    href="{{ route('tahun-ajaran.index') }}">{{ __('message.thnajaran') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.edit') }}</div>
                         </div>
@@ -72,7 +72,7 @@
                                                     <label for="nama"
                                                         class="col-sm-3">{{ __('message.bulan1') }}</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 1" class="form-control"
+                                                        <input type="month" placeholder="bulan 1" class="form-control"
                                                             name="bulan1" id="nm"
                                                             value="{{ old('bulan1', $thn->bulan1) }}" required
                                                             data-parsley-required-message="{{ __('message.bln1required') }}">
@@ -84,7 +84,7 @@
                                                     <label for="nama"
                                                         class="col-sm-3">{{ __('message.bulan2') }}</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 2" class="form-control"
+                                                        <input type="month" placeholder="bulan 2" class="form-control"
                                                             name="bulan2" id="nm"
                                                             value="{{ old('bulan2', $thn->bulan2) }}" required
                                                             data-parsley-required-message="{{ __('message.bln2required') }}">
@@ -96,7 +96,7 @@
                                                     <label for="nama"
                                                         class="col-sm-3">{{ __('message.bulan3') }}</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 3" class="form-control"
+                                                        <input type="month" placeholder="bulan 3" class="form-control"
                                                             name="bulan3" id="nm"
                                                             value="{{ old('bulan3', $thn->bulan3) }}" required
                                                             data-parsley-required-message="{{ __('message.bln3required') }}">
@@ -111,7 +111,7 @@
                                                     <label for="nama"
                                                         class="col-sm-3">{{ __('message.bulan4') }}</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 4" class="form-control"
+                                                        <input type="month" placeholder="bulan 4" class="form-control"
                                                             name="bulan4" id="nm"
                                                             value="{{ old('bulan4', $thn->bulan4) }}" required
                                                             data-parsley-required-message="{{ __('message.bln4required') }}">
@@ -123,7 +123,7 @@
                                                     <label for="nama"
                                                         class="col-sm-3">{{ __('message.bulan5') }}</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 5" class="form-control"
+                                                        <input type="month" placeholder="bulan 5" class="form-control"
                                                             name="bulan5" id="nm"
                                                             value="{{ old('bulan5', $thn->bulan5) }}" required
                                                             data-parsley-required-message="{{ __('message.bln5required') }}">
@@ -135,7 +135,7 @@
                                                     <label for="nama"
                                                         class="col-sm-3">{{ __('message.bulan6') }}</label>
                                                     <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 6" class="form-control"
+                                                        <input type="month" placeholder="bulan 6" class="form-control"
                                                             name="bulan6" id="nm"
                                                             value="{{ old('bulan6', $thn->bulan6) }}" required
                                                             data-parsley-required-message="{{ __('message.bln6required') }}">
