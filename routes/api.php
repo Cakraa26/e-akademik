@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MasterDataController;
 use App\Http\Controllers\API\Resident\AttendanceController;
 use App\Http\Controllers\API\Resident\FormulirController;
+use App\Http\Controllers\API\Resident\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // residen routes
     Route::middleware('abilities:2')->group(function () {
+        Route::get('/home', [HomeController::class, 'index']);
 
         // academic routes
         Route::prefix("academic")->group(function () {
