@@ -114,7 +114,8 @@
                                             <div class="input-group input-group-icon">
                                                 <input type="text" id="inisialresiden" name="inisialresiden"
                                                     value="{{ old('inisialresiden') }}" required
-                                                    data-parsley-required-message="Inisial Residen wajib diisi." />
+                                                    data-parsley-required-message="Inisial Residen wajib diisi." 
+                                                    maxlength="3"/>
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-badge"></i>
                                                 </div>
@@ -541,21 +542,6 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            {{-- <fieldset>
-                                <div class="form-card">
-                                    <br>
-                                    <h2 class="purple-text text-center"><strong>SUKSES !</strong></h2> <br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-3"> <img src="{{ asset('img/sukses.png') }}" class="fit-image">
-                                        </div>
-                                    </div> <br><br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-7 text-center">
-                                            <h5 class="purple-text text-center">Anda Telah Berhasil Daftar.</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset> --}}
                         </form>
                     </div>
                 </div>
