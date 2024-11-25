@@ -13,62 +13,40 @@ use Illuminate\Http\Request;
 
 class DatabaseResidenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        $dataresiden = Residen::when($request->angkatanfk != null, function ($q) use ($request) {
-            return $q->where('thnajaranfk', $request->angkatanfk);
-        })->when($request->statuskuliah != null, function ($q) use ($request) {
+        $angkatan = TahunAjaran::select('pk', 'nm', 'aktif')->get();
+
+        $selectTahunAjaran = null;
+        if ($request->thnajaranfk) {
+            $selectTahunAjaran = TahunAjaran::where('pk', $request->thnajaranfk)->first();
+        } else {
+            $selectTahunAjaran = TahunAjaran::where('aktif', 1)->first();
+        }
+        
+        $dataresiden = Residen::when($selectTahunAjaran, function ($query) use ($selectTahunAjaran) {
+            return $query->where('thnajaranfk', $selectTahunAjaran->pk);
+        })
+        ->when($request->statuskuliah != null, function ($q) use ($request) {
             if ($request->statuskuliah == 'semua') {
                 return $q;
             }
             return $q->where('statuskuliah', $request->statuskuliah);
-        })->when($request->semesterfk != null, function ($q) use ($request) {
-            return $q->where('semester', $request->semesterfk);
+        })->when($request->semester != null, function ($q) use ($request) {
+            return $q->where('semester', $request->semester);
         })->when($request->tingkatfk != null, function ($q) use ($request) {
             return $q->where('tingkatfk', $request->tingkatfk);
-        })->get();
+        })
+        ->get();
         return view('page.database-residen.index', [
             'type_menu' => 'master-data',
             'motorik' => Motorik::all(),
-            'angkatan' => TahunAjaran::where('aktif', 1)->get(),
             'semester' => Semester::all(),
             'tingkat' => Tingkat::all(),
+            'angkatan' => $angkatan,
             'dataresiden' => $dataresiden,
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return view('page.database-residen.show', [
@@ -76,13 +54,6 @@ class DatabaseResidenController extends Controller
             'residen' => Residen::findOrFail($id),
         ]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         return view('page.database-residen.edit', [
@@ -90,27 +61,8 @@ class DatabaseResidenController extends Controller
             'residen' => Residen::findOrFail($id),
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         return dd($request->all());
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

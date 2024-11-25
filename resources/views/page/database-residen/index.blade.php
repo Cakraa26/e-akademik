@@ -39,69 +39,23 @@
                     <div class="card-body">
                         <form action="" method="GET">
                             @csrf
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                            <div class="row mb-4">
+                                <div class="col-md-3 pr-0">
                                     <div class="mb-3">
-                                        <label for="angkatanfk" class="form-label">{{ __('message.angkatan') }}</label>
-                                        <select class="form-select select2" id="angkatanfk" name="angkatanfk">
+                                        <label class="form-label">{{ __('message.angkatan') }}</label>
+                                        <select class="form-select select2" id="thnajaranfk" name="thnajaranfk">
                                             <option value=""></option>
                                             @foreach ($angkatan as $a)
                                                 <option value="{{ $a->pk }}"
-                                                    {{ Request::get('angkatanfk') == $a->pk ? 'selected' : '' }}>
+                                                    {{ Request::get('thnajaranfk') == $a->pk || (!Request::get('thnajaranfk') && $a->aktif == 1) ? 'selected' : '' }}>
                                                     {{ $a->nm }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-form-label col-sm-3 pt-0">{{ __('message.statuskuliah') }}</div>
-                                        <div class="col-sm-9">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="statuskuliah"
-                                                    id="gridRadios1" value="1"
-                                                    {{ request()->input('statuskuliah') == '1' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    Aktif
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="statuskuliah"
-                                                    id="gridRadios1" value="3"
-                                                    {{ request()->input('statuskuliah') == '3' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    Alumni
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="statuskuliah"
-                                                    id="gridRadios1" value="semua"
-                                                    {{ request()->input('statuskuliah') == 'semua' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="gridRadios1">
-                                                    Semua
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-3 pr-0">
                                     <div class="mb-3">
-                                        <label for="semesterInput" class="form-label">{{ __('message.semester') }}</label>
-                                        <select class="form-select select2" id="semesterInput" name="semesterfk">
-                                            <option value=""></option>
-                                            @foreach ($semester as $k)
-                                                <option value="{{ $k->pk }}"
-                                                    {{ Request::get('semesterfk') == $k->pk ? 'selected' : '' }}>
-                                                    {{ $k->semester }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="mb-3">
-                                        <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
+                                        <label class="form-label">{{ __('message.tingkat') }}</label>
                                         <select class="form-select select2" id="tingkatfk" name="tingkatfk">
                                             <option value=""></option>
                                             @foreach ($tingkat as $t)
@@ -112,17 +66,52 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 mt-n4 mt-md-0">
+                                <div class="col-md-2">
                                     <div class="mb-3">
-                                        <label>&nbsp;</label>
-                                        <div class="d-flex">
-                                            <button type="submit" class="btn btn-primary mr-2">Filter <i
-                                                    class="fas fa-sort-amount-up pl-1"></i></button>
-                                            <a href="{{ route('database.residen.index') }}"
-                                                class="btn btn-secondary">Refresh <i class="fas fa-sync-alt pl-1"></i></a>
-                                        </div>
+                                        <label class="form-label">{{ __('message.semester') }}</label>
+                                        <select class="form-select select2" id="semester" name="semester">
+                                            <option value=""></option>
+                                            @foreach ($semester as $s)
+                                                <option value="{{ $s->pk }}"
+                                                    {{ Request::get('semester') == $s->pk ? 'selected' : '' }}>
+                                                    {{ $s->semester }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pr-0">
+                                    <div>{{ __('message.statuskuliah') }}</div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
+                                            value="1" {{ request()->input('statuskuliah') == '1' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="gridRadios1">
+                                            Aktif
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
+                                            value="3" {{ request()->input('statuskuliah') == '3' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="gridRadios1">
+                                            Alumni
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
+                                            value="semua"
+                                            {{ request()->input('statuskuliah') == 'semua' ? 'checked' : '' }} checked>
+                                        <label class="form-check-label" for="gridRadios1">
+                                            Semua
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pr-0">
+                                    <label>&nbsp;</label>
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-danger mr-1"><i
+                                                class="fas fa-search"></i></button>
+                                        <a href="{{ route('database.residen.index') }}" class="btn btn-secondary">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -146,42 +135,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($dataresiden as $residen)
-                                        <tr>
+                                    @foreach ($dataresiden as $r)
+                                        <tr
+                                            @if ($r->tingkatfk === 1 || $r->tingkatfk === 2) style="background-color: #E98580;"
+                                                @elseif ($r->tingkatfk === 3)
+                                                 style="background-color: #F4D06F;"
+                                                  @elseif ($r->tingkatfk === 4)
+                                                 style="background-color: #A4C686;" @endif>
                                             <td>
                                                 <div>
-                                                    <a href="{{ route('database.residen.edit', $residen->pk) }}"
-                                                        class="btn btn-info {{ Request::is('database-residen/' . $residen->pk . '/edit') ? 'active' : '' }}"><i
+                                                    <a href="{{ route('database.residen.edit', $r->pk) }}"
+                                                        class="btn btn-info {{ Request::is('database-residen/' . $r->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a href="{{ route('database-residen.show', $residen->pk) }}"
-                                                        class="btn btn-dark {{ Request::is('database-residen/' . $residen->pk) ? 'active' : '' }}"><i
-                                                            class="fa-solid fa-info"></i></a>
+                                                    <a href="{{ route('database-residen.show', $r->pk) }}"
+                                                        class="btn btn-secondary {{ Request::is('database-residen/' . $r->pk) ? 'active' : '' }}"><i
+                                                            class="fa-solid fa-eye"></i></a>
                                                 </div>
                                             </td>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ $residen->tahunajaran->nm }}</td>
-                                            <td>{{ $residen->inisialresiden }}</td>
-                                            <td>{{ $residen->nm }}</td>
-                                            <td>{{ $residen->hp }}</td>
-                                            <td>{{ $residen->alamattinggal }}</td>
-                                            <td>{{ $residen->karyailmiah->nm }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $r->tahunajaran->nm }}</td>
+                                            <td>{{ $r->inisialresiden }}</td>
+                                            <td>{{ $r->nm }}</td>
+                                            <td>{{ $r->hp }}</td>
+                                            <td>{{ $r->alamattinggal }}</td>
+                                            <td>{{ $r->karyailmiah->nm }}</td>
                                             <td>
-                                                @switch($residen->statuskuliah)
-                                                    @case(1)
-                                                        Mahasiswa
-                                                    @break
-                                                    @case(2)
-                                                        Ditolak
-                                                    @break
-                                                    @case(3)
-                                                        Alumni
-                                                    @break
-                                                    @case(4)
-                                                        Cuti
-                                                    @break
-                                                    @default
-                                                        Daftar
-                                                @endswitch
+                                                @if ($r->statuskuliah === 1)
+                                                    Mahasiswa
+                                                @elseif ($r->statuskuliah === 2)
+                                                    Ditolak
+                                                @elseif ($r->statuskuliah === 3)
+                                                    Alumni
+                                                @elseif ($r->statuskuliah === 4)
+                                                    Cuti
+                                                @else
+                                                    Daftar
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

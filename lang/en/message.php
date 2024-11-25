@@ -48,6 +48,7 @@ return [
     'harikerja' => "Working Day",
     'detailkarya' => "Scientific Work Detail",
     'detailmng' => "Monitoring Detail",
+    'detailabsensi' => "Attendance Detail",
 
     // CRUD
     'tambah' => "Add",

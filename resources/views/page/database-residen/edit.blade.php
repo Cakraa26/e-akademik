@@ -547,7 +547,7 @@
                                         name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
                                             <a class="btn btn-dark mr-2" href="{{ route('database.residen.index') }}">
                                                 <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
