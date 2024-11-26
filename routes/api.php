@@ -6,6 +6,7 @@ use App\Http\Controllers\API\MasterDataController;
 use App\Http\Controllers\API\Resident\AttendanceController;
 use App\Http\Controllers\API\Resident\FormulirController;
 use App\Http\Controllers\API\Resident\HomeController;
+use App\Http\Controllers\API\Resident\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // formulir routes
         Route::get('/formulir', [FormulirController::class, 'getData']);
+
+        // profile routes
+        Route::prefix('profile')->group(function () {
+            Route::patch('/change-password', [ProfileController::class, 'changePassword']);
+        });
     });
 
     // Master Data
