@@ -76,7 +76,7 @@ class AuthController extends Controller
             $user = User::where('username', $username)
                 ->first();
 
-            if (!$user && $user->role != 1 && !Hash::check($password, $user->password)) {
+            if (isset($user) && $user->is_verified && !Hash::check($password, $user->password)) {
                 return response()->json(['message' => 'Unauthorized'], 401);
             }
 
