@@ -210,7 +210,7 @@ return [
     'nmpasangan' => "Nama Suami / Istri",
     'alamatpasangan' => "Alamat Suami / Istri",
     'hppasangan' => "No. HP Suami / Istri",
-    'jmlanak' => "Jumlah Anak",
+    'jmlanak' => "Jml. Anak",
     'nmayah' => "Nama Ayah",
     'nmibu' => "Nama Ibu",
     'alamatortu' => "Alamat Ayah / Ibu",
@@ -224,6 +224,8 @@ return [
     'tanpaabsen' => "Tanpa Absen",
     'koordinat' => "Koordinat",
     'sudah_approve' => "Disetujui",
+    'change' => "Ubah informasi tentang diri Anda di halaman ini.",
+    'changepassword' => "Ubah Sandi",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -259,7 +261,7 @@ return [
     'nmayahrequired' => "Nama Ayah wajib diisi.",
     'nmiburequired' => "Nama Ayah wajib diisi.",
     'alamatpasanganrequired' => "Alamat Pasangan wajib diisi.",
-    'nmpasanganrequired' => "Nama Pasangan.",
+    'nmpasanganrequired' => "Nama Pasangan wajib diisi",
     'asalfakultasrequired' => "Asal Fakultas wajib diisi.",
     'alamatktprequired' => "Alamat KTP wajib diisi.",
     'niprequired' => "NIP wajib diisi.",
@@ -365,4 +367,5 @@ return [
     'success_absensi_added' => 'Absensi berhasil ditambahkan.',
     'success_absensi_edit' => 'Absensi berhasil diperbarui.',
     'success_absensi_hapus' => 'Absensi berhasil dihapus.',
+    'success_password_edit' => 'Kata Sandi berhasil diperbarui.',
 ];

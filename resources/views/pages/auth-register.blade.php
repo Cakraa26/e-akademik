@@ -114,8 +114,8 @@
                                             <div class="input-group input-group-icon">
                                                 <input type="text" id="inisialresiden" name="inisialresiden"
                                                     value="{{ old('inisialresiden') }}" required
-                                                    data-parsley-required-message="Inisial Residen wajib diisi." 
-                                                    maxlength="3"/>
+                                                    data-parsley-required-message="Inisial Residen wajib diisi."
+                                                    maxlength="3" />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-badge"></i>
                                                 </div>
@@ -554,9 +554,7 @@
     <!-- JS Libraies -->
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"
-        integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('js/page/password.js') }}"></script>
 

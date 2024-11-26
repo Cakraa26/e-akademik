@@ -800,7 +800,7 @@ select.form-control:not([size]):not([multiple]) {
 .alert.alert-warning {
     background-color: #fff3cd;
     color: #664d03;
-    border: 1px solid #FFE6A4;
+    border: 1px solid #ffe6a4;
 }
 .alert.alert-danger {
     background-color: #f8d7da;
@@ -2504,7 +2504,7 @@ a.dropdown-item.active {
 }
 
 .dropdown-divider {
-    border-top-color: #f9f9f9;
+    border-top-color: #e8e5e5;
 }
 
 .dropdown-list {
@@ -2558,6 +2558,7 @@ a.dropdown-item.active {
 }
 .dropdown-list .dropdown-item:focus {
     background-color: #1a5319;
+    color: #fff;
 }
 .dropdown-list .dropdown-item:focus .dropdown-item-desc {
     color: #fff !important;
