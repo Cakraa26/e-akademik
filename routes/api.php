@@ -74,7 +74,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // profile routes
         Route::prefix('profile')->group(function () {
+            Route::get('/', [ProfileController::class, 'getBiodata']);
             Route::patch('/change-password', [ProfileController::class, 'changePassword']);
+            Route::put('/update-biodata', [ProfileController::class, 'updateBiodata']);
         });
     });
 
