@@ -46,4 +46,44 @@ class ProfileController extends Controller
             ], 500);
         }
     }
+
+    public function getBiodata()
+    {
+        try {
+            $user = Residen::findOrFail(auth()->user()->pk);
+
+            return response()->json(['data' => $user], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Data not found',
+            ], 404);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function updateBiodata(Request $request)
+    {
+        try {
+            $user = Residen::findOrFail(auth()->user()->pk);
+
+            $payload = $request->all();
+            $payload['lastuserfk'] = auth()->user()->pk;
+            $payload['datemodied'] = date('Y-m-d H:i:s');
+
+            $user->update($payload);
+
+            return response()->json(['data' => $user], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Data not found',
+            ], 404);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
