@@ -73,13 +73,13 @@
 
                 @if ($data->isNotEmpty())
                     @foreach ($data as $d)
-                        <div class="row">
+                        <div class="row mb-n3">
                             <div class="col-12">
                                 <div class="card text-dark">
                                     <div class="card-body">
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-10 d-flex align-items-center mb-2 mb-md-0">
-                                                <i class="fas fa-clock mr-3"></i>
+                                                <i class="fas fa-calendar mr-3"></i>
                                                 <span>{{ date('l', strtotime($d->check_in)) }},
                                                     {{ date('d F Y', strtotime($d->check_in)) }}</span>
                                             </div>
