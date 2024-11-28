@@ -49,13 +49,15 @@ return [
     'detailkarya' => "Scientific Work Detail",
     'detailmng' => "Monitoring Detail",
     'detailabsensi' => "Attendance Detail",
+    'pengumuman' => "Announcement",
+    'historikehadiran' => "Attendance History",
 
     // CRUD
     'tambah' => "Add",
     'generateclass' => "Generate Class",
     'edit' => "Update",
 
-    // CRUD Dosen
+    // CRUD 
     'tambahdosen' => "Add Lecturer",
     'editdosen' => "Update Lecturer",
     'tambahstase' => "Add Stase",
@@ -70,8 +72,8 @@ return [
     'editsubkategori' => "Update Sub Category",
     'tambahresiden' => "Add Resident",
     'editresiden' => "Update Resident",
-    'tambahtahunajaran' => "Add Tahun Ajaran",
-    'edittahunajaran' => "Update Tahun Ajaran",
+    'tambahtahunajaran' => "Add School Year",
+    'edittahunajaran' => "Update School Year",
     'detail' => "Detail",
     'approved' => 'Approval Confirmation',
     'confirmapprov' => 'Confirmation',
@@ -84,6 +86,10 @@ return [
     'editabsen' => "Update Attendance",
     'tambahtingkat' => "Add Level",
     'edittingkat' => "Update Level",
+    'tambahpengumuman' => "Add Announcement",
+    'editpengumuman' => "Update Announcement",
+    'tambahfile' => "Add File",
+    'editfile' => "Update File",
 
     // Button
     'kembali' => "Back",
@@ -159,11 +165,18 @@ return [
     'hubkontakdarurat' => "Relationship with Emergency Contact",
     'terlambat' => "Late",
     'alpa' => "Absent",
+    'kehadiran' => "Presence",
     'tanpaabsen' => "Without Attendance",
     'koordinat' => "Coordinate",
     'sudah_approve' => "Approved",
     'change' => "Change information about yourself on this page.",
     'changepassword' => "Change Password",
+    'tglbuat' => "Created Date",
+    'tglberlaku' => "Effective Date",
+    'tglberlakusampai' => "Valid Until",
+    'judul' => "Title",
+    'uploadfile' => "Upload File",
+    'nohistorikehadiran' => "There is no history of attendance.",
 
     // Hari Kerja
     'masuk' => "Entry",
@@ -189,7 +202,6 @@ return [
 
     // Tahun Ajaran
     'aktif' => "Active",
-    'tahunajaran' => "School Year/Semester",
     'thnaktif' => "Activate the current school year",
     'bulan1' => "Month 1",
     'bulan2' => "Month 2",
@@ -242,7 +254,12 @@ return [
     'subkategorifkrequired' => "Sub Category is required.",
     'tlpunique' => "Phone number is already registered.",
     'nipunique' => "NIP is already registered.",
+    'kdunique' => "Kode is already registered.",
+    'nmunique' => "Name is already registered.",
     'tglrequired' => "Date is required.",
+    'tglbuatrequired' => "Created Date is required.",
+    'tglberlakurequired' => "Effective Date is required.",
+    'judulrequired' => "Title is required.",
     'ada' => "There are",
     'cek' => "Residents that need to be verified.",
     'jammasukrequired' => "Start Time is required",
@@ -250,6 +267,16 @@ return [
     'checkinrequired' => "Check-In is required.",
     'checkoutrequired' => "Check-Out is required.",
     'koordinatrequired' => "Coordinate is required.",
+    'bln1required' => "Month 1 is required.",
+    'bln2required' => "Month 2 is required.",
+    'bln3required' => "Month 3 is required.",
+    'bln4required' => "Month 4 is required.",
+    'bln5required' => "Month 5 is required.",
+    'bln6required' => "Month 6 is required.",
+    'kdrequired' => "Code is required.",
+    'btssemesterrequired' => "End Semester is required.",
+    'drsemesterrequired' => "From Semester is required.",
+    'warnarequired' => "Color is required.",
 
     // Alert
     'success' => 'Success',
@@ -300,4 +327,7 @@ return [
     'success_absensi_edit' => 'Attendance has been successfully updated.',
     'success_absensi_hapus' => 'Attendance has been successfully added.',
     'success_password_edit' => 'Password has been successfully updated.',
+    'success_pengumuman_deleted' => 'Announcement has been successfully deleted.',
+    'success_pengumuman_added' => 'Announcement has been successfully added.',
+    'success_pengumuman_edit' => 'Announcement has been successfully updated.',
 ];

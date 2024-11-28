@@ -26,9 +26,9 @@
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-brain"></i><span>{{ __('message.kognitif') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('jadwal-stase*') ? 'active' : '' }}'>
+                        <li class='{{ Request::is('blank-page') ? 'active' : '' }}'>
                             <a class="nav-link"
-                                href="{{ route('jadwal.stase.index') }}">{{ __('message.jdwstase') }}</a>
+                                href="{{ url('blank-page') }}">{{ __('message.jdwstase') }}</a>
                         </li>
                         <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.nilaistase') }}</a>
@@ -46,17 +46,9 @@
                 </li>
 
                 {{-- Afektif --}}
-                <li class="nav-item dropdown {{ $type_menu === 'afektif' ? 'active' : '' }}">
-                    <a href="#" class="nav-link has-dropdown"><i
-                            class="fas fa-user-check"></i><span>{{ __('message.afektif') }}</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.absensi') }}</a>
-                        </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.dftabsensi') }}</a>
-                        </li>
-                    </ul>
+                <li class="{{ Request::is('histori-kehadiran') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('histori.kehadiran.index') }}"><i class="fas fa-user-check"></i>
+                        <span>{{ __('message.historikehadiran') }}</span></a>
                 </li>
 
                 {{-- Psikomotorik --}}
@@ -101,7 +93,7 @@
                                 href="{{ route('hari.kerja.index') }}">{{ __('message.harikerja') }}</a>
                         </li>
                         <li class="{{ Request::is('upload-file*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.uploadfile') }}</a>
+                            <a class="nav-link" href="{{ url('upload-file') }}">{{ __('message.upload') }} File</a>
                         </li>
                         <li class="{{ Request::is('pengumuman*') ? 'active' : '' }}">
                             <a class="nav-link"

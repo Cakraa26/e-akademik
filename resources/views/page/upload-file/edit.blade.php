@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.editFile'))
+@section('title', __('message.editfile'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -25,13 +25,6 @@
                     </ul>
                 </div>
             </div>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
 
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
@@ -78,7 +71,6 @@
                                                     @enderror"
                                                         name="ctn" id="ctn" required data-parsley-required-message="{{ __('message.ctnrequired') }}"
                                                         style="height: 107px">{{ old('ctn', $file->ctn) }}</textarea>
-
                                                     @error('ctn')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>

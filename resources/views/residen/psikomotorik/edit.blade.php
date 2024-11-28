@@ -146,8 +146,8 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
-                                <input type="text" name="motorikpk" value="{{ $t->motorikfk }}">
-                                <input type="text" name="tmotorikdt" value="{{ $t->pk }}">
+                                <input type="hidden" name="motorikpk" value="{{ $t->motorikfk }}">
+                                <input type="hidden" name="tmotorikdt" value="{{ $t->pk }}">
                                 <input type="file" class="form-control" name="fileMotorik">
                             </div>
                             <div class="modal-footer mt-n3">

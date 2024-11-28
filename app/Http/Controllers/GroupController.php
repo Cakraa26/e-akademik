@@ -29,7 +29,7 @@ class GroupController extends Controller
             $inputData = $request->all();
             $inputData['aktif'] = $request->has('aktif') ? 1 : 0;
 
-            $motorik = GroupMotorik::create($inputData);
+            GroupMotorik::create($inputData);
 
             if ($request->redirect == 'psikomotorik') {
                 return back()->with('success', __('message.success_group_added'));

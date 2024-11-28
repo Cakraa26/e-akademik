@@ -57,7 +57,7 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>{{ __('message.tahunajaran') }}</th>
+                                        <th>{{ __('message.thnajaran') }}</th>
                                         <th>Status</th>
                                         <th>{{ __('message.bulan1') }}</th>
                                         <th>{{ __('message.bulan2') }}</th>

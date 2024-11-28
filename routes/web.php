@@ -32,6 +32,7 @@ use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\TingkatResidenController;
 use App\Http\Controllers\DatabaseResidenController;
+use App\Http\Controllers\HistoriKehadiran;
 
 /*
 |--------------------------------------------------------------------------
@@ -334,6 +335,11 @@ Route::middleware(['checkRole:2'])->group(function () {
     ]);
     Route::get('/edit-password', [ProfileController::class, 'editPassword'])->name('edit.password');
     Route::post('/reset-password', [ProfileController::class, 'resetPassword'])->name('reset-password');
+
+    // Afektif
+    Route::resource('histori-kehadiran', HistoriKehadiran::class)->names([
+        'index' => 'histori.kehadiran.index',
+    ]);
 });
 
 // auth

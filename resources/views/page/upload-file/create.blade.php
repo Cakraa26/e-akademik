@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.tambahFile'))
+@section('title', __('message.tambahfile'))
 
 @push('style')
     <!-- CSS Libraries -->
@@ -25,13 +25,6 @@
                     </ul>
                 </div>
             </div>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
 
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
