@@ -179,6 +179,8 @@ return [
     'nohistorikehadiran' => "There is no history of attendance.",
     'novalue' => "Score isn't available.",
     'filerequired' => "File is required.",
+    'angkatan' => "Generation",
+    'statuskuliah' => "Study Status",
 
     // Hari Kerja
     'masuk' => "Entry",

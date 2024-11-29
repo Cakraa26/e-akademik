@@ -49,9 +49,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.nama') }}</th>
                                         <th>{{ __('message.ctn') }}</th>
                                         <th>Status</th>
@@ -62,7 +60,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($stase as $s)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $s->nm }}</td>
                                             <td>{{ $s->ctn }}</td>
                                             <td>

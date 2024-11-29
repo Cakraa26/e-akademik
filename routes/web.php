@@ -96,11 +96,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     // Data Calon Residen
     Route::resource('data-mahasiswa', MahasiswaController::class)->names([
         'index' => 'data.mahasiswa.index',
-        'create' => 'data.mahasiswa.create',
-        'store' => 'data.mahasiswa.store',
-        'edit' => 'data.mahasiswa.edit',
         'update' => 'data.mahasiswa.update',
-        'destroy' => 'data.mahasiswa.destroy',
         'show' => 'data.mahasiswa.show',
     ]);
 
