@@ -51,7 +51,6 @@ class UploadFileController extends Controller
     {
         $file = File::findOrFail($id);
 
-        // check if file exists
         if (!Storage::exists($file->alamatfile)) {
             return back()->with('error', 'File tidak ditemukan');
         }
@@ -109,5 +108,12 @@ class UploadFileController extends Controller
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
+    }
+    public function indexResiden()
+    {
+        return view('residen.download-file-residen.index', [
+            'type_menu' => 'download',
+            'file' => File::all(),
+        ]);
     }
 }

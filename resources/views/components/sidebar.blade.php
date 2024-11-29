@@ -15,8 +15,8 @@
             </li>
 
             @if (session('role') == 2)
-                <li class="{{ Request::is('download-file') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('download-file') }}"><i class="fas fa-download"></i>
+                <li class="{{ Request::is('download-file-residen') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('download.file.index') }}"><i class="fas fa-download"></i>
                         <span>Download File</span></a>
                 </li>
 
@@ -26,21 +26,14 @@
                     <a href="#" class="nav-link has-dropdown"><i
                             class="fas fa-brain"></i><span>{{ __('message.kognitif') }}</span></a>
                     <ul class="dropdown-menu">
-                        <li class='{{ Request::is('blank-page') ? 'active' : '' }}'>
-                            <a class="nav-link"
-                                href="{{ url('blank-page') }}">{{ __('message.jdwstase') }}</a>
+                        <li class="{{ Request::is('nilai-stase-residen') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('nilai.stase.residen.index') }}">{{ __('message.nilaistase') }}</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.nilaistase') }}</a>
+                        <li class="{{ Request::is('uts-residen') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('uts.residen.index') }}">UTS</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">UTS</a>
-                        </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">UAS</a>
-                        </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.rekapnilai') }}</a>
+                        <li class="{{ Request::is('uas-residen') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('uas.residen.index') }}">UAS</a>
                         </li>
                     </ul>
                 </li>

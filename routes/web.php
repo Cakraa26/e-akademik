@@ -15,7 +15,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\NilaiStaseResiden;
 use App\Http\Controllers\StaseController;
+use App\Http\Controllers\HistoriKehadiran;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KaryaIlmiahResiden;
 use App\Http\Controllers\KategoriController;
@@ -32,7 +34,7 @@ use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\TingkatResidenController;
 use App\Http\Controllers\DatabaseResidenController;
-use App\Http\Controllers\HistoriKehadiran;
+use App\Http\Controllers\KognitifResiden;
 
 /*
 |--------------------------------------------------------------------------
@@ -340,6 +342,16 @@ Route::middleware(['checkRole:2'])->group(function () {
     Route::resource('histori-kehadiran', HistoriKehadiran::class)->names([
         'index' => 'histori.kehadiran.index',
     ]);
+
+    // Kognitif
+    Route::resource('nilai-stase-residen', NilaiStaseResiden::class)->names([
+        'index' => 'nilai.stase.residen.index',
+        'store' => 'nilai.stase.residen.upload',
+    ]);
+    Route::get('/uts-residen', [KognitifResiden::class, 'utsIndex'])->name('uts.residen.index');
+    Route::get('/uas-residen', [KognitifResiden::class, 'uasIndex'])->name('uas.residen.index');
+
+    Route::get('/download-file-residen', [UploadFileController::class, 'indexResiden'])->name('download.file.index');
 });
 
 // auth

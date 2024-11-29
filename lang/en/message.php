@@ -177,6 +177,7 @@ return [
     'judul' => "Title",
     'uploadfile' => "Upload File",
     'nohistorikehadiran' => "There is no history of attendance.",
+    'novalue' => "Score isn't available.",
 
     // Hari Kerja
     'masuk' => "Entry",

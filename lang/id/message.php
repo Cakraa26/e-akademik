@@ -227,6 +227,7 @@ return [
     'change' => "Ubah informasi tentang diri Anda di halaman ini.",
     'changepassword' => "Ubah Sandi",
     'nohistorikehadiran' => "Tidak ada histori kehadiran.",
+    'novalue' => "Nilai belum tersedia.",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
