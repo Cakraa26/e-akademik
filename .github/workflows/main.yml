@@ -9,14 +9,14 @@ on:
 jobs:
   deploy-master:
     if: github.ref == 'refs/heads/master'
-    name: 🎉 Deploy to Master
+    name: 🎉 Deploy to Staging
     runs-on: ubuntu-latest
     steps:
       - name: Get the latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
 
       - name: Configure PHP
-        uses: shivammathur/setup-php@v3
+        uses: shivammathur/setup-php@vmaster
         with:
           php-version: 8.2
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml, intl, zip
@@ -30,7 +30,7 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
-      - name: 📂 Sync files to Master Server
+      - name: 📂 Sync files to staging Server
         uses: SamKirkland/FTP-Deploy-Action@v4.2.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -43,10 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get the latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
 
       - name: Configure PHP
-        uses: shivammathur/setup-php@v3
+        uses: shivammathur/setup-php@master
         with:
           php-version: 8.2
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml, intl, zip
