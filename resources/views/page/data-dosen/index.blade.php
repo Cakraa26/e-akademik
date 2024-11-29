@@ -49,9 +49,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.nama') }}</th>
                                         <th>NIP</th>
                                         <th>{{ __('message.divisi') }}</th>
@@ -66,7 +64,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($dosen as $d)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $d->nm }}</td>
                                             <td>{{ $d->nip }}</td>
                                             <td>{{ $d->divisi }}</td>

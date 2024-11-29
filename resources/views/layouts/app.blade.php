@@ -72,6 +72,13 @@
 
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        form.classList.add(
+                            'was-validated');
+                        return;
+                    }
+
                     const submitButtons = this.querySelectorAll('button[type="submit"]');
 
                     submitButtons.forEach(button => {

@@ -60,21 +60,20 @@
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="file"
-                                                    class="col-sm-3">{{ __('message.uploadfile') }}</label>
+                                                <label class="col-sm-3">{{ __('message.uploadfile') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="file" required
                                                         data-parsley-required-message="{{ __('message.filerequired') }}"
-                                                        class="form-control" name="file" accept="application/pdf">
+                                                        class="form-control" name="uploadFile"
+                                                        accept="application/pdf, application/msword">
                                                 </div>
                                             </div>
                                             <div class="mb-2 row align-items-center">
                                                 <label for="alamat" class="col-sm-3">Status</label>
                                                 <div class="col-md-8">
                                                     <div class="form-check">
-                                                        <input class="form-check-input"
-                                                            type="checkbox" id="status" name="aktif" value="1"
-                                                            checked>
+                                                        <input class="form-check-input" type="checkbox" id="status"
+                                                            name="aktif" value="1" checked>
                                                         <label class="form-check-label" for="status">Aktif</label>
                                                     </div>
                                                 </div>

@@ -26,17 +26,14 @@ class UploadFileController extends Controller
     public function store(Request $request)
     {
         try {
-            $filePath = Storage::disk('public')->put('upload-file', $request->file('file'));
-            File::create([
-                'nm' => $request->nm,
-                'alamatfile' => $filePath,
-                'ctn' => $request->ctn,
-                'aktif' => $request->aktif ? 1 : 0,
-                'dateadded' => now(),
-                'datemodified' => now(),
-                'addedbyfk' => 0,
-                'lastuserfk' => 0,
-            ]);
+            $inputData = $request->all();
+            $inputData['aktif'] = $request->has('aktif') ? 1 : 0;
+            $inputData['alamatfile'] = Storage::disk('public')->put('upload-file', $request->file('uploadFile'));
+            $inputData['dateadded'] = now();
+            $inputData['addedbyfk'] = auth()->user()->pk;
+            $inputData['lastuserfk'] = auth()->user()->pk;
+
+            File::create($inputData);
 
             return redirect()
                 ->route('upload.file.index')
@@ -67,26 +64,20 @@ class UploadFileController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $file = File::findOrFail($id);
-        $request->validate([
-            'nm' => 'required',
-            'ctn' => 'required',
-            'file' => 'mimes:pdf,doc,docx',
-        ]);
-
         try {
-            $file->update([
-                'nm' => $request->nm,
-                'ctn' => $request->ctn,
-                'aktif' => $request->aktif ? 1 : 0,
-                'datemodified' => now(),
-            ]);
+            $file = File::findOrFail($id);
 
-            if ($request->hasFile('file')) {
-                Storage::delete($file->alamatfile);
-                $file->alamatfile = $request->file('file')->store('files');
-                $file->save();
+            $inputData = $request->all();
+            $inputData['aktif'] = $request->has('aktif') ? 1 : 0;
+            if ($request->hasFile('uploadFile')) {
+                $inputData['alamatfile'] = Storage::disk('public')->put('upload-file', $request->file('uploadFile'));
+
+                if (Storage::disk('public')->exists($file->alamatfile)) {
+                    Storage::disk('public')->delete($file->alamatfile);
+                }
             }
+
+            $file->update($inputData);
 
             return redirect(route('upload.file.index'))->with('success', __('message.success_file_edit'));
         } catch (\Exception $th) {
