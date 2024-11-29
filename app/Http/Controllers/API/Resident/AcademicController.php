@@ -108,7 +108,7 @@ class AcademicController extends Controller
                     't_motorik.pk as motorik_transaction_pk',
                     't_motorik.qtymandiri as mandiri',
                     't_motorik.qtybimbingan as bimbingan',
-                    DB::raw("CASE WHEN t_motorik.stsmandiri = 1 OR t_motorik.stsbimbingan = 1 THEN 'waiting' ELSE '' END as status")
+                    DB::raw("CASE WHEN t_motorik.stsmandiri = 1 OR t_motorik.stsbimbingan = 1 THEN 1 ELSE 0 END as is_waiting")
                 )
                 ->orderBy("motorik_pk")
                 ->get();
@@ -198,12 +198,13 @@ class AcademicController extends Controller
                     WHEN t_motorik_dt.stsmandiri = 1 THEN 'Mandiri' 
                     ELSE '' 
                 END as type"),
-                    DB::raw("CASE 
-                    WHEN t_motorik_dt.stsapproved = 1 THEN 'Waiting' 
-                    WHEN t_motorik_dt.stsapproved = 2 THEN 'Approved' 
-                    WHEN t_motorik_dt.stsapproved = 3 THEN 'Cancel' 
-                    ELSE '' 
-                END as status"),
+                    //     DB::raw("CASE 
+                    //     WHEN t_motorik_dt.stsapproved = 1 THEN 'Waiting' 
+                    //     WHEN t_motorik_dt.stsapproved = 2 THEN 'Approved' 
+                    //     WHEN t_motorik_dt.stsapproved = 3 THEN 'Cancel' 
+                    //     ELSE '' 
+                    // END as status"),
+                    't_motorik_dt.stsapproved as status',
                     DB::raw("CASE 
                     WHEN t_motorik_dt.stsapproved != 2 THEN 1 
                     ELSE 0 
@@ -278,7 +279,8 @@ class AcademicController extends Controller
         DB::beginTransaction();
 
         try {
-            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', auth()->user()->pk)->firstOrFail();
+            // $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', auth()->user()->pk)->firstOrFail();
+            $motorikTransaction = MotorikTransaction::with(['motorikData'])->findOrFail($motorikId);
             $motorikTransactionData = $motorikTransaction->motorikData()->findOrFail($motorikTransactionDataId);
 
             if ($motorikTransactionData->stsapproved == 2) {
@@ -305,7 +307,7 @@ class AcademicController extends Controller
             return response()->json(['data' => $motorikTransaction], 200);
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
-            return response()->json(['message' => 'Data not found'], 404);
+            return response()->json(['message' => $e], 404);
         } catch (\Throwable $e) {
             DB::rollBack();
             return response()->json(['message' => $e->getMessage()], 500);

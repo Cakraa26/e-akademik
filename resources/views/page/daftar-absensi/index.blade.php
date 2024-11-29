@@ -5,7 +5,6 @@
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
 @endpush
 
@@ -112,7 +111,8 @@
                                             <td>{{ $r->nm }}</td>
                                             @foreach ($bulans as $bulan)
                                                 <td>
-                                                    <a href="{{ route('absensi.detail', ['pk' => $r->pk, 'bulan' => $bulan]) }}">
+                                                    <a href="{{ route('daftar.absensi.detail', ['pk' => $r->pk, 'bulan' => $bulan]) }}"
+                                                        class="{{ Request::is('daftar-absensi/' . $r->pk . $bulan . '/detail') ? 'active' : '' }}">
                                                         {{ $alpaCounts[$r->pk][$bulan] ?? 0 }}
                                                     </a>
                                                 </td>
@@ -134,10 +134,7 @@
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
-    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script>

@@ -10,8 +10,6 @@ use App\Models\TahunAjaran;
 use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
 use App\Models\KategoriMotorik as Kategori;
 use App\Models\MotorikTransaction as t_motorik;
 use App\Models\MotorikTransactionData as t_motorik_dt;

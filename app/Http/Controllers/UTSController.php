@@ -36,10 +36,25 @@ class UTSController extends Controller
     }
     public function update(Request $request, $pk)
     {
+        $semesterValue = [
+            1 => 2.5,     
+            2 => 2.5,
+            3 => 2,
+            4 => 1.75,    
+            5 => 1.75,     
+            6 => 1.75,
+            7 => 1,     
+            8 => 1,    
+            9 => 1
+        ];
+
         $uts = Kelas::findOrFail($pk);
         try {
-            $uts->mcqbenar_uts = str_replace(',', '.', $request->input('mcqbenar_uts', '0'));
-            $uts->mcq_uts = $uts->mcqbenar_uts;
+            $mcqbenar = str_replace(',', '.', $request->input('mcqbenar_uts', '0'));
+            $multiMcqBenar = $mcqbenar * $semesterValue[$uts->semester];
+
+            $uts->mcqbenar_uts = $multiMcqBenar;
+            $uts->mcq_uts = $multiMcqBenar;
             $uts->osce_ped_uts = str_replace(',', '.', $request->input('osce_ped_uts', '0'));
             $uts->osce_trauma_uts = str_replace(',', '.', $request->input('osce_trauma_uts', '0'));
             $uts->osce_spine_uts = str_replace(',', '.', $request->input('osce_spine_uts', '0'));

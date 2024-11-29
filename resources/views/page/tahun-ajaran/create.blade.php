@@ -123,39 +123,6 @@
                                                     <label class="form-check-label">{{ __('message.thnaktif') }}</label>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div class="mb-4 align-items-center">
-                                                    <label for="nama"
-                                                        class="col-sm-3">{{ __('message.bulan5') }}</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 5" class="form-control"
-                                                            name="bulan5" id="nm" value="{{ old('nm') }}"
-                                                            required
-                                                            data-parsley-required-message="{{ __('message.bln5required') }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="mb-4 align-items-center">
-                                                    <label for="nama"
-                                                        class="col-sm-3">{{ __('message.bulan6') }}</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" placeholder="bulan 6" class="form-control"
-                                                            name="bulan6" id="nm" value="{{ old('nm') }}"
-                                                            required
-                                                            data-parsley-required-message="{{ __('message.bln6required') }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 ml-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="status"
-                                                    name="aktif" value="1"
-                                                    {{ old('aktif') == '1' ? 'checked' : '' }} checked>
-                                                <label class="form-check-label"
-                                                    for="status">{{ __('message.thnaktif') }}</label>
-                                            </div>
                                         </div>
                                     </div>
                                     <input type="datetime-local" class="form-control" id="datemodified"

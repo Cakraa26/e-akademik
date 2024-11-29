@@ -36,10 +36,25 @@ class UASController extends Controller
     }
     public function update(Request $request, $pk)
     {
+        $semesterValue = [
+            1 => 2.5,     
+            2 => 2.5,
+            3 => 2,
+            4 => 1.75,    
+            5 => 1.75,     
+            6 => 1.75,
+            7 => 1,     
+            8 => 1,    
+            9 => 1
+        ];
+        
         $uas = Kelas::findOrFail($pk);
         try {
-            $uas->mcqbenar_uas = str_replace(',', '.', $request->input('mcqbenar_uas', '0'));
-            $uas->mcq_uas = $uas->mcqbenar_uas;
+            $mcqbenar = str_replace(',', '.', $request->input('mcqbenar_uas', '0'));
+            $multiMcqBenar = $mcqbenar * $semesterValue[$uas->semester];
+
+            $uas->mcqbenar_uas = $multiMcqBenar;
+            $uas->mcq_uas = $multiMcqBenar;
             $uas->osce_ped_uas = str_replace(',', '.', $request->input('osce_ped_uas', '0'));
             $uas->osce_trauma_uas = str_replace(',', '.', $request->input('osce_trauma_uas', '0'));
             $uas->osce_spine_uas = str_replace(',', '.', $request->input('osce_spine_uas', '0'));

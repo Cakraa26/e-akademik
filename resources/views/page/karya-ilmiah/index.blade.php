@@ -55,7 +55,7 @@
                                 <a class="btn btn-success {{ Request::is('karya-ilmiah/create') ? 'active' : '' }}"
                                     href="{{ route('karya-ilmiah.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -91,7 +91,7 @@
                                                 <div>
                                                     <a href="{{ route('karya-ilmiah.edit', $k->pk) }}"
                                                         class="btn btn-info {{ Request::is('karya-ilmiah/' . $k->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fas fa-pen-to-square"></i></a>
 
                                                     <form action="{{ route('karya-ilmiah.destroy', $k->pk) }}"
                                                         method="POST" style="display: inline">

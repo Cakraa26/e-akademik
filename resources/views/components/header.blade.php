@@ -159,18 +159,29 @@
                 </a>
             </div>
         </li>
-        <li class="dropdown"><a href="#" data-toggle="dropdown"
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
+                <div class="d-sm-none d-lg-inline-block">Hi, {{ explode(' ', auth()->user()->nm)[2] ?? '' }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <form method="POST" action="{{ route('logout') }}">
+                <div class="dropdown-title">{{ auth()->user()->nm }}</div>
+                @if (session('role') == 2)
+                    <a href="{{ route('profile') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i> Profile
+                    </a>
+                    <a href="{{ route('edit.password') }}" class="dropdown-item has-icon">
+                        <i class="fas fa-key"></i> {{ __('message.changepassword') }}
+                    </a>
+                @endif
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item has-icon text-danger"
+                    onclick="event.preventDefault(); if(confirm('{{ __('message.konfirm') }}')) { document.getElementById('logout-form').submit(); }">
+                    <i class="fas fa-sign-out-alt"></i>{{ __('message.logout') }}
+                </a>
+                <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                     @csrf
-                    <button type="submit" class="btn text-danger"
-                        onClick="return confirm('{{ __('message.konfirm') }}');">
-                        <i class="fas fa-sign-out-alt pl-2 pr-1"></i> {{ __('message.logout') }}
-                    </button>
                 </form>
             </div>
         </li>

@@ -26,7 +26,7 @@ $(".swal-6").click(function () {
         icon: "warning",
         buttons: {
             cancel: translations.cancel,
-            confirm: translations.confirm 
+            confirm: translations.confirm,
         },
         dangerMode: true,
     }).then((willDelete) => {
@@ -38,16 +38,17 @@ $(".swal-6").click(function () {
 
 $("#swal-7").click(function () {
     swal({
-        title: "What is your name?",
-        content: {
-            element: "input",
-            attributes: {
-                placeholder: "Type your name",
-                type: "text",
-            },
+        title: translations.deleteConfirmation,
+        icon: "danger",
+        buttons: {
+            cancel: translations.cancel,
+            confirm: translations.confirm,
         },
-    }).then((data) => {
-        swal("Hello, " + data + "!");
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $(this).closest("form").submit();
+        }
     });
 });
 

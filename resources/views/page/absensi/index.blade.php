@@ -190,7 +190,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body p-0">
-                            <div class="row">
+                            <div class="row mb-n1">
                                 <div class="col-12 col-md-4 pt-2 text-center" style="color: black">
                                     <img src="{{ Storage::url($a->photo_in) }}" class="mb-3"
                                         style="width: 150px; height: 150px; object-fit: cover;"
@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <iframe src="https://maps.google.com/maps?q={{ $a->loc_in }}&output=embed"
-                                        width="100%" height="300px" frameborder="0" style="border: 0;"
+                                        width="100%" height="260px" frameborder="0" style="border: 0;"
                                         allowfullscreen=""></iframe>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body p-0">
-                            <div class="row">
+                            <div class="row mb-n1">
                                 <div class="col-12 col-md-4 pt-2 text-center" style="color: black">
                                     <img src="{{ Storage::url($a->photo_out) }}" class="mb-3"
                                         style="width: 150px; height: 150px; object-fit: cover;"
@@ -226,7 +226,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <iframe src="https://maps.google.com/maps?q={{ $a->loc_out }}&output=embed"
-                                        width="100%" height="300px" frameborder="0" style="border: 0;"
+                                        width="100%" height="260px" frameborder="0" style="border: 0;"
                                         allowfullscreen=""></iframe>
                                 </div>
                             </div>

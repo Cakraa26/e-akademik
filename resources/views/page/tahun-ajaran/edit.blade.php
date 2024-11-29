@@ -18,20 +18,13 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('tahun-ajaran.index') }}">{{ __('message.tahunajaran') }}</a>
+                                    href="{{ route('tahun-ajaran.index') }}">{{ __('message.thnajaran') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.edit') }}</div>
                         </div>
                     </ul>
                 </div>
             </div>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
 
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">

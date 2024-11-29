@@ -6,31 +6,35 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\NilaiStase;
 use App\Http\Controllers\JadwalStase;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DaftarAbsensi;
 use App\Http\Controllers\UASController;
 use App\Http\Controllers\UTSController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DaftarAbsensi;
-use App\Http\Controllers\DatabaseResidenController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\NilaiStaseResiden;
 use App\Http\Controllers\StaseController;
+use App\Http\Controllers\HistoriKehadiran;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KaryaIlmiahResiden;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\HariKerjaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PsikomotorikResiden;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\KaryaIlmiahController;
-use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\SubKategoriController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PsikomotorikController;
 use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\TingkatResidenController;
+use App\Http\Controllers\DatabaseResidenController;
+use App\Http\Controllers\KognitifResiden;
 
 /*
 |--------------------------------------------------------------------------
@@ -303,13 +307,10 @@ Route::middleware(['checkRole:1'])->group(function () {
     // Daftar Absensi
     Route::resource('daftar-absensi', DaftarAbsensi::class)->names([
         'index' => 'daftar.absensi.index',
-        'create' => 'daftar.absensi.create',
-        'store' => 'daftar.absensi.store',
-        'edit' => 'daftar.absensi.edit',
         'update' => 'daftar.absensi.update',
         'destroy' => 'daftar.absensi.destroy',
     ]);
-    Route::get('/absensi/{pk}/{bulan}/detail', [DaftarAbsensi::class, 'detail'])->name('absensi.detail');
+    Route::get('/daftar-absensi/{pk}/{bulan}/detail', [DaftarAbsensi::class, 'detail'])->name('daftar.absensi.detail');
 
 });
 
@@ -328,6 +329,29 @@ Route::middleware(['checkRole:2'])->group(function () {
         'destroy' => 'psikomotorik.destroy',
     ]);
     Route::post('/psikomotorik/upload-detail', [PsikomotorikResiden::class, 'uploadDetail'])->name('psikomotorik.upload.detail');
+
+    // Edit Profile
+    Route::resource('profile', ProfileController::class)->names([
+        'index' => 'profile',
+        'update' => 'profile.update',
+    ]);
+    Route::get('/edit-password', [ProfileController::class, 'editPassword'])->name('edit.password');
+    Route::post('/reset-password', [ProfileController::class, 'resetPassword'])->name('reset-password');
+
+    // Afektif
+    Route::resource('histori-kehadiran', HistoriKehadiran::class)->names([
+        'index' => 'histori.kehadiran.index',
+    ]);
+
+    // Kognitif
+    Route::resource('nilai-stase-residen', NilaiStaseResiden::class)->names([
+        'index' => 'nilai.stase.residen.index',
+        'store' => 'nilai.stase.residen.upload',
+    ]);
+    Route::get('/uts-residen', [KognitifResiden::class, 'utsIndex'])->name('uts.residen.index');
+    Route::get('/uas-residen', [KognitifResiden::class, 'uasIndex'])->name('uas.residen.index');
+
+    Route::get('/download-file-residen', [UploadFileController::class, 'indexResiden'])->name('download.file.index');
 });
 
 // auth

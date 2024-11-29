@@ -50,62 +50,57 @@
                                     @csrf
                                     @method('POST')
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-4 align-items-center">
-                                                <label for="nama"
-                                                    class="col-sm-4">{{ __('message.hari') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.hari') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="nm" id="nm"
                                                         value="{{ old('nm') }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
                                                 </div>
                                             </div>
-                                        </div>
-                                            <div class="col-sm-5 d-flex">
-                                                <div>
-                                                    <div class="mb-4 align-items-center">
-                                                        <label for="nama"
-                                                            class="col-sm-8">{{ __('message.jammasuk') }}</label>
-                                                        <div class="col-sm-12">
-                                                            <input type="time" placeholder="bulan 1" class="form-control"
-                                                                name="jammasuk" id="nm" value="{{ old('nm') }}"
-                                                                required
-                                                                data-parsley-required-message="{{ __('message.jammasukrequired') }}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="mb-4 align-items-center">
-                                                        <label for="nama"
-                                                            class="col-sm-8">{{ __('message.jamselesai') }}</label>
-                                                        <div class="col-sm-12">
-                                                            <input type="time" placeholder="bulan 2" class="form-control"
-                                                                name="jamselesai" id="nm" value="{{ old('nm') }}"
-                                                                required
-                                                                data-parsley-required-message="{{ __('message.jamselesairequired') }}">
-                                                        </div>
-                                                    </div>
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.jammasuk') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="time" placeholder="bulan 1" class="form-control"
+                                                        name="jammasuk" id="jammasuk" value="{{ old('jammasuk') }}"
+                                                        required
+                                                        data-parsley-required-message="{{ __('message.jammasukrequired') }}">
                                                 </div>
                                             </div>
-                                        <div class="col-md-8 ml-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="status"
-                                                    name="aktif" value="1"
-                                                    {{ old('aktif') == '1' ? 'checked' : '' }} checked>
-                                                <label class="form-check-label"
-                                                    for="status">{{ __('message.hariaktif') }}</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3 row align-items-center">
+                                                <label class="col-sm-3">{{ __('message.jamselesai') }}</label>
+                                                <div class="col-sm-9">
+                                                    <input type="time" placeholder="bulan 2" class="form-control"
+                                                        name="jamselesai" id="jamselesai" value="{{ old('jamselesai') }}"
+                                                        required
+                                                        data-parsley-required-message="{{ __('message.jamselesairequired') }}">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row align-items-center">
+                                                <label class="col-sm-3"></label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" name="stsaktif"
+                                                            value="1" {{ old('stsaktif') == '1' ? 'checked' : '' }}
+                                                            checked>
+                                                        <label class="form-check-label"
+                                                            for="status">{{ __('message.hariaktif') }}</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="datetime-local" class="form-control" id="datemodified"
-                                        name="datemodified"
+
+                                    <input type="datetime-local" class="form-control" id="datemodified" name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2"
-                                                href="{{ route('hari.kerja.index') }}"> <i
-                                                    class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                            <a class="btn btn-dark load-btn mr-2" href="{{ route('hari.kerja.index') }}">
+                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                                             <button type="submit" class="btn btn-primary load-btn">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>

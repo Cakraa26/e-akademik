@@ -137,10 +137,10 @@
                                 <tbody>
                                     @foreach ($dataresiden as $r)
                                         <tr
-                                            @if ($r->tingkatfk === 1 || $r->tingkatfk === 2) style="background-color: #E98580;"
-                                                @elseif ($r->tingkatfk === 3)
+                                            @if ($r->tingkatfk == 1 || $r->tingkatfk == 2) style="background-color: #E98580;"
+                                                @elseif ($r->tingkatfk == 3)
                                                  style="background-color: #F4D06F;"
-                                                  @elseif ($r->tingkatfk === 4)
+                                                  @elseif ($r->tingkatfk == 4)
                                                  style="background-color: #A4C686;" @endif>
                                             <td>
                                                 <div>

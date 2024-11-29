@@ -49,23 +49,25 @@
                 <h1>{{ __('message.dashboard') }}</h1>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-6">
-                    <div class="card l-bg-blue-dark">
-                        <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
-                            <div class="mb-4">
-                                <h5 class="card-title mb-0">{{ __('message.visitor') }}</h5>
-                            </div>
-                            <div class="row align-items-center mb-2 d-flex">
-                                <div class="col-12">
-                                    <h2 class="d-flex align-items-center mb-0">
-                                        30
-                                    </h2>
+                @if (session('role') == 1)
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="card l-bg-blue-dark">
+                            <div class="card-statistic-3 p-4">
+                                <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
+                                <div class="mb-4">
+                                    <h5 class="card-title mb-0">{{ __('message.visitor') }}</h5>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-12">
+                                        <h2 class="d-flex align-items-center mb-0">
+                                            30
+                                        </h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <div class="col-xl-4 col-lg-6">
                     <div class="card l-bg-green-dark">
                         <div class="card-statistic-3 p-4">
@@ -117,8 +119,20 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/modules-toastr.js') }}"></script>
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            });
+        </script>
+    @endif
 @endpush

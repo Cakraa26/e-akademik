@@ -96,4 +96,42 @@ class DaftarAbsensi extends Controller
             'type_menu' => $type_menu,
         ]);
     }
+    public function update(Request $request, $pk)
+    {
+        $absen = Absen::findOrFail($pk);
+
+        try {
+            $alpa = $request->has('alpa') ? 1 : 0;
+            $hadir = $alpa === 1 ? 0 : 1;
+
+            $inputData = $request->all();
+            $inputData['alpa'] = $alpa;
+            $inputData['hadir'] = $hadir;
+
+            $absen->update($inputData);
+
+            return redirect()
+                ->back()
+                ->with('success', __('message.success_edit'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function destroy($pk)
+    {
+        try {
+            $absen = Absen::findOrFail($pk);
+            $absen->delete();
+
+            return redirect()
+                ->back()
+                ->with('success', __('message.success_deleted'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
 }

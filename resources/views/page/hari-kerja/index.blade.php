@@ -46,7 +46,7 @@
                                 <a class="btn btn-success {{ Request::is('hari-kerja/create') ? 'active' : '' }}"
                                     href="{{ route('hari.kerja.create') }}" data-toggle="tooltip"
                                     title="{{ __('message.tambah') }}"><i
-                                        class="fas fa-edit pr-2"></i>{{ __('message.tambah') }}</a>
+                                        class="fas fa-plus pr-2"></i>{{ __('message.tambah') }}</a>
                             </div>
                         </div>
 
@@ -60,7 +60,7 @@
                                         <th>{{ __('message.hari') }}</th>
                                         <th>{{ __('message.masuk') }}</th>
                                         <th>{{ __('message.keluar') }}</th>
-                                        <th>{{ __('message.aktif') }}</th>
+                                        <th>Status</th>
                                         <th>{{ __('message.aksi') }}</th>
                                     </tr>
                                 </thead>
@@ -68,10 +68,10 @@
                                     @php $no = 1; @endphp
                                     @foreach ($thn as $hr)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $hr->nm }}</td>
-                                            <td>{{ $hr->jammasuk }}</td>
-                                            <td>{{ $hr->jamselesai }}</td>
+                                            <td>{{ date('H:i', strtotime($hr->jammasuk)) }}</td>
+                                            <td>{{ date('H:i', strtotime($hr->jamselesai)) }}</td>
                                             <td>
                                                 <span
                                                     class="badge {{ $hr->stsaktif ? 'badge-success' : 'badge-danger' }}">
@@ -82,7 +82,7 @@
                                                 <div>
                                                     <a href="{{ route('hari.kerja.edit', $hr->pk) }}"
                                                         class="btn btn-info {{ Request::is('hari-kerja/' . $hr->pk . '/edit') ? 'active' : '' }}"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                            class="fas fa-pen-to-square"></i></a>
 
 
                                                     <form action="{{ route('hari.kerja.destroy', $hr->pk) }}"
@@ -100,7 +100,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
