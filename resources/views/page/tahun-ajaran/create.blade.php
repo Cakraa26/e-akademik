@@ -110,7 +110,7 @@
                                                 <label class="col-sm-3"></label>
                                                 <div class="form-check ml-md-3">
                                                     <input class="form-check-input" type="checkbox" id="aktif"
-                                                        name="aktif" value="1" checked
+                                                        name="aktif" value="1"
                                                         {{ old('aktif') == '1' ? 'checked' : '' }}>
                                                     <label class="form-check-label">{{ __('message.thnaktif') }}</label>
                                                 </div>
@@ -123,8 +123,7 @@
 
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark mr-2"
-                                                href="{{ route('tahun-ajaran.index') }}"> <i
+                                            <a class="btn btn-dark mr-2" href="{{ route('tahun-ajaran.index') }}"> <i
                                                     class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>

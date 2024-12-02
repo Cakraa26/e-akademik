@@ -13,18 +13,26 @@ class UTSController extends Controller
     public function index(Request $request)
     {
         $type_menu = 'kognitif';
-        $kelas = Kelas::when($request->semester != null, function ($q) use ($request) {
+        $thnajaran = TahunAjaran::select('pk', 'nm', 'aktif')->get();
+
+        $selectTahunAjaran = null;
+        if ($request->thnajaranfk) {
+            $selectTahunAjaran = TahunAjaran::where('pk', $request->thnajaranfk)->first();
+        } else {
+            $selectTahunAjaran = TahunAjaran::where('aktif', 1)->first();
+        }
+
+        $kelas = Kelas::when($selectTahunAjaran, function ($query) use ($selectTahunAjaran) {
+            return $query->where('thnajaranfk', $selectTahunAjaran->pk);
+        })
+        ->when($request->semester != null, function ($q) use ($request) {
             return $q->where('semester', $request->semester);
         })
-            ->when($request->thnajaranfk != null, function ($q) use ($request) {
-                return $q->where('thnajaranfk', $request->thnajaranfk);
-            })
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })->get();
 
         $semester = Semester::all();
-        $thnajaran = TahunAjaran::all();
         $tingkat = Tingkat::all();
         return view("page.uts.index", [
             'kelas' => $kelas,
