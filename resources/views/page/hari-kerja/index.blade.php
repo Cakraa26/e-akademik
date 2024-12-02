@@ -54,9 +54,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.hari') }}</th>
                                         <th>{{ __('message.masuk') }}</th>
                                         <th>{{ __('message.keluar') }}</th>

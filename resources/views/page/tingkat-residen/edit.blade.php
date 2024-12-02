@@ -26,13 +26,6 @@
                 </div>
             </div>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
@@ -52,7 +45,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="kode" class="col-sm-3">{{ __('message.kd') }}</label>
+                                                <label class="col-sm-3">{{ __('message.kd') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="text"
                                                         class="form-control  @error('kd') is-invalid @enderror"
@@ -65,23 +58,18 @@
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="telepon" class="col-sm-3">{{ __('message.nama') }}</label>
+                                                <label class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text"
-                                                        class="form-control  @error('nm') is-invalid @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm', $residen->nm) }}"
-                                                        required
+                                                    <input type="text" class="form-control" name="nm" id="nm"
+                                                        value="{{ old('nm', $residen->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.namatahapanrequired') }}">
-                                                    @error('nm')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="warna" class="col-sm-3">{{ __('message.warna') }}</label>
+                                                <label class="col-sm-3">{{ __('message.warna') }}</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-select select2 @error('warna') is-invalid @enderror"
-                                                        id="warna" name="warna" required
+                                                    <select class="form-select select2" id="warna" name="warna"
+                                                        required
                                                         data-parsley-required-message="{{ __('message.warnarequired') }}">
                                                         <option value=""></option>
                                                         @foreach ($warna as $wrn)
@@ -91,40 +79,27 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    @error('warna')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="sampaisemester"
-                                                    class="col-sm-4">{{ __('message.btssemester') }}</label>
+                                                <label class="col-sm-4">{{ __('message.btssemester') }}</label>
                                                 <div class="col-sm-8">
-                                                    <input type="number"
-                                                        class="form-control  @error('nm') is-invalid @enderror"
-                                                        name="sampaisemester" id="sampaisemester"
+                                                    <input type="number" class="form-control" name="sampaisemester"
+                                                        id="sampaisemester"
                                                         value="{{ old('sampaisemester', $residen->sampaisemester) }}"
                                                         required
                                                         data-parsley-required-message="{{ __('message.btssemesterrequired') }}">
-                                                    @error('sampaisemester')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-3 row align-items-center">
-                                                <label for="darisemester"
-                                                    class="col-sm-4">{{ __('message.drsemester') }}</label>
+                                                <label class="col-sm-4">{{ __('message.drsemester') }}</label>
                                                 <div class="col-sm-8">
-                                                    <input type="number"
-                                                        class="form-control  @error('nm') is-invalid @enderror"
-                                                        name="darisemester" id="darisemester"
+                                                    <input type="number" class="form-control" name="darisemester"
+                                                        id="darisemester"
                                                         value="{{ old('darisemester', $residen->darisemester) }}" required
                                                         data-parsley-required-message="{{ __('message.drsemesterrequired') }}">
-                                                    @error('darisemester')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
@@ -142,8 +117,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="datetime-local" class="form-control" id="datemodified"
-                                        name="datemodified"
+                                    <input type="datetime-local" class="form-control" id="datemodified" name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
                                     <div class="row">

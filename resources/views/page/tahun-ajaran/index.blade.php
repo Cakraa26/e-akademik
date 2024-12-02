@@ -54,9 +54,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.thnajaran') }}</th>
                                         <th>Status</th>
                                         <th>{{ __('message.bulan1') }}</th>
@@ -72,7 +70,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($thn as $th)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $th->nm }}</td>
                                             <td>
                                                 <span

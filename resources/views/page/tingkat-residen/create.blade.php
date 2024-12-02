@@ -4,9 +4,10 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
 @endpush
+
 @section('main')
     <div class="main-content">
         <section class="section">
@@ -25,13 +26,6 @@
                     </ul>
                 </div>
             </div>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
 
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
@@ -89,8 +83,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="sampaisemester"
-                                                    class="col-sm-4">{{ __('message.btssemester') }}</label>
+                                                <label class="col-sm-4">{{ __('message.btssemester') }}</label>
                                                 <div class="col-sm-8">
                                                     <input type="number" class="form-control" name="sampaisemester"
                                                         value="{{ old('sampaisemester') }}" required
@@ -98,8 +91,7 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3 row align-items-center">
-                                                <label for="darisemester"
-                                                    class="col-sm-4">{{ __('message.drsemester') }}</label>
+                                                <label class="col-sm-4">{{ __('message.drsemester') }}</label>
                                                 <div class="col-sm-8">
                                                     <input type="number" class="form-control" name="darisemester"
                                                         value="{{ old('darisemester') }}" required

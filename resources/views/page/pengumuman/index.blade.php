@@ -49,9 +49,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.tglbuat') }}</th>
                                         <th>{{ __('message.tglberlaku') }}</th>
                                         <th>{{ __('message.judul') }}</th>
@@ -62,9 +60,9 @@
                                 <tbody>
                                     @foreach ($pengumuman as $s)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>{{ date('d/m/Y', strtotime($s->tglbuat)) }}</td>
-                                            <td>{{ date('d/m/Y', strtotime($s->tglsampai)) }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($s->tglbuat)) }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($s->tglsampai)) }}</td>
                                             <td>{{ $s->judul }}</td>
                                             <td>
                                                 <span

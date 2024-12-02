@@ -4,8 +4,7 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
 @endpush
 
 @section('main')
@@ -27,19 +26,13 @@
                 </div>
             </div>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
                     <button class="close" data-dismiss="alert"><span>&times;</span></button>
                 </div>
             @endif
+
             <div class="section-body">
                 <div class="row mt-4">
                     <div class="col-12">
@@ -63,7 +56,8 @@
                                                 <label class="col-sm-3">{{ __('message.jammasuk') }}</label>
                                                 <div class="col-sm-9">
                                                     <input type="time" placeholder="bulan 1" class="form-control"
-                                                        name="jammasuk" value="{{ old('jammasuk', $thn->jammasuk) }}" required
+                                                        name="jammasuk" value="{{ old('jammasuk', $thn->jammasuk) }}"
+                                                        required
                                                         data-parsley-required-message="{{ __('message.jammasukrequired') }}">
                                                 </div>
                                             </div>
@@ -82,8 +76,8 @@
                                                 <label class="col-sm-3"></label>
                                                 <div class="col-sm-9">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            name="stsaktif" value="1"
+                                                        <input class="form-check-input" type="checkbox" name="stsaktif"
+                                                            value="1"
                                                             {{ old('stsaktif', $thn->stsaktif) == '1' ? 'checked' : '' }}>
                                                         <label class="form-check-label"
                                                             for="status">{{ __('message.hariaktif') }}</label>
@@ -95,8 +89,7 @@
 
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark mr-2"
-                                                href="{{ route('hari.kerja.index') }}"> <i
+                                            <a class="btn btn-dark mr-2" href="{{ route('hari.kerja.index') }}"> <i
                                                     class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
@@ -115,25 +108,17 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
-    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable({
-                scrollX: true
-            });
+            $('#form').parsley({
+                errorClass: 'is-invalid parsley-error',
+                successClass: 'is-valid',
+                errorsWrapper: '<span class="invalid-feedback"></span>',
+                errorTemplate: '<div></div>'
+            })
         });
-    </script>
-
-    <script>
-        var translations = {
-            deleteConfirmation: "{{ __('message.deleteConfirm') }}",
-            cancel: "{{ __('message.cancel') }}",
-            confirm: "{{ __('message.confirm') }}"
-        };
     </script>
 @endpush

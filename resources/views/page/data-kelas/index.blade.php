@@ -118,12 +118,10 @@
                                 <div class="card-body">
                                     <h2 class="section-title">Semester : {{ $semester }}</h2>
                                     <div class="table-responsive">
-                                        <table class="myTable table-striped table nowrap" style="width: 100%">
+                                        <table class="myTable table-striped table" style="width: 100%">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">
-                                                        No
-                                                    </th>
+                                                    <th>No</th>
                                                     <th>{{ __('message.inisial') }}</th>
                                                     <th>{{ __('message.nmresiden') }}</th>
                                                     <th>{{ __('message.hp') }}</th>
@@ -137,7 +135,7 @@
                                                 @php $no = 1; @endphp
                                                 @foreach ($dataKelas as $k)
                                                     <tr>
-                                                        <th>{{ $no++ }}</th>
+                                                        <td>{{ $no++ }}</td>
                                                         <td>{{ $k->residen->inisialresiden }}</td>
                                                         <td>{{ $k->residen->nm }}</td>
                                                         <td>{{ $k->residen->hp }}</td>
@@ -145,7 +143,7 @@
                                                         <td>{{ $k->residen->karyailmiah->nm }}</td>
                                                         <td>{{ $k->aktif === 1 ? __('message.active') : __('message.cuti') }}
                                                         </td>
-                                                        <td>
+                                                        <td class="text-nowrap">
                                                             <div>
                                                                 <a href="{{ route('data.kelas.edit', $k->pk) }}"
                                                                     class="btn btn-info {{ Request::is('data-kelas/' . $k->pk . '/edit') ? 'active' : '' }}"><i

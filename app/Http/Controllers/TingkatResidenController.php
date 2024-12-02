@@ -37,7 +37,6 @@ class TingkatResidenController extends Controller
         $request->validate(
             [
                 'kd' => 'required|unique:m_tingkat,kd',
-                // 'warna' => 'required|in:Merah,Hijau,Kuning,Biru,Putih,Ungu',
             ]
         );
 
@@ -76,24 +75,13 @@ class TingkatResidenController extends Controller
 
         $request->validate([
             'kd' => 'required|unique:m_tingkat,kd,' . $residen->kd . ',kd',
-            'nm' => 'required',
-            'darisemester' => 'required|numeric',
-            'sampaisemester' => 'required|numeric',
-            'warna' => 'required|in:Merah,Hijau,Kuning,Biru,Putih,Ungu',
         ]);
 
         try {
             $inputData = $request->all();
             $inputData['aktif'] = $request->has('aktif') ? 1 : 0;
 
-            $residen->update([
-                'kd' => $inputData['kd'],
-                'nm' => $inputData['nm'],
-                'warna' => $inputData['warna'],
-                'darisemester' => $inputData['darisemester'],
-                'sampaisemester' => $inputData['sampaisemester'],
-                'aktif' => $inputData['aktif'],
-            ]);
+            $residen->update($inputData);
 
             return redirect()->route('tingkat.residen.index')
                 ->with('success', __('message.success_residen_edit'));

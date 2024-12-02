@@ -4,7 +4,6 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
 @endpush
 
@@ -26,13 +25,6 @@
                     </ul>
                 </div>
             </div>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
 
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
@@ -129,12 +121,12 @@
                                         name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark load-btn mr-2"
+                                            <a class="btn btn-dark mr-2"
                                                 href="{{ route('tahun-ajaran.index') }}"> <i
                                                     class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary load-btn">
+                                            <button type="submit" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
                                             </button>
                                         </div>
@@ -151,7 +143,6 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
     <!-- Page Specific JS File -->

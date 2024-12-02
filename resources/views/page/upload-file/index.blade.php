@@ -82,9 +82,9 @@
                                             <td>{{ $file->ctn }}</td>
                                             <td class="text-nowrap">
                                                 {{-- <a href="{{ route('upload.file.show', $file->pk) }}"
-                                                    class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i></a> --}}
-                                                <a href="{{ route('upload.file.show', $file->pk) }}"
-                                                    class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>
+                                                    class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a> --}}
+                                                <a href="{{ Storage::url($file->alamatfile) }}" download
+                                                    class="btn btn-primary btn-sm"><i class="fas fa-download"></i></a>
                                             </td>
                                             <td>
                                                 <label class="custom-switch pl-0">

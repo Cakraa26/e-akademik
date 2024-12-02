@@ -46,60 +46,35 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4 row align-items-center">
-                                                <label for="nm" class="col-sm-3">{{ __('message.nama') }}</label>
+                                                <label class="col-sm-3">{{ __('message.nama') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text"
-                                                        class="form-control @error('nm')
-                                                        is-invalid
-                                                    @enderror"
-                                                        name="nm" id="nm" value="{{ old('nm', $file->nm) }}"
-                                                        required
+                                                    <input type="text" class="form-control" name="nm" id="nm"
+                                                        value="{{ old('nm', $file->nm) }}" required
                                                         data-parsley-required-message="{{ __('message.nmrequired') }}">
-                                                    @error('nm')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="ctn" class="col-sm-3">{{ __('message.ctn') }}</label>
+                                                <label class="col-sm-3">{{ __('message.ctn') }}</label>
                                                 <div class="col-sm-9">
-                                                    <textarea
-                                                        class="form-control @error('ctn')
-                                                        is-invalid
-                                                    @enderror"
-                                                        name="ctn" id="ctn" required data-parsley-required-message="{{ __('message.ctnrequired') }}"
-                                                        style="height: 107px">{{ old('ctn', $file->ctn) }}</textarea>
-                                                    @error('ctn')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <textarea class="form-control" name="ctn" id="ctn" required
+                                                        data-parsley-required-message="{{ __('message.ctnrequired') }}" style="height: 107px">{{ old('ctn', $file->ctn) }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
-                                                <label for="file"
-                                                    class="col-sm-3">{{ __('message.uploadfile') }}</label>
+                                                <label class="col-sm-3">{{ __('message.uploadfile') }}</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file"
-                                                        class="form-control @error('file') is-invalid @enderror"
-                                                        name="file" value="{{ old('alamatfile', $file->alamatfile) }}">
-                                                    @error('file')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <input type="file" class="form-control"
+                                                        accept="application/msword, application/pdf" name="uploadFile"
+                                                        value="{{ old('alamatfile', $file->alamatfile) }}">
                                                 </div>
                                             </div>
                                             <div class="mb-2 row align-items-center">
                                                 <label for="alamat" class="col-sm-3">Status</label>
                                                 <div class="col-md-8">
                                                     <div class="form-check">
-                                                        <input class="form-check-input @error('aktif') is-invalid @enderror"
-                                                            type="checkbox" id="status" name="aktif" value="1"
-                                                            {{ $file->aktif ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="status">Aktif</label>
+                                                        <input class="form-check-input" type="checkbox" name="aktif"
+                                                            value="1" {{ $file->aktif ? 'checked' : '' }}>
+                                                        <label class="form-check-label">{{ __('message.active') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
