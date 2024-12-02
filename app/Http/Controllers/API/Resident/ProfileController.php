@@ -86,4 +86,23 @@ class ProfileController extends Controller
             ], 500);
         }
     }
+
+    public function registerFace(Request $reqeust)
+    {
+        try {
+            $user = Residen::findOrFail(auth()->user()->pk);
+            $user->face_dt = $reqeust->face_dt;
+            $user->save();
+
+            return response()->json(['data' => $user], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Data not found',
+            ], 404);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
