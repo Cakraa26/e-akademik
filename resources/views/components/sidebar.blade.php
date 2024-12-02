@@ -143,9 +143,9 @@
                         <li class="{{ Request::is('uas') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('uas.index') }}">UAS</a>
                         </li>
-                        <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        {{-- <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ url('blank-page') }}">{{ __('message.rekapnilai') }}</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
