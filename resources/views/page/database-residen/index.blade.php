@@ -83,14 +83,14 @@
                                     <div>{{ __('message.statuskuliah') }}</div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
-                                            value="1" {{ request()->input('statuskuliah') == '1' ? 'checked' : '' }}>
+                                            value="1" {{ request()->get('statuskuliah') == '1' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="gridRadios1">
                                             Aktif
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
-                                            value="3" {{ request()->input('statuskuliah') == '3' ? 'checked' : '' }}>
+                                            value="3" {{ request()->get('statuskuliah') == '3' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="gridRadios1">
                                             Alumni
                                         </label>
@@ -98,7 +98,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
                                             value="semua"
-                                            {{ request()->input('statuskuliah') == 'semua' ? 'checked' : '' }} checked>
+                                            {{ request()->get('statuskuliah') == 'semua' ? 'checked' : '' }}{{ is_null(request()->get('statuskuliah')) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="gridRadios1">
                                             Semua
                                         </label>
