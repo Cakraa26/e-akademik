@@ -87,5 +87,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/setting", [MasterDataController::class, 'getSetting']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::patch('/register-face', [ProfileController::class, 'registerFace']);
 });
 

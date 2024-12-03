@@ -13,18 +13,26 @@ class UASController extends Controller
     public function index(Request $request)
     {
         $type_menu = 'kognitif';
-        $kelas = Kelas::when($request->semester != null, function ($q) use ($request) {
-            return $q->where('semester', $request->semester);
+        $thnajaran = TahunAjaran::select('pk', 'nm', 'aktif')->get();
+
+        $selectTahunAjaran = null;
+        if ($request->thnajaranfk) {
+            $selectTahunAjaran = TahunAjaran::where('pk', $request->thnajaranfk)->first();
+        } else {
+            $selectTahunAjaran = TahunAjaran::where('aktif', 1)->first();
+        }
+
+        $kelas = Kelas::when($selectTahunAjaran, function ($query) use ($selectTahunAjaran) {
+            return $query->where('thnajaranfk', $selectTahunAjaran->pk);
         })
-            ->when($request->thnajaranfk != null, function ($q) use ($request) {
-                return $q->where('thnajaranfk', $request->thnajaranfk);
+            ->when($request->semester != null, function ($q) use ($request) {
+                return $q->where('semester', $request->semester);
             })
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })->get();
 
         $semester = Semester::all();
-        $thnajaran = TahunAjaran::all();
         $tingkat = Tingkat::all();
         return view("page.uas.index", [
             'kelas' => $kelas,
@@ -37,17 +45,17 @@ class UASController extends Controller
     public function update(Request $request, $pk)
     {
         $semesterValue = [
-            1 => 2.5,     
+            1 => 2.5,
             2 => 2.5,
             3 => 2,
-            4 => 1.75,    
-            5 => 1.75,     
+            4 => 1.75,
+            5 => 1.75,
             6 => 1.75,
-            7 => 1,     
-            8 => 1,    
+            7 => 1,
+            8 => 1,
             9 => 1
         ];
-        
+
         $uas = Kelas::findOrFail($pk);
         try {
             $mcqbenar = str_replace(',', '.', $request->input('mcqbenar_uas', '0'));
