@@ -7,9 +7,12 @@ use App\Models\Kelas;
 use App\Models\Tingkat;
 use App\Models\Semester;
 use App\Models\TahunAjaran;
+use App\Traits\NotificationTrait;
 
 class UTSController extends Controller
 {
+    use NotificationTrait;
+
     public function index(Request $request)
     {
         $type_menu = 'kognitif';
@@ -25,9 +28,9 @@ class UTSController extends Controller
         $kelas = Kelas::when($selectTahunAjaran, function ($query) use ($selectTahunAjaran) {
             return $query->where('thnajaranfk', $selectTahunAjaran->pk);
         })
-        ->when($request->semester != null, function ($q) use ($request) {
-            return $q->where('semester', $request->semester);
-        })
+            ->when($request->semester != null, function ($q) use ($request) {
+                return $q->where('semester', $request->semester);
+            })
             ->when($request->tingkatfk != null, function ($q) use ($request) {
                 return $q->where('tingkatfk', $request->tingkatfk);
             })->get();
@@ -45,14 +48,14 @@ class UTSController extends Controller
     public function update(Request $request, $pk)
     {
         $semesterValue = [
-            1 => 2.5,     
+            1 => 2.5,
             2 => 2.5,
             3 => 2,
-            4 => 1.75,    
-            5 => 1.75,     
+            4 => 1.75,
+            5 => 1.75,
             6 => 1.75,
-            7 => 1,     
-            8 => 1,    
+            7 => 1,
+            8 => 1,
             9 => 1
         ];
 
@@ -87,6 +90,9 @@ class UTSController extends Controller
             $uts->hasil = $uts->uts >= 69.5 ? 'LULUS' : 'REMIDI';
 
             $uts->save();
+
+            // send notification
+            $this->sendMessage([$uts->residen->notif_token], 'UTS', 'Nilai UTS anda sudah keluar');
 
             return redirect()
                 ->back()
