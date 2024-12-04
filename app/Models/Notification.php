@@ -12,11 +12,31 @@ class Notification extends Model
     protected $primaryKey = 'pk';
     protected $guarded = ['pk'];
     public $timestamps = false;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->dateadded = now();
+            $model->addedbyfk = auth()->user()->pk;
+            $model->datemodified = now();
+            $model->lastuserfk = auth()->user()->pk;
+        });
+
+        static::updating(function ($model) {
+            $model->datemodified = now();
+            $model->lastuserfk = auth()->user()->pk;
+        });
+    }
+
     public function residen()
     {
         return $this->belongsTo(Residen::class, 'residenfk', 'pk');
     }
-    protected $casts = [
-        'dateadded' => 'datetime',
-    ];
+
+    public function pengumuman()
+    {
+        return $this->belongsTo(Pengumuman::class, 'pengumumanfk', 'pk');
+    }
 }

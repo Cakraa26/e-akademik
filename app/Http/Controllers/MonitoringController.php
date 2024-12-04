@@ -152,7 +152,7 @@ class MonitoringController extends Controller
             }
 
             // send notification
-            $this->sendMessage([$tmotorik_dt->residen->notif_token], 'Persetujuan Psikomotorik', 'Selamat Psikomotorik anda telah di approved oleh admin / data psikomotorik anda di cancel, silahkan cek kembali.');
+            $this->sendMessage([$tmotorik_dt->residen], 'Persetujuan Psikomotorik', 'Selamat Psikomotorik anda telah di approved oleh admin / data psikomotorik anda di cancel, silahkan cek kembali.');
 
             return redirect()
                 ->route('monitoring.detail', $tmotorik_dt->residen->pk)

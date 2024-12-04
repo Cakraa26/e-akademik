@@ -92,7 +92,7 @@ class UASController extends Controller
             $uas->save();
 
             // send notification message
-            $this->sendMessage([$uas->residen->notif_token], 'UAS', 'Nilai UAS anda sudah keluar. Silahkan dicek.');
+            $this->sendMessage([$uas->residen], 'UAS', 'Nilai UAS anda sudah keluar. Silahkan dicek.');
 
             return redirect()
                 ->back()

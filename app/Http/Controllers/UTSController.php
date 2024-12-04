@@ -92,7 +92,7 @@ class UTSController extends Controller
             $uts->save();
 
             // send notification
-            $this->sendMessage([$uts->residen->notif_token], 'UTS', 'Nilai UTS anda sudah keluar');
+            $this->sendMessage([$uts->residen], 'UTS', 'Nilai UTS anda sudah keluar');
 
             return redirect()
                 ->back()

@@ -33,9 +33,9 @@ class PengumumanController extends Controller
             $inputData['lastuserfk'] = auth()->user()->pk;
 
             $pengumuman = Pengumuman::create($inputData);
-            $residen = Residen::where('aktif', 1)->get()->pluck('notif_token');
+            $residen = Residen::where('aktif', 1)->whereNotNull('notif_token')->get();
 
-            $this->sendMessage($residen, $pengumuman->judul, $pengumuman->catatan);
+            $this->sendMessage($residen, $pengumuman->judul, $pengumuman->catatan, [], $pengumuman->pk);
 
             return redirect()
                 ->route('pengumuman.index')
