@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengumuman;
+use App\Models\Residen;
+use App\Traits\NotificationTrait;
 use Illuminate\Http\Request;
 
 class PengumumanController extends Controller
 {
+    use NotificationTrait;
+
     public function index()
     {
         return view('page.pengumuman.index', [
@@ -28,7 +32,10 @@ class PengumumanController extends Controller
             $inputData['addedbyfk'] = auth()->user()->pk;
             $inputData['lastuserfk'] = auth()->user()->pk;
 
-            Pengumuman::create($inputData);
+            $pengumuman = Pengumuman::create($inputData);
+            $residen = Residen::where('aktif', 1)->get()->pluck('notif_token');
+
+            $this->sendMessage($residen, $pengumuman->judul, $pengumuman->catatan);
 
             return redirect()
                 ->route('pengumuman.index')

@@ -6,10 +6,13 @@ use App\Models\Kelas;
 use App\Models\Tingkat;
 use App\Models\Semester;
 use App\Models\TahunAjaran;
+use App\Traits\NotificationTrait;
 use Illuminate\Http\Request;
 
 class UASController extends Controller
 {
+    use NotificationTrait;
+
     public function index(Request $request)
     {
         $type_menu = 'kognitif';
@@ -87,6 +90,9 @@ class UASController extends Controller
             $uas->hasil = $uas->totalnilai >= 69.5 ? 'LULUS' : 'REMIDI';
 
             $uas->save();
+
+            // send notification message
+            $this->sendMessage([$uas->residen->notif_token], 'UAS', 'Nilai UAS anda sudah keluar. Silahkan dicek.');
 
             return redirect()
                 ->back()

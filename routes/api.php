@@ -88,5 +88,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::patch('/register-face', [ProfileController::class, 'registerFace']);
+    Route::patch('/register-notif-token', [ProfileController::class, 'registerNotifToken']);
 });
 
