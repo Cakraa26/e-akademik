@@ -224,10 +224,12 @@ return [
     'tanpaabsen' => "Tanpa Absen",
     'koordinat' => "Koordinat",
     'sudah_approve' => "Disetujui",
+    'notif' => "Riwayat Notifikasi",
     'change' => "Ubah informasi tentang diri Anda di halaman ini.",
     'changepassword' => "Ubah Sandi",
     'nohistorikehadiran' => "Tidak ada histori kehadiran.",
     'novalue' => "Nilai belum tersedia.",
+    'viewall' => "Lihat Semua",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",

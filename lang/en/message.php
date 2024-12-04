@@ -169,6 +169,7 @@ return [
     'tanpaabsen' => "Without Attendance",
     'koordinat' => "Coordinate",
     'sudah_approve' => "Approved",
+    'notif' => "Notifications History",
     'change' => "Change information about yourself on this page.",
     'changepassword' => "Change Password",
     'tglbuat' => "Created Date",
@@ -181,6 +182,7 @@ return [
     'filerequired' => "File is required.",
     'angkatan' => "Generation",
     'statuskuliah' => "Study Status",
+    'viewall' => "View All",
 
     // Hari Kerja
     'masuk' => "Entry",
