@@ -90,6 +90,7 @@ class KaryaIlmiahResidenAdmin extends Controller
         try {
             $tkaryailmiah = KaryaIlmiahData::findOrFail($pk);
             $tkaryailmiah->ctnfile = $request->input('ctnfile', '');
+            $tkaryailmiah->stssudah = $request->has('stssudah') ? 2 : 1;
 
             $tkaryailmiah->save();
 
