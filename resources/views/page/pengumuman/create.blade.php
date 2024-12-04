@@ -80,7 +80,7 @@
                                             <div class="row align-items-center">
                                                 <label class="col-sm-2">{{ __('message.pengumuman') }}</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="summernote" name="catatan" required data-parsley-required-message="{{ __('message.ctnrequired') }}"
+                                                    <textarea class="form-control" name="catatan" required data-parsley-required-message="{{ __('message.ctnrequired') }}"
                                                         style="height: 100px">{{ old('catatan') }}</textarea>
                                                 </div>
                                             </div>

@@ -35,6 +35,7 @@ use App\Http\Controllers\KaryaIlmiahResidenAdmin;
 use App\Http\Controllers\TingkatResidenController;
 use App\Http\Controllers\DatabaseResidenController;
 use App\Http\Controllers\KognitifResiden;
+use App\Http\Controllers\NotifikasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -348,6 +349,8 @@ Route::middleware(['checkRole:2'])->group(function () {
     Route::get('/uas-residen', [KognitifResiden::class, 'uasIndex'])->name('uas.residen.index');
 
     Route::get('/download-file-residen', [UploadFileController::class, 'indexResiden'])->name('download.file.index');
+    
+    Route::get('/notifikasi', [NotifikasiController::class, 'notif'])->name('notifikasi');
 });
 
 // auth

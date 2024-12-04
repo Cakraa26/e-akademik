@@ -23,21 +23,21 @@ class DatabaseResidenController extends Controller
         } else {
             $selectTahunAjaran = TahunAjaran::where('aktif', 1)->first();
         }
-        
+
         $dataresiden = Residen::when($selectTahunAjaran, function ($query) use ($selectTahunAjaran) {
             return $query->where('thnajaranfk', $selectTahunAjaran->pk);
         })
-        ->when($request->statuskuliah != null, function ($q) use ($request) {
-            if ($request->statuskuliah == 'semua') {
-                return $q;
-            }
-            return $q->where('statuskuliah', $request->statuskuliah);
-        })->when($request->semester != null, function ($q) use ($request) {
-            return $q->where('semester', $request->semester);
-        })->when($request->tingkatfk != null, function ($q) use ($request) {
-            return $q->where('tingkatfk', $request->tingkatfk);
-        })
-        ->get();
+            ->when($request->statuskuliah != null, function ($q) use ($request) {
+                if ($request->statuskuliah == 'semua') {
+                    return $q;
+                }
+                return $q->where('statuskuliah', $request->statuskuliah);
+            })->when($request->semester != null, function ($q) use ($request) {
+                return $q->where('semester', $request->semester);
+            })->when($request->tingkatfk != null, function ($q) use ($request) {
+                return $q->where('tingkatfk', $request->tingkatfk);
+            })
+            ->get();
         return view('page.database-residen.index', [
             'type_menu' => 'master-data',
             'motorik' => Motorik::all(),

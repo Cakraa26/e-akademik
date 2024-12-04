@@ -7,12 +7,15 @@ use App\Models\Tingkat;
 use App\Models\Semester;
 use App\Models\KaryaIlmiah;
 use App\Models\TahunAjaran;
+use App\Traits\NotificationTrait;
 use Illuminate\Http\Request;
 use App\Models\KaryaIlmiahData;
 use Illuminate\Support\Facades\DB;
 
 class KaryaIlmiahResidenAdmin extends Controller
 {
+    use NotificationTrait;
+
     public function index(Request $request)
     {
         $type_menu = 'karyailmiah';
@@ -90,8 +93,9 @@ class KaryaIlmiahResidenAdmin extends Controller
         try {
             $tkaryailmiah = KaryaIlmiahData::findOrFail($pk);
             $tkaryailmiah->ctnfile = $request->input('ctnfile', '');
+            $tkaryailmiah->stssudah = $request->has('stssudah') ? 2 : 1;
 
-            $tkaryailmiah->save();
+            $this->sendMessage([$tkaryailmiah->residen], 'Karya Ilmiah', 'Selamat Karya Ilmiah anda telah di approved atau Karya Ilmiah  yang diupload  telah di cancel silahkan cek kembali.');
 
             return redirect()
                 ->back()

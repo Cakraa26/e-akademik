@@ -6,6 +6,7 @@ use App\Http\Controllers\API\MasterDataController;
 use App\Http\Controllers\API\Resident\AttendanceController;
 use App\Http\Controllers\API\Resident\FormulirController;
 use App\Http\Controllers\API\Resident\HomeController;
+use App\Http\Controllers\API\Resident\NotificationController;
 use App\Http\Controllers\API\Resident\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,11 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::patch('/change-password', [ProfileController::class, 'changePassword']);
             Route::put('/update-biodata', [ProfileController::class, 'updateBiodata']);
         });
+
+        Route::get('/notifications', [NotificationController::class, 'getNotification']);
+        Route::put('/notifications/{id}/read', [NotificationController::class, 'readNotification']);
+        Route::put('/notifications/{id}/remove', [NotificationController::class, 'removeNotification']);
+        Route::get('/announcements', [NotificationController::class, 'getAnnouncement']);
     });
 
     // Master Data
@@ -88,5 +94,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::patch('/register-face', [ProfileController::class, 'registerFace']);
+    Route::patch('/register-notif-token', [ProfileController::class, 'registerNotifToken']);
 });
 
