@@ -66,7 +66,7 @@ class NotificationController extends Controller
                 ->orderBy('dateadded', 'desc')
                 ->get();
 
-            return response()->json(['data' => $announcements], 200);
+            return response()->json($announcements, 200);
         } catch (\Throwable $e) {
             \Log::error($e->getMessage());
             return response()->json(['message' => $e->getMessage()], 500);
