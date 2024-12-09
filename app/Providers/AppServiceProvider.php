@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             $residenId = auth()->user()->pk; 
             $notifikasi = Notification::where('residenfk', $residenId)
                 ->orderBy('dateadded', 'desc')
-                ->limit(4)
+                ->limit(6)
                 ->get();
     
             $view->with('notifikasi', $notifikasi);
