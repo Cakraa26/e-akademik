@@ -9,6 +9,7 @@ use App\Models\Semester;
 use App\Models\TahunAjaran;
 use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
+use App\Traits\NotificationTrait;
 use Illuminate\Http\Request;
 use App\Models\KategoriMotorik as Kategori;
 use App\Models\MotorikTransaction as t_motorik;
@@ -16,6 +17,8 @@ use App\Models\MotorikTransactionData as t_motorik_dt;
 
 class MonitoringController extends Controller
 {
+    use NotificationTrait;
+
     public function index(Request $request)
     {
         $type_menu = 'psikomotorik';
@@ -141,12 +144,15 @@ class MonitoringController extends Controller
         try {
             foreach ($stsapproved_dt as $pk => $stsapproved) {
                 $tmotorik_dt = MotorikTransactionData::findOrFail($pk);
-        
+
                 $tmotorik_dt->stsapproved = $stsapproved;
                 $tmotorik_dt->ctn = $ctn_dt[$pk];
-        
+
                 $tmotorik_dt->save();
             }
+
+            // send notification
+            $this->sendMessage([$tmotorik_dt->residen], 'Persetujuan Psikomotorik', 'Selamat Psikomotorik anda telah di approved oleh admin / data psikomotorik anda di cancel, silahkan cek kembali.');
 
             return redirect()
                 ->route('monitoring.detail', $tmotorik_dt->residen->pk)

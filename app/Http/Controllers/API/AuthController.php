@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\VerifyRequest;
+use App\Models\Residen;
 use App\Services\Auth\Register\RegisterService;
 use Auth;
 use DB;
@@ -98,6 +99,10 @@ class AuthController extends Controller
     {
         try {
             $request->user()->currentAccessToken()->delete();
+
+            if ($request->user()->role == 2) {
+                Residen::findOrFail($request->user()->pk)->update(['notif_token' => null]);
+            }
 
             return response()->json([], 200);
         } catch (\Throwable $e) {

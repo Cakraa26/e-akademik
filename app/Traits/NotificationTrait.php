@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Notification;
 use Google\Client as GoogleClient;
 
 trait NotificationTrait
@@ -16,15 +17,15 @@ trait NotificationTrait
         return $httpClient;
     }
 
-    public function sendMessage($userTokens, $title, $body, $data = [])
+    public function sendMessage($users, $title, $body, $data = [], $pengumumanfk = null)
     {
         $client = $this->registerAuth();
 
-        foreach ($userTokens as $token) {
+        foreach ($users as $user) {
             $client->post("https://fcm.googleapis.com/v1/projects/cisot-udayana/messages:send", [
                 'json' => [
                     'message' => [
-                        'token' => $token,
+                        'token' => $user->notif_token,
                         'notification' => [
                             'title' => $title,
                             'body' => $body
@@ -43,6 +44,13 @@ trait NotificationTrait
                         ]
                     ]
                 ]
+            ]);
+
+            Notification::create([
+                'residenfk' => $user->pk,
+                'title' => $title,
+                'body' => $body,
+                'pengumumanfk' => $pengumumanfk
             ]);
         }
     }

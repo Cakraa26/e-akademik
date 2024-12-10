@@ -94,6 +94,25 @@ class ProfileController extends Controller
             $user->face_dt = $reqeust->face_dt;
             $user->save();
 
+            return response()->json($user, 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Data not found',
+            ], 404);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function registerNotifToken(Request $reqeust)
+    {
+        try {
+            $user = Residen::findOrFail(auth()->user()->pk);
+            $user->notif_token = $reqeust->notif_token;
+            $user->save();
+
             return response()->json(['data' => $user], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json([

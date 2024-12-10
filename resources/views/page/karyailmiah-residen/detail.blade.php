@@ -33,7 +33,7 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorikpendek') }}</a>
+                                    href="{{ route('karyailmiahresiden.index') }}">{{ __('message.karyailmiah') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.detail') }}</div>
                         </div>
@@ -87,7 +87,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($karya as $k)
                                         <tr id="row-{{ $k->t_karyailmiah_pk }}">
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $k->nm }}</td>
                                             @if (!empty($k->file))
                                                 <td>
@@ -98,24 +98,22 @@
                                             @else
                                                 <td></td>
                                             @endif
-                                            @if (!empty($k->stssudah))
-                                                <td>
-                                                    <input class="custom-switch-input" type="radio"
-                                                        id="switch-{{ $k->t_karyailmiah_pk }}"
-                                                        {{ $k->stssudah === 1 ? 'checked' : '' }} disabled>
-                                                    <span class="custom-switch-indicator"></span>
-                                                </td>
-                                            @else
-                                                <td></td>
-                                            @endif
-                                            <td>{{ $k->semester }}</td>
-                                            <td>{{ $k->tingkat }}</td>
                                             @if (!empty($k->t_karyailmiah_pk))
                                                 <form
                                                     action="{{ route('karyailmiahresiden.update', ['pk' => $k->t_karyailmiah_pk]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')
+                                                    <td>
+                                                        <label class="custom-switch pl-0">
+                                                            <input type="checkbox" class="custom-switch-input" name="stssudah" value="2"
+                                                                id="switch-{{ $k->t_karyailmiah_pk }}"
+                                                                {{ $k->stssudah === 2 ? 'checked' : '' }} disabled>
+                                                            <span class="custom-switch-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>{{ $k->semester }}</td>
+                                                    <td>{{ $k->tingkat }}</td>
                                                     <td>
                                                         <span class="view"
                                                             id="ctnfile-{{ $k->t_karyailmiah_pk }}">{{ $k->ctnfile }}</span>
@@ -141,6 +139,9 @@
                                                     </td>
                                                 </form>
                                             @else
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                             @endif
@@ -175,9 +176,11 @@
     <script>
         function toggleEdit(pk) {
             const row = document.getElementById('row-' + pk);
+            const switchInput = document.getElementById('switch-' + pk);
+            
             row.querySelectorAll('.view').forEach(view => view.style.display = 'none');
             row.querySelectorAll('.edit-field').forEach(field => field.style.display = 'block');
-
+            switchInput.disabled = false;
             document.getElementById('edit-btn-' + pk).style.display = 'none';
             document.getElementById('save-btn-' + pk).style.display = 'inline';
             document.getElementById('cancel-btn-' + pk).style.display = 'inline';
@@ -185,9 +188,10 @@
 
         function cancelEdit(pk) {
             const row = document.getElementById('row-' + pk);
+            const switchInput = document.getElementById('switch-' + pk);
             row.querySelectorAll('.view').forEach(view => view.style.display = 'inline');
             row.querySelectorAll('.edit-field').forEach(field => field.style.display = 'none');
-
+            switchInput.disabled = true;
             document.getElementById('edit-btn-' + pk).style.display = 'inline';
             document.getElementById('save-btn-' + pk).style.display = 'none';
             document.getElementById('cancel-btn-' + pk).style.display = 'none';

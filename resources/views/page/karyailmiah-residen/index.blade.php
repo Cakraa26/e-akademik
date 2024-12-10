@@ -113,9 +113,7 @@
                             <table class="myTable table-striped table nowrap" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.inisial') }}</th>
                                         <th>{{ __('message.nmresiden') }}</th>
                                         <th>Semester</th>
@@ -129,7 +127,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($tkaryailmiah as $k)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $k->residen->inisialresiden }}</td>
                                             <td>{{ $k->residen->nm }}</td>
                                             <td>{{ $k->residen->semester }}</td>

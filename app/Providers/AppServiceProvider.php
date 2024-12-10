@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Notification;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('components.header', function ($view) {
+            $residenId = auth()->user()->pk; 
+            $notifikasi = Notification::where('residenfk', $residenId)
+                ->orderBy('dateadded', 'desc')
+                ->limit(6)
+                ->get();
+    
+            $view->with('notifikasi', $notifikasi);
+        });
     }
 }

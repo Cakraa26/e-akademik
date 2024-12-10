@@ -93,11 +93,8 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.nama') }}</th>
-                                        {{-- <th>Group</th> --}}
                                         <th>{{ __('message.kategori') }}</th>
                                         <th>{{ __('message.subkategori') }}</th>
                                         <th>Status</th>
@@ -108,9 +105,8 @@
                                     @php $no = 1; @endphp
                                     @foreach ($motorik as $m)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $m->nm }}</td>
-                                            {{-- <td>{{ $m->group->nm }}</td> --}}
                                             <td>{{ $m->kategori->nm }}</td>
                                             <td>{{ $m->subkategori->nm }}</td>
                                             <td>{{ $m->aktif === 1 ? __('message.active') : __('message.inactive') }}</td>
