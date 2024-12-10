@@ -82,7 +82,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($data as $k)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $k->nm }}</td>
                                             <td>
                                                 @if ($k->stssudah === 0)

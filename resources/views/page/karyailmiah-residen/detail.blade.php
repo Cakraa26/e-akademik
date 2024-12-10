@@ -33,7 +33,7 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('monitoring.index') }}">{{ __('message.mngmotorikpendek') }}</a>
+                                    href="{{ route('karyailmiahresiden.index') }}">{{ __('message.karyailmiah') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.detail') }}</div>
                         </div>

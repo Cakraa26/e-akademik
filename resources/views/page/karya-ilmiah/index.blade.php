@@ -63,9 +63,7 @@
                             <table class="table-striped table nowrap" id="myTable" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>{{ __('message.tahapan') }}</th>
                                         <th>{{ __('message.drsemester') }}</th>
                                         <th>{{ __('message.btssemester') }}</th>
@@ -77,7 +75,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($karya as $k)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $k->nm }}</td>
                                             <td>{{ $k->darisemester }}</td>
                                             <td>{{ $k->sampaisemester }}</td>

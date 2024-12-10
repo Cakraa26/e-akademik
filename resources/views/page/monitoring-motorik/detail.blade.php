@@ -140,7 +140,7 @@
                                             <td class="text-center">
                                                 <button class="btn btn-dark btn-table" data-bs-toggle="modal"
                                                     data-bs-target="#ViewDetail{{ $t->pk }}"><i
-                                                        class='fas fa-exclamation'></i></button>
+                                                        class='fas fa-eye'></i></button>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -20,7 +20,7 @@
                             <div class="breadcrumb-item active"><a
                                     href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></div>
                             <div class="breadcrumb-item active"><a
-                                    href="{{ route('data.stase.index') }}">{{ __('message.psikomotorik') }}</a>
+                                    href="{{ route('data.psikomotorik.index') }}">{{ __('message.psikomotorik') }}</a>
                             </div>
                             <div class="breadcrumb-item">{{ __('message.tambah') }}</div>
                         </div>
@@ -177,7 +177,7 @@
                                         name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
                                             <a class="btn btn-dark mr-2"
                                                 href="{{ route('data.psikomotorik.index') }}">
