@@ -140,7 +140,7 @@
                                         <tr id="row-{{ $k->pk }}"
                                             @if ($k->tingkatfk == 1 || $k->tingkatfk == 2) style="background-color: #E98580;" 
                                             @elseif($k->tingkatfk == 3) style="background-color: #F4D06F;" 
-                                            @elseif($k->tingkatfk == 4) style="background-color: #A4C686;" @endif>
+                                            @elseif($k->tingkatfk == 4 || $k->tingkatfk == 5) style="background-color: #A4C686;" @endif>
                                             <form action="{{ route('uts.update', $k->pk) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')

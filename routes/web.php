@@ -74,16 +74,17 @@ Route::get('/locale/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-// Dashboard
-Route::get('/dashboard', function () {
-    return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-})->middleware('checkRole:0,1,2')->name('dashboard');
 
 // Route::middleware(['checkRole:0'])->group(function () {
 
 // });
 
 Route::middleware(['checkRole:1'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+    })->name('dashboard');
+
     // Data Dosen
     Route::resource('data-dosen', DosenController::class)->names([
         'index' => 'data.dosen.index',
@@ -312,6 +313,9 @@ Route::middleware(['checkRole:1'])->group(function () {
 });
 
 Route::middleware(['checkRole:2'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard-residen', [HistoriKehadiran::class, 'dashboardResiden'])->name('dashboard-residen');
+
     // Karya Ilmiah 
     Route::resource('karya-ilmiah-residen', KaryaIlmiahResiden::class)->names([
         'index' => 'karya-ilmiah.residen.index',
@@ -349,7 +353,7 @@ Route::middleware(['checkRole:2'])->group(function () {
     Route::get('/uas-residen', [KognitifResiden::class, 'uasIndex'])->name('uas.residen.index');
 
     Route::get('/download-file-residen', [UploadFileController::class, 'indexResiden'])->name('download.file.index');
-    
+
     Route::get('/notifikasi', [NotifikasiController::class, 'notif'])->name('notifikasi');
 });
 

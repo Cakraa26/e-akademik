@@ -97,9 +97,9 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($nilai as $n)
-                                            <tr id="row-{{ $n->pk }}">
+                                            <tr id="row-{{ $n->pk }}" class="text-dark">
                                                 <td>{{ $n->stase->nm }}</td>
-                                                <td>{{ $n->dosen->nm }}</td>
+                                                <td>{{ $n->dosen->nm ?? '' }}</td>
                                                 <form action="{{ route('nilai.stase.update', $n->pk) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
@@ -150,9 +150,9 @@
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td colspan="2" class="text-right"><strong>{{ __('message.nilai') }}
+                                            <td colspan="2" class="text-right text-dark"><strong>{{ __('message.nilai') }}
                                                     :</strong></td>
-                                            <td><strong>{{ number_format($totalNilai, 2) }}</strong>
+                                            <td class="text-dark"><strong>{{ number_format($totalNilai, 2) }}</strong>
                                             </td>
                                             <td colspan="4"></td>
                                         </tr>
