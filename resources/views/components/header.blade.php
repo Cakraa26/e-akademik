@@ -20,13 +20,14 @@
                                 <div class="dropdown-item-desc">
                                     {{ $notif->body }}
                                     <div class="time text-primary">
-                                        {{ date('d F Y H:i', strtotime($notif->dateadded)) }}</div>
+                                        {{ Carbon\Carbon::parse($notif->dateadded)->diffForHumans() }}</div>
                                 </div>
                             </a>
                         @endforeach
                     </div>
                     <div class="dropdown-footer text-center">
-                        <a href="{{ route('notifikasi') }}">{{ __('message.viewall') }} <i class="fas fa-chevron-right"></i></a>
+                        <a href="{{ route('notifikasi') }}">{{ __('message.viewall') }} <i
+                                class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </li>

@@ -126,7 +126,9 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($tkaryailmiah as $k)
-                                        <tr>
+                                        <tr @if ($k->tingkatfk == 1 || $k->tingkatfk == 2) style="background-color: #E98580;" 
+                                            @elseif($k->tingkatfk == 3) style="background-color: #F4D06F;" 
+                                            @elseif($k->tingkatfk == 4 || $k->tingkatfk == 5) style="background-color: #A4C686;" @endif>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $k->residen->inisialresiden }}</td>
                                             <td>{{ $k->residen->nm }}</td>
@@ -135,13 +137,13 @@
                                             <td>{{ $k->karyailmiah->nm }}</td>
                                             <td>
                                                 @if ($k->stssudah === 0)
-                                                    <span class="text-secondary">{{ __('message.belum_upload') }}</span>
+                                                    <span class="badge badge-secondary">{{ __('message.belum_upload') }}</span>
                                                 @elseif ($k->stssudah === 1)
-                                                    <span class="text-warning">{{ __('message.menunggu') }}</span>
+                                                    <span class="badge badge-warning">{{ __('message.menunggu') }}</span>
                                                 @elseif ($k->stssudah === 2)
-                                                   <span class="text-success">{{ __('message.sudah_approve') }}</span>
+                                                   <span class="badge badge-success">{{ __('message.sudah_approve') }}</span>
                                                 @elseif ($k->stssudah === 3)
-                                                   <span class="text-danger">{{ __('message.cancel') }}</span>
+                                                   <span class="badge badge-danger">{{ __('message.cancel') }}</span>
                                                 @endif
                                             </td>
                                             <td>

@@ -18,11 +18,11 @@ class Absensi extends Controller
         $type_menu = 'afektif';
 
         $absen = Absen::whereDate('check_in', date('Y-m-d'))
-        ->when($request->thnajaranfk != null, function ($q) use ($request) {
-            return $q->whereHas('residen', function ($thnajaranfk) use ($request) {
-                $thnajaranfk->where('thnajaranfk', $request->thnajaranfk);
-            });
-        })
+            ->when($request->thnajaranfk != null, function ($q) use ($request) {
+                return $q->whereHas('residen', function ($thnajaranfk) use ($request) {
+                    $thnajaranfk->where('thnajaranfk', $request->thnajaranfk);
+                });
+            })
             ->when($request->semester != null, function ($q) use ($request) {
                 return $q->where('semester', $request->semester);
             })

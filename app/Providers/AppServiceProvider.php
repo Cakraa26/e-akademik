@@ -26,12 +26,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('components.header', function ($view) {
-            $residenId = auth()->user()->pk; 
+            $residenId = auth()->user()->pk;
             $notifikasi = Notification::where('residenfk', $residenId)
+                ->where('pengumumanfk', null)
+                ->where('is_read', 0)
+                ->where('is_remove', 0)
                 ->orderBy('dateadded', 'desc')
-                ->limit(6)
+                ->limit(5)
                 ->get();
-    
+
             $view->with('notifikasi', $notifikasi);
         });
     }

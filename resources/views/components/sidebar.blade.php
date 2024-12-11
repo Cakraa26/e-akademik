@@ -9,12 +9,13 @@
         <ul class="sidebar-menu">
             {{-- General Menu --}}
             <li class="menu-header">{{ __('message.generalmenu') }}</li>
-            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('dashboard') }}"><i class="fas fa-tachometer-alt"></i>
-                    <span>{{ __('message.dashboard') }}</span></a>
-            </li>
 
             @if (session('role') == 2)
+                <li class="{{ Request::is('dashboard-residen') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('dashboard-residen') }}"><i class="fas fa-tachometer-alt"></i>
+                        <span>{{ __('message.dashboard') }}</span></a>
+                </li>
+
                 <li class="{{ Request::is('download-file-residen') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('download.file.index') }}"><i class="fas fa-download"></i>
                         <span>Download File</span></a>
@@ -27,7 +28,8 @@
                             class="fas fa-brain"></i><span>{{ __('message.kognitif') }}</span></a>
                     <ul class="dropdown-menu">
                         <li class="{{ Request::is('nilai-stase-residen') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('nilai.stase.residen.index') }}">{{ __('message.nilaistase') }}</a>
+                            <a class="nav-link"
+                                href="{{ route('nilai.stase.residen.index') }}">{{ __('message.nilaistase') }}</a>
                         </li>
                         <li class="{{ Request::is('uts-residen') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('uts.residen.index') }}">UTS</a>
@@ -56,7 +58,7 @@
                             class="fas fa-file-alt"></i>
                         <span>{{ __('message.karyailmiah') }}</span></a>
                 </li>
-                
+
                 {{-- Laporan --}}
                 <li class="menu-header">{{ __('message.record') }}</li>
                 </li>
@@ -68,6 +70,11 @@
             @endif
 
             @if (session('role') == 1)
+                <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('dashboard') }}"><i class="fas fa-tachometer-alt"></i>
+                        <span>{{ __('message.dashboard') }}</span></a>
+                </li>
+
                 {{-- Setting --}}
                 <li class="nav-item dropdown {{ $type_menu === 'setting' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i
@@ -186,7 +193,8 @@
                             <a class="nav-link" href="{{ route('absensi.index') }}">{{ __('message.absensi') }}</a>
                         </li>
                         <li class="{{ Request::is('daftar-absensi*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('daftar.absensi.index') }}">{{ __('message.dftabsensi') }}</a>
+                            <a class="nav-link"
+                                href="{{ route('daftar.absensi.index') }}">{{ __('message.dftabsensi') }}</a>
                         </li>
                     </ul>
                 </li>

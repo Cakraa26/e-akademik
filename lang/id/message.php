@@ -230,6 +230,7 @@ return [
     'nohistorikehadiran' => "Tidak ada histori kehadiran.",
     'novalue' => "Nilai belum tersedia.",
     'viewall' => "Lihat Semua",
+    'menit' => "menit",
 
     // Modal m_kelas
     'hasiluas' => "HASIL UAS",
@@ -359,6 +360,7 @@ return [
     'success_kelas_added' => 'Data Kelas berhasil ditambahkan.',
     'success_jadwal_added' => 'Jadwal Stase berhasil ditambahkan.',
     'success_logout' => 'Anda telah berhasil keluar.',
+    'success_login' => 'Anda telah berhasil masuk.',
     'konfirm' => 'Yakin ingin keluar?',
     'error_username' => 'Username atau password salah.',
     'error_not_verified' => 'Akun Anda belum terverifikasi.',

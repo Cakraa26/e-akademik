@@ -92,8 +92,12 @@ class AuthController extends Controller
             if ($user->is_verified == 1) {
                 Auth::login($user);
                 Session::put('role', $user->role);
-                return redirect()
-                    ->route('dashboard');
+
+                if ($user->role == 1) {
+                    return redirect()->route('dashboard')->with('success', __('message.success_login')); 
+                } elseif ($user->role == 2) {
+                    return redirect()->route('dashboard-residen')->with('success', __('message.success_login')); 
+                }
             } else {
                 return back()->with('gagal', __('message.error_not_verified'));
             }

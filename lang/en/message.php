@@ -183,6 +183,7 @@ return [
     'angkatan' => "Generation",
     'statuskuliah' => "Study Status",
     'viewall' => "View All",
+    'menit' => "minute",
 
     // Hari Kerja
     'masuk' => "Entry",
@@ -319,6 +320,7 @@ return [
     'success_kelas_added' => 'Class Data has been successfully added.',
     'success_jadwal_added' => 'Stase Schedule has been successfully added.',
     'success_logout' => 'You have successfully logged out.',
+    'success_login' => 'You have successfully logged in.',
     'konfirm' => 'Are you sure you want to logout?',
     'error_username' => 'Incorrect username or password.',
     'error_not_verified' => 'Your account has not been verified.',

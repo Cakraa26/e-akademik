@@ -135,7 +135,10 @@
                                             <tbody>
                                                 @php $no = 1; @endphp
                                                 @foreach ($jadwals->groupBy('residenfk') as $residenfk => $j)
-                                                    <tr>
+                                                    <tr
+                                                        @if ($j->first()->residen->tingkatfk == 1 || $j->first()->residen->tingkatfk == 2) style="background-color: #E98580;" 
+                                                        @elseif($j->first()->residen->tingkatfk == 3) style="background-color: #F4D06F;" 
+                                                        @elseif($j->first()->residen->tingkatfk == 4 || $j->first()->residen->tingkatfk == 5) style="background-color: #A4C686;" @endif>
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $j->first()->residen->nm }}</td>
                                                         @php $total = 0; @endphp

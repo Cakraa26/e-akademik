@@ -44,7 +44,6 @@ class NilaiStase extends Controller
             ->when($request->tingkatfk, function ($query) use ($request) {
                 $query->where('tingkatfk', $request->tingkatfk);
             })
-            ->with(['residen', 'nilai'])
             ->get()
             ->groupBy('semester');
 

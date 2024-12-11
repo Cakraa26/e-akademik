@@ -102,7 +102,10 @@
                                 <tbody>
                                     @php $no = 1; @endphp
                                     @foreach ($residen as $r)
-                                        <tr>
+                                        <tr
+                                            @if ($r->tingkatfk == 1 || $r->tingkatfk == 2) style="background-color: #E98580;" 
+                                            @elseif($r->tingkatfk == 3) style="background-color: #F4D06F;" 
+                                            @elseif($r->tingkatfk == 4 || $r->tingkatfk == 5) style="background-color: #A4C686;" @endif>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $r->inisialresiden }}</td>
                                             <td>{{ $r->nm }}</td>
