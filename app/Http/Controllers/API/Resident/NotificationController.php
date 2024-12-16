@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\Resident;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
+use App\Models\Pengumuman;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -67,6 +69,22 @@ class NotificationController extends Controller
                 ->get();
 
             return response()->json($announcements, 200);
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage());
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getAnnouncementDetail($id)
+    {
+        try {
+            $announcement = Pengumuman::findOrFail($id);
+
+            return response()->json($announcement, 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Data not found',
+            ], 404);
         } catch (\Throwable $e) {
             \Log::error($e->getMessage());
             return response()->json(['message' => $e->getMessage()], 500);

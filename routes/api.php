@@ -84,6 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/notifications/{id}/read', [NotificationController::class, 'readNotification']);
         Route::put('/notifications/{id}/remove', [NotificationController::class, 'removeNotification']);
         Route::get('/announcements', [NotificationController::class, 'getAnnouncement']);
+        Route::get('/announcements/{id}', [NotificationController::class, 'getAnnouncementDetail']);
     });
 
     // Master Data
