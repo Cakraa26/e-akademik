@@ -145,7 +145,7 @@
                                                 @csrf
                                                 @method('PUT')
                                                 <td>{{ $no++ }}</td>
-                                                <td class="text-nowrap">{{ $k->residen->nm }}</td>
+                                                <td class="text-nowrap">{{ $k->residen->nm ?? '-'}}</td>
                                                 <td>
                                                     <span class="view"
                                                         id="mcqbenar_uts-{{ $k->pk }}">{{ $k->mcqbenar_uts }}</span>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KategoriMotorik as Kategori;
-use App\Models\SubKategoriMotorik as SubKategori;
 use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Models\KategoriMotorik as Kategori;
+use App\Models\SubKategoriMotorik as SubKategori;
 
 class PsikomotorikController extends Controller
 {
@@ -50,15 +51,7 @@ class PsikomotorikController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            'groupfk' => 'required',
-            'kategorifk' => 'required',
-            'subkategorifk' => 'required',
-        ], [
-            'groupfk.required' => __('message.grouprequired'),
-            'kategorifk.required' => __('message.kategorifkrequired'),
-            'subkategorifk.required' => __('message.subkategorifkrequired'),
-        ]);
+        DB::beginTransaction();
 
         try {
             $inputData = $request->all();
@@ -67,10 +60,13 @@ class PsikomotorikController extends Controller
 
             Psikomotorik::create($inputData);
 
+            DB::commit();
+
             return redirect()
                 ->route('data.psikomotorik.index')
                 ->with('success', __('message.success_psikomotorik_added'));
         } catch (\Exception $e) {
+            DB::rollBack();
             return back()
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
@@ -122,14 +118,17 @@ class PsikomotorikController extends Controller
     }
     public function destroy($pk)
     {
+        DB::beginTransaction();
         try {
             $motorik = Psikomotorik::findOrFail($pk);
             $motorik->delete();
 
+            DB::commit();
             return redirect()
                 ->route('data.psikomotorik.index')
                 ->with('success', __('message.success_psikomotorik_hapus'));
         } catch (\Exception $e) {
+            DB::rollBack();
             return back()
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());

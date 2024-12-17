@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="row align-items-center">
+                                            <div class="mb-3 row align-items-center">
                                                 <label class="col-sm-2">{{ __('message.pengumuman') }}</label>
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" name="catatan" required data-parsley-required-message="{{ __('message.ctnrequired') }}"
@@ -86,7 +86,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3 row align-items-center mt-n3 mt-md-0">
+                                    <div class="mb-3 row align-items-center">
                                         <label class="col-sm-2"></label>
                                         <div class="col-sm-9">
                                             <div class="form-check form-check-inline">

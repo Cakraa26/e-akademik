@@ -35,6 +35,10 @@ class Kelas extends Model
     }
     public function tingkat()
     {
-        return $this->belongsTo(Tingkat::class, 'tingkatfk', ownerKey: 'pk'); 
+        return $this->belongsTo(Tingkat::class, 'tingkatfk', 'pk'); 
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class, 'semester', 'pk'); 
     }
 }

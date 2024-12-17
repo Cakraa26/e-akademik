@@ -6,11 +6,6 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-    <style>
-        .table:not(.table-sm):not(.table-md):not(.dataTable) th {
-            border-bottom: 1px solid #666;
-        }
-    </style>
 @endpush
 
 @section('main')
@@ -70,7 +65,8 @@
                                 </div>
                                 <div class="col-8 col-md-3 mb-3 pr-0">
                                     <label>&nbsp;</label>
-                                    <input type="text" name="search" class="form-control" value="{{ request('search') }}">
+                                    <input type="text" name="search" class="form-control"
+                                        value="{{ request('search') }}">
                                 </div>
                                 <div class="col-3 col-md-2">
                                     <label>&nbsp;</label>
@@ -112,6 +108,14 @@
                 {{-- Alert End --}}
 
                 @if ($kelas->isNotEmpty())
+                    @if ($residenBelumTerdaftar->count() > 0)
+                        <div class="d-flex justify-content-end mb-3">
+                            <button class="btn btn-success" type="button" data-toggle="modal"
+                                data-target="#modalTambahKelas"><i
+                                    class="fas fa-plus pr-2"></i>{{ __('message.tambahresiden') }}</button>
+                        </div>
+                    @endif
+
                     @foreach ($kelas as $semester => $dataKelas)
                         @if (request('semester') == null || request('semester') == $semester)
                             <div class="card">
@@ -134,15 +138,16 @@
                                             <tbody>
                                                 @php $no = 1; @endphp
                                                 @foreach ($dataKelas as $k)
-                                                    <tr @if ($k->tingkatfk == 1 || $k->tingkatfk == 2) style="background-color: #E98580;" 
+                                                    <tr
+                                                        @if ($k->tingkatfk == 1 || $k->tingkatfk == 2) style="background-color: #E98580;" 
                                                         @elseif($k->tingkatfk == 3) style="background-color: #F4D06F;" 
                                                         @elseif($k->tingkatfk == 4 || $k->tingkatfk == 5) style="background-color: #A4C686;" @endif>
                                                         <td>{{ $no++ }}</td>
-                                                        <td>{{ $k->residen->inisialresiden }}</td>
-                                                        <td>{{ $k->residen->nm }}</td>
-                                                        <td>{{ $k->residen->hp }}</td>
-                                                        <td>{{ $k->tingkat->kd }}</td>
-                                                        <td>{{ $k->residen->karyailmiah->nm }}</td>
+                                                        <td>{{ $k->residen->inisialresiden ?? '-' }}</td>
+                                                        <td>{{ $k->residen->nm ?? '-' }}</td>
+                                                        <td>{{ $k->residen->hp ?? '-' }}</td>
+                                                        <td>{{ $k->tingkat->kd ?? '-' }}</td>
+                                                        <td>{{ $k->residen->karyailmiah->nm ?? '-' }}</td>
                                                         <td>{{ $k->aktif === 1 ? __('message.active') : __('message.cuti') }}
                                                         </td>
                                                         <td class="text-nowrap">
@@ -195,7 +200,7 @@
                                 <h6 class="text-center mb-3">DATA NILAI RESIDEN</h6>
                                 <div class="row">
                                     <div class="col-md-5 mb-1">
-                                        <span>{{ __('message.nama') }} : {{ $k->residen->nm }}</span>
+                                        <span>{{ __('message.nama') }} : {{ $k->residen->nm ?? '-' }}</span>
                                     </div>
                                     <div class="col-md-7 text-md-right mb-1">
                                         <span>{{ __('message.thnajaran') }}/{{ __('message.semester') }} :
@@ -270,6 +275,58 @@
                 </div>
             @endforeach
         @endforeach
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalTambahKelas" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('new.kelas.store') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="modal-body">
+                            <div class="mb-4 row align-items-center">
+                                <label for="ctn" class="col-sm-3">Residen</label>
+                                <div class="col-sm-9">
+                                    <div class="d-flex align-items-center">
+                                        <select class="form-select select2 @error('residenfk') is-invalid @enderror"
+                                            id="residenfk" name="residenfk">
+                                            <option value=""></option>
+                                            @foreach ($residenBelumTerdaftar as $r)
+                                                <option value="{{ $r->pk }}"
+                                                    {{ old('residenfk') == $r->pk ? 'selected' : '' }}>
+                                                    {{ $r->nm }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <label for="ctn" class="col-sm-3">Semester</label>
+                                <div class="col-sm-9">
+                                    <div class="d-flex align-items-center">
+                                        <select class="form-select select2" id="semesters" name="semesters">
+                                            <option value=""></option>
+                                            @foreach ($semesters as $s)
+                                                <option value="{{ $s->pk }}"
+                                                    {{ old('semesters') == $s->pk ? 'selected' : '' }}>
+                                                    {{ $s->semester }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="select_thnajaran" id="select_thnajaran">
+                        </div>
+                        <div class="modal-footer d-flex justify-content-end mt-n4 mb-n2">
+                            <button type="submit" class="btn btn-primary">{{ __('message.simpan') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
     </div>
 @endsection
 
@@ -277,8 +334,8 @@
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script>

@@ -245,8 +245,11 @@ return [
 
     // Validation
     'nmrequired' => "Name is required.",
+    'nicknamerequired' => "Nickname is required.",
+    'inisialrequired' => "Resident Initial is required.",
     'tlprequired' => "Phone Number is required.",
     'niprequired' => "NIP is required.",
+    'ktprequired' => "No. KTP is required.",
     'alamatrequired' => "Address is required.",
     'tgllahirrequired' => "Date of Birth is required.",
     'passrequired' => "Password is required.",
@@ -284,6 +287,7 @@ return [
     'btssemesterrequired' => "End Semester is required.",
     'drsemesterrequired' => "From Semester is required.",
     'warnarequired' => "Color is required.",
+    'emailrequired' => "Email is required.",
 
     // Alert
     'success' => 'Success',

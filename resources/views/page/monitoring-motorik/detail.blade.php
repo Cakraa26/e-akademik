@@ -59,7 +59,7 @@
                         <form action="" method="GET">
                             @csrf
                             <div class="row mb-2">
-                                <div class="col-md-4 mb-3 pr-0">
+                                <div class="col-md-4 mb-3 pr-md-0">
                                     <label for="groupfk" class="form-label">{{ __('message.group') }}</label>
                                     <select class="form-control select2" name="groupfk" id="groupfk">
                                         <option value=""></option>

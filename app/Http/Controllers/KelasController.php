@@ -45,12 +45,27 @@ class KelasController extends Controller
         $residen = Residen::all();
         $tingkat = Tingkat::all();
         $semester = Semester::all();
+
+        $selectTahunAjaranPk = $request->input('select_thnajaran') ?? $selectTahunAjaran->pk;
+
+        $residenBelumTerdaftar = Residen::where('statuskuliah', 1)
+            ->whereNotIn('pk', function ($query) use ($selectTahunAjaranPk) {
+                $query->select('residenfk')
+                    ->from('m_kelas')
+                    ->where('thnajaranfk', $selectTahunAjaranPk);
+            })
+            ->get();
+
+        $semesters = Semester::select('pk', 'semester')->get();
+
         return view("page.data-kelas.index", [
             'kelas' => $kelas,
             'thnajaran' => $thnajaran,
             'selectTahunAjaran' => $selectTahunAjaran,
+            'residenBelumTerdaftar' => $residenBelumTerdaftar,
             'tingkat' => $tingkat,
             'semester' => $semester,
+            'semesters' => $semesters,
             'residen' => $residen,
             'type_menu' => $type_menu,
         ]);
@@ -93,6 +108,47 @@ class KelasController extends Controller
                     ]);
                 }
             }
+
+            return redirect()
+                ->back()
+                ->with('success', __('message.success_kelas_added'));
+
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function newKelas(Request $request)
+    {
+        try {
+            $residen = Residen::find($request->residenfk);
+            $semester = $request->semesters;
+            $tingkat = Tingkat::where('darisemester', '<=', $semester)
+                ->where('sampaisemester', '>=', $semester)
+                ->first();
+            $thnajaranfk = $request->input('select_thnajaran');
+            $kodekelas = $thnajaranfk . $semester;
+            $aktif = $residen->statuskuliah == 4 ? 0 : 1;
+
+            $kelas = Kelas::create([
+                'kodekelas' => $kodekelas,
+                'thnajaranfk' => $thnajaranfk,
+                'residenfk' => $residen->pk,
+                'tingkatfk' => $tingkat->pk,
+                'tglmulai' => now(),
+                'semester' => $semester,
+                'aktif' => $aktif,
+                'ctn_semester' => '',
+                'ctn_karyailmiah' => '',
+                'ctn_tingkat' => '',
+            ]);
+            $residen->update([
+                'kelasfk' => $kelas->pk,
+                'semester' => $semester,
+                'tingkatfk' => $tingkat->pk,
+                'thnajaranfk' => $thnajaranfk,
+            ]);
 
             return redirect()
                 ->back()

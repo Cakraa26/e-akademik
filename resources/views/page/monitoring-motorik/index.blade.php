@@ -40,7 +40,7 @@
                         <form action="" method="GET">
                             @csrf
                             <div class="row mb-3">
-                                <div class="col-md-3 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-md-0">
                                     <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
                                     <select class="form-control select2" name="thnajaranfk" id="thnajaranfk">
                                         <option value=""></option>
@@ -51,7 +51,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3 pr-0">
+                                <div class="col-md-4 mb-3 pr-md-0">
                                     <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
                                     <select class="form-control select2" name="tingkatfk" id="tingkatfk">
                                         <option value=""></option>
@@ -62,7 +62,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                <div class="col-8 col-md-3 mb-3 pr-md-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>
