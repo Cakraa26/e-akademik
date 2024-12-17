@@ -13,6 +13,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AuthController extends Controller
 {
@@ -34,6 +35,29 @@ class AuthController extends Controller
             return response()->json(['data' => $data], 200);
         } catch (\Throwable $e) {
             DB::rollBack();
+            \Log::error($e->getMessage());
+            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function removeRegisterNotVerified($pk)
+    {
+        try {
+            DB::beginTransaction();
+
+            $residen = Residen::findOrFail($pk);
+
+            if(!$residen->is_verified) {
+                $residen->delete();
+            }
+
+            DB::commit();
+            return response()->json([], 200);
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Data not found'], 404);
+        } catch (\Throwable $e) {
+            DB::rollBack();
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
         }
     }
@@ -43,10 +67,14 @@ class AuthController extends Controller
         try {
             $isVerify = $this->registerService->verifyOTP($verifyRequest, $pk);
 
+            if($isVerify == 2) {
+                return response()->json(['status' => 2], 400);
+            }
+
             if ($isVerify) {
-                return response()->json(['message' => 'Verify otp successfully', 'is_verified' => $isVerify]);
+                return response()->json(['status' => 1, 'is_verified' => $isVerify]);
             } else {
-                return response()->json(['message' => 'Verify otp failed', 'is_verified' => $isVerify], 400);
+                return response()->json(['status' => 0, 'is_verified' => $isVerify], 400);
             }
         } catch (\Throwable $e) {
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
