@@ -43,6 +43,10 @@ class Residen extends Authenticatable
     {
         return $this->hasMany(MotorikTransaction::class, 'residenfk', 'pk');
     }
+    public function tmotorikdt()
+    {
+        return $this->hasMany(MotorikTransactionData::class, 'residenfk', 'pk');
+    }
     public function kelas()
     {
         return $this->hasMany(Kelas::class, 'residenfk', 'pk');

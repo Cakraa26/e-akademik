@@ -113,9 +113,10 @@
                                             <label class="required">Inisial Residen</label>
                                             <div class="input-group input-group-icon">
                                                 <input type="text" id="inisialresiden" name="inisialresiden"
-                                                    value="{{ old('inisialresiden') }}" required
+                                                    value="{{ old('inisialresiden') }}" required minlength="3" maxlength="3"
                                                     data-parsley-required-message="Inisial Residen wajib diisi."
-                                                    maxlength="3" />
+                                                    data-parsley-length="[3, 3]"
+                                                    data-parsley-length-message="Inisial Residen harus memuat 3 karakter." />
                                                 <div class="input-icon">
                                                     <i class="fa fa-id-badge"></i>
                                                 </div>

@@ -109,11 +109,15 @@
                                                         <input type="text" name="nilai" value="{{ $n->nilai }}"
                                                             class="form-control edit-field" style="display:none;">
                                                     </td>
-                                                    <td class="text-nowrap">
-                                                        <a href="{{ Storage::url($n->nmfile) }}">View</a>
-                                                        |
-                                                        <a href="{{ Storage::url($n->nmfile) }}" download>Download</a>
-                                                    </td>
+                                                    @if ($n->nmfile)
+                                                        <td class="text-nowrap">
+                                                            <a href="{{ Storage::url($n->nmfile) }}">View</a>
+                                                            |
+                                                            <a href="{{ Storage::url($n->nmfile) }}" download>Download</a>
+                                                        </td>
+                                                    @else
+                                                        <td class="text-danger">No File</td>
+                                                    @endif
                                                     <td>
                                                         <label class="custom-switch pl-0">
                                                             <input type="checkbox" name="stsnilai[{{ $n->pk }}]"
@@ -150,7 +154,8 @@
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td colspan="2" class="text-right text-dark"><strong>{{ __('message.nilai') }}
+                                            <td colspan="2" class="text-right text-dark">
+                                                <strong>{{ __('message.nilai') }}
                                                     :</strong></td>
                                             <td class="text-dark"><strong>{{ number_format($totalNilai, 2) }}</strong>
                                             </td>
