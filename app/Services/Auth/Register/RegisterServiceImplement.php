@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Auth\VerifyRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repositories\Register\RegisterRepository;
+use Carbon\Carbon;
 
 class RegisterServiceImplement extends Service implements RegisterService
 {
@@ -75,9 +76,11 @@ class RegisterServiceImplement extends Service implements RegisterService
     $residen = Residen::findOrFail($pk);
 
     $inputOtp = implode('', $verifyRequest->otp);
+    $batasWaktu = Carbon::createFromFormat('Y-m-d H:i:s', $residen->waktu);
+    $currentTime = Carbon::now();
 
-    if (strtotime($residen->waktu) >= strtotime(now())) {
-        return 2;
+    if ($currentTime->gt($batasWaktu)) {
+      return 2;
     }
 
     if ($residen->otp == $inputOtp) {
