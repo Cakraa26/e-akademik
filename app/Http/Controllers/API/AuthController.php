@@ -69,12 +69,10 @@ class AuthController extends Controller
 
             if($isVerify == 2) {
                 return response()->json(['status' => 2], 400);
-            }
-
-            if ($isVerify) {
-                return response()->json(['status' => 1, 'is_verified' => $isVerify]);
+            } else if ($isVerify == 1) {
+                return response()->json(['status' => 1], 200);
             } else {
-                return response()->json(['status' => 0, 'is_verified' => $isVerify], 400);
+                return response()->json(['status' => 0], 400);
             }
         } catch (\Throwable $e) {
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
