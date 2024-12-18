@@ -121,6 +121,7 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'data.kelas.update',
         'destroy' => 'data.kelas.destroy',
     ]);
+    Route::post('/data-kelas/new/store', [KelasController::class, 'newKelas'])->name('new.kelas.store');
 
     // Jadwal Stase
     Route::resource('jadwal-stase', JadwalStase::class)->names([

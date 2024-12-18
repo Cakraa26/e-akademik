@@ -282,7 +282,7 @@
                     </div>
 
                     <div class="text-right">
-                        <a href="{{ route('dashboard') }}" class="btn btn-secondary">Batal</a>
+                        <a href="{{ route('dashboard') }}" class="btn btn-secondary">{{ __('message.cancel') }}</a>
                         <button type="submit" class="btn btn-success">Update Profile<i
                                 class="fas fa-check pl-2"></i></button>
 

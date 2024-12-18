@@ -68,7 +68,7 @@
                                 <tbody>
                                     @foreach ($residen as $r)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ date('d/m/Y', strtotime($r->dateadded)) }}</td>
                                             <td>{{ $r->inisialresiden }}</td>
                                             <td>{{ $r->nm }}</td>

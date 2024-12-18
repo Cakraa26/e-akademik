@@ -177,15 +177,12 @@
                                         name="datemodified"
                                         value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark mr-2"
-                                                href="{{ route('data.psikomotorik.index') }}">
-                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
-                                            </button>
-                                        </div>
+                                    <div class="d-flex justify-content-end mb-n3">
+                                        <a class="btn btn-dark mr-2" href="{{ route('data.psikomotorik.index') }}">
+                                            <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

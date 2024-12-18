@@ -27,13 +27,6 @@
                 </div>
             </div>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
@@ -46,465 +39,232 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form id="form" action="{{ route('database.residen.update', $residen->pk) }}" method="POST"
-                                    data-parsley-validate>
+                                <form id="form" action="{{ route('database.residen.update', $residen->pk) }}"
+                                    method="POST" data-parsley-validate>
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="semester" class="col-sm-3">{{ __('message.semester') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="semester"
-                                                        value="{{ $residen->semester }}" disabled>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>Semester</label>
+                                            <input type="text" class="form-control"
+                                                value="{{ $residen->semester }}" readonly>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="tingkat" class="col-sm-3">{{ __('message.tingkat') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="tingkat"
-                                                        value="{{ $residen->tingkat->nm }}" disabled>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.tingkat') }}</label>
+                                            <input type="text" class="form-control"
+                                                value="{{ $residen->tingkat->nm }}" readonly>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="karyailmiah"
-                                                    class="col-sm-3">{{ __('message.karyailmiah') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="karyailmiah"
-                                                        value="{{ $residen->karyailmiah->nm }}" disabled>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.karyailmiah') }}</label>
+                                            <input type="text" class="form-control"
+                                                value="{{ $residen->karyailmiah->nm }}" readonly>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="nama"
-                                                    class="col-sm-3">{{ __('message.namalengkap') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nm" id="nm"
-                                                        value="{{ old('nm', $residen->nm) }}" required
-                                                        data-parsley-required-message="{{ __('message.nmrequired') }}">
-                                                    @error('nm')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.namalengkap') }}</label>
+                                            <input type="text" class="form-control" name="nm"
+                                                value="{{ old('nm', $residen->nm) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12 pr-0">
+                                            <label>{{ __('message.nmpanggilan') }}</label>
+                                            <input type="text" class="form-control" name="nickname"
+                                                value="{{ old('nickname', $residen->nickname) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.inisial') }}</label>
+                                            <input type="text"
+                                                class="form-control @error('inisialresiden') is-invalid @enderror"
+                                                name="inisialresiden"
+                                                value="{{ old('inisialresiden', $residen->inisialresiden) }}"
+                                                maxlength="3">
+                                            @error('inisialresiden')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
                                                 </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.ktp') }}</label>
+                                            <input type="text" class="form-control @error('ktp') is-invalid @enderror"
+                                                name="ktp" value="{{ old('ktp', $residen->ktp) }}">
+                                            @error('ktp')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{ old('email', $residen->email) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.hp') }}</label>
+                                            <input type="text" class="form-control @error('hp') is-invalid @enderror"
+                                                name="hp" value="{{ old('hp', $residen->hp) }}">
+                                            @error('hp')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-2 col-12">
+                                            <label>{{ __('message.thnmasuk') }}</label>
+                                            <input type="text" class="form-control" name="thnmasuk"
+                                                value="{{ old('thnmasuk', $residen->thnmasuk) }}">
+                                        </div>
+                                        <div class="form-group col-md-2 col-12">
+                                            <label>{{ __('message.thnlulus') }}</label>
+                                            <input type="text" class="form-control" name="thnlulus"
+                                                value="{{ old('thnlulus', $residen->thnlulus) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.asalfk') }}</label>
+                                            <input type="text" class="form-control" name="asalfk"
+                                                value="{{ old('asalfk', $residen->asalfk) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.statusresiden') }}</label>
+                                            <select class="form-control select2" name="statusresiden" id="statusresiden">
+                                                <option value="Mandiri"
+                                                    {{ old('statusresiden', $residen->statusresiden) == 'Mandiri' ? 'selected' : '' }}>
+                                                    Mandiri
+                                                </option>
+                                                <option value="PNS"
+                                                    {{ old('statusresiden', $residen->statusresiden) == 'PNS' ? 'selected' : '' }}>
+                                                    PNS</option>
+                                                <option value="Patubel"
+                                                    {{ old('statusresiden', $residen->statusresiden) == 'Patubel' ? 'selected' : '' }}>
+                                                    Patubel</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.tempatlahir') }}</label>
+                                            <input type="text" class="form-control" name="tempatlahir"
+                                                value="{{ old('tempatlahir', $residen->tempatlahir) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.tgllahir') }}</label>
+                                            <input type="date" class="form-control" name="tgllahir"
+                                                value="{{ old('tgllahir', $residen->tgllahir) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.alamatktp') }}</label>
+                                            <input type="text" class="form-control" name="alamatktp"
+                                                value="{{ old('alamatktp', $residen->alamatktp) }}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.alamat') }}</label>
+                                            <input type="text" class="form-control" name="alamattinggal"
+                                                value="{{ old('alamattinggal', $residen->alamattinggal) }}">
+                                        </div>
+                                        <div class="form-group col-md-2 col-12 pr-0">
+                                            <label>{{ __('message.agama') }}</label>
+                                            <input type="text" class="form-control" name="agama"
+                                                value="{{ old('agama', $residen->agama) }}">
+                                        </div>
+                                        <div class="form-group col-md-2 col-12">
+                                            <label>{{ __('message.goldarah') }}</label>
+                                            <input type="text" class="form-control" name="goldarah"
+                                                value="{{ old('goldarah', $residen->goldarah) }}">
+                                        </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.statuskawin') }}</label>
+                                            <select class="form-control select2" name="statuskawin" id="statuskawin">
+                                                <option value="0"
+                                                    {{ old('statuskawin', $residen->statuskawin) == 0 ? 'selected' : '' }}>
+                                                    Belum Menikah
+                                                </option>
+                                                <option value="1"
+                                                    {{ old('statuskawin', $residen->statuskawin) == 1 ? 'selected' : '' }}>
+                                                    Menikah</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="pasangan">
+                                        <div class="row">
+                                            <div class="form-group col-md-4 col-12">
+                                                <label>{{ __('message.nmpasangan') }}</label>
+                                                <input type="text" class="form-control" name="nmpasangan"
+                                                    value="{{ old('nmpasangan', $residen->nmpasangan) }}" required
+                                                    data-parsley-required-message="{{ __('message.nmpasanganrequired') }}">
+                                            </div>
+                                            <div class="form-group col-md-4 col-12">
+                                                <label>{{ __('message.alamatpasangan') }}</label>
+                                                <input type="text" class="form-control" name="alamatpasangan"
+                                                    value="{{ old('alamatpasangan', $residen->alamatpasangan) }}" required
+                                                    data-parsley-required-message="{{ __('message.alamatpasanganrequired') }}">
+                                            </div>
+                                            <div class="form-group col-md-3 col-9">
+                                                <label>{{ __('message.hppasangan') }}</label>
+                                                <input type="text" class="form-control" name="hppasangan"
+                                                    value="{{ old('hppasangan', $residen->hppasangan) }}" required
+                                                    data-parsley-required-message="{{ __('message.hppasarangrequired') }}">
+                                            </div>
+                                            <div class="form-group col-md-1 col-3 pl-0">
+                                                <label>{{ __('message.jmlanak') }}</label>
+                                                <input type="text" class="form-control" name="anak"
+                                                    value="{{ old('anak', $residen->anak) }}" data-parsley-type="number"
+                                                    data-parsley-type-message="{{ __('message.jmlanaknumeric') }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="namapanggilan"
-                                                    class="col-sm-3">{{ __('message.namapanggilan') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nickname"
-                                                        id="namapanggilan"
-                                                        value="{{ old('nickname', $residen->nickname) }}" required
-                                                        data-parsley-required-message="{{ __('message.nicknamerequired') }}">
-                                                    @error('nickname')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.nmayah') }}</label>
+                                            <input type="text" class="form-control" name="nmayah"
+                                                value="{{ old('nmayah', $residen->nmayah) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="inisial" class="col-sm-3">{{ __('message.inisial') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="inisial" id="inisial"
-                                                        value="{{ old('inisial', $residen->inisialresiden) }}" required
-                                                        data-parsley-required-message="{{ __('message.nicknamerequired') }}">
-                                                    @error('inisial')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.nmibu') }}</label>
+                                            <input type="text" class="form-control" name="nmibu"
+                                                value="{{ old('nmibu', $residen->nmibu) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="noktp" class="col-sm-3">{{ __('message.noktp') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="noktp"
-                                                        id="noktp" value="{{ old('noktp', $residen->ktp) }}" required
-                                                        data-parsley-required-message="{{ __('message.ktprequired') }}">
-                                                    @error('noktp')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.alamatortu') }}</label>
+                                            <input type="text" class="form-control" name="alamatortu"
+                                                value="{{ old('alamatortu', $residen->alamatortu) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="email" class="col-sm-3">{{ __('message.email') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="email"
-                                                        id="email" value="{{ old('email', $residen->email) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.emailrequired') }}">
-                                                    @error('email')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-2 col-6 pr-0">
+                                            <label>{{ __('message.anakke') }}</label>
+                                            <input type="number" class="form-control" name="anakke"
+                                                value="{{ old('anakke', $residen->anakke) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="hp" class="col-sm-3">{{ __('message.tlp') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="hp"
-                                                        id="hp" value="{{ old('hp', $residen->hp) }}" required
-                                                        data-parsley-required-message="{{ __('message.tlprequired') }}">
-                                                    @error('hp')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-2 col-6">
+                                            <label>{{ __('message.jmlsaudara') }}</label>
+                                            <input type="number" class="form-control" name="jmlsaudara"
+                                                value="{{ old('jmlsaudara', $residen->jmlsaudara) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="hp" class="col-sm-3">{{ __('message.tlp') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="hp"
-                                                        id="hp" value="{{ old('hp', $residen->hp) }}" required
-                                                        data-parsley-required-message="{{ __('message.tlprequired') }}">
-                                                    @error('hp')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.nmkontakdarurat') }}</label>
+                                            <input type="text" class="form-control" name="nmkontak"
+                                                value="{{ old('nmkontak', $residen->nmkontak) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="tempatlahir"
-                                                    class="col-sm-3">{{ __('message.tempatlahir') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="tempatlahir"
-                                                        id="tempatlahir"
-                                                        value="{{ old('tempatlahir', $residen->tempatlahir) }}" required
-                                                        data-parsley-required-message="{{ __('message.tempatlahirrequired') }}">
-                                                    @error('tempatlahir')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.hpkontakdarurat') }}</label>
+                                            <input type="text" class="form-control" name="hpkontak"
+                                                value="{{ old('hpkontak', $residen->hpkontak) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="tgllahir"
-                                                    class="col-sm-3">{{ __('message.tgllahir') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="date" class="form-control" name="tgllahir"
-                                                        id="tgllahir" value="{{ old('tgllahir', $residen->tgllahir) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.tgllahirrequired') }}">
-                                                    @error('hp')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.hubkontakdarurat') }}</label>
+                                            <input type="text" class="form-control" name="hubkontak"
+                                                value="{{ old('hubkontak', $residen->hubkontak) }}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="alamatktp"
-                                                    class="col-sm-3">{{ __('message.alamatktp') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="alamatktp"
-                                                        id="alamatktp"
-                                                        value="{{ old('alamatktp', $residen->alamatktp) }}" required
-                                                        data-parsley-required-message="{{ __('message.alamatktprequired') }}">
-                                                    @error('alamatktp')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="agama" class="col-sm-3">{{ __('message.agama') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="agama"
-                                                        id="agama" value="{{ old('agama', $residen->agama) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.agamarequired') }}">
-                                                    @error('agama')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="goldarah"
-                                                    class="col-sm-3">{{ __('message.goldarah') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="goldarah"
-                                                        id="goldarah" value="{{ old('goldarah', $residen->goldarah) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.goldarahrequired') }}">
-                                                    @error('goldarah')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="thnmasuk"
-                                                    class="col-sm-3">{{ __('message.thnmasuk') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" name="thnmasuk"
-                                                        id="thnmasuk" value="{{ old('thnmasuk', $residen->thnmasuk) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.thnmasukrequired') }}">
-                                                    @error('thnmasuk')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="thnlulusan"
-                                                    class="col-sm-3">{{ __('message.tahunlulusan') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" name="thnlulusan"
-                                                        id="thnlulusan"
-                                                        value="{{ old('thnlulusan', $residen->thnlulus) }}" required
-                                                        data-parsley-required-message="{{ __('message.thnllulusanrequired') }}">
-                                                    @error('thnlulusan')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="asalfk"
-                                                    class="col-sm-3">{{ __('message.asalfakultas') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="asalfk"
-                                                        id="asalfk" value="{{ old('asalfk', $residen->asalfk) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.asalfakultasrequired') }}">
-                                                    @error('asalfk')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="statusresiden"
-                                                    class="col-sm-3">{{ __('message.statusresiden') }}</label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-select select2" id="statusresiden"
-                                                        name="statusresiden">
-                                                        <option value=""></option>
-                                                        <option value="Mandiri"
-                                                            {{ old('statusresiden', $residen->statusresiden) == 'Mandiri' ? 'selected' : '' }}>
-                                                            Mandiri</option>
-                                                        <option value="PNS"
-                                                            {{ old('statusresiden', $residen->statusresiden) == 'PNS' ? 'selected' : '' }}>
-                                                            PNS</option>
-                                                        <option value="Petubel"
-                                                            {{ old('statusresiden', $residen->statusresiden) == 'Petubel' ? 'selected' : '' }}>
-                                                            Petubel</option>
-                                                    </select>
-                                                    @error('statusresiden')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="statuskawin"
-                                                    class="col-sm-3">{{ __('message.statuskawin') }}</label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-select select2" id="statuskawin"
-                                                        name="statuskawin">
-                                                        <option value=""></option>
-                                                        <option value="1"
-                                                            {{ old('statuskawin', $residen->statuskawin) == 1 ? 'selected' : '' }}>
-                                                            Menikah</option>
-                                                        <option value="0"
-                                                            {{ old('statuskawin', $residen->statuskawin) == 0 ? 'selected' : '' }}>
-                                                            Belum Menikah</option>
-                                                    </select>
-                                                    @error('statusresiden')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="nmpasangan"
-                                                    class="col-sm-3">{{ __('message.nmpasangan') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nmpasangan"
-                                                        id="nmpasangan"
-                                                        value="{{ old('nmpasangan', $residen->nmpasangan) }}">
-                                                    @error('nmpasangan')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="alamatpasangan"
-                                                    class="col-sm-3">{{ __('message.alamatpasangan') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="alamatpasangan"
-                                                        id="alamatpasangan"
-                                                        value="{{ old('alamatpasangan', $residen->alamatpasangan) }}">
-                                                    @error('alamatpasangan')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="hppasangan"
-                                                    class="col-sm-3">{{ __('message.hppasangan') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="hppasangan"
-                                                        id="hppasangan"
-                                                        value="{{ old('hppasangan', $residen->hppasangan) }}">
-                                                    @error('hppasangan')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="jmlanak"
-                                                    class="col-sm-3">{{ __('message.jmlanak') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" name="jmlanak"
-                                                        id="jmlanak" value="{{ old('jmlanak', $residen->anak) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.jmlanaknumeric') }}">
-                                                    @error('jmlanak')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="nmayah"
-                                                    class="col-sm-3">{{ __('message.nmayah') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nmayah"
-                                                        id="nmayah" value="{{ old('nmayah', $residen->nmayah) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.nmayahrequired') }}">
-                                                    @error('nmayah')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="alamatortu"
-                                                    class="col-sm-3">{{ __('message.alamatortu') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="alamatortu"
-                                                        id="alamatortu"
-                                                        value="{{ old('alamatortu', $residen->alamatortu) }}" required
-                                                        data-parsley-required-message="{{ __('message.alamatorturequired') }}">
-                                                    @error('alamatortu')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="anakke"
-                                                    class="col-sm-3">{{ __('message.anakke') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" name="anakke"
-                                                        id="anakke" value="{{ old('anakke', $residen->anakke) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.anakkerequired') }}">
-                                                    @error('anakke')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="jmlsaudara"
-                                                    class="col-sm-3">{{ __('message.jmlsaudara') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" name="jmlsaudara"
-                                                        id="jmlsaudara"
-                                                        value="{{ old('jmlsaudara', $residen->jmlsaudara) }}" required
-                                                        data-parsley-required-message="{{ __('message.jmlsaudararequired') }}">
-                                                    @error('jmlsaudara')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="nmkontakdarurat"
-                                                    class="col-sm-3">{{ __('message.nmkontakdarurat') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nmkontakdarurat"
-                                                        id="nmkontakdarurat"
-                                                        value="{{ old('nmkontakdarurat', $residen->nmkontak) }}" required
-                                                        data-parsley-required-message="{{ __('message.nmkontakdaruratrequired') }}">
-                                                    @error('nmkontakdarurat')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="nmrkontakdarurat"
-                                                    class="col-sm-3">{{ __('message.nmrkontakdarurat') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nmrkontakdarurat"
-                                                        id="nmrkontakdarurat"
-                                                        value="{{ old('nmrkontakdarurat', $residen->hpkontak) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.nmrkontakdaruratrequired') }}">
-                                                    @error('nmrkontakdarurat')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="hubkontakdarurat"
-                                                    class="col-sm-3">{{ __('message.hubkontakdarurat') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="hubkontakdarurat"
-                                                        id="hubkontakdarurat"
-                                                        value="{{ old('hubkontakdarurat', $residen->hubkontak) }}"
-                                                        required
-                                                        data-parsley-required-message="{{ __('message.hubkontakdaruratrequired') }}">
-                                                    @error('hubkontakdarurat')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="form-group col-md-4 col-12">
                                             @php
                                                 switch ($residen->statuskuliah) {
                                                     case '1':
@@ -517,44 +277,28 @@
                                                         $statuskuliah = 'Cuti';
                                                         break;
                                                     default:
-                                                        $statuskuliah = 'Tidak Valid';
+                                                        $statuskuliah = 'Daftar';
                                                         break;
                                                 }
                                             @endphp
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="statuskuliah"
-                                                    class="col-sm-3">{{ __('message.statuskuliah') }}</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="statuskuliah"
-                                                        id="statuskuliah" value="{{ $statuskuliah }}" disabled>
-                                                </div>
-                                            </div>
+                                            <label>{{ __('message.statuskuliah') }}</label>
+                                            <input type="text" class="form-control" value="{{ $statuskuliah }}"
+                                                readonly>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-4 row align-items-center">
-                                                <label for="tahunlulas"
-                                                    class="col-sm-3">Tahun Lulas</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" "
-                                                        id="tahunlulas"
-                                                        value="{{ $residen->thnlulusspesialis ? $residen->thnlulusspesialis : '-' }}"
-                                                        disabled>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4 col-12">
+                                            <label>{{ __('message.thnlulus') }}</label>
+                                            <input type="text" class="form-control"
+                                                value="{{ old('thnlulusspesialis', $residen->thnlulusspesialis) }}"
+                                                readonly>
                                         </div>
                                     </div>
-                                    <input type="datetime-local" class="form-control" id="datemodified"
-                                        name="datemodified"
-                                        value="{{ old('datemodified', now()->format('Y-m-d\TH:i')) }}" hidden>
 
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark mr-2" href="{{ route('database.residen.index') }}">
-                                                <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
-                                            </button>
-                                        </div>
+                                    <div class="text-right">
+                                        <a class="btn btn-dark mr-1" href="{{ route('database.residen.index') }}">
+                                            <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -570,6 +314,31 @@
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var $pasangan = $('#pasangan input');
+            var $statuskawin = $('#statuskawin');
+
+            function updatePasangan() {
+                var status = $statuskawin.val();
+
+                if (status == "0") {
+                    $('#pasangan').hide();
+                    $pasangan.prop('required', false);
+                    $pasangan.attr('data-parsley-required', 'false');
+                    $pasangan.parsley().reset();
+                } else {
+                    $('#pasangan').show();
+                    $pasangan.prop('required', true);
+                    $pasangan.attr('data-parsley-required', 'true');
+                }
+            }
+
+            $statuskawin.on('select2:select', updatePasangan);
+            updatePasangan();
+        });
+    </script>
 
     <!-- Page Specific JS File -->
     <script>

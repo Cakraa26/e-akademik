@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'actionRegister']);
 Route::post('/register/verify-otp/{pk}', [AuthController::class, 'verifyOtp']);
 Route::patch('/register/verify-otp/{pk}/resend', [AuthController::class, 'resendOTP']);
+Route::delete('/register/{pk}', [AuthController::class, 'removeRegisterNotVerified']);
 
 Route::post('/login', [AuthController::class, 'login']);
 

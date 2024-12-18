@@ -48,42 +48,37 @@
 
                         <form action="" method="GET">
                             @csrf
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="groupfk" class="form-label">{{ __('message.group') }}</label>
-                                        <select class="form-select select2" id="groupfk" name="groupfk">
-                                            <option value=""></option>
-                                            @foreach ($group as $g)
-                                                <option value="{{ $g->pk }}"
-                                                    {{ Request::get('groupfk') == $g->pk ? 'selected' : '' }}>
-                                                    {{ $g->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 mb-3 pr-md-0">
+                                    <label for="groupfk" class="form-label">{{ __('message.group') }}</label>
+                                    <select class="form-control select2" name="groupfk" id="groupfk">
+                                        <option value=""></option>
+                                        @foreach ($group as $g)
+                                            <option value="{{ $g->pk }}"
+                                                {{ Request::get('groupfk') == $g->pk ? 'selected' : '' }}>
+                                                {{ $g->nm }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="kategoriInput" class="form-label">{{ __('message.kategori') }}</label>
-                                        <select class="form-select select2" id="kategorifk" name="kategorifk">
-                                            <option value=""></option>
-                                            @foreach ($kategori as $k)
-                                                <option value="{{ $k->pk }}"
-                                                    {{ Request::get('kategorifk') == $k->pk ? 'selected' : '' }}>
-                                                    {{ $k->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <div class="col-8 col-md-4 mb-3 pr-0">
+                                    <label for="kategorifk" class="form-label">{{ __('message.kategori') }}</label>
+                                    <select class="form-control select2" name="kategorifk" id="kategorifk">
+                                        <option value=""></option>
+                                        @foreach ($kategori as $k)
+                                            <option value="{{ $k->pk }}"
+                                                {{ Request::get('kategorifk') == $k->pk ? 'selected' : '' }}>
+                                                {{ $k->nm }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-4 mt-n4 mt-md-0">
-                                    <div class="mb-3">
-                                        <label>&nbsp;</label>
-                                        <div class="d-flex">
-                                            <button type="submit" class="btn btn-primary mr-2">Filter <i
-                                                    class="fas fa-sort-amount-up pl-1"></i></button>
-                                            <a href="{{ route('data.psikomotorik.index') }}"
-                                                class="btn btn-secondary">Refresh <i class="fas fa-sync-alt pl-1"></i></a>
-                                        </div>
+                                <div class="col-3 col-md-4 mb-3">
+                                    <label>&nbsp;</label>
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-primary mr-1"><i
+                                                class="fas fa-search"></i></button>
+                                        <a href="{{ route('data.psikomotorik.index') }}" class="btn btn-secondary">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -61,8 +61,28 @@ class DatabaseResidenController extends Controller
             'residen' => Residen::findOrFail($id),
         ]);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $pk)
     {
-        return dd($request->all());
+        $residen = Residen::findOrFail($pk);
+
+        $request->validate([
+            'inisialresiden' => 'required|unique:m_residen,inisialresiden,' . $residen->pk . ',pk',
+            'ktp' => 'required|unique:m_residen,ktp,' . $residen->pk . ',pk',
+            'hp' => 'required|unique:m_residen,hp,' . $residen->pk . ',pk',
+        ]);
+
+        try {
+            $inputData = $request->all();
+
+            $residen->update($inputData);
+
+            return redirect()
+                ->route('database.residen.index')
+                ->with('success', __('message.success_residen_edit'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

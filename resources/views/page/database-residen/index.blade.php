@@ -39,79 +39,78 @@
                     <div class="card-body">
                         <form action="" method="GET">
                             @csrf
-                            <div class="row mb-4">
-                                <div class="col-md-3 pr-0">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.angkatan') }}</label>
-                                        <select class="form-select select2" id="thnajaranfk" name="thnajaranfk">
-                                            <option value=""></option>
-                                            @foreach ($angkatan as $a)
-                                                <option value="{{ $a->pk }}"
-                                                    {{ Request::get('thnajaranfk') == $a->pk || (!Request::get('thnajaranfk') && $a->aktif == 1) ? 'selected' : '' }}>
-                                                    {{ $a->nm }}</option>
-                                            @endforeach
-                                        </select>
+                            <div class="row">
+                                <div class="col-md-3 mb-3 pr-md-0">
+                                    <label class="form-label">{{ __('message.angkatan') }}</label>
+                                    <select class="form-control select2" name="thnajaranfk" id="thnajaranfk">
+                                        <option value=""></option>
+                                        @foreach ($angkatan as $t)
+                                            <option value="{{ $t->pk }}"
+                                                {{ Request::get('thnajaranfk') == $t->pk || (!Request::get('thnajaranfk') && $t->aktif == 1) ? 'selected' : '' }}>
+                                                {{ $t->nm }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3 pr-md-0">
+                                    <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
+                                    <select class="form-control select2" name="tingkatfk" id="tingkatfk">
+                                        <option value=""></option>
+                                        @foreach ($tingkat as $t)
+                                            <option value="{{ $t->pk }}"
+                                                {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
+                                                {{ $t->kd }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-3 pr-md-0">
+                                    <label for="semester" class="form-label">{{ __('message.semester') }}</label>
+                                    <select class="form-control select2" name="semester" id="semester">
+                                        <option value=""></option>
+                                        @foreach ($semester as $s)
+                                            <option value="{{ $s->pk }}"
+                                                {{ Request::get('semester') == $s->pk ? 'selected' : '' }}>
+                                                {{ $s->semester }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-3 pr-md-0">
+                                    <label>{{ __('message.statuskuliah') }}</label>
+                                    <div class="d-flex mt-2">
+                                        <div class="form-check mr-3">
+                                            <input class="form-check-input" type="radio" name="statuskuliah"
+                                                value="1"
+                                                {{ request()->get('statuskuliah') == '1' ? 'checked' : '' }}>
+                                            <label class="form-check-label">
+                                                Aktif
+                                            </label>
+                                        </div>
+                                        <div class="form-check mr-3">
+                                            <input class="form-check-input" type="radio" name="statuskuliah"
+                                                value="3"
+                                                {{ request()->get('statuskuliah') == '3' ? 'checked' : '' }}>
+                                            <label class="form-check-label">
+                                                Alumni
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="statuskuliah"
+                                                value="semua"
+                                                {{ request()->get('statuskuliah') == 'semua' ? 'checked' : '' }}{{ is_null(request()->get('statuskuliah')) ? 'checked' : '' }}>
+                                            <label class="form-check-label">
+                                                Semua
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 pr-0">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.tingkat') }}</label>
-                                        <select class="form-select select2" id="tingkatfk" name="tingkatfk">
-                                            <option value=""></option>
-                                            @foreach ($tingkat as $t)
-                                                <option value="{{ $t->pk }}"
-                                                    {{ Request::get('tingkatfk') == $t->pk ? 'selected' : '' }}>
-                                                    {{ $t->nm }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.semester') }}</label>
-                                        <select class="form-select select2" id="semester" name="semester">
-                                            <option value=""></option>
-                                            @foreach ($semester as $s)
-                                                <option value="{{ $s->pk }}"
-                                                    {{ Request::get('semester') == $s->pk ? 'selected' : '' }}>
-                                                    {{ $s->semester }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 pr-0">
-                                    <div>{{ __('message.statuskuliah') }}</div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
-                                            value="1" {{ request()->get('statuskuliah') == '1' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="gridRadios1">
-                                            Aktif
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
-                                            value="3" {{ request()->get('statuskuliah') == '3' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="gridRadios1">
-                                            Alumni
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="statuskuliah" id="gridRadios1"
-                                            value="semua"
-                                            {{ request()->get('statuskuliah') == 'semua' ? 'checked' : '' }}{{ is_null(request()->get('statuskuliah')) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="gridRadios1">
-                                            Semua
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 pr-0">
-                                    <label>&nbsp;</label>
-                                    <div class="d-flex">
-                                        <button type="submit" class="btn btn-danger mr-1"><i
-                                                class="fas fa-search"></i></button>
-                                        <a href="{{ route('database.residen.index') }}" class="btn btn-secondary">
-                                            <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="row mt-1 mb-4">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ route('database.residen.index') }}" class="btn btn-secondary mr-1">Refresh
+                                            <i class="fas fa-sync-alt pl-1"></i>
                                         </a>
+                                        <button type="submit" class="btn btn-primary">Filter<i
+                                                class="fa-solid fa-arrow-up-wide-short pl-1"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -177,6 +176,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>

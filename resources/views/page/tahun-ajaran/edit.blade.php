@@ -108,11 +108,13 @@
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label class="col-sm-3"></label>
-                                                <div class="form-check ml-md-3">
-                                                    <input class="form-check-input" type="checkbox" id="aktif"
-                                                        name="aktif" value="1"
-                                                        {{ old('aktif', $thn->aktif) == '1' ? 'checked' : '' }}>
-                                                    <label class="form-check-label">{{ __('message.thnaktif') }}</label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="aktif"
+                                                            name="aktif" value="1"
+                                                            {{ old('aktif', $thn->aktif) == '1' ? 'checked' : '' }}>
+                                                        <label class="form-check-label">{{ __('message.thnaktif') }}</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
