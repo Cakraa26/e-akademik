@@ -24,7 +24,7 @@ class RegisterRequest extends BaseRequest
     public function rules()
     {
         return [
-            'nim' => 'required|unique:m_residen,nim',
+            'nim' => 'nullable|unique:m_residen,nim',
             'nm' => 'required',
             'nickname' => 'required',
             'inisialresiden' => 'required|unique:m_residen,inisialresiden',
@@ -67,7 +67,6 @@ class RegisterRequest extends BaseRequest
             'email.unique' => 'Alamat Email sudah terdaftar.',
             'hp.unique' => 'No. Telepon sudah terdaftar.',
             'inisialresiden.unique' => 'Inisial Residen sudah terdaftar.',
-            'nim.required' => 'NIM wajib diisi.',
             'nm.required' => 'Nama Lengkap wajib diisi.',
             'nickname.required' => 'Nama Panggilan wajib diisi.',
             'inisialresiden.required' => 'Inisial Residen wajib diisi.',

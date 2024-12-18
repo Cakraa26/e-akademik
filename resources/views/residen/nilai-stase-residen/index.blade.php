@@ -6,6 +6,7 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <style>
         button.btn.btn-sm {
             border-radius: 50%;
@@ -163,12 +164,13 @@
                             <div class="modal-header">
                                 <h5>{{ __('message.uploadfile') }}</h5>
                             </div>
-                            <form action="{{ route('nilai.stase.residen.upload') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form id="form" action="{{ route('nilai.stase.residen.upload') }}" method="POST"
+                                enctype="multipart/form-data" data-parsley-validate>
                                 @csrf
                                 <div class="modal-body mt-n2">
                                     <input type="hidden" name="stasefk" value="{{ $n->pk }}">
-                                    <input type="file" class="form-control" name="fileStase">
+                                    <input type="file" class="form-control" name="fileStase" required
+                                        data-parsley-required-message="{{ __('message.filerequired') }}">
                                 </div>
                                 <div class="modal-footer mt-n3">
                                     <button type="button" class="btn btn-secondary"
@@ -189,6 +191,7 @@
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
@@ -199,6 +202,16 @@
                 scrollX: true,
                 searching: false
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#form').parsley({
+                errorClass: 'is-invalid parsley-error',
+                successClass: 'is-valid',
+                errorsWrapper: '<span class="invalid-feedback"></span>',
+                errorTemplate: '<div></div>'
+            })
         });
     </script>
 @endpush

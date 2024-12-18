@@ -111,7 +111,7 @@
                                             <td>{{ $r->nm }}</td>
                                             <td>{{ $r->semester }}</td>
                                             <td>{{ $r->tingkat->kd }}</td>
-                                            <td>Need Aprroved</td>
+                                            <td>{{ $r->tmotorikdt->contains('stsapproved', 1) ? __('message.approve') : '' }}</td>
                                             <td>
                                                 <a href="{{ route('monitoring.detail', $r->pk) }}"
                                                     class="btn btn-dark btn-table {{ Request::is('monitoring-motorik/' . $r->pk . '/detail') ? 'active' : '' }}"><i

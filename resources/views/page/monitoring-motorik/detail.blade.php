@@ -182,7 +182,16 @@
                                                 <td>{{ $detail->nmfile }}</td>
                                                 <td>{{ $detail->ctn }}</td>
                                                 <td>{{ $detail->stsbimbingan === 1 ? 'Mandiri' : 'Bimbingan' }}</td>
-                                                <td>Need Approved</td>
+                                                <td>
+                                                    @if ($detail->stsapproved === 1)
+                                                        {{ __('message.approve') }}
+                                                    @elseif($detail->stsapproved === 2)
+                                                        {{ __('message.disetujui') }}
+                                                    @elseif($detail->stsapproved === 3)
+                                                        {{ __('message.cancel') }}
+                                                    @else
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
