@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Auth\VerifyRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repositories\Register\RegisterRepository;
+use Carbon\Carbon;
 
 class RegisterServiceImplement extends Service implements RegisterService
 {
@@ -30,7 +31,7 @@ class RegisterServiceImplement extends Service implements RegisterService
 
     $inputData = $registerRequest->all();
     $inputData['otp'] = $otp;
-    $inputData['waktu'] = time();
+    $inputData['waktu'] = now()->addMinutes(1);
     $inputData['addedbyfk'] = '0';
     $inputData['lastuserfk'] = '0';
     $inputData['angkatanfk'] = '0';
@@ -40,6 +41,7 @@ class RegisterServiceImplement extends Service implements RegisterService
     $inputData['hppasangan'] = $inputData['hppasangan'] ?? '';
     $inputData['anak'] = $inputData['anak'] ?? '0';
     $inputData['password'] = Hash::make($inputData['password']);
+    $inputData['is_verified'] = '0';
 
     $residen = Residen::create($inputData);
 
@@ -48,7 +50,7 @@ class RegisterServiceImplement extends Service implements RegisterService
       $curl,
       CURLOPT_HTTPHEADER,
       array(
-        "Authorization: WE3ffVnPW31nZNfLV29q",
+        "Authorization: " . env('FONNTE_TOKEN'),
       )
     );
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -74,10 +76,16 @@ class RegisterServiceImplement extends Service implements RegisterService
     $residen = Residen::findOrFail($pk);
 
     $inputOtp = implode('', $verifyRequest->otp);
+    $batasWaktu = Carbon::createFromFormat('Y-m-d H:i:s', $residen->waktu);
+    $currentTime = Carbon::now();
 
-    if ($residen->otp == $inputOtp && (time() - $residen->waktu <= 60)) {
+    if ($currentTime->gt($batasWaktu)) {
+      return 2;
+    }
+
+    if ($residen->otp == $inputOtp) {
       $residen->update([
-        'is_verified' => 1,
+        'is_verified' => '1',
       ]);
 
       return true;
@@ -101,7 +109,7 @@ class RegisterServiceImplement extends Service implements RegisterService
       $curl,
       CURLOPT_HTTPHEADER,
       array(
-        "Authorization: WE3ffVnPW31nZNfLV29q",
+        "Authorization: " . env('FONNTE_TOKEN'),
       )
     );
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
