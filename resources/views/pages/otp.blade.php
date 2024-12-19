@@ -69,7 +69,7 @@
     @endif
 
     @if (session('info'))
-        <div class="alert alert-info alert-dismissible show fade" role="alert">
+        <div class="alert alert-primary alert-dismissible show fade" role="alert">
             {{ session('info') }}
             <button class="close" data-dismiss="alert"><span>&times;</span></button>
         </div>

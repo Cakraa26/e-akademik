@@ -35,11 +35,15 @@ class AuthController extends Controller
                 ->first();
 
             if ($existingResiden) {
-                $existingResiden->update($request->all());
+                $this->registerService->resendOTP($existingResiden->pk);
+
+                $inputData = $request->all();
+                $inputData['password'] = Hash::make($inputData['password']);
+                $existingResiden->update($inputData);
 
                 return redirect()
                     ->route('otp.verify', ['residen' => $existingResiden->pk])
-                    ->with('info', 'Nomor HP sudah terdaftar. Silakan verifikasi OTP.');
+                    ->with('info', 'Akun sudah terdaftar. Silakan verifikasi OTP.');
             }
 
             DB::beginTransaction();
@@ -107,7 +111,7 @@ class AuthController extends Controller
         $user = User::where('username', $username)->first();
 
         if ($user && Hash::check($password, $user->password)) {
-            if ($user->is_verified == 1) {
+            if ($user->is_verified == 1 && $user->is_approved == 1) {
                 Auth::login($user);
                 Session::put('role', $user->role);
 

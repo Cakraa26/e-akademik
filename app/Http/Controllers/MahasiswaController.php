@@ -13,10 +13,11 @@ class MahasiswaController extends Controller
     {
         $type_menu = "master-data";
         $residen = Residen::where('statuskuliah', '0')
-            ->where('aktif', '0')
+            ->where('aktif', 0)
             ->get();
 
         $count = Residen::where('statuskuliah', 0)
+            ->where('aktif', 0)
             ->whereYear('dateadded', Carbon::now()->year) 
             ->count();
             
@@ -37,6 +38,7 @@ class MahasiswaController extends Controller
 
             $inputData['aktif'] = 1;
             $inputData['statuskuliah'] = 1;
+            $inputData['is_approved'] = 1;
             $inputData['angkatanfk'] = $thnajaran->pk;
             $inputData['thnajaranfk'] = $thnajaran->pk;
 
