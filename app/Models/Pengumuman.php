@@ -16,6 +16,7 @@ class Pengumuman extends Model
     {
         static::creating(function ($model) {
             $model->pk = $model->generatePk();
+            $model->dateadded = now();
         });
     }
     protected function generatePk()
