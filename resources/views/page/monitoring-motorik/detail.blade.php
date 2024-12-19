@@ -39,9 +39,9 @@
                 </div>
 
                 <div class="d-flex justify-content-end align-items-center mb-3">
-                    <a class="btn btn-dark mr-2" href="{{ route('monitoring.index') }}">
+                    <a class="btn btn-dark mr-1" href="{{ route('monitoring.index') }}">
                         <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                    <button type="button" class="btn btn-primary mr-2" id="btnCetak">{{ __('message.cetak') }}<i
+                    <button type="button" class="btn btn-primary mr-1" id="btnCetak">{{ __('message.cetak') }}<i
                             class='fas fa-print pl-2'></i></button>
                     <button type="button" class="btn btn-success" id="btnCetak">Excel<i
                             class="fas fa-file-excel pl-2"></i></button>
@@ -177,7 +177,7 @@
                                         @php $no = 1; @endphp
                                         @foreach ($t->motorikData as $detail)
                                             <tr>
-                                                <th>{{ $no++ }}</th>
+                                                <td>{{ $no++ }}</td>
                                                 <td>{{ $detail->tgl }}</td>
                                                 <td>{{ $detail->nmfile }}</td>
                                                 <td>{{ $detail->ctn }}</td>

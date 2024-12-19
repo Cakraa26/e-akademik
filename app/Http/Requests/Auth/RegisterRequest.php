@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseRequest;
 
 class RegisterRequest extends BaseRequest
@@ -24,13 +25,13 @@ class RegisterRequest extends BaseRequest
     public function rules()
     {
         return [
-            'nim' => 'nullable|unique:m_residen,nim',
             'nm' => 'required',
             'nickname' => 'required',
-            'inisialresiden' => 'required|unique:m_residen,inisialresiden',
-            'ktp' => 'required|unique:m_residen,ktp',
-            'email' => 'required|unique:m_residen,email',
-            'hp' => 'required|unique:m_residen,hp',
+            'nim' => 'nullable|unique:m_residen,nim,NULL,pk,is_verified,1',
+            'inisialresiden' => 'required|unique:m_residen,inisialresiden,NULL,pk,is_verified,1',
+            'ktp' => 'required|unique:m_residen,ktp,NULL,pk,is_verified,1',
+            'email' => 'required|unique:m_residen,email,NULL,pk,is_verified,1',
+            'hp' => 'required|unique:m_residen,hp,NULL,pk,is_verified,1',
             'password' => 'required|min:8',
             'tempatlahir' => 'required',
             'tgllahir' => 'required',

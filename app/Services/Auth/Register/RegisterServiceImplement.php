@@ -101,7 +101,7 @@ class RegisterServiceImplement extends Service implements RegisterService
 
     $resendOTP->update([
       'otp' => $newOTP,
-      'waktu' => time()
+      'waktu' => now()
     ]);
 
     $curl = curl_init();
