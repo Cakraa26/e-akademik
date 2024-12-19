@@ -24,6 +24,28 @@ class AuthController extends Controller
     public function actionRegister(RegisterRequest $request)
     {
         try {
+            $existingResiden = Residen::where(function ($query) use ($request) {
+                $query->where('hp', $request->hp)
+                    ->orWhere('nim', $request->nim)
+                    ->orWhere('inisialresiden', $request->inisialresiden)
+                    ->orWhere('ktp', $request->ktp)
+                    ->orWhere('email', $request->email);
+            })
+                ->where('is_verified', 0)
+                ->first();
+
+            if ($existingResiden) {
+                $this->registerService->resendOTP($existingResiden->pk);
+
+                $inputData = $request->all();
+                $inputData['password'] = Hash::make($inputData['password']);
+                $existingResiden->update($inputData);
+
+                return redirect()
+                    ->route('otp.verify', ['residen' => $existingResiden->pk])
+                    ->with('info', 'Akun sudah terdaftar. Silakan verifikasi OTP.');
+            }
+
             DB::beginTransaction();
 
             $residen = $this->registerService->register($request);
@@ -89,14 +111,14 @@ class AuthController extends Controller
         $user = User::where('username', $username)->first();
 
         if ($user && Hash::check($password, $user->password)) {
-            if ($user->is_verified == 1) {
+            if ($user->is_verified == 1 && $user->is_approved == 1) {
                 Auth::login($user);
                 Session::put('role', $user->role);
 
                 if ($user->role == 1) {
-                    return redirect()->route('dashboard')->with('success', __('message.success_login')); 
+                    return redirect()->route('dashboard')->with('success', __('message.success_login'));
                 } elseif ($user->role == 2) {
-                    return redirect()->route('dashboard-residen')->with('success', __('message.success_login')); 
+                    return redirect()->route('dashboard-residen')->with('success', __('message.success_login'));
                 }
             } else {
                 return back()->with('gagal', __('message.error_not_verified'));

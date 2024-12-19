@@ -193,25 +193,25 @@ class AcademicController extends Controller
                     't_motorik_dt.tgl',
                     'm_tingkat.nm as tingkat',
                     't_motorik_dt.semester',
-                    DB::raw("CASE 
-                    WHEN t_motorik_dt.stsbimbingan = 1 THEN 'Bimbingan' 
-                    WHEN t_motorik_dt.stsmandiri = 1 THEN 'Mandiri' 
-                    ELSE '' 
+                    DB::raw("CASE
+                    WHEN t_motorik_dt.stsbimbingan = 1 THEN 'Bimbingan'
+                    WHEN t_motorik_dt.stsmandiri = 1 THEN 'Mandiri'
+                    ELSE ''
                 END as type"),
-                    //     DB::raw("CASE 
-                    //     WHEN t_motorik_dt.stsapproved = 1 THEN 'Waiting' 
-                    //     WHEN t_motorik_dt.stsapproved = 2 THEN 'Approved' 
-                    //     WHEN t_motorik_dt.stsapproved = 3 THEN 'Cancel' 
-                    //     ELSE '' 
+                    //     DB::raw("CASE
+                    //     WHEN t_motorik_dt.stsapproved = 1 THEN 'Waiting'
+                    //     WHEN t_motorik_dt.stsapproved = 2 THEN 'Approved'
+                    //     WHEN t_motorik_dt.stsapproved = 3 THEN 'Cancel'
+                    //     ELSE ''
                     // END as status"),
                     't_motorik_dt.stsapproved as status',
-                    DB::raw("CASE 
-                    WHEN t_motorik_dt.stsapproved != 2 THEN 1 
-                    ELSE 0 
+                    DB::raw("CASE
+                    WHEN t_motorik_dt.stsapproved != 2 THEN 1
+                    ELSE 0
                 END as can_delete"),
-                    DB::raw("CASE 
-                    WHEN t_motorik_dt.stsapproved != 2 THEN 1 
-                    ELSE 0 
+                    DB::raw("CASE
+                    WHEN t_motorik_dt.stsapproved != 2 THEN 1
+                    ELSE 0
                 END as can_upload"),
                     't_motorik_dt.ctn'
                 )
@@ -239,7 +239,8 @@ class AcademicController extends Controller
         DB::beginTransaction();
 
         try {
-            $motorikTransaction = MotorikTransaction::with(['motorikData'])->where('motorikfk', $motorikId)->where('residenfk', auth()->user()->pk)->firstOrFail();
+            // $motorikTransaction = MotorikTransaction::with(['motorikData'])->findOrFail('pk', $motorikId)->where('residenfk', auth()->user()->pk)->firstOrFail();
+            $motorikTransaction = MotorikTransaction::with(['motorikData'])->findOrFail($motorikId);
             $motorikTransactionData = $motorikTransaction->motorikData()->findOrFail($motorikTransactionDataId);
 
             if ($motorikTransactionData->stsapproved == 2) {
@@ -341,7 +342,7 @@ class AcademicController extends Controller
                 ->orderBy('t_jadwal.bulan')
                 ->get();
 
-            // map query result 
+            // map query result
             $grouped = $data->groupBy('date')->map(function ($items, $date) {
                 return [
                     'date' => $date,

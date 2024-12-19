@@ -103,7 +103,19 @@ class AuthController extends Controller
             $user = User::where('username', $username)
                 ->first();
 
-            if (isset($user) && $user->is_verified && !Hash::check($password, $user->password)) {
+            if(!$user) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+
+            if(!$user->is_verified) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+
+            if(!$user->is_approved) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+
+            if(!Hash::check($password, $user->password)) {
                 return response()->json(['message' => 'Unauthorized'], 401);
             }
 
@@ -117,6 +129,7 @@ class AuthController extends Controller
                 'role' => $user->role
             ], 200);
         } catch (\Throwable $e) {
+            \Log::error($e->getMessage());
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
         }
     }

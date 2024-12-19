@@ -784,7 +784,9 @@ select.form-control:not([size]):not([multiple]) {
     color: #fff;
 }
 .alert.alert-primary {
-    background-color: #1a5319;
+    background-color: #cfe2ff;
+    color: #052c65;
+    border: 1px solid #9ec5fe;
 }
 .alert.alert-secondary {
     background-color: #cdd3d8;
@@ -795,7 +797,9 @@ select.form-control:not([size]):not([multiple]) {
     border: 1px solid #a3cfbb;
 }
 .alert.alert-info {
-    background-color: #3abaf4;
+    background-color: #cff4fc;
+    color: #055160;
+    border: 1px solid #9eeaf9;
 }
 .alert.alert-warning {
     background-color: #fff3cd;

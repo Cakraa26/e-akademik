@@ -53,7 +53,8 @@
         .resendbtn.disabled {
             color: #557C56
         }
-        .time-up{
+
+        .time-up {
             color: #dc3545;
         }
     </style>
@@ -63,6 +64,13 @@
     @if (session('success'))
         <div class="alert alert-success alert-dismissible show fade" role="alert">
             <strong>Sukses!</strong> {{ session('success') }}
+            <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        </div>
+    @endif
+
+    @if (session('info'))
+        <div class="alert alert-primary alert-dismissible show fade" role="alert">
+            {{ session('info') }}
             <button class="close" data-dismiss="alert"><span>&times;</span></button>
         </div>
     @endif

@@ -324,7 +324,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="button" name="previous" class="previous btn btn-secondary mr-2">
+                                        <button type="button" name="previous" class="previous btn btn-secondary mr-1">
                                             <i class="fas fa-arrow-left mr-1"></i> Kembali
                                         </button>
                                         <button type="button" name="next" class="next btn btn-success">
@@ -392,7 +392,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="button" name="previous" class="previous btn btn-secondary mr-2">
+                                        <button type="button" name="previous" class="previous btn btn-secondary mr-1">
                                             <i class="fas fa-arrow-left mr-1"></i> Kembali
                                         </button>
                                         <button type="button" name="next" class="next btn btn-success">
@@ -534,7 +534,7 @@
                                     value="{{ old('datemodified', now()->format('Y-m-d H:i:s')) }}" hidden>
                                 <div class="row mt-2">
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="button" name="previous" class="previous btn btn-secondary mr-2">
+                                        <button type="button" name="previous" class="previous btn btn-secondary mr-1">
                                             <i class="fas fa-arrow-left mr-1"></i> Kembali
                                         </button>
                                         <button type="submit" class="btn btn-success">
