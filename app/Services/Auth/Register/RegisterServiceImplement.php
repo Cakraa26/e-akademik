@@ -79,19 +79,20 @@ class RegisterServiceImplement extends Service implements RegisterService
     $batasWaktu = Carbon::createFromFormat('Y-m-d H:i:s', $residen->waktu);
     $currentTime = Carbon::now();
 
-    if ($currentTime->gt($batasWaktu)) {
+    if ($currentTime->gt($batasWaktu) || ($batasWaktu->diffInMinutes($currentTime) > 0)) {
       return 2;
-    }
-
-    if ($residen->otp == $inputOtp) {
-      $residen->update([
-        'is_verified' => '1',
-      ]);
-
-      return true;
     } else {
-      return false;
+        if ($residen->otp == $inputOtp) {
+          $residen->update([
+            'is_verified' => '1',
+          ]);
+
+          return 1;
+        } else {
+          return 0;
+        }
     }
+
   }
   public function resendOTP($pk)
   {
@@ -101,7 +102,7 @@ class RegisterServiceImplement extends Service implements RegisterService
 
     $resendOTP->update([
       'otp' => $newOTP,
-      'waktu' => now()
+      'waktu' => now()->addMinutes(1)
     ]);
 
     $curl = curl_init();
