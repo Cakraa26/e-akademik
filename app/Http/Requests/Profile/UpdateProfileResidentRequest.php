@@ -24,14 +24,16 @@ class UpdateProfileResidentRequest extends BaseRequest
      */
     public function rules()
     {
+        $pk = auth()->user()->pk;
+
         return [
             // 'nim' => 'required|unique:m_residen,nim',
             'nm' => 'required',
             'nickname' => 'required',
-            'inisialresiden' => 'required|unique:m_residen,inisialresiden',
-            'ktp' => 'required|unique:m_residen,ktp',
+            'inisialresiden' => 'required|min:3|max:3|unique:m_residen,inisialresiden,'.$pk.',pk',
+            'ktp' => 'required|unique:m_residen,ktp,'.$pk.',pk',
             // 'email' => 'required|unique:m_residen,email',
-            'hp' => 'required|unique:m_residen,hp',
+            'hp' => 'required|unique:m_residen,hp,'.$pk.',pk',
             // 'password' => 'required|min:8',
             'tempatlahir' => 'required',
             'tgllahir' => 'required',
