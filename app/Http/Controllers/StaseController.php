@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use App\Models\Stase;
+use App\Models\StaseDosen;
 use Illuminate\Http\Request;
 
 class StaseController extends Controller
@@ -83,6 +85,38 @@ class StaseController extends Controller
             return redirect()
                 ->route('data.stase.index')
                 ->with('success', __('message.success_stase_hapus'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function staseDosen($pk)
+    {
+        $type_menu = 'master-data';
+        $stase = Stase::findOrFail($pk);
+        $dosen = Dosen::all();
+        $stase_dosen = StaseDosen::where('stasefk', $pk)->get();
+
+        return view('page.data-stase.dosen', [
+            'stase_dosen' => $stase_dosen,
+            'dosen' => $dosen,
+            'stase' => $stase,
+            'type_menu' => $type_menu,
+        ]);
+    }
+    public function staseDosenPost(Request $request, $pk)
+    {
+        try {
+            $inputData = $request->all();
+            $inputData['stasefk'] = $pk;
+            $inputData['dateadded'] = now();
+
+            StaseDosen::create($inputData);
+            
+            return redirect()
+                ->back()
+                ->with('success', __('message.success_stase_added'));
         } catch (\Exception $e) {
             return back()
                 ->withInput()

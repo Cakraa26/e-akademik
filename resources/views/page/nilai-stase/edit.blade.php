@@ -45,7 +45,7 @@
                         <h2 class="section-title2">{{ $jadwal->residen->semester }}</h2>
                     </div>
                 </div>
-                <div class="row mb-2">
+                <div class="row mb-3 mb-md-0">
                     <div class="col-md-6">
                         <label class="form-label">{{ __('message.tingkat') }}</label>
                         <h2 class="section-title2">{{ $jadwal->residen->tingkat->kd }}</h2>

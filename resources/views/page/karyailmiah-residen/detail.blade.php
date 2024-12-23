@@ -42,16 +42,16 @@
             </div>
 
             <div class="section-body">
-                <div class="row col-md-6">
+                <div class="row col-md-6 mb-2 mb-md-0">
                     <h2 class="section-title">Semester : {{ $tkaryailmiah->residen->semester }} <i
                             class="fa-solid fa-angle-right"></i>
                         {{ __('message.tingkat') }} : {{ $tkaryailmiah->residen->tingkat->kd }}</h2>
                 </div>
 
                 <div class="d-flex justify-content-end align-items-center mb-3">
-                    <a class="btn btn-dark mr-2" href="{{ route('karyailmiahresiden.index') }}">
+                    <a class="btn btn-dark mr-1" href="{{ route('karyailmiahresiden.index') }}">
                         <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                    <button type="button" class="btn btn-primary mr-2" id="btnCetak">{{ __('message.cetak') }}<i
+                    <button type="button" class="btn btn-primary mr-1" id="btnCetak">{{ __('message.cetak') }}<i
                             class='fas fa-print pl-2'></i></button>
                     <button type="button" class="btn btn-success" id="btnCetak">Excel<i
                             class="fas fa-file-excel pl-2"></i></button>

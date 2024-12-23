@@ -2,8 +2,8 @@
 return [
     // Dashboard
     'dashboard' => "Dashboard",
-    'visitor' => "Visitor",
-    'registerresiden' => "Registered Resident",
+    'alumni' => "Alumnus",
+    'registerresiden' => "New Registrants",
     'residenaktif' => "Active Resident",
     'fkunud' => "Faculty of Medicine Udayana University",
     'prodi' => "Orthopaedics and Traumatology Specialist Study Program",
@@ -62,6 +62,7 @@ return [
     'editdosen' => "Update Lecturer",
     'tambahstase' => "Add Stase",
     'editstase' => "Update Stase",
+    'stasedosen' => "Lecturer Stase",
     'tambahpsikomotorik' => "Add Psychomotor",
     'editpsikomotorik' => "Update Psychomotor",
     'tambahgroup' => "Add Group",
@@ -121,6 +122,8 @@ return [
     'ctn' => "Note",
     'active' => 'Active',
     'cuti' => "Leave",
+    'daftar' => "Register",
+    'mahasiswa' => "Students",
     'inactive' => 'Non Active',
     'subkategori' => "Sub Category",
     'kategori' => "Category",
@@ -205,6 +208,7 @@ return [
     'hapus' => "Delete",
     'cari' => "Search",
     'dosen' => "Lecturer",
+    'dosenpengajar' => "Teaching Lecturer",
     'belum_upload' => "Not Yet Uploaded",
 
     // Tahun Ajaran
@@ -288,6 +292,8 @@ return [
     'drsemesterrequired' => "From Semester is required.",
     'warnarequired' => "Color is required.",
     'emailrequired' => "Email is required.",
+    'dosenrequired' => "Teaching lecturers is required.",
+    'thnlulusrequired' => "Graduation year is required.",
 
     // Alert
     'success' => 'Success',

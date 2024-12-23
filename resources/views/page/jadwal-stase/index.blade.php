@@ -30,7 +30,7 @@
                         <form action="" method="GET">
                             @csrf
                             <div class="row">
-                                <div class="col-md-3 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-md-0">
                                     <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
                                     <select class="form-control select2" name="thnajaranfk" id="thnajaranfk">
                                         @foreach ($thnajaran as $t)
@@ -40,7 +40,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-3 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-md-0">
                                     <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
                                     <select class="form-control select2" name="tingkatfk" id="tingkatfk">
                                         <option value=""></option>
@@ -51,7 +51,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-1 mb-3 pr-0">
+                                <div class="col-md-1 mb-3 pr-md-0 mb-n1 mb-md-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>
@@ -62,7 +62,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                <div class="col-8 col-md-3 pr-0">
                                     <label>&nbsp;</label>
                                     <input type="text" name="nm" class="form-control" value="{{ request('nm') }}">
                                 </div>

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GroupMotorik;
-use App\Models\KategoriMotorik;
 use App\Models\Motorik;
 use App\Models\Residen;
 use App\Models\Semester;

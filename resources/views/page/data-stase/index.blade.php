@@ -75,6 +75,10 @@
                                                         class="btn btn-info {{ Request::is('data-stase/' . $s->pk . '/edit') ? 'active' : '' }}"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
 
+                                                    <a href="{{ route('data.stase.dosen', $s->pk) }}"
+                                                        class="btn btn-primary {{ Request::is('data-stase/' . $s->pk . '/dosen') ? 'active' : '' }}"><i
+                                                            class="fa-solid fa-user-tie"></i></a>
+
                                                     <form action="{{ route('data.stase.destroy', $s->pk) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf

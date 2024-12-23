@@ -92,8 +92,12 @@ class KaryaIlmiahResidenAdmin extends Controller
     {
         try {
             $tkaryailmiah = KaryaIlmiahData::findOrFail($pk);
-            $tkaryailmiah->ctnfile = $request->input('ctnfile', '');
-            $tkaryailmiah->stssudah = $request->has('stssudah') ? 2 : 1;
+
+            $inputData = $request->all();
+            $inputData['ctnfile'] = $request->input('ctnfile', '');
+            $inputData['stssudah'] = $request->has('stssudah') ? 2 : 1;
+
+            $tkaryailmiah->update($inputData);
 
             $this->sendMessage([$tkaryailmiah->residen], 'Karya Ilmiah', 'Selamat Karya Ilmiah anda telah di approved atau Karya Ilmiah  yang diupload  telah di cancel silahkan cek kembali.');
 

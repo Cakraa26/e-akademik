@@ -2,8 +2,8 @@
 return [
     // Dashboard
     'dashboard' => "Beranda",
-    'visitor' => "Pengunjung",
-    'registerresiden' => "Residen Terdaftar",
+    'alumni' => "Alumni",
+    'registerresiden' => "Pendaftar Baru",
     'residenaktif' => "Residen Aktif",
     'fkunud' => "Fakultas Kedokteran Universitas Udayana",
     'prodi' => "Program Studi Spesialis Orthopaedi dan Traumatologi",
@@ -66,6 +66,7 @@ return [
     'editdosen' => "Perbarui Dosen",
     'tambahstase' => "Tambah Stase",
     'editstase' => "Perbarui Stase",
+    'stasedosen' => "Stase Dosen",
     'tambahpsikomotorik' => "Tambah Psikomotorik",
     'editpsikomotorik' => "Perbarui Psikomotorik",
     'tambahgroup' => "Tambah Grup",
@@ -130,6 +131,8 @@ return [
     'btssemester' => "Batas Semester",
     'aktif' => "Aktif",
     'cuti' => "Cuti",
+    'daftar' => "Daftar",
+    'mahasiswa' => "Mahasiswa",
     'thnaktif' => "Aktifkan tahun ajaran sekarang",
     'hariaktif' => "Aktifkan Hari Kerja",
     'jammasuk' => "Jam Masuk",
@@ -185,6 +188,7 @@ return [
     'tempatlahir' => "Tempat Lahir",
     'cari' => "Cari",
     'dosen' => "Dosen",
+    'dosenpengajar' => "Pilih Dosen Pengajar",
     'belum_upload' => "Belum Diunggah",
     'ktp' => "No. KTP",
     'dateofbirth' => "Tempat / Tgl Lahir",
@@ -270,7 +274,7 @@ return [
     'niprequired' => "NIP wajib diisi.",
     'statuskawinrequired' => "Status Kawin wajib diisi.",
     'statusresidenrequired' => "Status Residen wajib diisi.",
-    'thnllulusanrequired' => "Tahun Lulus wajib diisi.",
+    'thnlulusrequired' => "Tahun Lulus wajib diisi.",
     'thnmasukrequired' => "Tahun Masuk wajib diisi.",
     'alamatrequired' => "Alamat wajib diisi.",
     'agamarequired' => "Agama wajib diisi.",
@@ -315,6 +319,7 @@ return [
     'checkinrequired' => "Check-In wajib diisi.",
     'checkoutrequired' => "Check-Out wajib diisi.",
     'koordinatrequired' => "Koordinat wajib diisi.",
+    'dosenrequired' => "Dosen Pengajar wajib diisi.",
 
     // Alert
     'success' => 'Sukses',
