@@ -25,4 +25,12 @@ class StaseDosen extends Model
 
         return $nextPk;
     }
+    public function stase()
+    {
+        return $this->belongsTo(Stase::class, 'stasefk', 'pk');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'dosenfk', 'pk');
+    }
 }

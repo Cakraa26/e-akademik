@@ -25,4 +25,8 @@ class Stase extends Model
 
         return $nextPk;
     }
+    public function stasedosen()
+    {
+        return $this->hasMany(StaseDosen::class, 'stasefk', 'pk');
+    }
 }

@@ -111,6 +111,8 @@ Route::middleware(['checkRole:1'])->group(function () {
         'update' => 'data.stase.update',
         'destroy' => 'data.stase.destroy',
     ]);
+    Route::get('/data-stase/{pk}/dosen', [StaseController::class, 'staseDosen'])->name('data.stase.dosen');
+    Route::post('/data-stase/{pk}/dosen/post', [StaseController::class, 'staseDosenPost'])->name('stase.dosen.store');
 
     // Data Kelas
     Route::resource('data-kelas', KelasController::class)->names([

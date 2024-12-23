@@ -66,6 +66,7 @@ return [
     'editdosen' => "Perbarui Dosen",
     'tambahstase' => "Tambah Stase",
     'editstase' => "Perbarui Stase",
+    'stasedosen' => "Stase Dosen",
     'tambahpsikomotorik' => "Tambah Psikomotorik",
     'editpsikomotorik' => "Perbarui Psikomotorik",
     'tambahgroup' => "Tambah Grup",
@@ -185,6 +186,7 @@ return [
     'tempatlahir' => "Tempat Lahir",
     'cari' => "Cari",
     'dosen' => "Dosen",
+    'dosenpengajar' => "Pilih Dosen Pengajar",
     'belum_upload' => "Belum Diunggah",
     'ktp' => "No. KTP",
     'dateofbirth' => "Tempat / Tgl Lahir",
@@ -315,6 +317,7 @@ return [
     'checkinrequired' => "Check-In wajib diisi.",
     'checkoutrequired' => "Check-Out wajib diisi.",
     'koordinatrequired' => "Koordinat wajib diisi.",
+    'dosenrequired' => "Dosen Pengajar wajib diisi.",
 
     // Alert
     'success' => 'Sukses',

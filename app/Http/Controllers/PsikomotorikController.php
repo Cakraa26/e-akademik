@@ -6,7 +6,6 @@ use App\Models\GroupMotorik;
 use App\Models\Psikomotorik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use App\Models\KategoriMotorik as Kategori;
 use App\Models\SubKategoriMotorik as SubKategori;
 
