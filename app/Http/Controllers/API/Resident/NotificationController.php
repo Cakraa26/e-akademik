@@ -57,16 +57,22 @@ class NotificationController extends Controller
     public function getAnnouncement()
     {
         try {
-            $announcements = Notification::with(['pengumuman'])
-                ->whereHas('pengumuman', function ($query) {
-                    $query->where('aktif', 1)
-                        ->whereDate('tglbuat', '<=', now())
-                        ->whereDate('tglsampai', '>=', now());
-                })
-                ->where('residenfk', auth()->user()->pk)
-                ->where('pengumumanfk', '!=', null)
-                ->orderBy('dateadded', 'desc')
-                ->get();
+            // $announcements = Notification::with(['pengumuman'])
+            //     ->whereHas('pengumuman', function ($query) {
+            //         $query->where('aktif', 1)
+            //             ->whereDate('tglbuat', '<=', now())
+            //             ->whereDate('tglsampai', '>=', now());
+            //     })
+            //     ->where('residenfk', auth()->user()->pk)
+            //     ->where('pengumumanfk', '!=', null)
+            //     ->orderBy('dateadded', 'desc')
+            //     ->get();
+
+            $announcements = Pengumuman::where('aktif', 1)
+                                        ->whereDate('tglbuat', '<=', now())
+                                        ->whereDate('tglsampai', '>=', now())
+                                        ->orderBy('tglbuat', 'desc')
+                                        ->get();
 
             return response()->json($announcements, 200);
         } catch (\Throwable $e) {

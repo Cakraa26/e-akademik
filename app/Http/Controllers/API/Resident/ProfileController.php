@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API\Resident;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\ChangePasswordRequest;
+use App\Http\Requests\Profile\UpdateProfileResidentRequest;
+use App\Http\Requests\Profile\RegisterFace;
+use App\Http\Requests\Profile\RegisterNotifToken;
 use App\Models\Residen;
 use DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -21,7 +24,7 @@ class ProfileController extends Controller
             if (!\Hash::check($request->old_password, $data->password)) {
                 return response()->json([
                     'errors' => [
-                        'old_password' => ['The old password is incorrect']
+                        'old_password' => app()->getLocale() === 'id' ? ['Kata sandi lama salah.'] : ['Old password is wrong.'],
                     ],
                 ], 400);
             }
@@ -64,7 +67,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function updateBiodata(Request $request)
+    public function updateBiodata(UpdateProfileResidentRequest $request)
     {
         try {
             $user = Residen::findOrFail(auth()->user()->pk);
@@ -87,7 +90,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function registerFace(Request $reqeust)
+    public function registerFace(RegisterFace $reqeust)
     {
         try {
             $user = Residen::findOrFail(auth()->user()->pk);
@@ -106,7 +109,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function registerNotifToken(Request $reqeust)
+    public function registerNotifToken(RegisterNotifToken $reqeust)
     {
         try {
             $user = Residen::findOrFail(auth()->user()->pk);
