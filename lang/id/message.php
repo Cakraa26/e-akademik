@@ -2,8 +2,8 @@
 return [
     // Dashboard
     'dashboard' => "Beranda",
-    'visitor' => "Pengunjung",
-    'registerresiden' => "Residen Terdaftar",
+    'alumni' => "Alumni",
+    'registerresiden' => "Pendaftar Baru",
     'residenaktif' => "Residen Aktif",
     'fkunud' => "Fakultas Kedokteran Universitas Udayana",
     'prodi' => "Program Studi Spesialis Orthopaedi dan Traumatologi",
@@ -131,6 +131,8 @@ return [
     'btssemester' => "Batas Semester",
     'aktif' => "Aktif",
     'cuti' => "Cuti",
+    'daftar' => "Daftar",
+    'mahasiswa' => "Mahasiswa",
     'thnaktif' => "Aktifkan tahun ajaran sekarang",
     'hariaktif' => "Aktifkan Hari Kerja",
     'jammasuk' => "Jam Masuk",
@@ -272,7 +274,7 @@ return [
     'niprequired' => "NIP wajib diisi.",
     'statuskawinrequired' => "Status Kawin wajib diisi.",
     'statusresidenrequired' => "Status Residen wajib diisi.",
-    'thnllulusanrequired' => "Tahun Lulus wajib diisi.",
+    'thnlulusrequired' => "Tahun Lulus wajib diisi.",
     'thnmasukrequired' => "Tahun Masuk wajib diisi.",
     'alamatrequired' => "Alamat wajib diisi.",
     'agamarequired' => "Agama wajib diisi.",

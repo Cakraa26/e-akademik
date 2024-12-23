@@ -2,8 +2,8 @@
 return [
     // Dashboard
     'dashboard' => "Dashboard",
-    'visitor' => "Visitor",
-    'registerresiden' => "Registered Resident",
+    'alumni' => "Alumnus",
+    'registerresiden' => "New Registrants",
     'residenaktif' => "Active Resident",
     'fkunud' => "Faculty of Medicine Udayana University",
     'prodi' => "Orthopaedics and Traumatology Specialist Study Program",
@@ -122,6 +122,8 @@ return [
     'ctn' => "Note",
     'active' => 'Active',
     'cuti' => "Leave",
+    'daftar' => "Register",
+    'mahasiswa' => "Students",
     'inactive' => 'Non Active',
     'subkategori' => "Sub Category",
     'kategori' => "Category",
@@ -291,6 +293,7 @@ return [
     'warnarequired' => "Color is required.",
     'emailrequired' => "Email is required.",
     'dosenrequired' => "Teaching lecturers is required.",
+    'thnlulusrequired' => "Graduation year is required.",
 
     // Alert
     'success' => 'Success',

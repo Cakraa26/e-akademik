@@ -33,7 +33,7 @@
             </div>
 
             <div class="section-body">
-                <div class="row col-md-6">
+                <div class="row col-md-6 mb-2 mb-md-0">
                     <h2 class="section-title">Semester : {{ $residen->semester }} <i class="fa-solid fa-angle-right"></i>
                         {{ __('message.tingkat') }} : {{ $residen->tingkat->kd }}</h2>
                 </div>
@@ -106,7 +106,7 @@
                                         <th>{{ __('message.kategori') }}</th>
                                         <th>{{ __('message.bimbingan') }}</th>
                                         <th>{{ __('message.mandiri') }}</th>
-                                        <th class="text-center" style="width: 25%;">
+                                        <th class="text-center text-nowrap" style="width: 25%;">
                                             {{ __('message.approve') }}
                                             <br>
                                             {{ __('message.bimbingan') }} | {{ __('message.mandiri') }}
@@ -176,19 +176,23 @@
                                     <tbody>
                                         @php $no = 1; @endphp
                                         @foreach ($t->motorikData as $detail)
-                                            <tr>
+                                            <tr class="text-dark">
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $detail->tgl }}</td>
-                                                <td>{{ $detail->nmfile }}</td>
+                                                <td class="text-nowrap">
+                                                    <a href="{{ Storage::url($detail->nmfile) }}">View</a>
+                                                    |
+                                                    <a href="{{ Storage::url($detail->nmfile) }}" download>Download</a>
+                                                </td>
                                                 <td>{{ $detail->ctn }}</td>
                                                 <td>{{ $detail->stsbimbingan === 1 ? 'Mandiri' : 'Bimbingan' }}</td>
                                                 <td>
                                                     @if ($detail->stsapproved === 1)
-                                                        {{ __('message.approve') }}
+                                                       <span class="text-warning"> {{ __('message.approve') }}</span>
                                                     @elseif($detail->stsapproved === 2)
-                                                        {{ __('message.disetujui') }}
+                                                       <span class="text-success">{{ __('message.disetujui') }}</span>
                                                     @elseif($detail->stsapproved === 3)
-                                                        {{ __('message.cancel') }}
+                                                        <span class="text-danger">{{ __('message.cancel') }}</span>
                                                     @else
                                                     @endif
                                                 </td>

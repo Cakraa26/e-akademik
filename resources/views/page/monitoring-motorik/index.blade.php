@@ -62,7 +62,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-8 col-md-3 mb-3 pr-md-0">
+                                <div class="col-8 col-md-3 mb-3 pr-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>

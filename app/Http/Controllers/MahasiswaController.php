@@ -55,7 +55,7 @@ class MahasiswaController extends Controller
     }
     public function show($pk)
     {
-        $type_menu = 'psikomotorik';
+        $type_menu = 'master-data';
         $residen = Residen::findOrFail($pk);
         return view("page.data-mahasiswa.detail", [
             'type_menu' => $type_menu,

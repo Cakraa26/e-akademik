@@ -57,7 +57,7 @@
                             {{ date('d-m-Y', strtotime($residen->tgllahir)) }}</h2>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">{{ __('message.hp') }}</label>
@@ -157,6 +157,12 @@
                     <div class="col-md-2">
                         <label class="form-label">{{ __('message.hubkontakdarurat') }}</label>
                         <h2 class="section-title2">{{ $residen->hubkontak }}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end">
+                        <a class="btn btn-dark" href="{{ route('data.mahasiswa.index') }}"> <i
+                                class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                     </div>
                 </div>
             </div>

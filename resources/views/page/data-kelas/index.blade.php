@@ -30,7 +30,7 @@
                         <form action="" method="GET">
                             @csrf
                             <div class="row">
-                                <div class="col-md-3 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-md-0">
                                     <label for="thnajaranfk" class="form-label">{{ __('message.thnajaran') }}</label>
                                     <select class="form-control select2" name="thnajaranfk" id="thnajaranfk"
                                         onchange="updateInput(this.value)">
@@ -41,7 +41,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-3 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-md-0">
                                     <label for="tingkatfk" class="form-label">{{ __('message.tingkat') }}</label>
                                     <select class="form-control select2" name="tingkatfk" id="tingkatfk">
                                         <option value=""></option>
@@ -52,7 +52,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-1 mb-3 pr-0">
+                                <div class="col-md-1 mb-3 pr-md-0 mb-n1 mb-md-0">
                                     <label for="semester" class="form-label">{{ __('message.semester') }}</label>
                                     <select class="form-control select2" name="semester" id="semester">
                                         <option value=""></option>
@@ -63,7 +63,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-8 col-md-3 mb-3 pr-0">
+                                <div class="col-8 col-md-3 pr-0">
                                     <label>&nbsp;</label>
                                     <input type="text" name="search" class="form-control"
                                         value="{{ request('search') }}">
@@ -199,17 +199,19 @@
                             <div class="modal-body">
                                 <h6 class="text-center mb-3">DATA NILAI RESIDEN</h6>
                                 <div class="row">
-                                    <div class="col-md-5 mb-1">
+                                    <div class="col-md-6 mb-1">
                                         <span>{{ __('message.nama') }} : {{ $k->residen->nm ?? '-' }}</span>
                                     </div>
-                                    <div class="col-md-7 text-md-right mb-1">
-                                        <span>{{ __('message.thnajaran') }}/{{ __('message.semester') }} :
-                                            {{ $k->thnajaran->nm }}/{{ $k->semester }}</span>
+                                    <div class="col-md-6 text-md-right mb-1">
+                                        <span>{{ __('message.thnajaran') }} : {{ $k->thnajaran->nm }}</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <span>{{ __('message.tingkat') }} : {{ $k->tingkat->kd }}</span>
+                                    </div>
+                                    <div class="col-md-6 text-md-right mb-1">
+                                        <span>{{ __('message.semester') }} : {{ $k->semester }}</span>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -326,7 +328,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 @endsection
 

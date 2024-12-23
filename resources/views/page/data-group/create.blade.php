@@ -26,13 +26,6 @@
                 </div>
             </div>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible show fade" role="alert">
-                    <strong>{{ __('message.success') }}!</strong> {{ session('success') }}
-                    <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                </div>
-            @endif
-
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
@@ -78,9 +71,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a class="btn btn-dark mr-2" href="{{ route('data.group.index') }}">
+                                            <a class="btn btn-dark mr-1" href="{{ route('data.group.index') }}">
                                                 <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
                                             <button type="submit" id="submit-btn" class="btn btn-primary">
                                                 {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>

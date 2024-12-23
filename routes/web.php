@@ -12,6 +12,7 @@ use App\Http\Controllers\UTSController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardAdmin;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KelasController;
@@ -81,9 +82,7 @@ Route::get('/locale/{locale}', function ($locale) {
 
 Route::middleware(['checkRole:1'])->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardAdmin::class, 'index'])->name('dashboard');
 
     // Data Dosen
     Route::resource('data-dosen', DosenController::class)->names([
@@ -129,7 +128,6 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::resource('jadwal-stase', JadwalStase::class)->names([
         'index' => 'jadwal.stase.index',
         'create' => 'jadwal.stase.create',
-        // 'store' => 'jadwal.stase.store',
         'edit' => 'jadwal.stase.edit',
         'update' => 'jadwal.stase.update',
         'destroy' => 'jadwal.stase.destroy',

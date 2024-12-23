@@ -46,13 +46,13 @@
                                     <div class="row">
                                         <div class="form-group col-md-4 col-12">
                                             <label>Semester</label>
-                                            <input type="text" class="form-control"
-                                                value="{{ $residen->semester }}" readonly>
+                                            <input type="text" class="form-control" value="{{ $residen->semester }}"
+                                                readonly>
                                         </div>
                                         <div class="form-group col-md-4 col-12">
                                             <label>{{ __('message.tingkat') }}</label>
-                                            <input type="text" class="form-control"
-                                                value="{{ $residen->tingkat->nm }}" readonly>
+                                            <input type="text" class="form-control" value="{{ $residen->tingkat->nm }}"
+                                                readonly>
                                         </div>
                                         <div class="form-group col-md-4 col-12">
                                             <label>{{ __('message.karyailmiah') }}</label>
@@ -133,14 +133,14 @@
                                             <select class="form-control select2" name="statusresiden" id="statusresiden">
                                                 <option value="Mandiri"
                                                     {{ old('statusresiden', $residen->statusresiden) == 'Mandiri' ? 'selected' : '' }}>
-                                                    Mandiri
+                                                    {{ __('message.mandiri') }}
                                                 </option>
                                                 <option value="PNS"
                                                     {{ old('statusresiden', $residen->statusresiden) == 'PNS' ? 'selected' : '' }}>
-                                                    PNS</option>
+                                                    {{ __('message.pns') }}</option>
                                                 <option value="Patubel"
                                                     {{ old('statusresiden', $residen->statusresiden) == 'Patubel' ? 'selected' : '' }}>
-                                                    Patubel</option>
+                                                    {{ __('message.patubel') }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -183,11 +183,11 @@
                                             <select class="form-control select2" name="statuskawin" id="statuskawin">
                                                 <option value="0"
                                                     {{ old('statuskawin', $residen->statuskawin) == 0 ? 'selected' : '' }}>
-                                                    Belum Menikah
+                                                    {{ __('message.belummenikah') }}
                                                 </option>
                                                 <option value="1"
                                                     {{ old('statuskawin', $residen->statuskawin) == 1 ? 'selected' : '' }}>
-                                                    Menikah</option>
+                                                    {{ __('message.menikah') }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -265,40 +265,40 @@
                                                 value="{{ old('hubkontak', $residen->hubkontak) }}">
                                         </div>
                                         <div class="form-group col-md-4 col-12">
-                                            @php
-                                                switch ($residen->statuskuliah) {
-                                                    case '1':
-                                                        $statuskuliah = 'Mahasiswa';
-                                                        break;
-                                                    case '3':
-                                                        $statuskuliah = 'Alumni';
-                                                        break;
-                                                    case '4':
-                                                        $statuskuliah = 'Cuti';
-                                                        break;
-                                                    default:
-                                                        $statuskuliah = 'Daftar';
-                                                        break;
-                                                }
-                                            @endphp
                                             <label>{{ __('message.statuskuliah') }}</label>
-                                            <input type="text" class="form-control" value="{{ $statuskuliah }}"
-                                                readonly>
+                                            <select class="form-control select2" name="statuskuliah" id="statuskuliah">
+                                                <option value="0"
+                                                    {{ old('statuskuliah', $residen->statuskuliah) == 0 ? 'selected' : '' }}>
+                                                    {{ __('message.daftar') }}
+                                                </option>
+                                                <option value="1"
+                                                    {{ old('statuskuliah', $residen->statuskuliah) == 1 ? 'selected' : '' }}>
+                                                    {{ __('message.mahasiswa') }}</option>
+                                                <option value="3"
+                                                    {{ old('statuskuliah', $residen->statuskuliah) == 3 ? 'selected' : '' }}>
+                                                    {{ __('message.alumni') }}</option>
+                                                <option value="4"
+                                                    {{ old('statuskuliah', $residen->statuskuliah) == 4 ? 'selected' : '' }}>
+                                                    {{ __('message.cuti') }}</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group col-md-4 col-12">
+                                        <div class="form-group col-md-4 col-12" id="lulus">
                                             <label>{{ __('message.thnlulus') }}</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name="thnlulusspesialis"
                                                 value="{{ old('thnlulusspesialis', $residen->thnlulusspesialis) }}"
-                                                readonly>
+                                                required
+                                                data-parsley-required-message="{{ __('message.thnlulusrequired') }}">
                                         </div>
                                     </div>
 
-                                    <div class="text-right">
-                                        <a class="btn btn-dark mr-1" href="{{ route('database.residen.index') }}">
-                                            <i class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
-                                        </button>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <a class="btn btn-dark mr-1" href="{{ route('database.residen.index') }}"> <i
+                                                    class="fas fa-arrow-left mr-1"></i> {{ __('message.kembali') }}</a>
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('message.simpan') }} <i class="fas fa-save pl-1"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -337,6 +337,31 @@
 
             $statuskawin.on('select2:select', updatePasangan);
             updatePasangan();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var $lulus = $('#lulus input');
+            var $statuskuliah = $('#statuskuliah');
+
+            function updateLulus() {
+                var status = $statuskuliah.val();
+
+                if (status != 3) {
+                    $('#lulus').hide();
+                    $lulus.prop('required', false);
+                    $lulus.attr('data-parsley-required', 'false');
+                    $lulus.parsley().reset();
+                } else {
+                    $('#lulus').show();
+                    $lulus.prop('required', true);
+                    $lulus.attr('data-parsley-required', 'true');
+                }
+            }
+
+            $statuskuliah.on('select2:select', updateLulus);
+            updateLulus();
         });
     </script>
 

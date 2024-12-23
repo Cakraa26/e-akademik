@@ -53,14 +53,14 @@
                     <div class="col-xl-4 col-lg-6">
                         <div class="card l-bg-blue-dark">
                             <div class="card-statistic-3 p-4">
-                                <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
+                                <div class="card-icon card-icon-large"><i class="fas fa-user-graduate"></i></div>
                                 <div class="mb-4">
-                                    <h5 class="card-title mb-0">{{ __('message.visitor') }}</h5>
+                                    <h5 class="card-title mb-0">{{ __('message.alumni') }}</h5>
                                 </div>
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-12">
                                         <h2 class="d-flex align-items-center mb-0">
-                                            30
+                                            {{ $alumni }}
                                         </h2>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-12">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        33
+                                        {{ $residenBaru }}
                                     </h2>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-12">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        570
+                                        {{ $residenAktif }}
                                     </h2>
                                 </div>
                             </div>
@@ -103,6 +103,12 @@
                     </div>
                 </div>
             </div>
+            @if ($count > 0)
+                <div class="alert alert-warning alert-dismissible show fade" role="alert">
+                    <strong><i class="fa-solid fa-triangle-exclamation pr-1"></i></strong> {{ __('message.ada') }}
+                    {{ $count }} {{ __('message.cek') }}
+                </div>
+            @endif
             <div class="mt-3">
                 <div class="text-center text-dashboard">
                     <div class="mb-3">
