@@ -78,7 +78,7 @@ class NilaiStase extends Controller
 
         $grup = $jadwalNilais->groupBy(function ($item) {
             return $item->jadwal->bulan . '-' . $item->jadwal->tahun;
-        });
+        })->sortKeys();
 
         $kelas = Kelas::where('residenfk', $residenfk)->first();
         return view("page.nilai-stase.edit", [
