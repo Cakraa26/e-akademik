@@ -112,6 +112,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     ]);
     Route::get('/data-stase/{pk}/dosen', [StaseController::class, 'staseDosen'])->name('data.stase.dosen');
     Route::post('/data-stase/{pk}/dosen/post', [StaseController::class, 'staseDosenPost'])->name('stase.dosen.store');
+    Route::delete('/data-stase/{pk}/dosen/delete', [StaseController::class, 'destroyStaseDosen'])->name('stase.dosen.delete');
 
     // Data Kelas
     Route::resource('data-kelas', KelasController::class)->names([

@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('library/datatables/media/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
 @endpush
 
 @section('main')
@@ -96,7 +97,7 @@
                                             <td>{{ $s->dosen->nm ?? '' }}</td>
                                             <td>
                                                 <div>
-                                                    <form action="{{ route('data.stase.destroy', $s->pk) }}" method="POST"
+                                                    <form action="{{ route('stase.dosen.delete', $s->pk) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
@@ -125,6 +126,8 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('library/datatables/media/js/dataTables.boostrap4.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script>
@@ -133,6 +136,14 @@
                 scrollX: true
             });
         });
+    </script>
+
+    <script>
+        var translations = {
+            deleteConfirmation: "{{ __('message.deleteConfirm') }}",
+            cancel: "{{ __('message.cancel') }}",
+            confirm: "{{ __('message.confirm') }}"
+        };
     </script>
 
     <script>
