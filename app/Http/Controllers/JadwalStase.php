@@ -116,7 +116,7 @@ class JadwalStase extends Controller
                         'bulan' => $date['bulan'],
                         'tahun' => $date['tahun'],
                     ];
-                    
+
                     $update = [
                         'stasefk' => $request->input($inputName),
                     ];

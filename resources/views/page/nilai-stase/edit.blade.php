@@ -120,8 +120,9 @@
                                                     @endif
                                                     <td>
                                                         <label class="custom-switch pl-0">
-                                                            <input type="checkbox" name="stsnilai[{{ $n->pk }}]"
-                                                                value="2" class="custom-switch-input"
+                                                            <input type="checkbox" name="stsnilai"
+                                                                id="switch-{{ $n->pk }}" value="2"
+                                                                class="custom-switch-input"
                                                                 {{ $n->stsnilai == 2 ? 'checked' : '' }} disabled>
                                                             <span class="custom-switch-indicator"></span>
                                                         </label>
@@ -156,7 +157,8 @@
                                         <tr>
                                             <td colspan="2" class="text-right text-dark">
                                                 <strong>{{ __('message.nilai') }}
-                                                    :</strong></td>
+                                                    :</strong>
+                                            </td>
                                             <td class="text-dark"><strong>{{ number_format($totalNilai, 2) }}</strong>
                                             </td>
                                             <td colspan="4"></td>
@@ -179,9 +181,11 @@
     <script>
         function toggleEdit(pk) {
             const row = document.getElementById('row-' + pk);
+            const switchInput = document.getElementById('switch-' + pk);
+
             row.querySelectorAll('.view').forEach(view => view.style.display = 'none');
             row.querySelectorAll('.edit-field').forEach(field => field.style.display = 'block');
-
+            switchInput.disabled = false;
             document.getElementById('edit-btn-' + pk).style.display = 'none';
             document.getElementById('save-btn-' + pk).style.display = 'inline';
             document.getElementById('cancel-btn-' + pk).style.display = 'inline';
@@ -189,9 +193,11 @@
 
         function cancelEdit(pk) {
             const row = document.getElementById('row-' + pk);
+            const switchInput = document.getElementById('switch-' + pk);
+
             row.querySelectorAll('.view').forEach(view => view.style.display = 'inline');
             row.querySelectorAll('.edit-field').forEach(field => field.style.display = 'none');
-
+            switchInput.disabled = true;
             document.getElementById('edit-btn-' + pk).style.display = 'inline';
             document.getElementById('save-btn-' + pk).style.display = 'none';
             document.getElementById('cancel-btn-' + pk).style.display = 'none';

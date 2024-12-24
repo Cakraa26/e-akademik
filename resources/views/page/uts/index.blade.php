@@ -145,7 +145,7 @@
                                                 @csrf
                                                 @method('PUT')
                                                 <td>{{ $no++ }}</td>
-                                                <td class="text-nowrap">{{ $k->residen->nm ?? '-'}}</td>
+                                                <td class="text-nowrap">{{ $k->residen->nm ?? '-' }}</td>
                                                 <td>
                                                     <span class="view"
                                                         id="mcqbenar_uts-{{ $k->pk }}">{{ $k->mcqbenar_uts }}</span>
@@ -199,10 +199,13 @@
                                                 <td>{{ $k->hasil_osce_uts }}</td>
                                                 <td>{{ $k->uts }}</td>
                                                 <td>
-                                                    <span
-                                                        class="badge {{ $k->hasil === 'REMIDI' ? 'badge-danger' : 'badge-success' }}">
-                                                        {{ $k->hasil === 'REMIDI' ? 'REMIDI' : 'LULUS' }}
-                                                    </span>
+                                                    @if ($k->status_uts === 'REMIDI')
+                                                        <span class="badge badge-danger">REMIDI</span>
+                                                    @elseif($k->status_uts === 'LULUS')
+                                                        <span class="badge badge-success">LULUS</span>
+                                                    @else
+                                                        <span></span>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning btn-sm"

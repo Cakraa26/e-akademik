@@ -87,7 +87,7 @@ class UTSController extends Controller
             $uts->persenuts = round(($uts->uts * 20) / 100, 2);
             $uts->persenstase = 0;
             $uts->totalnilai = $persenuas + $uts->persenuts + $uts->persenstase;
-            $uts->hasil = $uts->uts >= 69.5 ? 'LULUS' : 'REMIDI';
+            $uts->status_uts = $uts->uts >= 69.5 ? 'LULUS' : 'REMIDI';
 
             $uts->save();
 

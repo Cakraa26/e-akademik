@@ -210,10 +210,13 @@
                                                 <td>{{ $k->persenstase }}</td>
                                                 <td>{{ $k->totalnilai }}</td>
                                                 <td>
-                                                    <span
-                                                        class="badge {{ $k->hasil === 'REMIDI' ? 'badge-danger' : 'badge-success' }}">
-                                                        {{ $k->hasil === 'REMIDI' ? 'REMIDI' : 'LULUS' }}
-                                                    </span>
+                                                    @if ($k->status_uas === 'REMIDI')
+                                                        <span class="badge badge-danger">REMIDI</span>
+                                                    @elseif($k->status_uas === 'LULUS')
+                                                        <span class="badge badge-success">LULUS</span>
+                                                    @else
+                                                        <span></span>
+                                                    @endif
                                                 </td>
                                                 <td>{{ $k->ctn_semester }}</td>
                                                 <td>{{ $k->ctn_tingkat }}</td>

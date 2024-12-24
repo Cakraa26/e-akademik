@@ -87,7 +87,7 @@ class UASController extends Controller
             $persenuts = $uas->persenuts;
             $uas->persenstase = 0;
             $uas->totalnilai = $uas->persenuas + $persenuts + $uas->persenstase;
-            $uas->hasil = $uas->totalnilai >= 69.5 ? 'LULUS' : 'REMIDI';
+            $uas->status_uas = $uas->totalnilai >= 69.5 ? 'LULUS' : 'REMIDI';
 
             $uas->save();
 
