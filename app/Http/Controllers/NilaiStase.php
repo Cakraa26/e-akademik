@@ -94,7 +94,8 @@ class NilaiStase extends Controller
             $nilai = JadwalTransactionNilai::findOrFail($pk);
             $nilai->nilai = round($request->input('nilai'), 2);
             $nilai->ctnfile = $request->input('ctnfile');
-            ;
+            $nilai->stsnilai = $request->has('stsnilai') ? 2 : 1;
+
             $nilai->save();
 
             $nilaistase = round($request->totalnilai, 2);

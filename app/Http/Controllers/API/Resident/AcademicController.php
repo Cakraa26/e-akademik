@@ -340,6 +340,7 @@ class AcademicController extends Controller
                 ->where('t_jadwal.residenfk', auth()->user()->pk)
                 ->where('m_thnajaran.pk', $request->tahunAjaran ? $request->tahunAjaran : auth()->user()->thnajaranfk)
                 ->orderBy('t_jadwal.bulan')
+                ->orderBy('t_jadwal_nilai.pk')
                 ->get();
 
             // map query result
