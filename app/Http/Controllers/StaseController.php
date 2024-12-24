@@ -123,4 +123,19 @@ class StaseController extends Controller
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+    public function destroyStaseDosen($pk)
+    {
+        try {
+            $staseDosen = StaseDosen::findOrFail($pk);
+            $staseDosen->delete();
+
+            return redirect()
+                ->back()
+                ->with('success', __('message.success_dosen_hapus'));
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
 }
