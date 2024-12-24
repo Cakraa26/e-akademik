@@ -128,7 +128,8 @@ class AttendanceController extends Controller
 
             if ($request->has('start_date') && $request->has('end_date')) {
                 $query = Absen::where('residenfk', auth()->user()->pk);
-                $data = $query->whereBetween('check_in', [$request->start_date, $request->end_date])
+                $data = $query->whereDate('check_in', '>=', $request->start_date)
+                    ->whereDate('check_in', '<=', $request->end_date)
                     ->get();
 
                 $alpa = clone $query;
