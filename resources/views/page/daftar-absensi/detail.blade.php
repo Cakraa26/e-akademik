@@ -102,7 +102,7 @@
                                                         {{ date('H.i', strtotime($a->check_out)) }}
                                                     </a>
                                                 @else
-                                                    {{ date('H.i', strtotime($a->check_out)) }}
+                                                    {{ $a->loc_out ? date('H.i', strtotime($a->check_out)) : '-' }}
                                                 @endif
                                             </td>
                                             <td>{{ $a->terlambat }}</td>
